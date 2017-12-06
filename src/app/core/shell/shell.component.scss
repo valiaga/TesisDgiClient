@@ -1,0 +1,61 @@
+@import "../../../styles.scss";
+
+.div-breadcrumb{
+  // border-bottom:1px solid #ccc;
+  border-bottom: 1px solid;
+  background-color: mat-color($dgi-primary);
+}
+
+mat-icon.mat-icon.mat-24 {
+  color: mat-color($dgi-primary, default-contrast);
+}
+
+.breadcrumb {
+  padding: 0.2rem 1rem;
+  list-style: none;
+  &::after {
+    content: "";
+    display: table;
+    clear: both; 
+  }
+}
+
+.breadcrumb-item {
+  float: left;
+  cursor: pointer;
+  color: mat-color($dgi-primary, default-contrast);
+  + .breadcrumb-item {
+    &::before {
+      display: inline-block;
+      padding-right: 0.5rem;
+      padding-left: 0.5rem;
+      // color: rgba(0, 0, 0, 0.26);
+      color: mat-color($dgi-primary, default-contrast);
+      content: "/";
+    }
+    &:hover::before {
+      text-decoration: underline;
+      text-decoration: none;
+    }
+  }
+  &.active {
+    // color: rgba(0, 0, 0, 0.26);
+    color: mat-color($dgi-primary, default-contrast);
+  }
+}
+.breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: mat-color($dgi-primary, default-contrast);
+    // color: rgba(0, 0, 0, 0.26);
+    content: "/"; 
+}
+
+.mat-sidenav-content{
+  overflow: hidden !important;
+  
+}
+.dgi-main-content{
+  width: 100%;
+}

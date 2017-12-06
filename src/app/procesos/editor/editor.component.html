@@ -1,0 +1,91 @@
+<mat-card  class="proceso-form-card" role="region">
+  <mat-tab-group>
+    <mat-tab label="Información">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Nombre</mat-card-title> 
+          <!-- <mat-card-subtitle>Formulario para crear un proceso</mat-card-subtitle> -->
+        </mat-card-header>
+        <!-- <mat-divider></mat-divider>   -->
+        <mat-card-content>
+          <p>
+            Proceso de tesis para titulo profesional
+          </p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Descripcion</mat-card-title> 
+          <!-- <mat-card-subtitle>Formulario para crear un proceso</mat-card-subtitle> -->
+        </mat-card-header>
+        <!-- <mat-divider></mat-divider>   -->
+        <mat-card-content>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, iure repudiandae quas nobis temporibus error! Aliquid assumenda recusandae earum nobis voluptatibus dolorem! Reprehenderit neque, aliquam voluptatem a reiciendis deserunt dolor?</p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus saepe sed laudantium, itaque, delectus dolorum quam, reiciendis id totam veniam dicta velit amet quas iste officiis, mollitia quod dignissimos? Voluptatem.
+          <p>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Activo</mat-card-title> 
+          <!-- <mat-card-subtitle>Formulario para crear un proceso</mat-card-subtitle> -->
+        </mat-card-header>
+        <!-- <mat-divider></mat-divider>   -->
+        <mat-card-content>
+          <mat-slide-toggle [disabled]="true" [checked]="true">Activo</mat-slide-toggle>
+        </mat-card-content>
+      </mat-card>
+      <mat-card>
+      <!-- {{ proceso | json }} -->
+      </mat-card>
+      
+      
+    </mat-tab>
+    <mat-tab label="Etapas">
+      <td-expansion-panel label="Etapa 1" sublabel="Etapa 1" [disabled]="disabled">
+        <div class="mat-padding">
+          <h3 class="mat-subhead">Etapa 1</h3>
+          <div>Paso 1</div>
+          <div>Paso 2</div>
+          <div>Paso 3</div>
+        </div>
+      </td-expansion-panel>
+      <td-expansion-panel label="Etapa 2" sublabel="Etapa 2"  [disabled]="disabled">
+        <div class="mat-padding">
+          <h3 class="mat-subhead">Etapa 2</h3>
+          <div>Paso 1</div>
+          <div>Paso 2</div>
+          <div>Paso 3</div>
+        </div>
+      </td-expansion-panel>
+    </mat-tab>
+    <mat-tab label="Vista Previa">
+      <td-steps mode="horizontal">
+        <td-step #step1 label="Etapa 1" sublabel="Esta es la etapa 1." [active]="true" [disabled]="disabled" >
+          <ng-template td-step-label><span>Etapa 1</span></ng-template>
+          Etapa 1
+        </td-step>
+        <!-- <td-step #step2 label="Etapa 2" sublabel="Esta es la etapa 2." [state]="stateStep2" [disabled]="disabled" disableRipple>
+          This step is required!
+          <ng-template td-step-actions> -->
+      <!-- <button mat-raised-button color="primary" (click)="toggleRequiredStep2()" class="text-upper">Toggle Require</button> -->
+      <!-- <button mat-button (click)="step2.active = false" class="text-upper">Cancel</button> -->
+          <!-- </ng-template>
+        </td-step> -->
+        <td-step #step2 label="Etapa 3" sublabel="Esta es la etapa 2." [active]="false" [disabled]="disabled" >
+          <ng-template td-step-label><span>Etapa 2</span></ng-template>
+          Etapa 2
+        </td-step>
+        <td-step #step3 label="Etapa 3" sublabel="Esta es la etapa 3." [active]="false" [disabled]="disabled" >
+          <ng-template td-step-label><span>Etapa 3</span></ng-template>
+          Etapa 3
+        </td-step>
+        <td-step #step4 label="Etapa 4" sublabel="Esta es la etapa 4." [active]="false" [disabled]="disabled" >
+          <ng-template td-step-label><span>Etapa 4</span></ng-template>
+          Etapa 4
+        </td-step>
+      </td-steps>
+    </mat-tab>
+  </mat-tab-group>
+  
+</mat-card>

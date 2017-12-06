@@ -1,0 +1,4 @@
+{
+  "apiUrl": "http://localhost:8000/api/",
+  "tokenUrl": "http://localhost/AngularBlog.API/token"
+}

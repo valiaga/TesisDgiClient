@@ -1,0 +1,15 @@
+.card-container{
+    display: flex;
+    flex-flow: row wrap;
+}
+  
+dgi-lista{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.button-add-fab{
+  position: absolute;
+  right: 20px;
+  bottom: 20px
+}

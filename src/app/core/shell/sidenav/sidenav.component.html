@@ -1,0 +1,56 @@
+<!--<mat-sidenav #sidenav mode="side" opened="true" style="width:257px;border-right:1px solid #ccc">-->
+<!--<mat-sidenav #sidenav mode="side" opened="isSidenavOpened" style="width:257px;border-right:1px solid #ccc">-->
+  <div flex class="mat-content bgc-grey-50">
+    <mat-nav-list>
+      <!--<header>
+        <a [routerLink]="['']">
+          <img src="http://admision.upeu.pe/static/custom/img/logo-upeu.png" alt="DGI">
+          <h3>Sistemas de Tesis</h3>
+        </a>
+      </header>-->
+      <!--<li *ngFor="let navItem of navItems"-->
+      <a mat-list-item 
+        (click)="!media.query('gt-mat') && layoutClose()"
+        [routerLinkActive]="['active']" 
+        [routerLinkActiveOptions]="{exact:true}" 
+        [routerLink]="['/']">
+        <mat-icon mat-list-icon>dashboard</mat-icon>
+        Home
+      </a>
+
+      <div *ngFor = "let navGroup of navGroups" >
+        <mat-divider></mat-divider>
+        <h3 mat-subheader >{{navGroup.Titulo}}</h3>
+        <a *ngFor="let navItem of navGroup.navItems" 
+            mat-list-item
+            (click)="!media.query('gt-mat') && layoutClose()"
+            [routerLinkActive]="['active']"
+            [routerLink]="[navItem.route]">
+            <mat-icon mat-list-icon>{{navItem.icon}}</mat-icon>
+          {{navItem.name}}
+        </a>
+      </div>
+    </mat-nav-list>
+  </div>
+
+  <div td-sidenav-content class="td-layout-footer pad">
+    &copy; 2017 Devotion, Inc.
+  </div>
+<!--</mat-sidenav>-->
+<!--<aside class="sidenav" [class.open]="isSidenavOpened">
+  <div class="sidenav-container">
+    <header>
+      <a (click)="sidenav(false)" [routerLink]="['']">
+        <img src="http://admision.upeu.pe/static/custom/img/logo-upeu.png" alt="DGI">
+        <h3>Sistemas de Tesis</h3>
+      </a>
+    </header>
+    <ul>
+      <li *ngFor="let navItem of navItems"
+          [class.active]="isActive(navItem.route)"
+          (click)="sidenav(false)">
+        <a [routerLink]="[navItem.route]"><em class="fa fa-{{navItem.icon}}"></em> {{navItem.name}}</a>
+      </li>
+    </ul>
+  </div>
+</aside>-->

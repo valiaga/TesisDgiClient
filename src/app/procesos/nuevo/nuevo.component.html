@@ -1,0 +1,42 @@
+<mat-card role="region" tdMediaToggle="gt-xs">
+  <mat-card-header>
+    <mat-card-title>NUEVO PROCESO</mat-card-title> 
+    <mat-card-subtitle>Formulario para crear un proceso</mat-card-subtitle>
+  </mat-card-header>
+  <mat-divider></mat-divider>  
+  <mat-card-content>
+    <form class="example-form">
+      <mat-form-field>
+        <input matInput placeholder="Company" disabled value="Google">
+      </mat-form-field>
+      <div layout="row">
+        <mat-input-container flex>
+          <input matInput placeholder="Nombre (50 max)" 
+                    maxlength="50" 
+                    #inputNombre
+                    required>
+          <mat-hint align="end">{{inputNombre.value.length}} / 50</mat-hint>
+        </mat-input-container>
+      </div>
+      <div layout="row" class="push-top">
+        <mat-input-container flex>
+          <input matInput placeholder="Descripción (500 max)" 
+                    maxlength="500" 
+                    #inputDesc
+                    type="text"
+                    >
+          <mat-hint align="end">{{inputDesc.value.length}} / 500</mat-hint>
+        </mat-input-container>
+      </div>
+      <div layout="row">
+        <mat-slide-toggle >Activo</mat-slide-toggle>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions align = 'end'>
+     <button color="accent" (click)="cancelar()" mat-button>CANCELAR</button>
+         <!-- <button color="accent"  [routerLink]="['/procesos', proceso.Id]" mat-button >DETALLE</button> -->
+ 
+     <button color="primary" mat-button>GUARDAR</button> 
+  </mat-card-actions>
+</mat-card>

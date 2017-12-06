@@ -1,0 +1,78 @@
+<td-layout-nav>
+  <!--<dgi-toolbar [isSidenavOpened]="isSidenavOpened" (stateSidenavOpened)="isSidenavOpened = $event"></dgi-toolbar>-->
+    
+  <div td-toolbar-content layout="row" layout-align="start center" flex>
+    <button mat-icon-button class="td-menu-button" (click)="sidenav.toggle()" matTooltip="Menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>Sistema de Tesis</span>
+    <span flex></span>
+    <td-search-box #searchBox  class="pull-top-sm pull-bottom-sm" placeholder="Search here" flex matTooltip="Buscador">
+    </td-search-box>
+    <button class="overflow-visible" mat-icon-button [matMenuTriggerFor]="notificationsMenu" matTooltip="Notificaciones">
+      <td-notification-count color="accent" [notifications]="4">
+        <mat-icon>notifications</mat-icon>
+      </td-notification-count>
+    </button>
+    <mat-menu #notificationsMenu="matMenu" [overlapTrigger]="false">
+      <td-menu>
+        <div td-menu-header class="mat-subhead">Templates</div>
+        <mat-nav-list dense>
+          <a mat-list-item>
+            <mat-icon matListAvatar>system_update_alt</mat-icon>
+            <h4 matLine><span class="text-wrap">Landing Page</span></h4>
+            <p matLine>a landing page template</p>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item>
+            <mat-icon matListAvatar>dashboard</mat-icon>
+            <h4 matLine><span class="text-wrap">Dashboard</span></h4>
+            <p matLine>an ngx-charts dashboard template</p>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item>
+            <mat-icon matListAvatar>email</mat-icon>
+            <h4 matLine><span class="text-wrap">Email App</span></h4>
+            <p matLine>an email app template</p>
+          </a>
+          <mat-divider></mat-divider>
+          <a mat-list-item>
+            <mat-icon matListAvatar>view_array</mat-icon>
+            <h4 matLine><span class="text-wrap">IDE Editor</span></h4>
+            <p matLine>an IDE text editor app template</p>
+          </a>
+        </mat-nav-list>
+        <a mat-button color="accent" td-menu-footer href="https://github.com/Teradata/covalent-quickstart/tree/develop/src/app/templates" target="_blank">
+        View Code
+        </a>
+      </td-menu>
+    </mat-menu>
+    <button mat-icon-button matTooltip="Opciones"><mat-icon>more_vert</mat-icon></button>
+  </div>
+
+  <mat-sidenav-container fullscreen>
+    <!-- <mat-sidenav #sidenav style="width:257px;border-right:1px solid #ccc" -->
+    <mat-sidenav #sidenav style="width:250px;border-right:1px solid #ccc"
+    mode="side"
+    opened="true"
+    >
+    <!--[mode]="(media.registerQuery('gt-sm') | async) ? 'side' : ((media.registerQuery('sm') | async) ? 'push' : 'over')"-->
+    <!--[opened]="media.registerQuery('gt-sm') | async"-->
+    <!--[mode]="(media.registerQuery('gt-mat') | async) ? 'side' : 'over'"-->
+    <!--[opened]="(media.registerQuery('gt-mat') | async) ? true : false"-->
+    
+      <dgi-sidenav ></dgi-sidenav>
+    </mat-sidenav>
+    <div td-toolbar-content layout="row" class="div-breadcrumb" layout-align="start center" flex>
+       <!-- https://github.com/gmostert/ng2-breadcrumb -->
+        <breadcrumb ></breadcrumb>   
+        <span flex></span> 
+        <button mat-icon-button><mat-icon class="mat-24">sort</mat-icon></button> 
+        <!-- <button mat-icon-button><mat-icon class="mat-24">settings</mat-icon></button>  -->
+    </div>
+    <!-- ng content or router would go here -->
+    <div layout layout-fill class="bgc-white" style="overflow: auto;" tdMediaToggle="gt-xs" [mediaClasses]="['pad-right-sm', 'pad-left-sm', 'pad-top-sm']">
+      <dgi-main-content class="dgi-main-content"></dgi-main-content>
+    </div>
+  </mat-sidenav-container>
+</td-layout-nav>
