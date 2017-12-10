@@ -4,7 +4,7 @@
 export class TesisProceso {
 
     constructor(
-        public nombre_proyecto?: string,
+        public proyecto_titulo?: string,
         public proceso_id?: string,
         
         // public descripcion: string,

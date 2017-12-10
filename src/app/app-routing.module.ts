@@ -27,13 +27,13 @@ const routes: Routes = [
       title: 'Procesos'
     }
   },
-  // {
-  //   path: 'proyectos',
-  //   loadChildren: './proyectos/proyectos.module#ProyectosModule',
-  //   data: {
-  //     title: 'Proyectos'
-  //   }
-  // },
+  {
+    path: 'proyectos',
+    loadChildren: './proyectos/proyectos.module#ProyectosModule',
+    data: {
+      title: 'Proyectos'
+    }
+  },
   {
     path: 'seguimiento',
     loadChildren: './seguimiento/seguimiento.module#SeguimientoModule',

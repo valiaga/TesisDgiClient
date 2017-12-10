@@ -16,7 +16,7 @@ export class TesisProcesoService {
     console.log("Hola")
     console.log(procesoId)
     // return this.http.get(apiUrl + 'procesos/' + procesoId + '/tesis-procesos')
-    return this.http.get(apiUrl + 'procesos/' + procesoId + '/tesis-procesos/')
+    return this.http.get(apiUrl + 'proceso/procesos/' + procesoId + '/tesis-procesos/')
       .toPromise()
       .then(res => {
         console.log(res.json());
@@ -30,7 +30,7 @@ export class TesisProcesoService {
     // console.log(data);
     
     let apiUrl = environment.apiUrl;
-    return this.http.post(apiUrl + 'procesos/' + data.proceso_id + '/tesis-procesos/', data)
+    return this.http.post(apiUrl + 'proceso/procesos/' + data.proceso_id + '/tesis-procesos/', data)
       .subscribe()
       
     //   .toPromise()

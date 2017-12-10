@@ -88,8 +88,8 @@ export class DialogNuevoTeProcesoComponent implements OnInit{
   
     initializeControls(){
       const controls = {
-        nombre_proyecto: [
-          this.tesisProceso.nombre_proyecto,
+        proyecto_titulo: [
+          this.tesisProceso.proyecto_titulo,
           [
             Validators.required,
             Validators.minLength(this.lengtMinNombreTesis), 

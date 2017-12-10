@@ -60,7 +60,8 @@ export class TesisProcesosComponent implements OnInit {
   }
 
   guardarTesisProceso(data){
-    data.proceso_id=this.proceso_id;
+    // data.proceso_id=this.proceso_id;
+    data.proceso=this.proceso_id;
     this.tesisProcesoService.saveTesisProcesoAndProyecto(data);
 
     // .then(res => {
