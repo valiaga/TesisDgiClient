@@ -1,6 +1,7 @@
-import { Http } from '@angular/http';
+import { Http, Response, RequestOptions, Headers } from '@angular/http';
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class TesisProcesoService {
@@ -10,28 +11,41 @@ export class TesisProcesoService {
   /**
    * Get the Proyectos by key proceso.
    */
-  public getProyectosByProcesoId(procesoId: string){
+  public getProyectosByProcesoId(procesoId: string): Observable<Response>{
     let apiUrl = environment.apiUrl;
-    console.log(apiUrl)
-    console.log("Hola")
-    console.log(procesoId)
+    // console.log(apiUrl)
+    // console.log("Hola")
+    // console.log(procesoId)
     // return this.http.get(apiUrl + 'procesos/' + procesoId + '/tesis-procesos')
-    return this.http.get(apiUrl + 'proceso/procesos/' + procesoId + '/tesis-procesos/')
-      .toPromise()
-      .then(res => {
-        console.log(res.json());
-        return res.json()
-      })
-      .catch(error => this.handleError(error, 'loading proyectos by proceso.'))
+    return this.http.get(`${apiUrl}proceso/procesos/${procesoId}/tesis-procesos/`)
+      // .toPromise()
+      // .then(res => {
+        // console.log(res.json());
+        // return res.json()
+      // })
+      // .catch(error => this.handleError(error, 'loading proyectos by proceso.'))
   }
 
-  public saveTesisProcesoAndProyecto(data: any){
-    // console.log("bamos a guardar");
-    // console.log(data);
-    
+  public saveTesisProcesoAndProyecto(data: any): Observable<Response>{
     let apiUrl = environment.apiUrl;
-    return this.http.post(apiUrl + 'proceso/procesos/' + data.proceso_id + '/tesis-procesos/', data)
-      .subscribe()
+    
+    // Los envíos de información deben configurarse a mano
+    // esto es fácilmente generalizable y reutilizable
+    let body = JSON.stringify(data);
+    let headers = new Headers({
+      'Content-Type': 'application/json'
+    });
+    let options = new RequestOptions({ headers: headers });
+
+    // declarar la llamada y retornar el observable
+    // las variables de configuración y los datos, van como parámetros
+    if ( data.id ){
+      return this.http
+        .put(`${apiUrl}proceso/procesos/${data.proceso_id}/tesis-procesos/${data.id}`, body, options);
+    } else {
+      return this.http
+        .post(`${apiUrl}proceso/procesos/${data.proceso_id}/tesis-procesos/`, body, options);
+    }
       
     //   .toPromise()
     //   .then(res => {

@@ -1,7 +1,7 @@
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../auth/user/user.service';
 // import { SettingsService } from '../../shared/settings.service';
-import { Http } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Proceso } from '../modelos/proceso.model';
 import { PROCESOS } from './mock-procesos';
@@ -20,7 +20,7 @@ export class ProcesoService {
   public getRecentProcesos(){
     // let apiUrl = this._settingsService.settings['apiUrl'];
     let apiUrl = environment.apiUrl;
-    return this._http.get(apiUrl + 'procesos/', { headers: this._userService.getHeaders()})
+    return this._http.get(apiUrl + 'proceso/procesos/', { headers: this._userService.getHeaders()})
     // return this._http.get(apiUrl + 'proceso/procesos/')
       .toPromise()
       .then(res => {
@@ -32,8 +32,9 @@ export class ProcesoService {
   /**
    * Get the top 10 procesos
    */
-  public getProcesos(){
-    return Promise.resolve(PROCESOS);
+  public getProcesos$(): Observable<Response>{
+    let apiUrl = environment.apiUrl;
+    return this._http.get(`${apiUrl}proceso/procesos/`);
   }
 
   /**

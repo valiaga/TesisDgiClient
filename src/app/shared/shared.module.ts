@@ -19,7 +19,7 @@ import {
   MatSlideToggleModule, MatInputModule, MatCheckboxModule,
   MatToolbarModule, MatSnackBarModule, MatSidenavModule,
   MatTabsModule, MatSelectModule,
-  MatDialogModule 
+  MatDialogModule, MatProgressSpinnerModule 
   // MdCoreModule
 } from '@angular/material';
 

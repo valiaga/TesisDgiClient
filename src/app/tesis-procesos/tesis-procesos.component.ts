@@ -19,7 +19,10 @@ export class TesisProcesosComponent implements OnInit {
   constructor(private route: ActivatedRoute, 
               private tesisProcesoService: TesisProcesoService,
               private dialog: MatDialog) { }
-
+              
+  // La carga de datos se hace al iniciarse el componente
+  // este es el lugar donde programar lógica de inicio
+  // nunca en el constructor
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.proceso_id = params['proceso_id'];
@@ -32,11 +35,13 @@ export class TesisProcesosComponent implements OnInit {
   }
 
   getProyectos(proceso_id) {
-    this.tesisProcesoService.getProyectosByProcesoId(proceso_id)
-      .then(res => {
-        // this.tesisProceso = res.results;
-        this.tesisProceso = res;
-      })
+    // en el momento de la suscripción es cuando se dispara la llamada
+    this.tesisProcesoService
+      .getProyectosByProcesoId(proceso_id)
+      .subscribe(res => {
+        this.tesisProceso = res.json();        
+      });
+    // Sería similar en procesos de escritura
   }
 
   openDialog():void{
@@ -60,14 +65,12 @@ export class TesisProcesosComponent implements OnInit {
   }
 
   guardarTesisProceso(data){
-    // data.proceso_id=this.proceso_id;
     data.proceso=this.proceso_id;
-    this.tesisProcesoService.saveTesisProcesoAndProyecto(data);
-
-    // .then(res => {
-    //   // this.tesisProceso = res.results;
-    //   console.log("Holaa save")
-    // })
+    this.tesisProcesoService
+      .saveTesisProcesoAndProyecto(data)
+      .subscribe(res => {
+        console.log(res.json())
+      });
     console.log(data);
   }
 }

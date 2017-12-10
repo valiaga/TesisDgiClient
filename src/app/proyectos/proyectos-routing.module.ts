@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { FindProyectoPageComponent } from './containers/find-proyecto-page.component';
 
 /**
  * Rutas que se manejan en este modulo
@@ -11,7 +12,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    // component: pro
+    component: FindProyectoPageComponent
   }
 ];
 

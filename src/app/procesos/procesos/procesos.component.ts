@@ -20,8 +20,7 @@ export class ProcesosComponent implements OnInit {
   }
 
   getProcesos(){
-    this.procesoService.getProcesos()
-      .then(procesos => this.procesos = procesos)
-      
+    this.procesoService.getProcesos$()
+      .subscribe(res => this.procesos = res.json());
   }
 }

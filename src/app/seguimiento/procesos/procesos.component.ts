@@ -17,10 +17,10 @@ export class ProcesosComponent implements OnInit {
   }
 
   getProcesos(){
-    this.procesoService.getRecentProcesos()
-      .then(res => {
-        this.procesos = res.results;
-        console.log(res.options);
+    this.procesoService.getProcesos$()
+      .subscribe(res => {
+        this.procesos = res.json().results;
+        console.log(res.json().options);
       },
       err => {
         console.log("ERROR: ", err);
