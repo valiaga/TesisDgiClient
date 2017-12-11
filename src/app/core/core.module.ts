@@ -13,10 +13,12 @@ import { FooterComponent } from './shell/footer/footer.component';
 // import { BreadcrumbComponent } from './shell/breadcrumb/breadcrumb.component';
 
 import { Ng2BreadcrumbModule } from 'ng2-breadcrumb/ng2-breadcrumb';
+import { NotFoundPageComponent } from './components/not-found-page.component';
 
 const SHELL_COMPONENTS: any[] = [
   ShellComponent, ToolbarComponent, MainContentComponent,
-  SidenavComponent, SidenavComponent, FooterComponent
+  SidenavComponent, SidenavComponent, FooterComponent,
+  NotFoundPageComponent
   // BreadcrumbComponent
 ]
 
@@ -32,10 +34,11 @@ const SHELL_COMPONENTS: any[] = [
     Ng2BreadcrumbModule.forRoot()
   ],
   declarations: [
-    SHELL_COMPONENTS
+    SHELL_COMPONENTS,
     ],
   exports: [
-    ShellComponent
+    ShellComponent,
+    NotFoundPageComponent,
     ]
 })
 export class CoreModule { }

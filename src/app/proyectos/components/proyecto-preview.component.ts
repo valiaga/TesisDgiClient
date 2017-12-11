@@ -26,6 +26,7 @@ import { Proyecto } from '../models/proyecto';
   styles: []
 })
 export class ProyectoPreviewComponent implements OnInit {
+  
   @Input() proyecto: Proyecto;
 
   constructor() { }

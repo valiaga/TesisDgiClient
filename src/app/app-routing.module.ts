@@ -3,6 +3,7 @@
  */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { NotFoundPageComponent } from './core/components/not-found-page.component';
 
 //Array con las rutas de la aplicación
 const routes: Routes = [
@@ -53,6 +54,12 @@ const routes: Routes = [
   //   redirectTo: '',
   //   pathMatch: 'full'
   // }
+  ,
+  {
+    path: '**', 
+    component: 
+    NotFoundPageComponent 
+  },
 ];
 
 @NgModule({

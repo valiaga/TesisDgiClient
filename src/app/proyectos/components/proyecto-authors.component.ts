@@ -6,7 +6,7 @@ import { Proyecto } from '../models/proyecto';
   template: `
     <h5 mat-subheader>Escrito Por:</h5>
     <span>
-      {{ tesista | bcAddCommas }}
+      {{ tesista | dgiAddCommas }}
     </span>
   `,
   styles: [

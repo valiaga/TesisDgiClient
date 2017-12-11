@@ -1,50 +1,12 @@
-import { CoreModule } from '../core/core.module';
+// import { CoreModule } from '../core/core.module';
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+// import { CommonModule } from '@angular/common';
+import { AngularModule } from './angular/angular.module';
+import { MaterialModule } from './material/material.module';
+import { CovalentModule } from './covalent/covalent.module';
 
 // import { FlexLayoutModule, } from '@angular/flex-layout';
-
-import { FormsModule, ReactiveFormsModule, } from '@angular/forms';
-
-import {
-  CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
-  CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
-  CovalentPagingModule, CovalentSearchModule, CovalentStepsModule,
-  CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule
-} from '@covalent/core';
-
-import {
-  MatButtonModule, MatCardModule, MatIconModule,
-  MatListModule, MatMenuModule, MatTooltipModule,
-  MatSlideToggleModule, MatInputModule, MatCheckboxModule,
-  MatToolbarModule, MatSnackBarModule, MatSidenavModule,
-  MatTabsModule, MatSelectModule,
-  MatDialogModule, MatProgressSpinnerModule 
-  // MdCoreModule
-} from '@angular/material';
-
 // import { NgxChartsModule, } from '@swimlane/ngx-charts';
-
-const ANGULAR_MODULES: any[] = [
-  FormsModule, ReactiveFormsModule,
-];
-
-const MATERIAL_MODULES: any[] = [
-  MatButtonModule, MatCardModule, MatIconModule,
-  MatListModule, MatMenuModule, MatTooltipModule,
-  MatSlideToggleModule, MatInputModule, MatCheckboxModule,
-  MatToolbarModule, MatSnackBarModule, MatSidenavModule,
-  MatTabsModule, MatSelectModule,
-  MatDialogModule
-  // MdCoreModule
-];
-
-const COVALENT_MODULES: any[] = [
-  CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
-  CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
-  CovalentPagingModule, CovalentSearchModule, CovalentStepsModule,
-  CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule
-];
 
 // const CHART_MODULES: any[] = [
 //   NgxChartsModule,
@@ -52,22 +14,22 @@ const COVALENT_MODULES: any[] = [
 
 @NgModule({
   imports: [
-    CommonModule,
-
-    ANGULAR_MODULES,
-    MATERIAL_MODULES,
-    COVALENT_MODULES,
+    // CommonModule,
+    AngularModule,
+    MaterialModule,
+    CovalentModule
     // CHART_MODULES,
     // FLEX_LAYOUT_MODULES,
   ],
-  declarations: [],
+  declarations: [
+    // AddCommasPipe
+  ],
   exports:[
-    ANGULAR_MODULES,
-    MATERIAL_MODULES,
-    COVALENT_MODULES,
+    AngularModule,
+    MaterialModule,
+    CovalentModule
     // CHART_MODULES,
     // FLEX_LAYOUT_MODULES,
-    
   ]
 })
 export class SharedModule { }

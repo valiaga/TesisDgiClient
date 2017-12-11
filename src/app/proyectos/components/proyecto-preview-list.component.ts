@@ -4,7 +4,7 @@ import { Proyecto } from '../models/proyecto'
 @Component({
   selector: 'dgi-proyecto-preview-list',
   template: `
-    <dgi-proyecto-preview *ngFor="let proyecto in proyectos" [proyecto] = "proyecto"></dgi-proyecto-preview>
+    <dgi-proyecto-preview *ngFor="let proyecto of proyectos" [proyecto] = "proyecto"></dgi-proyecto-preview>
   `,
   styles: [
     `
