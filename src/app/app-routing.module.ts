@@ -56,7 +56,7 @@ const routes: Routes = [
   // }
   ,
   {
-    path: '**', 
+    path: '**',  //para casos not found
     component: NotFoundPageComponent 
   },
 ];
