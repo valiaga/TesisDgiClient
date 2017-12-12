@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { Proyecto } from '../models/proyecto';
 import { ProyectoService } from '../shared/proyecto.service';
 
 @Component({
   selector: 'dgi-find-proyecto-page',
+  changeDetection: ChangeDetectionStrategy.OnPush,  
   template: `
     <!-- [query]="buscarQuery$ | async" -->
     <dgi-proyecto-search 
@@ -21,7 +22,6 @@ import { ProyectoService } from '../shared/proyecto.service';
 })
 export class FindProyectoPageComponent implements OnInit {
 
-  // private proyectos$: Observable<Proyecto>
   private buscarQuery$: Observable<string>;
   private proyectos$: Observable<Proyecto[]>;
   private cargando$: Observable<Boolean>;
@@ -30,7 +30,7 @@ export class FindProyectoPageComponent implements OnInit {
   constructor(private proyectoService: ProyectoService) { }
 
   ngOnInit() {
-    // this.proyectos$ = this.proyectoService.getProyectos$();
+    this.proyectos$ = this.proyectoService.getProyectos$();
   }
 
   buscar(query: string){

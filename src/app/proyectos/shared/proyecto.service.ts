@@ -17,7 +17,7 @@ export class ProyectoService {
    */
   public getProyectos$(): Observable<Proyecto[]> {
     let apiUrl = environment.apiUrl;
-    return this.http.get(`${apiUrl}/proyecto/proyectos/`)
+    return this.http.get(`${apiUrl}proyecto/proyectos/`)
       .map((res: Response) => res.json() || []);
   }
   

@@ -21,7 +21,10 @@ interface IBreadcrumb {
       </li>
     </ol>
   `,
-  styles: []
+  styles: [
+    `
+    `
+  ]
 })
 export class BreadcrumbComponent implements OnInit {
   public breadcrumbs: IBreadcrumb[];

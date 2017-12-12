@@ -8,12 +8,12 @@ import { Proyecto } from '../models/proyecto'
   `,
   styles: [
     `
-    /*
     :host {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-    }*/
+      margin-top: 25px;
+    }
     `
   ]
 })
