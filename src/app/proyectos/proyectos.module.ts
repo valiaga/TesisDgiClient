@@ -6,12 +6,17 @@ import { FindProyectoPageComponent } from './containers/find-proyecto-page.compo
 import { SharedModule } from '../shared/shared.module';
 import { ComponentsModule } from './components/index';
 
+import { AngularModule } from '../shared/angular/angular.module';
+
 @NgModule({
   imports: [
     SharedModule,
+
+    AngularModule,
     ProyectosRoutingModule,
 
     ComponentsModule
+
   ],
   declarations: [
     FindProyectoPageComponent, 

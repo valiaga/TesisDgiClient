@@ -12,7 +12,7 @@ import { SidenavComponent } from './shell/sidenav/sidenav.component';
 import { FooterComponent } from './shell/footer/footer.component';
 // import { BreadcrumbComponent } from './shell/breadcrumb/breadcrumb.component';
 
-import { Ng2BreadcrumbModule } from 'ng2-breadcrumb/ng2-breadcrumb';
+import { Ng5BreadcrumbModule } from 'ng5-breadcrumb';
 import { NotFoundPageComponent } from './components/not-found-page.component';
 
 const SHELL_COMPONENTS: any[] = [
@@ -31,7 +31,7 @@ const SHELL_COMPONENTS: any[] = [
     BrowserAnimationsModule,
     SharedModule,
 
-    Ng2BreadcrumbModule,
+    Ng5BreadcrumbModule.forRoot()
   ],
   declarations: [
     SHELL_COMPONENTS,
@@ -39,6 +39,9 @@ const SHELL_COMPONENTS: any[] = [
   exports: [
     ShellComponent,
     NotFoundPageComponent,
-    ]
+    ],
+  // providers: [
+    // BreadcrumbService
+  // ]
 })
 export class CoreModule { }

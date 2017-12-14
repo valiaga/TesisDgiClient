@@ -1,7 +1,7 @@
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 // import { viewClassName } from '@angular/compiler';
-// import { BreadcrumbService } from 'ng2-breadcrumb/ng2-breadcrumb';
+import { BreadcrumbService } from 'ng5-breadcrumb';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { TdMediaService } from '@covalent/core';
 
@@ -19,7 +19,7 @@ import 'rxjs/add/operator/mergeMap';
 export class ShellComponent implements OnInit {
 
   constructor(public media: TdMediaService,
-            // private BreadcrumbService: BreadcrumbService,
+            private breadcrumbService: BreadcrumbService,
             
             private router: Router,
             private activatedRoute: ActivatedRoute,

@@ -1,15 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Response, Http } from '@angular/http';
+import { HttpResponse, HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Proyecto } from '../models/proyecto';
+
+class Options {
+  count: number;
+  pages: number;
+  page: number;
+  next: number;
+  previous: number;
+  range: string;
+  page_size: number; 
+}
+
+interface iResponse {
+  options: Options;
+  results: Proyecto[];
+}
 
 @Injectable()
 export class ProyectoService {
 
 
 
-  constructor(private http: Http) { }
+  constructor(private http: HttpClient) { }
 
   /**
    * Método para recuperar todos los proyectos
@@ -17,8 +32,8 @@ export class ProyectoService {
    */
   public getProyectos$(): Observable<Proyecto[]> {
     let apiUrl = environment.apiUrl;
-    return this.http.get(`${apiUrl}proyecto/proyectos/`)
-      .map((res: Response) => res.json() || []);
+    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/`)
+      .map(res => res.results);
   }
   
   /**

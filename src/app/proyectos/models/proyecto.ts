@@ -1,4 +1,4 @@
-export class Proyecto {
+export interface Proyecto {
     constructor(
         public titulo: string,
         public estado: string,
@@ -13,7 +13,10 @@ export class Proyecto {
         public tesista?: string,
         public linea_investigacion?: string,
         public tesis_proceso?: string,
-
         public id?: string //uuid
     ){}
 }
+
+// export interface iProyecto implements iProyecto {
+
+// }
