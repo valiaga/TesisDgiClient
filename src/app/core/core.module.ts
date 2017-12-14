@@ -31,7 +31,7 @@ const SHELL_COMPONENTS: any[] = [
     BrowserAnimationsModule,
     SharedModule,
 
-    Ng2BreadcrumbModule.forRoot()
+    Ng2BreadcrumbModule,
   ],
   declarations: [
     SHELL_COMPONENTS,
