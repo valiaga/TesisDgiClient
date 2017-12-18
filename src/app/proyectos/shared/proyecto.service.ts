@@ -30,10 +30,10 @@ export class ProyectoService {
    * Método para recuperar todos los proyectos
    * @return Retorna Muchos Observables de tipo Proyecto.
    */
-  public getProyectos$(): Observable<Proyecto[]> {
+  public getProyectos$(): Observable<iResponse> {
     let apiUrl = environment.apiUrl;
-    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/`)
-      .map(res => res.results);
+    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/`);
+      // .map(res => res.results);
   }
   
   /**
@@ -41,10 +41,11 @@ export class ProyectoService {
    * @param queryTitulo Busqueda del Titulo.
    * @return Retorna muchos Observables de tipo proyecto
    */
-  public searchProyectos$(queryTitulo: string): Observable<Proyecto[]> {
+  public searchProyectos$(queryTitulo: string): Observable<iResponse> {
     let apiUrl = environment.apiUrl;
-    return this.http.get(`${apiUrl}/proyecto/proyectos?q=${queryTitulo}`)
-      .map((res: Response) => res.json() || []);
+    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/?search=${queryTitulo}`)
+      // .catch(this.handleError);
+      // .map((res: Response) => res.json() || []);
   }
   
   /**
@@ -52,9 +53,13 @@ export class ProyectoService {
    * @param id clave primaria del proyecto
    * @return Uno observable de tipo Proyecto.
    */
-  public retriveProyecto$(id: string): Observable<Proyecto> {
-    let apiUrl = environment.apiUrl;
-    return this.http.get(`${apiUrl}/proyecto/proyectos/${id}`)
-      .map((res: Response) => res.json() || []);
+  // public retriveProyecto$(id: string): Observable<Proyecto> {
+    // let apiUrl = environment.apiUrl;
+    // return this.http.get<Proyecto>(`${apiUrl}/proyecto/proyectos/${id}`);
+      // .map((res: Response) => res.json() || []);
+  // }
+
+  private handleError(error: Response) {
+    return Observable.throw(error.statusText);
   }
 }

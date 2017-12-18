@@ -12,13 +12,13 @@ import { TesisProcesoService } from './shared/tesis-proceso.service';
     <h3 mat-dialog-title>NUEVO PROYECTO</h3>
     <form [formGroup]="tesisProcesoForm" (ngSubmit)="onSubmit()" novalidate>
       <div mat-dialog-content>
-        <p class="p-small">Ingrese un nombre tentativo al proyecto</p>
+        <p class="p-small">Ingrese un título tentativo al proyecto</p>
         <mat-form-field class="full-width">
         <!-- <input matInput tabindex="1" [(ngModel)]="data.animal"> -->
-          <textarea matInput #nombreProject tabindex="3" formControlName="nombre_proyecto" 
-          maxlength="{{ lengtMaxNombreTesis }}"
-          minlength="{{ lengtMinNombreTesis }}"></textarea>
-          <mat-hint align="end">{{nombreProject.value.length}} / {{ lengtMaxNombreTesis }}</mat-hint>
+          <textarea matInput #proyectoTitulo tabindex="3" formControlName="proyecto_titulo" 
+          maxlength="{{ lengtMaxProyectoTitulo }}"
+          minlength="{{ lengtMinProyectoTitulo }}"></textarea>
+          <mat-hint align="end">{{proyectoTitulo.value.length}} / {{ lengtMaxProyectoTitulo }}</mat-hint>
         </mat-form-field>
   
       </div>
@@ -51,8 +51,8 @@ export class DialogNuevoTeProcesoComponent implements OnInit{
   
     private tesisProcesoForm: FormGroup;
     public tesisProceso: TesisProceso = new TesisProceso();
-    public lengtMaxNombreTesis: number=250;
-    public lengtMinNombreTesis: number=10;
+    public lengtMaxProyectoTitulo: number=250;
+    public lengtMinProyectoTitulo: number=10;
   
     constructor(
       public dialogRef: MatDialogRef<DialogNuevoTeProcesoComponent>,
@@ -92,8 +92,8 @@ export class DialogNuevoTeProcesoComponent implements OnInit{
           this.tesisProceso.proyecto_titulo,
           [
             Validators.required,
-            Validators.minLength(this.lengtMinNombreTesis), 
-            Validators.maxLength(this.lengtMaxNombreTesis)
+            Validators.minLength(this.lengtMinProyectoTitulo), 
+            Validators.maxLength(this.lengtMaxProyectoTitulo)
           ]
         ],
         id: [],

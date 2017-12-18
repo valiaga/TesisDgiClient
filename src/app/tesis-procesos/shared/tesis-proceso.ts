@@ -15,6 +15,14 @@ export class TesisProceso {
         public fecha_actualizacion?: string,
         public id?: string //uuid
     ){
-        // this.nombreProyecto = nombre_proyecto;
-     }
+    }
+}
+
+export interface ITesisProceso {
+    estado?: boolean;
+    fecha_inicio?: string;
+    fecha_fin?: string;
+    fecha_creacion?: string;
+    fecha_actualizacion?: string;
+    id?: string; //uuid
 }

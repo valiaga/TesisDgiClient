@@ -48,7 +48,7 @@ import { Proyecto } from '../models/proyecto';
     }
     mat-card-title {
       margin-right: 10px;
-      font-size: 1.1rem;
+      font-size: 1.3rem;
     }
     mat-card-title-group {
       margin: 0;

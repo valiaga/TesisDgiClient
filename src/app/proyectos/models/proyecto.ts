@@ -1,4 +1,4 @@
-export interface Proyecto {
+export class Proyecto {
     constructor(
         public titulo: string,
         public estado: string,

@@ -28,7 +28,6 @@ export class TesisProcesoService {
 
   public saveTesisProcesoAndProyecto(data: any): Observable<Response>{
     let apiUrl = environment.apiUrl;
-    
     // Los envíos de información deben configurarse a mano
     // esto es fácilmente generalizable y reutilizable
     let body = JSON.stringify(data);
@@ -46,11 +45,6 @@ export class TesisProcesoService {
       return this.http
         .post(`${apiUrl}proceso/procesos/${data.proceso_id}/tesis-procesos/`, body, options);
     }
-      
-    //   .toPromise()
-    //   .then(res => {
-    //     return res.json();
-    //   })
   }
 
   private handleError(error: any, operation: string): Promise<any> {
