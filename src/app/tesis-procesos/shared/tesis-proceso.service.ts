@@ -40,10 +40,10 @@ export class TesisProcesoService {
     // las variables de configuración y los datos, van como parámetros
     if ( data.id ){
       return this.http
-        .put(`${apiUrl}proceso/procesos/${data.proceso_id}/tesis-procesos/${data.id}`, body, options);
+        .put(`${apiUrl}proceso/procesos/${data.proceso}/tesis-procesos/${data.id}`, body, options);
     } else {
       return this.http
-        .post(`${apiUrl}proceso/procesos/${data.proceso_id}/tesis-procesos/`, body, options);
+        .post(`${apiUrl}proceso/procesos/${data.proceso}/tesis-procesos/`, body, options);
     }
   }
 

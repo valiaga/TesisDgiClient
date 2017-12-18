@@ -19,10 +19,10 @@ export class TesisProceso {
 }
 
 export interface ITesisProceso {
-    estado?: boolean;
-    fecha_inicio?: string;
-    fecha_fin?: string;
-    fecha_creacion?: string;
-    fecha_actualizacion?: string;
-    id?: string; //uuid
+    estado: boolean;
+    fecha_inicio: string;
+    fecha_fin: string;
+    fecha_creacion: string;
+    fecha_actualizacion: string;
+    id: string; //uuid
 }
