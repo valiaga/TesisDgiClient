@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogNuevoTeProcesoComponent } from './dialog-nuevo-teproceso.component';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { DialogNuevoTeProcesoComponent } from './dialog-nuevo-teproceso.componen
 })
 export class TesisProcesosComponent implements OnInit {
 
-  public tesisProceso: TesisProceso[] = []
+  private tesisProcesos$: Observable<TesisProceso[]>
   public proceso_id: string = '';
 
   constructor(private route: ActivatedRoute, 
@@ -34,14 +35,8 @@ export class TesisProcesosComponent implements OnInit {
     });
   }
 
-  getProyectos(proceso_id) {
-    // en el momento de la suscripción es cuando se dispara la llamada
-    this.tesisProcesoService
-      .getProyectosByProcesoId(proceso_id)
-      .subscribe(res => {
-        this.tesisProceso = res.json();        
-      });
-    // Sería similar en procesos de escritura
+  getProyectos(proceso_id: string) {
+    this.tesisProcesos$ = this.tesisProcesoService.getProyectosByProcesoId(proceso_id);
   }
 
   openDialog():void{
@@ -69,7 +64,7 @@ export class TesisProcesosComponent implements OnInit {
     this.tesisProcesoService
       .saveTesisProcesoAndProyecto(data)
       .subscribe(res => {
-        console.log(res.json())
+        // console.log(res.json())
       });
     console.log(data);
   }

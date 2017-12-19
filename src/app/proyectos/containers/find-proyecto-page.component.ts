@@ -20,10 +20,9 @@ import 'rxjs/add/operator/do';
         [error]="error$ | async" 
         (buscar)="buscar($event)">
         </dgi-proyecto-search> 
-    
-    <dgi-proyecto-preview-list 
-        [proyectos]="proyectos$ | async">
-        </dgi-proyecto-preview-list> 
+      <dgi-proyecto-preview-list 
+      [proyectos]="proyectos$ | async">
+      </dgi-proyecto-preview-list>
   `,
   styles: []
 })

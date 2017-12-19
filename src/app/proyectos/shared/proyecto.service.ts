@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { HttpResponse, HttpClient } from '@angular/common/http';
+import { HttpResponse, HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Proyecto } from '../models/proyecto';
 
@@ -43,7 +43,9 @@ export class ProyectoService {
    */
   public searchProyectos$(queryTitulo: string): Observable<iResponse> {
     let apiUrl = environment.apiUrl;
-    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/?search=${queryTitulo}`)
+    const params = new HttpParams()
+                    .set('search', queryTitulo);
+    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/`, { params })
       // .catch(this.handleError);
       // .map((res: Response) => res.json() || []);
   }

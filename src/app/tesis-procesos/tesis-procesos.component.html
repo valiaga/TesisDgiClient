@@ -1,5 +1,5 @@
 <div class="card-container">  
-  <mat-card *ngFor="let tp of tesisProceso" class="mat-card">
+  <mat-card *ngFor="let tp of tesisProcesos$ | async" class="mat-card">
     <!--
     <mat-card-header>
       <div mat-card-avatar class="example-header-image"></div>
