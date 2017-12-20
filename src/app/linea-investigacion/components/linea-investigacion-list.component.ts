@@ -1,151 +1,236 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { DataSource } from '@angular/cdk/collections';
-import { MatPaginator } from '@angular/material';
+import { MatPaginator, MatSort } from '@angular/material';
 import { Observable } from 'rxjs/Observable';
-import { ILineaInvestigacion } from '../shared/linea-investigacion';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { ILineaInvestigacion, LineaInvestigacion } from '../shared/linea-investigacion';
+// import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { LineaInvestigacionService } from '../shared/linea-investigacion.service';
+
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/startWith';
+import 'rxjs/add/operator/switchMap';
+
 
 @Component({
   selector: 'dgi-linea-investigacion-list',
   template: `
-  <div class="example-container mat-elevation-z8">
+  <div class="linea-investigacion-container mat-elevation-z8">
   
-    <mat-table #table [dataSource]="dataSource" matSort>
+    <div class="example-loading-shade"
+      *ngIf="dataSource.isLoadingResults || dataSource.isRateLimitReached">
+      <mat-spinner *ngIf="dataSource.isLoadingResults"></mat-spinner>
+      <div class="example-rate-limit-reached" *ngIf="dataSource.isRateLimitReached">
+        Se alcanzó el límite de la tasa API de GitHub. Se reiniciará en un minuto.
+      </div>
+    </div>
+    <mat-table #table [dataSource]="dataSource" class="example-table"
+    matSort matSortActive="fecha_creacion" matSortDisableClear matSortDirection="asc">
   
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
   
       <!-- Checkbox Column -->
-      <ng-container matColumnDef="select">
-        <mat-header-cell *matHeaderCellDef>
+      <!-- <ng-container matColumnDef="select">
+        <mat-header-cell *matHeaderCellDef> -->
           <!-- <mat-checkbox (change)="$event ? masterToggle() : null"
                        [checked]="isAllSelected()"
                        [indeterminate]="selection.hasValue() && !isAllSelected()">
           </mat-checkbox> -->
-        </mat-header-cell>
-        <mat-cell *matCellDef="let row">
+        <!-- </mat-header-cell>
+        <mat-cell *matCellDef="let row"> -->
           <!-- <mat-checkbox (click)="$event.stopPropagation()"
                        (change)="$event ? selection.toggle(row.id) : null"
                        [checked]="selection.isSelected(row.id)">
           </mat-checkbox> -->
-        </mat-cell>
-      </ng-container>
+        <!-- </mat-cell>
+      </ng-container> -->
   
       <!-- ID Column -->
-      <ng-container matColumnDef="userId">
+      <ng-container matColumnDef="isId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
   
-      <!-- Progress Column -->
-      <ng-container matColumnDef="progress">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Progress </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.progress}}% </mat-cell>
+      <!-- Nombre Column -->
+      <ng-container matColumnDef="nombre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
       </ng-container>
   
-      <!-- Name Column -->
-      <ng-container matColumnDef="userName">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell>
-        <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+      <!-- Descripcion Column -->
+      <ng-container matColumnDef="descripcion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
       </ng-container>
   
-      <!-- Color Column -->
-      <ng-container matColumnDef="color">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Color </mat-header-cell>
-        <mat-cell *matCellDef="let row" [style.color]="row.color"> {{row.color}} </mat-cell>
+      <!-- Activo Column -->
+      <ng-container matColumnDef="activo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Activo </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.activo"> {{row.activo}} </mat-cell>
       </ng-container>
-  
+
+      <!-- Escuela Column -->
+      <ng-container matColumnDef="escuela">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Escuela </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.escuela"> {{row.escuela}} </mat-cell>
+      </ng-container>
+
+      <!-- Fecha_creacion Column -->
+      <ng-container matColumnDef="fecha_creacion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha creacion </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.fecha_creacion"> {{row.fecha_creacion}} </mat-cell>
+      </ng-container>
+
+      <!-- Fecha_actualizacion Column -->
+      <ng-container matColumnDef="fecha_actualizacion">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Fecha actualizacion </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.color]="row.fecha_actualizacion"> {{row.fecha_actualizacion}} </mat-cell>
+      </ng-container>
+
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"
-              [class.example-selected-row]="selection.isSelected(row.id)"
-              (click)="selection.toggle(row.id)">
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+        <!-- [class.example-selected-row]="selection.isSelected(row.id)"
+        (click)="selection.toggle(row.id)" -->
       </mat-row>
     </mat-table>
-  
+    <!--
     <div class="example-no-results"
          [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
-      No users found matching filter.
-    </div>
+      No linea investigación found matching filter.
+    </div> 
+    -->
   
     <mat-paginator #paginator
-                  [length]="dataSource.filteredData.length"
-                  [pageIndex]="0"
-                  [pageSize]="25"
-                  [pageSizeOptions]="[5, 10, 25, 100]">
+    [length]="dataSource.resultsLength"
+    [pageIndex]="0"
+    [pageSize]="5"
+    [pageSizeOptions]="[5, 10, 25, 100]"
+    >
+    <!-- [length]="lineaInvestigacionDataBase.data.length" -->
+    <!-- [length]="dataSource.filteredData.length" -->
     </mat-paginator>
   </div>
   `,
-  styles: []
+  styles: [
+    `
+    /* Structure */
+    .linea-investigacion-container {
+      display: flex;
+      flex-direction: column;
+      min-width: 300px;
+    }
+
+    /*
+    .example-header {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      padding-left: 24px;
+      font-size: 20px;
+    } */
+    
+    .mat-table {
+      overflow: auto;
+      max-height: 500px;
+    }
+
+    .example-loading-shade {
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 56px;
+      right: 0;
+      background: rgba(0, 0, 0, 0.15);
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .example-rate-limit-reached {
+      color: #980000;
+      max-width: 360px;
+      text-align: center;
+    }
+    `
+  ]
 })
 export class LineaInvestigacionListComponent implements OnInit {
+  displayedColumns = [
+    'isId', 
+    'nombre', 
+    'descripcion', 
+    'activo',
+    'escuela',
+    'fecha_creacion',
+    'fecha_actualizacion',
+  ];
 
-  dataSource: any | null;
+  lineaInvestigacionService: LineaInvestigacionService | null;
+  dataSource: LineaInvestigacionDataSource | null;
 
-  constructor() { }
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit() {
-  }
-
-}
-
-/** Las constantes solían llenar nuestra base de datos.  */
-const COLORS = ['maroon', 'red', 'orange', 'yellow', 'olive', 'green', 'purple',
-'fuchsia', 'lime', 'teal', 'aqua', 'blue', 'navy', 'black', 'gray'];
-const NOMBRES = ['software', 'procesos', 'gestion de TI', 'Seguridad', 'Redes', 'IA',
-'Calidad', 'psicologia educativa', 'psicologia Clinica', 'psicologia forence',
-'psicologia Politica', 'Medicina General',
-'Medicina Publica', 'Ing Civil A', 'Ing Civil B', 'Ing Ambiental A', 'Ing Ambiental B', 
-'Arquitectira A', 'Arquitectira B'];
-
-
-export class LineaInvestigacionDataBase {
-  dataChange: BehaviorSubject<ILineaInvestigacion[]> = new BehaviorSubject<ILineaInvestigacion[]>([]);
-  
-  get data(): ILineaInvestigacion[] { return this.dataChange.value; }
-
-  constructor() {
-    for (let i = 0; i < 100; i++) { this.addLineaInvestigacion(); }
-  }
-
-  /** Agrega un nuevo usuario a la base de datos. */
-  addLineaInvestigacion() {
-    const copiedData = this.data.slice();
-    console.log('copiedData');
-    console.log(copiedData);
-    copiedData.push(this.createNewLineaInvestigacion());
-    this.dataChange.next(copiedData);
-  }
-
-  /** Crea y devuelve un nuevo usuario. */
-  private createNewLineaInvestigacion() {
-    const nombre = 
-        NOMBRES[Math.round(Math.random() * (NOMBRES.length - 1))] + ' ' +
-        NOMBRES[Math.round(Math.random() * (NOMBRES.length - 1))].charAt(0) + ' ';
-    
-    return {
-      id: (this.data.length + 1).toString(),
-      nombre: nombre,
-      descripcion: 'desc',
-      activo: true,
-      escuela: '1',
-      fecha_creacion: '',
-      fecha_actualizacion: ''
-    }
+    this.lineaInvestigacionService = new LineaInvestigacionService(this.http)
+    this.dataSource = new LineaInvestigacionDataSource(
+      this.lineaInvestigacionService, this.paginator, this.sort);
   }
 }
 
-export class LineaInvestigacionDataSource extends DataSource<any> {
-  constructor(private _paginator: MatPaginator) {
-    super()
+export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion> {
+  // La cantidad de problemas devueltos por github que coinciden con la consulta.
+  public resultsLength = 0;
+  public isLoadingResults = false;
+  public isRateLimitReached = false;
+
+  constructor(
+    private lineaInvestigacionService: LineaInvestigacionService,
+    private paginator: MatPaginator,
+    private sort: MatSort,
+  ) {
+    super();
   }
 
+  /** Función de conexión llamada por la tabla para recuperar una secuencia que contiene los datos para renderizar. */
   connect(): Observable<ILineaInvestigacion[]>{
-
     const displayDataChanges = [
-      this.
-    ]
+      this.sort.sortChange,
+      this.paginator.page
+    ];
 
-    return Observable.merge()
+    // Si el usuario cambia el orden de clasificación, restablecer a la primera página.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    return Observable.merge(...displayDataChanges)
+      .startWith(null)
+      .switchMap(() => {
+        this.isLoadingResults = true;
+        return this.lineaInvestigacionService.getLineaInvestigacions(
+          this.sort.active, this.sort.direction, this.paginator.pageIndex
+        )
+      })
+      .map(data => {
+        // Da vuelta la bandera para mostrar que la carga ha terminado.
+        this.isLoadingResults = false;
+        this.isRateLimitReached = false;
+        this.resultsLength = data.options.count;
+
+        return data.results;
+      })
+      .catch(() => {
+        this.isLoadingResults = false;
+        // Capture si la API de Linea de investigación ha alcanzado su límite de velocidad. Devuelve datos vacíos.
+        this.isRateLimitReached = true;
+        return Observable.of([]);
+      });
   }
 
   disconnect() {}

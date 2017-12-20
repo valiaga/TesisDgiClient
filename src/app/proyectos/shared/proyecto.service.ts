@@ -14,7 +14,7 @@ class Options {
   page_size: number; 
 }
 
-interface iResponse {
+interface IResponse {
   options: Options;
   results: Proyecto[];
 }
@@ -30,9 +30,9 @@ export class ProyectoService {
    * Método para recuperar todos los proyectos
    * @return Retorna Muchos Observables de tipo Proyecto.
    */
-  public getProyectos$(): Observable<iResponse> {
+  public getProyectos$(): Observable<IResponse> {
     let apiUrl = environment.apiUrl;
-    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/`);
+    return this.http.get<IResponse>(`${apiUrl}proyecto/proyectos/`);
       // .map(res => res.results);
   }
   
@@ -41,11 +41,11 @@ export class ProyectoService {
    * @param queryTitulo Busqueda del Titulo.
    * @return Retorna muchos Observables de tipo proyecto
    */
-  public searchProyectos$(queryTitulo: string): Observable<iResponse> {
+  public searchProyectos$(queryTitulo: string): Observable<IResponse> {
     let apiUrl = environment.apiUrl;
     const params = new HttpParams()
                     .set('search', queryTitulo);
-    return this.http.get<iResponse>(`${apiUrl}proyecto/proyectos/`, { params })
+    return this.http.get<IResponse>(`${apiUrl}proyecto/proyectos/`, { params })
       // .catch(this.handleError);
       // .map((res: Response) => res.json() || []);
   }
