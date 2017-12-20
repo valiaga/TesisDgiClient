@@ -36,7 +36,7 @@ export class TesisProcesosComponent implements OnInit {
   }
 
   getProyectos(proceso_id: string) {
-    this.tesisProcesos$ = this.tesisProcesoService.getProyectosByProcesoId(proceso_id);
+    this.tesisProcesos$ = this.tesisProcesoService.getTesisProcesosByProcesoId(proceso_id);
   }
 
   openDialog():void{
@@ -64,9 +64,11 @@ export class TesisProcesosComponent implements OnInit {
     this.tesisProcesoService
       .saveTesisProcesoAndProyecto(data)
       .subscribe(res => {
-        // console.log(res.json())
+        // this.tesisProcesos$.ne
+          // .scan
+        this.tesisProcesos$ = this.tesisProcesoService.getTesisProcesosByProcesoId(this.proceso_id.toString());
       });
-    console.log(data);
+    // console.log(data);
   }
 }
 

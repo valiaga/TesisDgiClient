@@ -7,9 +7,9 @@ import { Proyecto } from '../models/proyecto';
     <a [routerLink]="['/proyectos', id]">
     <mat-card>
       <mat-card-title-group>
-        <img mat-card-sm-image *ngIf="miniatura" [src]="miniatura"/>
+        <!-- <img mat-card-sm-image *ngIf="miniatura" [src]="miniatura"/>-->
         <!-- <mat-card-title>{{ titulo | bcEllipsis:35 }}</mat-card-title> -->
-        <mat-card-title>{{ titulo }}</mat-card-title>
+        <mat-card-title> <p>{{ titulo }}</p></mat-card-title>
         <!-- <mat-card-subtitle *ngIf="resumen">{{ resumen | bcEllipsis:40 }}</mat-card-subtitle> -->
         <mat-card-subtitle *ngIf="titulo">{{ titulo }}</mat-card-subtitle>
       </mat-card-title-group>
@@ -32,8 +32,8 @@ import { Proyecto } from '../models/proyecto';
       display: flex;
     }
     mat-card {
-      /*width: 400px;*/
-      margin: 15px;
+      /*width: 400px;
+      margin: 15px;*/
       display: flex;
       flex-flow: column;
       justify-content: space-between;
@@ -70,9 +70,9 @@ import { Proyecto } from '../models/proyecto';
       display: inline-block;
       font-size: 13px;
     }
-    mat-card-footer {
+    /*mat-card-footer {
       padding: 0 25px 25px;
-    }
+    }*/
     `
   ]
 })

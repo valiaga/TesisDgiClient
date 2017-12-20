@@ -48,7 +48,15 @@ const routes: Routes = [
     data: {
       title: 'Auth'
     }
-  }//,
+  },
+  {
+    path: 'linea-investigacion',
+    loadChildren: './linea-investigacion/linea-investigacion.module#LineaInvestigacionModule',
+    data: {
+      title: 'linea-investigacion'
+    }
+  }
+
   // {
   //   path: '**', //para casos not found
   //   redirectTo: '',

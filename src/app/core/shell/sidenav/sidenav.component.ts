@@ -27,6 +27,7 @@ export class SidenavComponent implements OnInit {
         { name: 'Procesos', icon:'view_list', route: 'procesos' },
         { name: 'Proyectos', icon:'school', route: 'proyectos' },
         { name: 'Seguimiento', icon:'cached', route: 'seguimiento' },
+        { name: 'Lineas de investigación', icon:'cached', route: 'linea-investigacion' },
       ] 
     },
     {
@@ -44,5 +45,4 @@ export class SidenavComponent implements OnInit {
   public layoutClose(){
     console.log("Me da Click")
   }
-
 }

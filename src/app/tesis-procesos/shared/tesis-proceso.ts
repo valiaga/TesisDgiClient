@@ -26,4 +26,6 @@ export interface ITesisProceso {
     proceso: string;
     fecha_creacion: string;
     fecha_actualizacion: string;
+
+    proyecto_titulo: string;
 }

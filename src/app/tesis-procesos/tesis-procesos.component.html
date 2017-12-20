@@ -1,22 +1,16 @@
 <div class="card-container">  
   <mat-card *ngFor="let tp of tesisProcesos$ | async" class="mat-card">
-    <!--
+    
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
-      <mat-card-title>Software</mat-card-title>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title><p>{{ tp.proyecto }}</p> </mat-card-title>
       <mat-card-subtitle>Vitmar Aliaga & Alejandro Carpio</mat-card-subtitle>
-    </mat-card-header> -->
+    </mat-card-header>
     <!-- <img mat-card-image src="http://wellmedicated.com/wp-content/uploads/2009/06/moral-relativism.jpg" alt="Mi Libro">      -->
     
     <mat-card-content>
         <!-- <img src="http://wellmedicated.com/wp-content/uploads/2009/06/moral-relativism.jpg" alt=""> -->
-        <!-- ID: {{tp.id}}
-        <br>
-        ESTADO: {{tp.estado}}
-        <br>
-        FECHA INICIO: {{tp.fecha_inicio}}
-        -->
-        Implementacion de una aplicacion web para el proceso de tesis
+        <!-- {{ tp.id }}-->
     </mat-card-content>
   </mat-card>
   <!-- <a mat-fab class="button-add-fab" routerLink="/procesos/nuevo"><mat-icon>add</mat-icon></a> -->

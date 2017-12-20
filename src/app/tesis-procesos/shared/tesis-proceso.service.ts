@@ -3,18 +3,29 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { ITesisProceso } from './tesis-proceso';
+import { ITesisProceso, TesisProceso } from './tesis-proceso';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 
 @Injectable()
-export class TesisProcesoService {
+export class TesisProcesoService{
+
+  // private _tesisProcesos: BehaviorSubject<Array<TesisProceso>>;
+  // private dataStore: { // Aquí es donde almacenaremos nuestros datos en la memoria
+    // tesisProcesos: TesisProceso[]
+  // }
 
   constructor(private http: HttpClient) { }
+
+  // ngOnInit(){
+    // this.dataStore = { tesisProcesos: [] };
+    // this._tesisProcesos = new BehaviorSubject(Array<TesisProceso>());
+  // }
 
   /**
    * Get the Proyectos by key proceso.
    */
-  public getProyectosByProcesoId(procesoId: string): Observable<Array<ITesisProceso>>{
+  public getTesisProcesosByProcesoId(procesoId: string): Observable<Array<ITesisProceso>>{
     let apiUrl = environment.apiUrl;
     // return this.http.get(apiUrl + 'procesos/' + procesoId + '/tesis-procesos');
     return this.http
