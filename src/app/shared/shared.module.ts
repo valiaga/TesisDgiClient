@@ -23,6 +23,7 @@ import { CovalentModule } from './covalent/covalent.module';
   ],
   declarations: [
     // AddCommasPipe
+ 
   ],
   exports:[
     AngularModule,

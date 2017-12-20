@@ -14,6 +14,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/switchMap';
 
+const scheduleMicrotask = Promise.resolve(null);
 
 @Component({
   selector: 'dgi-linea-investigacion-list',
@@ -24,7 +25,7 @@ import 'rxjs/add/operator/switchMap';
       *ngIf="dataSource.isLoadingResults || dataSource.isRateLimitReached">
       <mat-spinner *ngIf="dataSource.isLoadingResults"></mat-spinner>
       <div class="example-rate-limit-reached" *ngIf="dataSource.isRateLimitReached">
-        Se alcanzó el límite de la tasa API de GitHub. Se reiniciará en un minuto.
+        Se alcanzó el límite de la tasa API de ITesys. Se reiniciará en un minuto.
       </div>
     </div>
     <mat-table #table [dataSource]="dataSource" class="example-table"
@@ -212,23 +213,44 @@ export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion
     return Observable.merge(...displayDataChanges)
       .startWith(null)
       .switchMap(() => {
-        this.isLoadingResults = true;
+
+        setTimeout(() => {
+          this.isLoadingResults = true;
+        }, 0);          
+        // scheduleMicrotask.then(() => {
+          // this.isLoadingResults = true;
+        // });          
         return this.lineaInvestigacionService.getLineaInvestigacions(
           this.sort.active, this.sort.direction, this.paginator.pageIndex
         )
       })
       .map(data => {
         // Da vuelta la bandera para mostrar que la carga ha terminado.
-        this.isLoadingResults = false;
-        this.isRateLimitReached = false;
-        this.resultsLength = data.options.count;
+        setTimeout(() => {
+          this.isLoadingResults = false;
+          this.isRateLimitReached = false;
+          this.resultsLength = data.options.count;
+        }, 0);
 
+        //  scheduleMicrotask.then(() => {
+          // this.isLoadingResults = false;
+          // this.isRateLimitReached = false;
+          // this.resultsLength = data.options.count;
+        // });
         return data.results;
       })
       .catch(() => {
-        this.isLoadingResults = false;
-        // Capture si la API de Linea de investigación ha alcanzado su límite de velocidad. Devuelve datos vacíos.
-        this.isRateLimitReached = true;
+
+        setTimeout(() => {
+          this.isLoadingResults = false;
+          // Capture si la API de Linea de investigación ha alcanzado su límite de velocidad. Devuelve datos vacíos.
+          this.isRateLimitReached = true;
+        }, 0);
+
+        // scheduleMicrotask.then(() => {
+          // this.isLoadingResults = false;
+          // this.isRateLimitReached = true;
+        // });
         return Observable.of([]);
       });
   }

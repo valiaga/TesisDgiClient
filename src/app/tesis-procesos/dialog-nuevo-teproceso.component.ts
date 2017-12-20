@@ -9,7 +9,7 @@ import { TesisProcesoService } from './shared/tesis-proceso.service';
     selector: 'dialog-nuevo-proyecto',
     template: `
     <!-- <h1 mat-dialog-title>Hi {{data.name}}</h1> -->
-    <h3 mat-dialog-title>NUEVO PROYECTO</h3>
+    <h4>NUEVO PROYECTO</h4>
     <form [formGroup]="tesisProcesoForm" (ngSubmit)="onSubmit()" novalidate>
       <div mat-dialog-content>
         <p class="p-small">Ingrese un título tentativo al proyecto</p>
