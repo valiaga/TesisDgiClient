@@ -37,7 +37,7 @@ const routes: Routes = [
   },
   {
     path: 'seguimiento',
-    loadChildren: './seguimiento/seguimiento.module#SeguimientoModule',
+    loadChildren: './seguimientos/seguimientos.module#SeguimientosModule',
     data: {
       title: 'Seguimientos'
     }
@@ -51,7 +51,7 @@ const routes: Routes = [
   },
   {
     path: 'linea-investigacion',
-    loadChildren: './linea-investigacion/linea-investigacion.module#LineaInvestigacionModule',
+    loadChildren: './linea-investigacions/linea-investigacions.module#LineaInvestigacionsModule',
     data: {
       title: 'linea-investigacion'
     }

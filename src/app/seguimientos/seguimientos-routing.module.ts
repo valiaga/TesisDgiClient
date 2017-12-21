@@ -44,4 +44,4 @@ const routes: Routes = [
   exports: [RouterModule], // se importará en su módulo funcional asociado
   providers: []
 })
-export class SeguimientoRoutingModule { }
+export class SeguimientosRoutingModule { }

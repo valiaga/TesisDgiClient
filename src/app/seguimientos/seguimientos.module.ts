@@ -7,14 +7,19 @@ import { SharedModule } from '../shared/shared.module';
 
 // import { CommonModule } from '@angular/common';
 import { SeguimientoComponent } from './seguimiento.component';
-import { SeguimientoRoutingModule } from "./seguimiento-routing.module";
+import { SeguimientosRoutingModule } from "./seguimientos-routing.module";
 import { ProcesosComponent } from './procesos/procesos.component';
+import { MaterialModule } from '../shared/material/material.module';
+import { AngularModule } from '../shared/angular/angular.module';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
-    SharedModule,
+    MaterialModule,
+    AngularModule,
+
     HttpModule,
-    SeguimientoRoutingModule
+    SeguimientosRoutingModule
   ],
   declarations: [
     SeguimientoComponent,
@@ -25,4 +30,4 @@ import { ProcesosComponent } from './procesos/procesos.component';
     UserService
   ]
 })
-export class SeguimientoModule { }
+export class SeguimientosModule { }

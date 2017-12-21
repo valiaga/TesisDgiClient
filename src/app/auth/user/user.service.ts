@@ -1,5 +1,5 @@
 import { Injectable }           from '@angular/core';
-import { Http, Headers }        from '@angular/http';
+import { HttpClient, HttpHeaders }        from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 // import { SettingsService } from '../../shared/settings.service';
@@ -7,7 +7,7 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UserService {
-    constructor(private http: Http
+    constructor(private http: HttpClient
         // ,private _settingsService: SettingsService
     ) {
     }
@@ -83,13 +83,12 @@ export class UserService {
     /**
      * Generates headers with necessary authorization to call the api
      */
-    public getHeaders(): Headers {
-        let headers = new Headers();
+    public getHeaders(): HttpHeaders {
         // let authorization: string = this.getAuthToken();
-
-        headers.append('Content-Type', 'application/json');
-        headers.append('Accept', 'application/json');
-        // headers.append('Authorization', authorization);
+        let headers = new HttpHeaders()
+                        .set('Content-Type', 'application/json')
+                        .set('Accept', 'application/json')
+                        // .set('Authorization', authorization)
 
         return headers;
     }

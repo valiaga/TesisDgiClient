@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { LineaInvestigacionRoutingModule } from './linea-investigacion-routing.module';
+import { LineaInvestigacionsRoutingModule } from './linea-investigacions-routing.module';
 import { FindLineaInvestigacionPageComponent } from './containers/find-linea-investigacion-page.component';
 import { AngularModule } from '../shared/angular/angular.module';
 import { MaterialModule } from '../shared/material/material.module';
@@ -19,7 +19,7 @@ import { EscuelaService } from '../escuela/shared/escuela.service';
     MaterialModule,
     UtilsModule,
 
-    LineaInvestigacionRoutingModule
+    LineaInvestigacionsRoutingModule
   ],
   declarations: [
     FindLineaInvestigacionPageComponent,
@@ -36,4 +36,4 @@ import { EscuelaService } from '../escuela/shared/escuela.service';
     CreateLineaInvestigacionDialogComponent
   ]
 })
-export class LineaInvestigacionModule { }
+export class LineaInvestigacionsModule { }

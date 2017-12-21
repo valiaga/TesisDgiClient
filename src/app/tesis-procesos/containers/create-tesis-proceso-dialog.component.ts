@@ -1,8 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Inject } from '@angular/core';
-import { TesisProceso } from './shared/tesis-proceso';
+import { TesisProceso } from '../shared/tesis-proceso';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TesisProcesoService } from './shared/tesis-proceso.service';
+import { TesisProcesoService } from '../shared/tesis-proceso.service';
 
 
 @Component({
@@ -47,7 +47,7 @@ import { TesisProcesoService } from './shared/tesis-proceso.service';
     }
     `]
   })  
-export class DialogNuevoTeProcesoComponent implements OnInit{
+export class CreateTesisProcesoDialogComponent implements OnInit{
   
     private tesisProcesoForm: FormGroup;
     public tesisProceso: TesisProceso = new TesisProceso();
@@ -55,7 +55,7 @@ export class DialogNuevoTeProcesoComponent implements OnInit{
     public lengtMinProyectoTitulo: number=10;
   
     constructor(
-      public dialogRef: MatDialogRef<DialogNuevoTeProcesoComponent>,
+      public dialogRef: MatDialogRef<CreateTesisProcesoDialogComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,
       private formBuilder: FormBuilder,
       private tesisProcesoService: TesisProcesoService,

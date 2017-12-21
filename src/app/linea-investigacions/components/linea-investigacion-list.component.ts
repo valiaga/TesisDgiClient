@@ -77,7 +77,8 @@ const scheduleMicrotask = Promise.resolve(null);
       <!-- Escuela Column -->
       <ng-container matColumnDef="escuela">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Escuela </mat-header-cell>
-        <mat-cell *matCellDef="let row" [style.color]="row.escuela"> {{row.escuela}} </mat-cell>
+        <!-- <mat-cell *matCellDef="let row" [style.color]="row.escuela"> {{row.escuela}} </mat-cell>-->
+        <mat-cell *matCellDef="let row"> {{row.escuela_nombre}} </mat-cell>
       </ng-container>
 
       <!-- Fecha_creacion Column -->
@@ -108,7 +109,7 @@ const scheduleMicrotask = Promise.resolve(null);
     <mat-paginator #paginator
     [length]="dataSource.resultsLength"
     [pageIndex]="0"
-    [pageSize]="5"
+    [pageSize]="dataSource.pageSize"
     [pageSizeOptions]="[5, 10, 25, 100]"
     >
     <!-- [length]="lineaInvestigacionDataBase.data.length" -->
@@ -191,6 +192,7 @@ export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion
   public resultsLength = 0;
   public isLoadingResults = false;
   public isRateLimitReached = false;
+  public pageSize = 5;
 
   constructor(
     private lineaInvestigacionService: LineaInvestigacionService,
@@ -221,7 +223,8 @@ export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion
           // this.isLoadingResults = true;
         // });          
         return this.lineaInvestigacionService.getLineaInvestigacions$(
-          this.sort.active, this.sort.direction, this.paginator.pageIndex
+          this.sort.active, this.sort.direction, this.paginator.pageIndex,
+          this.paginator.pageSize
         )
       })
       .map(data => {
@@ -230,6 +233,7 @@ export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion
           this.isLoadingResults = false;
           this.isRateLimitReached = false;
           this.resultsLength = data.options.count;
+          this.pageSize = data.options.page_size;
         }, 0);
 
         //  scheduleMicrotask.then(() => {

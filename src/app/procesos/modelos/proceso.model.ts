@@ -11,3 +11,28 @@ export class Proceso {
         public id?: string //uuid
     ){ }
 }
+
+export interface IProceso {
+    id: string; //uuid
+    nombre: string;
+    descripcion: string;
+    activo: boolean;
+    fecha_creacion: string;
+    fecha_actualizacion: string;
+}
+
+class Options {
+    count: number; // total_count
+    pages: number;
+    page: number;
+    next: number;
+    previous: number;
+    range: string;
+    page_size: number; 
+}
+  
+export interface IResponse {
+    options: Options;
+    results: IProceso[];
+}
+  

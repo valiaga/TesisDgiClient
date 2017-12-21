@@ -1,9 +1,9 @@
 import { environment } from '../../../environments/environment';
 import { UserService } from '../../auth/user/user.service';
 // import { SettingsService } from '../../shared/settings.service';
-import { Http, Response } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { Proceso } from '../modelos/proceso.model';
+import { Proceso, IProceso, IResponse } from '../modelos/proceso.model';
 import { PROCESOS } from './mock-procesos';
 import { Injectable } from '@angular/core';
 
@@ -11,30 +11,24 @@ import { Injectable } from '@angular/core';
 export class ProcesoService {
   public searchText: string;
 
-  constructor(private _http: Http,
+  constructor(private http: HttpClient,
     private _userService: UserService) { }
 
   /**
    * Get the top 10 most recent procesos
    */
-  public getRecentProcesos(){
+  public getRecentProcesos$(): Observable<IResponse>{
     // let apiUrl = this._settingsService.settings['apiUrl'];
     let apiUrl = environment.apiUrl;
-    return this._http.get(apiUrl + 'proceso/procesos/', { headers: this._userService.getHeaders()})
-    // return this._http.get(apiUrl + 'proceso/procesos/')
-      .toPromise()
-      .then(res => {
-        return res.json();
-      })
-      .catch(error => this.handleError(error, 'loading recent posts.'))    
+    return this.http.get<IResponse>(`${apiUrl}proceso/procesos/`, { headers: this._userService.getHeaders()})
   }
 
   /**
    * Get the top 10 procesos
    */
-  public getProcesos$(): Observable<Response>{
+  public getProcesos$(): Observable<IResponse>{
     let apiUrl = environment.apiUrl;
-    return this._http.get(`${apiUrl}proceso/procesos/`);
+    return this.http.get<IResponse>(`${apiUrl}proceso/procesos/`);
   }
 
   /**

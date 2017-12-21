@@ -25,11 +25,10 @@ export class TesisProcesoService{
   /**
    * Get the Proyectos by key proceso.
    */
-  public getTesisProcesosByProcesoId(procesoId: string): Observable<Array<ITesisProceso>>{
+  public getTesisProcesosByProcesoId$(procesoId: string): Observable<ITesisProceso[]>{
     let apiUrl = environment.apiUrl;
-    // return this.http.get(apiUrl + 'procesos/' + procesoId + '/tesis-procesos');
     return this.http
-      .get<Array<ITesisProceso>>(`${apiUrl}proceso/procesos/${procesoId}/tesis-procesos/`);
+      .get<ITesisProceso[]>(`${apiUrl}proceso/procesos/${procesoId}/tesis-procesos/`);
   }
 
   public saveTesisProcesoAndProyecto(data: any): Observable<ITesisProceso>{

@@ -1,5 +1,5 @@
 
-<mat-card  *ngFor="let proceso of procesos" class="proceso-card" role="region">
+<mat-card  *ngFor="let proceso of procesos$ | async" class="proceso-card" role="region">
   <!-- <mat-card-header>
     <img mat-card-avatar src="https://thumbs.dreamstime.com/z/diploma-y-casquillo-eps-de-la-graduaci%C3%B3n-1689288.jpg">
       <mat-card-title>{{proceso.nombre}}</mat-card-title>

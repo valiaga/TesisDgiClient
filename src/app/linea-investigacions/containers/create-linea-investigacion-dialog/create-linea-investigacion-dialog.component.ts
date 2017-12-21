@@ -3,9 +3,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LineaInvestigacion } from '../../shared/linea-investigacion';
 import { LineaInvestigacionService } from '../../shared/linea-investigacion.service';
-import { Escuela } from '../../../escuela/shared/escuela';
+import { Escuela } from '../../../escuelas/shared/escuela';
 import { Observable } from 'rxjs/Observable';
-import { EscuelaService } from '../../../escuela/shared/escuela.service';
+import { EscuelaService } from '../../../escuelas/shared/escuela.service';
 
 @Component({
   selector: 'dgi-create-linea-investigacion-dialog',
@@ -44,7 +44,7 @@ export class CreateLineaInvestigacionDialogComponent implements OnInit {
   }
 
   cargarMaestros(){
-    this.escuelas$ = this.escuelaService.getEscuelas$().map(res => res.results);
+    this.escuelas$ = this.escuelaService.getAllEscuelas$();
   }
 
   createNuevaLineaInvestigacion(){
@@ -62,7 +62,7 @@ export class CreateLineaInvestigacionDialogComponent implements OnInit {
     if (valid) {
 
       //Save here.
-      this.lineaInvestigacionService.postLineaInvestigacion(lineaInvestigacion)
+      this.lineaInvestigacionService.postLineaInvestigacion$(lineaInvestigacion)
         .subscribe();
       this.dialogRef.close();
       this.createForm.reset();

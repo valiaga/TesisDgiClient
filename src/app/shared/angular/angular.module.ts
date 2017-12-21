@@ -8,6 +8,7 @@ const ANGULAR_MODULES: any[] = [
   FormsModule, 
   ReactiveFormsModule,
   HttpClientModule,
+  CommonModule,
 ];
 
 
