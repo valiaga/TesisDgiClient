@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 import { TesisProcesosComponent } from './tesis-procesos.component';
 import { DialogNuevoTeProcesoComponent } from './dialog-nuevo-teproceso.component';
+import { AngularModule } from '../shared/angular/angular.module';
+import { MaterialModule } from '../shared/material/material.module';
 
 const routes: Routes = [
   {
@@ -15,7 +17,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    SharedModule,
+    AngularModule,
+    MaterialModule,
+    // SharedModule,
     // CommonModule,
     RouterModule.forChild(routes)
   ],

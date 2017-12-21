@@ -220,7 +220,7 @@ export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion
         // scheduleMicrotask.then(() => {
           // this.isLoadingResults = true;
         // });          
-        return this.lineaInvestigacionService.getLineaInvestigacions(
+        return this.lineaInvestigacionService.getLineaInvestigacions$(
           this.sort.active, this.sort.direction, this.paginator.pageIndex
         )
       })

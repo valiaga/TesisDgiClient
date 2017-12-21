@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { DialogNuevoTeProcesoComponent } from './dialog-nuevo-teproceso.component';
 import { Observable } from 'rxjs/Observable';
+import { Params } from '@angular/router';
 
 
 @Component({
@@ -25,6 +26,15 @@ export class TesisProcesosComponent implements OnInit {
   // este es el lugar donde programar lógica de inicio
   // nunca en el constructor
   ngOnInit() {
+
+    /*
+    this.route.params
+      .switchMap((params: Params) => {
+        return this.getProyectos(params['proceso_id'])
+      })
+      .subscribe(da => console.log(da));
+    */
+
     this.route.params.subscribe(params => {
       this.proceso_id = params['proceso_id'];
       if (this.proceso_id){

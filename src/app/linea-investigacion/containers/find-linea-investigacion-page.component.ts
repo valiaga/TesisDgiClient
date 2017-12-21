@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { CreateLineaInvestigacionDialogComponent } from './create-linea-investigacion-dialog.component';
+import { CreateLineaInvestigacionDialogComponent } from './create-linea-investigacion-dialog/create-linea-investigacion-dialog.component';
 
 @Component({
   selector: 'dgi-find-linea-investigacion-page',
