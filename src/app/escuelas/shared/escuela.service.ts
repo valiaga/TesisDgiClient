@@ -8,31 +8,27 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class EscuelaService {
-  response: Observable<IResponse>;
-  // escuelas: Observable<Escuela[]>;
-  private _response: BehaviorSubject<IResponse>;
+  escuelas: Observable<Escuela[]>;
+  private _escuelas: BehaviorSubject<Escuela[]>;
   private dataStore: {
-    response: IResponse
-    // escuelas: Escuela[]
+    escuelas: Escuela[]
   }
 
   constructor(private http: HttpClient ) { 
-    this.dataStore = { response: { options: {
-      count: 0, next: 0, page: 0, page_size: 0,pages: 0, previous: 0, range: ''  
-    }, results: []} };
+    this.dataStore = { escuelas: [] };
 
-    this._response = <BehaviorSubject<IResponse>> new BehaviorSubject({});
-    this.response = this._response.asObservable();
+    this._escuelas = <BehaviorSubject<Escuela[]>> new BehaviorSubject([]);
+    this.escuelas = this._escuelas.asObservable();
   }
 
   loadAll() {
     let apiUrl = environment.apiUrl;
     
     return this.http
-      .get<IResponse>(`${apiUrl}academico/escuelas/?all=true`)
+      .get<IEscuela[]>(`${apiUrl}academico/escuelas/?all=true`)
       .subscribe(data => {
-        this.dataStore.response = data;
-        this._response.next(Object.assign({}, this.dataStore).response);
+        this.dataStore.escuelas = data;
+        this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not load escuelas.')
       )
   }
@@ -42,28 +38,29 @@ export class EscuelaService {
     this.http.get<IEscuela>(`${apiUrl}academico/escuelas/${id}`).subscribe(data => {
       let notFound = true;
 
-      this.dataStore.response.results.forEach((escuela, index) => {
+      this.dataStore.escuelas.forEach((escuela, index) => {
         if (escuela.id === data.id) {
-          this.dataStore.response.results[index] = data;
+          this.dataStore.escuelas[index] = data;
           notFound = false;
         }
       });
 
       if (notFound) {
-        this.dataStore.response.results.push(data);
+        this.dataStore.escuelas.push(data);
       }
 
-      this._response.next(Object.assign({}, this.dataStore).response);
+      this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
     }, error => console.log('Could not load escuela.'));
   }
 
-  create(escuela: Escuela) {
+  create(escuela: any) {
     let apiUrl = environment.apiUrl;
-    
+    console.log('escuela');
+    console.log(escuela);
     this.http.post<IEscuela>(`${apiUrl}academico/escuelas/`, escuela)
       .subscribe(data => {
-        this.dataStore.response.results.push(data);
-        this._response.next(Object.assign({}, this.dataStore).response);
+        this.dataStore.escuelas.push(data);
+        this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not create escuela.'));
   }
   
@@ -71,11 +68,11 @@ export class EscuelaService {
     let apiUrl = environment.apiUrl;
     this.http.put<IEscuela>(`${apiUrl}academico/escuelas/${escuela.id}`, escuela)
     .subscribe(data => {
-      this.dataStore.response.results.forEach((escuela, index) => {
-        if (escuela.id === data.id) { this.dataStore.response.results[index] = data; }
+      this.dataStore.escuelas.forEach((escuela, index) => {
+        if (escuela.id === data.id) { this.dataStore.escuelas[index] = data; }
       });
       
-      this._response.next(Object.assign({}, this.dataStore).response);
+      this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
     }, error => console.log('Could not update escuela.'));
   }
   
@@ -83,14 +80,17 @@ export class EscuelaService {
     let apiUrl = environment.apiUrl;
     this.http.delete<IEscuela>(`${apiUrl}academico/escuelas/${id}`)
       .subscribe(response => {
-        this.dataStore.response.results.forEach((escuela, index) => {
-          if (escuela.id === id) { this.dataStore.response.results.splice(index, 1); }
+        this.dataStore.escuelas.forEach((escuela, index) => {
+          if (escuela.id === id) { this.dataStore.escuelas.splice(index, 1); }
           });
-        this._response.next(Object.assign({}, this.dataStore).response);
+        this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not delete escuela.'));
   }
 
 
+  public getNuevaEscuela(): Escuela {
+    return new Escuela('', '', false, '', '', '', '');
+  }
 
   // NORMAL
   public getEscuelas$(sort: string, order: string, page: number,
@@ -99,6 +99,9 @@ export class EscuelaService {
     return this.http.get<IResponse>(`${apiUrl}academico/escuelas/`);
   }
   
+  /**
+   * Importante para un combo en lineas de investigación.
+   */
   public getAllEscuelas$(): Observable<IEscuela[]>{
     let apiUrl = environment.apiUrl;
     return this.http.get<IEscuela[]>(`${apiUrl}academico/escuelas/?all=true`);    

@@ -1,4 +1,15 @@
 export const MESSAGES = {
+    /**
+     * actions MatSnackBar
+     */
+    actions: {
+        delete: "Eliminar",
+        post: "Guardar",
+        get: "Listar",
+        put: "Editar",
+    },
+
+
     tesisProceso: {
         delete: "El proceso de tesis se eliminó con Éxito!.",
         post: "El proceso de tesis se guardó con Éxito.",
@@ -11,15 +22,10 @@ export const MESSAGES = {
         get: "La lina de investigación se listó con Éxito.",
         put: "La lina de investigación se actualizó con Éxito."
     },
-
-
-    /**
-     * actions MatSnackBar
-     */
-    actions: {
-        delete: "Eliminar",
-        post: "Guardar",
-        get: "Listar",
-        put: "Editar",
+    escuela: {
+        delete: "La escuela académica se eliminó con Éxito!.",
+        post: "La escuela académica se guardó con Éxito.",
+        get: "La escuela académica se listó con Éxito.",
+        put: "La escuela académica se actualizó con Éxito."
     }
 }

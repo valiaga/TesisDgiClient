@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 import {
-  CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
-  CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
-  CovalentPagingModule, CovalentSearchModule, CovalentStepsModule,
-  CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule
+  // CovalentDataTableModule, CovalentLoadingModule,
+  // CovalentPagingModule, CovalentStepsModule,
+  // CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule, 
+  CovalentFileModule, CovalentNotificationsModule, CovalentSearchModule,
+  CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule
 } from '@covalent/core';
 
 
 const COVALENT_MODULES = [
-  CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
-  CovalentNotificationsModule, CovalentLayoutModule, CovalentMenuModule,
-  CovalentPagingModule, CovalentSearchModule, CovalentStepsModule,
-  CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule
+  // CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
+  // CovalentLayoutModule, CovalentMenuModule,
+  // CovalentPagingModule, CovalentSearchModule, CovalentStepsModule,
+  // CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule
+  CovalentNotificationsModule, CovalentFileModule, CovalentSearchModule,
+  CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule
 ];
 
 @NgModule({

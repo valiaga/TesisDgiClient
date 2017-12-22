@@ -21,9 +21,10 @@ import { Proyecto } from '../models/proyecto'
       margin-top: 25px;
     }
 
+    /*
     div {
       display: flex;
-    }
+    } */
 
     `
   ]

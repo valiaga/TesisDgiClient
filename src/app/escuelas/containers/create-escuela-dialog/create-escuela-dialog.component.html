@@ -1,0 +1,99 @@
+<div class="escuela-container">
+  <form [formGroup]="escuelaForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    class="escuela-container"
+    >
+
+    <h5>Nueva Escuela</h5>
+
+    <!-- Nombre field -->
+    <mat-form-field
+      [hideRequiredMarker]="[false]"
+      [floatLabel]="['auto']">
+      <input matInput placeholder="Nombre" formControlName="nombre" required>
+      <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
+    </mat-form-field>
+
+    <!-- Alias field -->
+    <mat-form-field
+      [floatLabel]="['auto']">
+      <input matInput placeholder="Alias" formControlName="alias">
+    </mat-form-field>
+
+    <!-- Activo field -->
+    <div class="checkbox">
+      <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+    </div>
+
+    <!-- Logo field -->
+    <mat-form-field
+          tdFileDrop
+          [disabled]="disabled"
+          (fileDrop)="files = $event"
+          (click)="fileInput.inputElement.click()"
+          (keyup.enter)="fileInput.inputElement.click()"
+          (keyup.delete)="fileInput.clear()"
+          (keyup.backspace)="fileInput.clear()"
+          flex>
+          <input matInput
+            placeholder="Seleccionar o soltar archivos"
+            [value]="files?.length ? (files?.length + ' files') : files?.name"
+            [disabled]="disabled"
+            readonly/>
+          </mat-form-field>
+          <!-- <button mat-icon-button *ngIf="files" (click)="fileInput.clear()" (keyup.enter)="fileInput.clear()"> -->
+            <!-- <mat-icon>Cancelar</mat-icon> -->
+            
+    <!-- </button> -->
+    <td-file-input class="push-left-sm push-right-sm" 
+        #fileInput 
+        [(ngModel)]="files" 
+        multiple
+        formControlName="logo" 
+        [disabled]="disabled"
+        
+        >
+      <mat-icon>folder</mat-icon>
+      <span class="text-upper">Browse...</span>
+    </td-file-input>
+    <!-- <span> -->
+      <!-- <button mat-raised-button color="accent" [disabled]="!files" class="text-upper">Submit</button> -->
+    <!-- </span> -->
+
+
+
+    <!-- Misión field -->
+    <mat-form-field
+      [floatLabel]="['auto']">
+      <textarea matInput placeholder="Misión" matTextareaAutosize 
+        matAutosizeMaxRows="5" formControlName="mision"
+        matAutosizeMinRows="2"></textarea>
+    </mat-form-field>
+        
+    <!-- Visión field -->
+    <mat-form-field
+      [floatLabel]="['auto']">
+      <textarea matInput placeholder="Visión" matTextareaAutosize 
+        matAutosizeMaxRows="5" formControlName="vision"
+        matAutosizeMinRows="2"></textarea>
+    </mat-form-field>
+        
+    <!-- Facultad field -->      
+    <mat-form-field
+      [hideRequiredMarker]="[false]">
+      <mat-select placeholder="Seleccionar Facultad" formControlName="facultad" required>
+        <!-- <mat-option value="" selected>-None-</mat-option> -->
+        <mat-option *ngFor="let facultad of facultades$ | async" [value]="facultad.id">{{ facultad.nombre }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <!-- Buttons Actions -->
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!escuelaForm.valid" tabindex="0">Aceptar</button>
+      <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+    </div>
+
+  </form>
+</div>

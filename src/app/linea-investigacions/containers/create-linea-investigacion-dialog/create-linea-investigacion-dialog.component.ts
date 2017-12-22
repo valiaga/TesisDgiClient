@@ -85,6 +85,7 @@ export class CreateLineaInvestigacionDialogComponent implements OnInit {
       fecha_creacion: [this.lineaInvestigacion.fecha_creacion],
       fecha_actualizacion: [this.lineaInvestigacion.fecha_actualizacion]
     }
+    
     return controls;
   }
 }
