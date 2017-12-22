@@ -1,11 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LineaInvestigacion } from '../../shared/linea-investigacion';
 import { LineaInvestigacionService } from '../../shared/linea-investigacion.service';
 import { Escuela } from '../../../escuelas/shared/escuela';
 import { Observable } from 'rxjs/Observable';
 import { EscuelaService } from '../../../escuelas/shared/escuela.service';
+import { MESSAGES } from '../../../../config/messages';
 
 @Component({
   selector: 'dgi-create-linea-investigacion-dialog',
@@ -34,7 +35,8 @@ export class CreateLineaInvestigacionDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) public data: any,
               @Inject(FormBuilder) private formBuilder: FormBuilder,
               private lineaInvestigacionService: LineaInvestigacionService,
-              private escuelaService: EscuelaService  
+              private escuelaService: EscuelaService,
+              private snackBar: MatSnackBar,  
             ) { }
   
   ngOnInit() {
@@ -63,7 +65,11 @@ export class CreateLineaInvestigacionDialogComponent implements OnInit {
 
       //Save here.
       this.lineaInvestigacionService.postLineaInvestigacion$(lineaInvestigacion)
-        .subscribe();
+        .subscribe(() => {
+          this.snackBar.open(MESSAGES.lineaInvestigacion.post, MESSAGES.actions.post, {
+            duration: 3000,
+          });
+        });
       this.dialogRef.close();
       this.createForm.reset();
     }

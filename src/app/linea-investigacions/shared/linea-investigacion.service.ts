@@ -40,5 +40,4 @@ export class LineaInvestigacionService {
   public getNuevaLineaInvestigacion(): LineaInvestigacion{
     return new LineaInvestigacion('', '', false, '');
   }
-
 }

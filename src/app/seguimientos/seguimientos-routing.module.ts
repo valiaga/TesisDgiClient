@@ -7,8 +7,8 @@ import { SeguimientoComponent } from "./seguimiento.component";
 // import { ProcesosComponent } from './procesos/procesos.component';
 
 /** Rutas que se manejan en este módulo
- * /seguimiento
- * /seguimiento/42
+ * /seguimientos
+ * /seguimientos/42
  */
 const routes: Routes = [
   {

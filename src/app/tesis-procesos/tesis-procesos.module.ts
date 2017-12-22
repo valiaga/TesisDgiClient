@@ -9,19 +9,23 @@ import { FindTesisProcesoPageComponent } from './containers/find-tesis-proceso-p
 import { TesisProcesosRoutingModule } from './tesis-procesos-routing.module';
 import { TesisProcesoService } from './shared/tesis-proceso.service';
 import { SharedModule } from '../shared/shared.module';
+import { TesisProcesoComponent } from './components/tesis-proceso.component';
+import { UtilsModule } from '../shared/components/utils.module';
 
 
 @NgModule({
   imports: [
     AngularModule,
     MaterialModule,
+    UtilsModule,
 
     TesisProcesosRoutingModule,
   ],
   declarations: [
     TesisProcesoListComponent,
     CreateTesisProcesoDialogComponent,
-    FindTesisProcesoPageComponent
+    FindTesisProcesoPageComponent,
+    TesisProcesoComponent
     ],
   providers: [
     TesisProcesoService

@@ -1,5 +1,5 @@
 /**
- * Modulos de enrutado de Angular 2
+ * Modulos de enrutado de Angular 5
  */
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -36,7 +36,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'seguimiento',
+    path: 'seguimientos',
     loadChildren: './seguimientos/seguimientos.module#SeguimientosModule',
     data: {
       title: 'Seguimientos'
@@ -50,10 +50,17 @@ const routes: Routes = [
     }
   },
   {
-    path: 'linea-investigacion',
+    path: 'linea-investigacions',
     loadChildren: './linea-investigacions/linea-investigacions.module#LineaInvestigacionsModule',
     data: {
-      title: 'linea-investigacion'
+      title: 'Linea-investigacions'
+    }
+  },
+  {
+    path: 'escuelas',
+    loadChildren: './escuelas/escuelas.module#EscuelasModule',
+    data: {
+      title: 'Escuelas'
     }
   }
 

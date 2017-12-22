@@ -10,7 +10,7 @@ import { LineaInvestigacionListComponent } from './components/linea-investigacio
 import { UtilsModule } from '../shared/components/utils.module';
 import { CreateLineaInvestigacionDialogComponent } from './containers/create-linea-investigacion-dialog/create-linea-investigacion-dialog.component';
 import { LineaInvestigacionService } from './shared/linea-investigacion.service';
-import { EscuelaService } from '../escuela/shared/escuela.service';
+import { EscuelaService } from '../escuelas/shared/escuela.service';
 
 @NgModule({
   imports: [

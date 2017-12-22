@@ -1,13 +1,25 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { EscuelasRoutingModule } from './escuelas-routing.module';
+import { FindEscuelaPageComponent } from './containers/find-escuela-page.component';
+import { EscuelaListComponent } from './components/escuela-list.component';
+import { EscuelaSearchComponent } from './components/escuela-search.component';
+import { AngularModule } from '../shared/angular/angular.module';
+import { MaterialModule } from '../shared/material/material.module';
+import { UtilsModule } from '../shared/components/utils.module';
 
 @NgModule({
   imports: [
-    CommonModule,
+    AngularModule,
+    MaterialModule,
+    UtilsModule,
+
     EscuelasRoutingModule
   ],
-  declarations: []
+  declarations: [
+    FindEscuelaPageComponent, 
+    EscuelaListComponent, 
+    EscuelaSearchComponent
+  ]
 })
 export class EscuelasModule { }

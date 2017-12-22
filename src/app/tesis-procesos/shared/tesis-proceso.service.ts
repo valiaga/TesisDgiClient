@@ -50,9 +50,10 @@ export class TesisProcesoService{
     }
   }
 
-  public deleteTesisProcesoById(id: string){
+  public deleteTesisProcesoById(id: string):Observable<ITesisProceso> {
+    let apiUrl = environment.apiUrl;
     return this.http
-      .delete<ITesisProceso>(``);
+      .delete<ITesisProceso>(`${apiUrl}tesis-proceso/tesis-procesos/${id}/`);
   }
 
   private handleError(error: any, operation: string): Promise<any> {

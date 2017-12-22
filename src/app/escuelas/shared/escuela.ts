@@ -39,5 +39,5 @@ class Options {
   
 export interface IResponse {
     options: Options;
-    results: Escuela[];
+    results: IEscuela[];
 }

@@ -26,14 +26,15 @@ export class SidenavComponent implements OnInit {
         { name: 'About', icon:'info', route: 'about' },
         { name: 'Procesos', icon:'view_list', route: 'procesos' },
         { name: 'Proyectos', icon:'school', route: 'proyectos' },
-        { name: 'Seguimiento', icon:'cached', route: 'seguimiento' },
-        { name: 'Lineas de investigación', icon:'cached', route: 'linea-investigacion' },
+        { name: 'Seguimiento', icon:'cached', route: 'seguimientos' },
       ] 
     },
     {
       Id: 2,
       Titulo: "CONFIGURACIÓN",
       navItems: [
+        { name: 'Lineas de investigación', icon:'cached', route: 'linea-investigacions' },
+        { name: 'Escuelas', icon:'cached', route: 'escuelas' },
         { name: 'Configuración', icon:'settings', route: 'config' },
         { name: 'Ayuda', icon:'help', route: 'help' },
         { name: 'Auth', icon:'beenhere', route: 'auth' },
