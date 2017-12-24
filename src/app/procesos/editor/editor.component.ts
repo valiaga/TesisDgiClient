@@ -21,9 +21,8 @@ export class EditorComponent implements OnInit {
     // subscripción al observable params
     this.route.params.subscribe(params => {
       const ProcesoId = params['id'].toString(); // recpeción del parámetro
-      this.procesoService.getProcesoById(ProcesoId)
-        .then(proceso => this.proceso = proceso);
-      ;
+
+      this.procesoService.getProcesoById(ProcesoId);
     })
   }
 

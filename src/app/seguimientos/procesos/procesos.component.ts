@@ -14,6 +14,11 @@ export class ProcesosComponent implements OnInit {
   constructor(private procesoService:ProcesoService) { }
 
   ngOnInit() {
-    this.procesos$ = this.procesoService.getProcesos$().map(res => res.results);
+    this.procesos$ = this.procesoService.procesos;
+    this.getProcesos();
+  }
+
+  getProcesos() {
+    this.procesoService.getAllProcesos();
   }
 }

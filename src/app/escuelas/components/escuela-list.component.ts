@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 import { IEscuela, Escuela } from '../shared/escuela';
 import { EscuelaService } from '../shared/escuela.service';
@@ -7,7 +7,10 @@ import { EscuelaService } from '../shared/escuela.service';
 @Component({
   selector: 'dgi-escuela-list',
   template: `
-    <dgi-escuela *ngFor="let escuela of escuelas" [escuela]="escuela"></dgi-escuela>
+    <dgi-escuela *ngFor="let escuela of escuelas" 
+      [escuela]="escuela"
+      (onDeleteEscuela)="onDeleteEscuelaList.emit($event)"
+      ></dgi-escuela>
   `,
   styles: [
     `
@@ -29,6 +32,7 @@ import { EscuelaService } from '../shared/escuela.service';
 export class EscuelaListComponent implements OnInit {
 
   @Input() escuelas: Escuela[];
+  @Output() onDeleteEscuelaList = new EventEmitter<string>();
 
   constructor( ) { }
 

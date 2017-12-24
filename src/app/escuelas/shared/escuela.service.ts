@@ -4,6 +4,9 @@ import { Observable } from 'rxjs/Observable';
 import { Escuela, IEscuela, IResponse } from './escuela';
 import { environment } from '../../../environments/environment';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MatSnackBar } from '@angular/material';
+import { MESSAGES } from '../../../config/messages';
+import { snackBarDuration } from '../../../config/general';
 
 
 @Injectable()
@@ -14,7 +17,11 @@ export class EscuelaService {
     escuelas: Escuela[]
   }
 
-  constructor(private http: HttpClient ) { 
+  constructor(private http: HttpClient,
+              private snackBar: MatSnackBar) { 
+
+
+
     this.dataStore = { escuelas: [] };
 
     this._escuelas = <BehaviorSubject<Escuela[]>> new BehaviorSubject([]);
@@ -27,6 +34,7 @@ export class EscuelaService {
     return this.http
       .get<IEscuela[]>(`${apiUrl}academico/escuelas/?all=true`)
       .subscribe(data => {
+        this.snackBar.open(MESSAGES.escuela.getMany, MESSAGES.actions.get, snackBarDuration);
         this.dataStore.escuelas = data;
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not load escuelas.')
@@ -35,22 +43,24 @@ export class EscuelaService {
 
   load(id: number | string) {
     let apiUrl = environment.apiUrl;
-    this.http.get<IEscuela>(`${apiUrl}academico/escuelas/${id}`).subscribe(data => {
-      let notFound = true;
+    this.http.get<IEscuela>(`${apiUrl}academico/escuelas/${id}`)
+      .subscribe(data => {
+        let notFound = true;
 
-      this.dataStore.escuelas.forEach((escuela, index) => {
-        if (escuela.id === data.id) {
-          this.dataStore.escuelas[index] = data;
-          notFound = false;
+        this.dataStore.escuelas.forEach((escuela, index) => {
+          if (escuela.id === data.id) {
+            this.dataStore.escuelas[index] = data;
+            notFound = false;
+          }
+        });
+
+        if (notFound) {
+          this.dataStore.escuelas.push(data);
         }
-      });
+        this.snackBar.open(MESSAGES.escuela.getOne, MESSAGES.actions.get, snackBarDuration);
 
-      if (notFound) {
-        this.dataStore.escuelas.push(data);
-      }
-
-      this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
-    }, error => console.log('Could not load escuela.'));
+        this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
+      }, error => console.log('Could not load escuela.'));
   }
 
   create(escuela: any) {
@@ -59,6 +69,9 @@ export class EscuelaService {
     console.log(escuela);
     this.http.post<IEscuela>(`${apiUrl}academico/escuelas/`, escuela)
       .subscribe(data => {
+
+        this.snackBar.open(MESSAGES.escuela.post, MESSAGES.actions.post, snackBarDuration);
+
         this.dataStore.escuelas.push(data);
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not create escuela.'));
@@ -68,6 +81,9 @@ export class EscuelaService {
     let apiUrl = environment.apiUrl;
     this.http.put<IEscuela>(`${apiUrl}academico/escuelas/${escuela.id}`, escuela)
     .subscribe(data => {
+
+      this.snackBar.open(MESSAGES.escuela.put, MESSAGES.actions.put, snackBarDuration);
+
       this.dataStore.escuelas.forEach((escuela, index) => {
         if (escuela.id === data.id) { this.dataStore.escuelas[index] = data; }
       });
@@ -78,8 +94,11 @@ export class EscuelaService {
   
   remove(id: string) {
     let apiUrl = environment.apiUrl;
-    this.http.delete<IEscuela>(`${apiUrl}academico/escuelas/${id}`)
+    this.http.delete<IEscuela>(`${apiUrl}academico/escuelas/${id}/`)
       .subscribe(response => {
+
+        this.snackBar.open(MESSAGES.escuela.delete, MESSAGES.actions.delete, snackBarDuration);
+  
         this.dataStore.escuelas.forEach((escuela, index) => {
           if (escuela.id === id) { this.dataStore.escuelas.splice(index, 1); }
           });

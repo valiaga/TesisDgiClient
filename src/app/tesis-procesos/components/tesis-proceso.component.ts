@@ -1,10 +1,12 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { TesisProceso } from '../shared/tesis-proceso';
 // import { MatMenuTrigger } from '@angular/material/menu/typings/menu-trigger';
 import { MatMenuTrigger, MatSnackBar } from '@angular/material';
 import { TesisProcesoService } from '../shared/tesis-proceso.service';
 import { MessagesService } from '../shared/messages.service';
 import { MESSAGES } from '../../../config/messages';
+import { TdDialogService } from '@covalent/core';
+import { getMessageConfirm } from '../../../config/general';
 
 @Component({
   selector: 'dgi-tesis-proceso',
@@ -77,29 +79,26 @@ import { MESSAGES } from '../../../config/messages';
 export class TesisProcesoComponent implements OnInit {
 
   @Input() tesisProceso: TesisProceso;
-  // @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
 
   constructor(private tesisProcesoService: TesisProcesoService,
-              private snackBar: MatSnackBar,
-              // private messagesService: MessagesService
+              private viewContainerRef: ViewContainerRef,
+              private tdDialogService: TdDialogService,
              ) { }
 
   ngOnInit() {
-    // this.messagesService.getMessages1();
-    // console.log(MESSAGES.tesisProceso.delete)
+
   }
 
   deleteTesisProceso(tesisProcesoId: string) {
-    this.tesisProcesoService.deleteTesisProcesoById(tesisProcesoId).subscribe(
-      () => {
-        this.snackBar.open(MESSAGES.tesisProceso.delete, MESSAGES.actions.delete, {
-          duration: 3000,
-        });
-      }
-    );
+
+    this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tesisProceso.confirmDelete, this.viewContainerRef))
+      .afterClosed().subscribe((accept: boolean) => {
+        if (accept) {
+          this.tesisProcesoService.deleteTesisProceso(tesisProcesoId);
+        } else {
+        }
+      });
+  
+  
   }
 }
-
-// class MenuComponent {
-
-// }

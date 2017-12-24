@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
@@ -8,6 +8,8 @@ import { Facultad } from '../../../facultades/shared/facultad';
 import { Observable } from 'rxjs/Observable';
 import { FacultadService } from '../../../facultades/shared/facultad.service';
 import { MESSAGES } from '../../../../config/messages';
+import { TdDialogService } from '@covalent/core';
+import { getMessageConfirm } from '../../../../config/general';
 
 @Component({
   selector: 'dgi-create-escuela-dialog',
@@ -37,7 +39,9 @@ export class CreateEscuelaDialogComponent implements OnInit {
               @Inject(FormBuilder) private formBuilder: FormBuilder,
               private escuelaService: EscuelaService,
               private facultadService: FacultadService,
-              private snackBar: MatSnackBar,  
+              private snackBar: MatSnackBar,
+              private viewContainerRef: ViewContainerRef,
+              private tdDialogService: TdDialogService
             ) { }
 
   ngOnInit() {
@@ -98,21 +102,18 @@ export class CreateEscuelaDialogComponent implements OnInit {
     const valid = this.escuelaForm.valid;
     if (valid) {
 
-      //Save here.
-      // this.escuelaService.postLineaInvestigacion$(escuela)
-        // .subscribe(() => {
-          // this.snackBar.open(MESSAGES.escuela.post, MESSAGES.actions.post, {
-            // duration: 3000,
-          // });
-        // });
-      this.escuelaService.create(escuelaModel)
-      
-      this.snackBar.open(MESSAGES.escuela.post, MESSAGES.actions.post, {
-        duration: 3000,
+      this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.escuela.confirmCreate, this.viewContainerRef))
+      .afterClosed().subscribe((accept: boolean) => {
+        if (accept) {
+          // this.escuelaService.remove(id);
+          this.escuelaService.create(escuelaModel)
+          this.dialogRef.close();
+          this.escuelaForm.reset();
+        } else {
+        }
       });
 
-      this.dialogRef.close();
-      this.escuelaForm.reset();
+      
     }
   }
 

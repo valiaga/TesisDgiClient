@@ -12,11 +12,17 @@ import { EditorComponent } from './editor/editor.component';
 
 import { ProcesosRoutingModule } from "./procesos-routing.module";
 import { ProcesoService } from "./shared/proceso.service";
+import { AngularModule } from '../shared/angular/angular.module';
+import { MaterialModule } from '../shared/material/material.module';
+import { CovalentModule } from '../shared/covalent/covalent.module';
 
 @NgModule({
   imports: [
-    SharedModule,
+    AngularModule,
+    MaterialModule,
+    CovalentModule,
     HttpModule,
+
     // CommonModule
     ProcesosRoutingModule
   ],

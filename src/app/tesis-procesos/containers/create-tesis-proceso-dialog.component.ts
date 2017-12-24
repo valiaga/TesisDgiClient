@@ -1,8 +1,11 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { TesisProceso } from '../shared/tesis-proceso';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TesisProcesoService } from '../shared/tesis-proceso.service';
+import { TdDialogService } from '@covalent/core';
+import { getMessageConfirm } from '../../../config/general';
+import { MESSAGES } from '../../../config/messages';
 
 
 @Component({
@@ -59,6 +62,8 @@ export class CreateTesisProcesoDialogComponent implements OnInit{
       @Inject(MAT_DIALOG_DATA) public data: any,
       private formBuilder: FormBuilder,
       private tesisProcesoService: TesisProcesoService,
+      private viewContainerRef: ViewContainerRef,
+      private tdDialogService: TdDialogService,
     ) { }
   
     ngOnInit() { 
@@ -81,8 +86,18 @@ export class CreateTesisProcesoDialogComponent implements OnInit{
           submit: true,
           realData: tesisProceso 
         }
-        this.dialogRef.close(data);
-        this.tesisProcesoForm.reset();
+
+        this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tesisProceso.confirmCreate, this.viewContainerRef))
+        .afterClosed().subscribe((accept: boolean) => {
+          if (accept) {
+
+            this.dialogRef.close(data);
+            this.tesisProcesoForm.reset();
+
+          } else {
+          }
+        });
+
       }
     }
   

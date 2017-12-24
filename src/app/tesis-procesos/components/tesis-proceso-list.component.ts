@@ -2,10 +2,9 @@ import { TesisProceso } from '../shared/tesis-proceso';
 import { TesisProcesoService } from '../shared/tesis-proceso.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { CreateTesisProcesoDialogComponent } from '../containers/create-tesis-proceso-dialog.component';
 import { Observable } from 'rxjs/Observable';
-import { MESSAGES } from '../../../config/messages';
 
 
 @Component({
@@ -34,30 +33,31 @@ export class TesisProcesoListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, 
               private tesisProcesoService: TesisProcesoService,
-              private snackBar: MatSnackBar,
-              private dialog: MatDialog) { }
+              private dialog: MatDialog,
+             ) { }
               
   ngOnInit() {
+    this.tesisProcesos$ = this.tesisProcesoService.tesisProcesos;
     /*
     this.route.params
       .switchMap((params: Params) => {
         return this.getProyectos(params['proceso_id'])
       })
       .subscribe(da => console.log(da));
-    */
-
+      */
+      
     this.route.params.subscribe(params => {
       this.proceso_id = params['proceso_id'];
       if (this.proceso_id){
-        this.getProyectos(this.proceso_id.toString());
+        this.getTesisProcesos(this.proceso_id.toString());
       } else {
         console.log('No hay parametros');
       }
     });
   }
 
-  getProyectos(proceso_id: string) {
-    this.tesisProcesos$ = this.tesisProcesoService.getTesisProcesosByProcesoId$(proceso_id);
+  getTesisProcesos(proceso_id: string) {
+    this.tesisProcesoService.getTesisProcesosByProcesoId(proceso_id);
   }
 
   openDialog():void{
@@ -81,14 +81,6 @@ export class TesisProcesoListComponent implements OnInit {
 
   guardarTesisProceso(data){
     data.proceso=this.proceso_id;
-    this.tesisProcesoService
-      .saveTesisProcesoAndProyecto(data)
-      .subscribe(res => {
-        this.snackBar.open(MESSAGES.tesisProceso.post, MESSAGES.actions.post, {
-          duration: 3000,
-        });
-        this.tesisProcesos$ = this.tesisProcesoService.getTesisProcesosByProcesoId$(this.proceso_id.toString());
-      });
+    this.tesisProcesoService.createTesisProcesoAndProyecto(data);
   }
-
 }

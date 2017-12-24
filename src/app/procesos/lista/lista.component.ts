@@ -11,15 +11,8 @@ import { Proceso } from './../modelos/proceso.model';
 export class ListaComponent implements OnInit {
   @Input() public procesos: Proceso[];
 
-  constructor(
-    // private procesoService: ProcesoService
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    // this.getProcesos();
-  }
-
-  getProcesos(){
-    // this.procesoService.getRecentProcesos$()
   }
 }

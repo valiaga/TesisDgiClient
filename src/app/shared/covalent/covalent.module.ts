@@ -3,7 +3,12 @@ import { NgModule } from '@angular/core';
 import {
   // CovalentDataTableModule, CovalentLoadingModule,
   // CovalentPagingModule, CovalentStepsModule,
-  // CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule, 
+  // CovalentCommonModule, 
+  CovalentExpansionPanelModule, 
+  CovalentStepsModule,
+  
+  
+  CovalentDialogsModule, 
   CovalentFileModule, CovalentNotificationsModule, CovalentSearchModule,
   CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule
 } from '@covalent/core';
@@ -13,7 +18,12 @@ const COVALENT_MODULES = [
   // CovalentDataTableModule, CovalentMediaModule, CovalentLoadingModule,
   // CovalentLayoutModule, CovalentMenuModule,
   // CovalentPagingModule, CovalentSearchModule, CovalentStepsModule,
-  // CovalentCommonModule, CovalentDialogsModule, CovalentExpansionPanelModule
+  // CovalentCommonModule, 
+  CovalentExpansionPanelModule, 
+  CovalentStepsModule,
+  
+  
+  CovalentDialogsModule, 
   CovalentNotificationsModule, CovalentFileModule, CovalentSearchModule,
   CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule
 ];
