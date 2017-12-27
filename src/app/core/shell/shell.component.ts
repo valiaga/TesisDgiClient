@@ -30,6 +30,9 @@ export class ShellComponent implements OnInit {
     this.changeTitleOnNavigation();
   }
 
+  get nameApp(){
+    return "Sistema de Tesis";
+  }
 
   /**
    * Change Title

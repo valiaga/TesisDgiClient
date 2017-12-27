@@ -17,7 +17,7 @@ const routes: Routes = [
   {
     path: '',
     component: ProcesosComponent, // tiene sus cosas y ... un router-oulet para sus hijos
-    children: [ // rutas hijas, se verán dentro del router-oulet componente contenedor
+    // children: [ // rutas hijas, se verán dentro del router-oulet componente contenedor
       // {
       //   path: 'lista', // se ven dentro del componente ProcesosComponent
       //   component: ListaComponent
@@ -26,7 +26,7 @@ const routes: Routes = [
       //   path: 'nuevo', // la ruta real es procesos/nuevo
       //   component: NuevoComponent
       // }
-    ],
+    // ],
   },
   {
     path: 'nuevo', // la ruta real es procesos/nuevo

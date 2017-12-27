@@ -16,6 +16,14 @@ import { AngularModule } from '../shared/angular/angular.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { CovalentModule } from '../shared/covalent/covalent.module';
 
+
+const routes: Routes = [
+  {
+    path: '',
+    component: ProcesosComponent
+  }
+];
+
 @NgModule({
   imports: [
     AngularModule,
@@ -24,7 +32,8 @@ import { CovalentModule } from '../shared/covalent/covalent.module';
     HttpModule,
 
     // CommonModule
-    ProcesosRoutingModule
+    RouterModule.forChild(routes)
+    // ProcesosRoutingModule
   ],
   declarations: [
     ProcesosComponent,

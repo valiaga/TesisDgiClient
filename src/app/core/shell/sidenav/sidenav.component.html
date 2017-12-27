@@ -21,11 +21,22 @@
       <div *ngFor = "let navGroup of navGroups" >
         <mat-divider></mat-divider>
         <h3 mat-subheader >{{navGroup.Titulo}}</h3>
+        <!-- 
+        <ng-template let-navItem let-last="last" ngFor [ngForOf]="navGroup.navItems">
+          <a 
+            mat-list-item
+            [routerLinkActive]="['active']"
+            [routerLink]="[navItem.route]">
+            <mat-icon mat-list-icon>{{navItem.icon}}</mat-icon>
+            {{navItem.name}}
+          </a>
+        </ng-template> -->
+        
         <a *ngFor="let navItem of navGroup.navItems" 
             mat-list-item
             (click)="!media.query('gt-mat') && layoutClose()"
             [routerLinkActive]="['active']"
-            [routerLink]="[navItem.route]">
+            [routerLink]="['/', navItem.route]">
             <mat-icon mat-list-icon>{{navItem.icon}}</mat-icon>
           {{navItem.name}}
         </a>
