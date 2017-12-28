@@ -3,7 +3,7 @@ import { UserService } from '../../auth/user/user.service';
 // import { SettingsService } from '../../shared/settings.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { Proceso, IProceso, IResponse } from '../modelos/proceso.model';
+import { Proceso, IProceso, IResponse } from './proceso.model';
 import { PROCESOS } from './mock-procesos';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

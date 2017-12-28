@@ -11,6 +11,7 @@ import { TesisProcesoService } from './shared/tesis-proceso.service';
 import { SharedModule } from '../shared/shared.module';
 import { TesisProcesoComponent } from './components/tesis-proceso.component';
 import { UtilsModule } from '../shared/components/utils.module';
+import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-page/flow-tesis-proceso-page.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { UtilsModule } from '../shared/components/utils.module';
     TesisProcesoListComponent,
     CreateTesisProcesoDialogComponent,
     FindTesisProcesoPageComponent,
-    TesisProcesoComponent
+    TesisProcesoComponent,
+    FlowTesisProcesoPageComponent
     ],
   providers: [
     TesisProcesoService

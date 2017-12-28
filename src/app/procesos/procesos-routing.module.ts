@@ -2,10 +2,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 /** Importación de los componentes enrutables */
-import { ProcesosComponent } from "./procesos/procesos.component";
 import { NuevoComponent } from "./nuevo/nuevo.component";
-import { ListaComponent } from "./lista/lista.component";
 import { EditorComponent } from "./editor/editor.component";
+import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
 
 /** Rutas que se manejan en este módulo
  * /procesos
@@ -16,7 +15,7 @@ import { EditorComponent } from "./editor/editor.component";
 const routes: Routes = [
   {
     path: '',
-    component: ProcesosComponent, // tiene sus cosas y ... un router-oulet para sus hijos
+    component: FindProcesoPageComponent, // tiene sus cosas y ... un router-oulet para sus hijos
     // children: [ // rutas hijas, se verán dentro del router-oulet componente contenedor
       // {
       //   path: 'lista', // se ven dentro del componente ProcesosComponent

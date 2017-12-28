@@ -1,29 +1,27 @@
-import { UserService } from '../auth/user/user.service';
-import { HttpModule } from '@angular/http';
-import { ProcesoService } from '../procesos/shared/proceso.service';
 import { NgModule } from '@angular/core';
 
-import { SharedModule } from '../shared/shared.module';
-
-// import { CommonModule } from '@angular/common';
-import { SeguimientoComponent } from './seguimiento.component';
-import { SeguimientosRoutingModule } from "./seguimientos-routing.module";
-import { ProcesosComponent } from './procesos/procesos.component';
 import { MaterialModule } from '../shared/material/material.module';
 import { AngularModule } from '../shared/angular/angular.module';
-import { CommonModule } from '@angular/common';
+import { ProcesoService } from '../procesos/shared/proceso.service';
+
+import { ListProcesoPageComponent } from './containers/list-proceso-page.component';
+import { ProcesoListComponent } from './components/proceso-list.component';
+import { ProcesoComponent } from './components/proceso.component';
+import { SeguimientosRoutingModule } from "./seguimientos-routing.module";
+import { UserService } from '../auth/user/user.service';
 
 @NgModule({
   imports: [
     MaterialModule,
     AngularModule,
 
-    HttpModule,
+    // HttpModule,
     SeguimientosRoutingModule
   ],
   declarations: [
-    SeguimientoComponent,
-    ProcesosComponent,
+    ListProcesoPageComponent,
+    ProcesoListComponent,
+    ProcesoComponent,
   ],
   providers: [
     ProcesoService,

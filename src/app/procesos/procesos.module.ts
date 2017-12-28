@@ -1,45 +1,41 @@
 // import { SettingsService } from '../shared/settings.service';
 import { UserService } from '../auth/user/user.service';
-import { HttpModule } from '@angular/http';
-import { SharedModule } from '../shared/shared.module';
-import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { ProcesosComponent } from "./procesos/procesos.component";
-import { NuevoComponent } from './nuevo/nuevo.component';
-import { ListaComponent } from './lista/lista.component';
-import { EditorComponent } from './editor/editor.component';
 // import { CommonModule } from '@angular/common';
-
-import { ProcesosRoutingModule } from "./procesos-routing.module";
-import { ProcesoService } from "./shared/proceso.service";
 import { AngularModule } from '../shared/angular/angular.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { CovalentModule } from '../shared/covalent/covalent.module';
+import { UtilsModule } from '../shared/components/utils.module';
 
+import { NuevoComponent } from './nuevo/nuevo.component';
+import { EditorComponent } from './editor/editor.component';
 
-const routes: Routes = [
-  {
-    path: '',
-    component: ProcesosComponent
-  }
-];
+import { ProcesosRoutingModule } from "./procesos-routing.module";
+import { ProcesoListComponent } from './components/proceso-list.component';
+import { ProcesoComponent } from './components/proceso.component';
+import { ProcesoSearchComponent } from './components/proceso-search.component';
+import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
+
+import { ProcesoService } from "./shared/proceso.service";
 
 @NgModule({
   imports: [
     AngularModule,
     MaterialModule,
     CovalentModule,
-    HttpModule,
+    HttpClientModule,
+    UtilsModule,
 
-    // CommonModule
-    RouterModule.forChild(routes)
-    // ProcesosRoutingModule
+    ProcesosRoutingModule
   ],
   declarations: [
-    ProcesosComponent,
     NuevoComponent,
-    ListaComponent,
-    EditorComponent
+    EditorComponent,
+    ProcesoListComponent,
+    ProcesoComponent,
+    ProcesoSearchComponent,
+    FindProcesoPageComponent
   ],
   providers: [
     ProcesoService,

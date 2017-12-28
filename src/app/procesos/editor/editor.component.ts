@@ -1,9 +1,9 @@
-import { Proceso } from '../modelos/proceso.model';
 import { ActivatedRoute } from '@angular/router';
 import { ProcesoService } from '../shared/proceso.service';
 import { Component, OnInit } from '@angular/core';
 
 import { StepState } from '@covalent/core';
+import { Proceso } from '../shared/proceso.model';
 
 @Component({
   selector: 'dgi-editor',

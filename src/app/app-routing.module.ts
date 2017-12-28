@@ -18,13 +18,14 @@ const routes: Routes = [
     
         ]
     },
-    // {
-      // path: 'tesis-procesos:id', 
-      // loadChildren: './core/core.module#CoreModule',
-      // canActivate: [
+    {
+      path: 'tesis-procesos', 
+      // path: 'tesis-etapas', 
+      loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
+      canActivate: [
   
-      // ]
-    // },
+      ]
+    },
     { 
         path: 'login',
         loadChildren: './auth/auth.module#AuthModule'

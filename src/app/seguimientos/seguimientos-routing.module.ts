@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 /** Importación de los componentes enrutables */
-import { SeguimientoComponent } from "./seguimiento.component";
+// import { SeguimientoComponent } from "./seguimiento.component";
+import { ListProcesoPageComponent } from './containers/list-proceso-page.component';
 // import { ProcesosComponent } from './procesos/procesos.component';
 
 /** Rutas que se manejan en este módulo
@@ -13,8 +14,7 @@ import { SeguimientoComponent } from "./seguimiento.component";
 const routes: Routes = [
   {
     path: '',
-    component: SeguimientoComponent, // tiene sus cosas y ... un router-oulet para sus hijos
-    // component: SeguimientoComponent, // tiene sus cosas y ... un router-oulet para sus hijos
+    component: ListProcesoPageComponent, // tiene sus cosas y ... un router-oulet para sus hijos
     children: [ // rutas hijas, se verán dentro del router-oulet componente contenedor
       // {
       //   path: 'lista', // se ven dentro del componente ProcesosComponent
