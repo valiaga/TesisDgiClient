@@ -12,6 +12,9 @@ import { SharedModule } from '../shared/shared.module';
 import { TesisProcesoComponent } from './components/tesis-proceso.component';
 import { UtilsModule } from '../shared/components/utils.module';
 import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-page/flow-tesis-proceso-page.component';
+import { FlowButtonsFooterComponent } from './components/flow-buttons-footer/flow-buttons-footer.component';
+import { StepComponent } from './components/step.component';
+import { StepListComponent } from './components/step-list.component';
 
 
 @NgModule({
@@ -27,7 +30,10 @@ import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-p
     CreateTesisProcesoDialogComponent,
     FindTesisProcesoPageComponent,
     TesisProcesoComponent,
-    FlowTesisProcesoPageComponent
+    FlowTesisProcesoPageComponent,
+    FlowButtonsFooterComponent,
+    StepComponent,
+    StepListComponent
     ],
   providers: [
     TesisProcesoService

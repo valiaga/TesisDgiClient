@@ -31,9 +31,9 @@ import { getMessageConfirm } from '../../../config/general';
   <!-- </a> -->
 
   <mat-menu #tesisProcesoMenu="matMenu" yPosition="below" xPosition="before">
-    <button  target="_blank" mat-menu-item [routerLink]="['/tesis-procesos', tesisProceso.id]">
+    <a target="_blank" mat-menu-item [routerLink]="['/tesis-procesos', tesisProceso.id]">
       <span>Ver</span>
-    </button>
+    </a>
     <button mat-menu-item (click)="deleteTesisProceso(tesisProceso.id)">
       <!-- <mat-icon>dialpad</mat-icon>-->
       <span>Eliminar</span>

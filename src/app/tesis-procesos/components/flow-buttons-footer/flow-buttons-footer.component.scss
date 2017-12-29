@@ -1,0 +1,20 @@
+@import "../../../../styles.scss";
+ 
+.buttons-footer {
+    position: absolute;
+    width: 100%;
+    background-color: mat-color($dgi-primary);
+    color: mat-color($dgi-primary, default-contrast);
+    bottom: 0;
+    height: 70px;
+}
+    
+.buttons-footer button {
+    height: 100%;
+    font-size: 20px;
+}
+
+.buttons-footer .button-next {
+    position: absolute;
+    right: 0;
+}

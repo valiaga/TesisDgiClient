@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
 import { EtapaService } from '../../../etapas/shared/etapa.service';
 import { Observable } from 'rxjs/Observable';
 import { Etapa } from '../../../etapas/shared/etapa';
@@ -8,80 +8,95 @@ import { TareaService } from '../../../tareas/shared/tarea.service';
 import { Tarea } from '../../../tareas/shared/tarea';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 
+
 @Component({
   selector: 'dgi-flow-tesis-proceso-page',
+  // changeDetection: ChangeDetectionStrategy.OnPush,  
   template: `
-  <mat-sidenav-container class="flow-tesis-container">
+    <mat-sidenav-container class="flow-tesis-container">
+      
+      
+      <mat-sidenav #sidenav mode="side" opened="true" class="mat-sidenav">
+        <mat-vertical-stepper #verticalStepper>
+          <!-- <dgi-step-list 
+            [etapas]="etapas$ | async">
+            </dgi-step-list> -->
+            <mat-step *ngFor="let etapa of etapas$ | async" label="{{ etapa.id }}" >
+              <ng-template matStepLabel>{{ etapa.nombre }}</ng-template>
+              {{ etapa.descripcion }} 
+            </mat-step>
+        </mat-vertical-stepper>
+      </mat-sidenav>
+
+      
+      <mat-sidenav-content>
+        <mat-toolbar color="primary"> <!--warn, primary, accent-->
+          <!--<span>Name Project</span>-->
+          <p class="name-project">Implementacion de una apliacion web para la gestion del proceso de tesis para titulo profesional en la Universidad Peruana Unión basado en la metodologia scrum y la ISO/IEC 29110.</p>
+          <!--<p class="name-project">{{ proyecto_nombre }}</p> -->
+        </mat-toolbar>
+
+        <mat-card class="mat-card-content">
+          <mat-horizontal-stepper [linear]="[true]">
+            <mat-step label="tarea 1" *ngFor="let tarea of tareas$ | async">
+              <ng-template matStepLabel>{{ tarea.nombre }}</ng-template>
+
+                  <!-- Nombre field -->
+                  <div class="flow-tesis-proceso-container">
+                    <mat-form-field
+                    [hideRequiredMarker]="[false]"
+                    [floatLabel]="['auto']">
+                    <input matInput placeholder="Nombre" required>
+                    <!-- <input matInput placeholder="Nombre" formControlName="nombre" required>-->
+                    <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
+                    </mat-form-field>
+                    
+                    <!-- Alias field -->
+                    <mat-form-field
+                      [floatLabel]="['auto']">
+                      <!-- <input matInput placeholder="Alias" formControlName="alias"> -->
+                      <input matInput placeholder="Alias" >
+                    </mat-form-field>
+
+                    <!-- Activo field -->
+                    <div class="checkbox">
+                      <mat-checkbox>Activo</mat-checkbox>
+                    </div>
+                
+                    <!-- Misión field -->
+                    <mat-form-field
+                      [floatLabel]="['auto']">
+                      <textarea matInput placeholder="Misión" matTextareaAutosize 
+                        matAutosizeMaxRows="5"
+                        matAutosizeMinRows="2"></textarea>
+                    </mat-form-field>
+                
+                    <!-- Seleccionar field -->      
+                    <mat-form-field
+                      [hideRequiredMarker]="[false]">
+                      <mat-select placeholder="Seleccionar" required>
+                        <mat-option value="1" selected>-1-</mat-option>
+                        <mat-option value="2" selected>-2-</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                  </div>
+                  
 
 
-    <mat-sidenav #sidenav mode="side" opened="true" class="mat-sidenav">
-      <mat-vertical-stepper #verticalStepper>
-        <mat-step 
-          *ngFor="let etapa of etapas$ | async"  
-          label="{{ etapa.id }}"
-          (click)="onChangeEtapa(etapa.id)"
-          >
-          <!-- label="{{etapa.nombre}}"
-          [icon]="icon" -->
-          <ng-template matStepLabel>{{ etapa.nombre }}</ng-template>
-          <!-- (click)="onChangeEtapa(etapa.id)" -->
-          {{ etapa.descripcion }} 
-        </mat-step>
-      </mat-vertical-stepper>
-    </mat-sidenav>
-
-    <mat-sidenav-content>
-      <mat-card class="mat-card-content">
-        <mat-horizontal-stepper [linear]="[true]">
-          <mat-step label="tarea 1" *ngFor="let tarea of tareas$ | async">
-            <ng-template matStepLabel>{{ tarea.nombre }}</ng-template>
-            <div>
-              <button mat-button matStepperPrevious>Back</button>
-              <button mat-button matStepperNext>Next</button>
-            </div>
-          </mat-step>
-        </mat-horizontal-stepper>
-
-        <div class="buttons-footer">
-          <button class="button-back" mat-button 
-            [disabled]="verticalStepper.selectedIndex === 0"
-            (click)="goBackPaso(verticalStepper)">
-          <mat-icon>arrow_back</mat-icon>
-            Back General</button>
-          <!--<span flex></span> --> 
-          <button class="button-next" mat-button 
-            [disabled]="verticalStepper.selectedIndex === (verticalStepper._steps && verticalStepper._steps.length-1)"
-            (click)="goNextPaso(verticalStepper)">
-          Next General
-          <mat-icon>arrow_forward</mat-icon>
-          </button>
-        </div>
-      </mat-card>
-
-      <!-- <footer class="footer"> -->
-        <!-- <div class="footer-container" *ngIf="footerNav"> -->
-        <!-- <div class="footer-container" > -->
-          <!--<a class="left" *ngIf="footerNav.prev" [routerLink]="[footerNav.prev.route]"> -->
-          <!-- <a class="left" > -->
-            <!-- <i class="material-icons arrow-L">arrow_back</i> -->
-            <!-- <span class="direction">Previous</span> -->
-            <!-- <div>El nombre del anterior</div> -->
-            <!--<div>{{footerNav.prev.name}}</div>-->
-          <!-- </a> -->
-          <!-- <a class="right" *ngIf="footerNav.next" [routerLink]="[footerNav.next.route]"> -->
-          <!-- <a class="right" > -->
-            <!-- <i class="material-icons arrow-R">arrow_forward</i> -->
-            <!-- <span class="direction">Next</span> -->
-            <!-- <div>El nombre del siguiente</div> -->
-            <!--<div>{{footerNav.next.name}}</div>-->
-          <!-- </a> -->
-        <!-- </div> -->
-      <!-- </footer> -->
 
 
-    </mat-sidenav-content>
-    <!--<div class="my-content">Main content</div>-->
-  </mat-sidenav-container>
+              <div>
+                <button mat-button matStepperPrevious>Back</button>
+                <button mat-button matStepperNext>Next</button>
+              </div>
+            </mat-step>
+          </mat-horizontal-stepper>
+        <!--flow-buttons-footer-->
+        </mat-card>
+        <dgi-flow-buttons-footer [verticalStepper]="verticalStepper" ></dgi-flow-buttons-footer>
+      </mat-sidenav-content>
+    </mat-sidenav-container>
   `,
   styleUrls: ['./flow-tesis-proceso-page.component.scss'],
   providers: [
@@ -90,51 +105,49 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
   ]
 })
 export class FlowTesisProcesoPageComponent implements OnInit {
-  public etapas$: Observable<Etapa[]>;
-  public tareas$: Observable<Tarea[]>;
+  private etapas$: Observable<Etapa[]>;
+  private tareas$: Observable<Tarea[]>;
   @ViewChild('verticalStepper') private verticalStepper: MatStepper;
-  // 
+  
   // https://stackoverflow.com/questions/46469233/can-i-programatically-move-the-steps-of-a-mat-horizontal-stepper-in-angular-an
+  // https://stackblitz.com/edit/angular-material2-beta-ybbnhe?file=theme.scss
 
   constructor(
     private etapaService: EtapaService, 
     private route: ActivatedRoute,
     private tareaService: TareaService) { }
     
-    ngOnInit() {
-      this.etapas$ = this.etapaService.etapas;
-      this.tareas$ = this.tareaService.tareas;
+  ngOnInit() {
+    this.etapas$ = this.etapaService.etapas;
+    this.tareas$ = this.tareaService.tareas;
 
-      this.onSubscribeVerticalStepper();
+    this.onSubscribeVerticalStepper();
 
-        this.route.params.subscribe(params => {
-        let TesisProcesoId = params['id'];
-        if(TesisProcesoId) {
-        this.getEtapasByProcesoId(TesisProcesoId);
+    this.route.params.subscribe(params => {
+      let TesisProcesoId = params['id'];
+      if(TesisProcesoId) {
+        this.initEtapasByProcesoId(TesisProcesoId);
       } else {
         console.log('No hay id de la tesis.')
       }
     });
   }
   
-  getEtapasByProcesoId(TesisProcesoId: string) {
-    // console.log('TesisProcesoId', TesisProcesoId);
+  initEtapasByProcesoId(TesisProcesoId: string) {
+    console.log('TesisProcesoId');
+    console.log(TesisProcesoId);
+    /** Traer Etapas */
     this.etapaService.getEtapasByTesisProcesoId(TesisProcesoId);
-    // this.etapaService.getAllEtapas();
+    setTimeout(()=>{
+      /** Traer Tareas de la etapa seleccionada */
+      this.initGetTareas();
+    }, 1500)
   }
 
-  goBackPaso(stepper: MatStepper) {
-    stepper.previous();
-    // let etapa_id = stepper.selected.label;
-    // console.log(etapa_id);
-    // this.tareaService.getTareasByEtapaId(etapa_id);
-  }
-  
-  goNextPaso(stepper: MatStepper) {
-    stepper.next();
-    // let etapa_id = stepper.selected.label;
-    // console.log(etapa_id);
-    // this.tareaService.getTareasByEtapaId(etapa_id);
+  initGetTareas() {
+    let selectedIndex = this.verticalStepper.selectedIndex
+    let etapa_id = this.verticalStepper.selected.label;
+    this.tareaService.getTareasByEtapaId(etapa_id);
   }
 
   onSubscribeVerticalStepper() {
@@ -144,8 +157,4 @@ export class FlowTesisProcesoPageComponent implements OnInit {
           this.tareaService.getTareasByEtapaId(etapa_id);
         });
   }
-
-  // get icon(){
-    // return 'arrow_back'
-  // }
 }
