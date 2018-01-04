@@ -7,6 +7,8 @@ import { MatStepper, MatStep } from '@angular/material';
 import { TareaService } from '../../../tareas/shared/tarea.service';
 import { Tarea } from '../../../tareas/shared/tarea';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
+import { Formulario } from '../../../forms-dinamix/models/formulario';
+import { FormularioService } from '../../../forms-dinamix/shared/formulario.service';
 
 
 @Component({
@@ -37,9 +39,15 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
         </mat-toolbar>
 
         <mat-card class="mat-card-content">
-          <mat-horizontal-stepper [linear]="[true]">
-            <mat-step label="tarea 1" *ngFor="let tarea of tareas$ | async">
+          <mat-horizontal-stepper #horizontalStepper [linear]="[true]">
+            <mat-step label="{{ tarea.id }}" *ngFor="let tarea of tareas$ | async">
               <ng-template matStepLabel>{{ tarea.nombre }}</ng-template>
+
+
+              <mat-card *ngFor="let formulario of formularios$ | async">
+                {{formulario.id}}
+                {{formulario.nombre}}
+              </mat-card>
 
                   <!-- Nombre field -->
                   <div class="flow-tesis-proceso-container">
@@ -101,13 +109,16 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
   styleUrls: ['./flow-tesis-proceso-page.component.scss'],
   providers: [
     EtapaService,
-    TareaService
+    TareaService,
+    FormularioService,
   ]
 })
 export class FlowTesisProcesoPageComponent implements OnInit {
   private etapas$: Observable<Etapa[]>;
   private tareas$: Observable<Tarea[]>;
+  private formularios$: Observable<Formulario[]>;
   @ViewChild('verticalStepper') private verticalStepper: MatStepper;
+  @ViewChild('horizontalStepper') private horizontalStepper: MatStepper;
   
   // https://stackoverflow.com/questions/46469233/can-i-programatically-move-the-steps-of-a-mat-horizontal-stepper-in-angular-an
   // https://stackblitz.com/edit/angular-material2-beta-ybbnhe?file=theme.scss
@@ -115,11 +126,13 @@ export class FlowTesisProcesoPageComponent implements OnInit {
   constructor(
     private etapaService: EtapaService, 
     private route: ActivatedRoute,
-    private tareaService: TareaService) { }
+    private tareaService: TareaService,
+    private formularioService: FormularioService) { }
     
   ngOnInit() {
     this.etapas$ = this.etapaService.etapas;
     this.tareas$ = this.tareaService.tareas;
+    this.formularios$ = this.formularioService.formularios;
 
     this.onSubscribeVerticalStepper();
 
@@ -145,9 +158,16 @@ export class FlowTesisProcesoPageComponent implements OnInit {
   }
 
   initGetTareas() {
-    let selectedIndex = this.verticalStepper.selectedIndex
+    // let selectedIndex = this.verticalStepper.selectedIndex
     let etapa_id = this.verticalStepper.selected.label;
     this.tareaService.getTareasByEtapaId(etapa_id);
+
+    setTimeout(()=>{
+      let tarea_id = this.horizontalStepper.selected.label;
+      this.formularioService.getFormulariosByTareaId(tarea_id);
+    }, 1000)
+    // let selectedIndex = this.verticalStepper.selectedIndex
+    
   }
 
   onSubscribeVerticalStepper() {

@@ -47,5 +47,22 @@ export const MESSAGES = {
         getMany: "Los procesos se listaron con Éxito.",
         getOne: "El proceso se listó con Éxito.",
         put: "El proceso se actualizó con Éxito."
+    },
+    formulario: {
+        delete: "El Formulario se eliminó con Éxito!.",
+        deleteAll: "Los Formularios se eliminaron con Éxito!.",
+        post: "El Formulario se guardó con Éxito.",
+        getMany: "Los Formularios se listaron con Éxito.",
+        getOne: "El Formulario se listó con Éxito.",
+        put: "El Formulario se actualizó con Éxito."
+    },
+    campo: {
+        delete: "El Campo se eliminó con Éxito!.",
+        deleteAll: "Los Campos se eliminaron con Éxito!.",
+        post: "El Campo se guardó con Éxito.",
+        getMany: "Los Campos se listaron con Éxito.",
+        getOne: "El Campo se listó con Éxito.",
+        put: "El Campo se actualizó con Éxito."
     }
+
 }
