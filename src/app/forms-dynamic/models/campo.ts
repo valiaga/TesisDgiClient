@@ -1,5 +1,5 @@
 export class Campo {
 }
 
-export class ICampo {
+export interface ICampo {
 }

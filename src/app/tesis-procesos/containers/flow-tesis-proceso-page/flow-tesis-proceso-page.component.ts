@@ -7,8 +7,12 @@ import { MatStepper, MatStep } from '@angular/material';
 import { TareaService } from '../../../tareas/shared/tarea.service';
 import { Tarea } from '../../../tareas/shared/tarea';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Formulario } from '../../../forms-dinamix/models/formulario';
-import { FormularioService } from '../../../forms-dinamix/shared/formulario.service';
+import { Formulario } from '../../../forms-dynamic/models/formulario';
+import { FormularioService } from '../../../forms-dynamic/shared/formulario.service';
+import { CampoBase } from '../../../forms-dynamic/models/campo-base';
+import { FormGroup } from '@angular/forms/src/model';
+import { CampoService } from '../../../forms-dynamic/shared/campo.service';
+// import { ControlService } from '../../../forms-dynamic/shared/control.service';
 
 
 @Component({
@@ -45,8 +49,14 @@ import { FormularioService } from '../../../forms-dinamix/shared/formulario.serv
 
 
               <mat-card *ngFor="let formulario of formularios$ | async">
-                {{formulario.id}}
-                {{formulario.nombre}}
+                <mat-card-header>
+                  <mat-card-title>{{formulario.nombre }}</mat-card-title>
+                  <!-- <mat-card-title>{{formulario.nombre | uppecarse }}</mat-card-title> -->
+                  <!-- <mat-card-subtitle>{{formulario.id}}</mat-card-subtitle>-->
+                </mat-card-header> 
+                <mat-card-content>
+                      <dgi-dynamic-form [campos]="campos"></dgi-dynamic-form>
+                </mat-card-content>
               </mat-card>
 
                   <!-- Nombre field -->
@@ -59,11 +69,11 @@ import { FormularioService } from '../../../forms-dinamix/shared/formulario.serv
                     <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
                     </mat-form-field>
                     
-                    <!-- Alias field -->
+                    <!-- Email field -->
                     <mat-form-field
                       [floatLabel]="['auto']">
                       <!-- <input matInput placeholder="Alias" formControlName="alias"> -->
-                      <input matInput placeholder="Alias" >
+                      <input matInput type="email" placeholder="Email" >
                     </mat-form-field>
 
                     <!-- Activo field -->
@@ -108,15 +118,22 @@ import { FormularioService } from '../../../forms-dinamix/shared/formulario.serv
   `,
   styleUrls: ['./flow-tesis-proceso-page.component.scss'],
   providers: [
-    EtapaService,
-    TareaService,
-    FormularioService,
+    // EtapaService,
+    // TareaService,
+    CampoService,
   ]
 })
 export class FlowTesisProcesoPageComponent implements OnInit {
   private etapas$: Observable<Etapa[]>;
   private tareas$: Observable<Tarea[]>;
   private formularios$: Observable<Formulario[]>;
+  
+  private campos: any[];
+
+  // private campos: CampoBase<any>[] = [];
+  // private form: FormGroup;
+
+  
   @ViewChild('verticalStepper') private verticalStepper: MatStepper;
   @ViewChild('horizontalStepper') private horizontalStepper: MatStepper;
   
@@ -127,14 +144,20 @@ export class FlowTesisProcesoPageComponent implements OnInit {
     private etapaService: EtapaService, 
     private route: ActivatedRoute,
     private tareaService: TareaService,
-    private formularioService: FormularioService) { }
+    private formularioService: FormularioService,
+    private campoService: CampoService) { }
     
   ngOnInit() {
     this.etapas$ = this.etapaService.etapas;
     this.tareas$ = this.tareaService.tareas;
     this.formularios$ = this.formularioService.formularios;
 
+    this.campos = this.campoService.getCampos();
+    
     this.onSubscribeVerticalStepper();
+    this.onSubscribeHorizontalStepper();
+
+    // this.form = this.controlService.toFormGroup(this.campos);
 
     this.route.params.subscribe(params => {
       let TesisProcesoId = params['id'];
@@ -176,5 +199,14 @@ export class FlowTesisProcesoPageComponent implements OnInit {
           let etapa_id = stepper.selectedStep.label;
           this.tareaService.getTareasByEtapaId(etapa_id);
         });
+  }
+
+  onSubscribeHorizontalStepper() {
+    this.horizontalStepper.selectionChange.asObservable()
+        .subscribe((stepper: StepperSelectionEvent) => {
+          let tarea_id = stepper.selectedStep.label;
+          this.formularioService.getFormulariosByTareaId(tarea_id);
+        });
+    
   }
 }

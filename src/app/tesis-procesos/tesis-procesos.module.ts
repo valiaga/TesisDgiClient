@@ -15,6 +15,12 @@ import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-p
 import { FlowButtonsFooterComponent } from './components/flow-buttons-footer/flow-buttons-footer.component';
 import { StepComponent } from './components/step.component';
 import { StepListComponent } from './components/step-list.component';
+import { CampoService } from '../forms-dynamic/shared/campo.service';
+import { EtapaService } from '../etapas/shared/etapa.service';
+import { FormularioService } from '../forms-dynamic/shared/formulario.service';
+import { TareaService } from '../tareas/shared/tarea.service';
+import { FormsDynamicModule } from '../forms-dynamic/forms-dynamic.module';
+// import { ControlService } from '../forms-dynamic/shared/control.service';
 
 
 @NgModule({
@@ -22,6 +28,7 @@ import { StepListComponent } from './components/step-list.component';
     AngularModule,
     MaterialModule,
     UtilsModule,
+    FormsDynamicModule,
 
     TesisProcesosRoutingModule,
   ],
@@ -36,7 +43,12 @@ import { StepListComponent } from './components/step-list.component';
     StepListComponent
     ],
   providers: [
-    TesisProcesoService
+    TesisProcesoService,
+    CampoService,
+    EtapaService,
+    FormularioService,
+    TareaService,
+    // ControlService,
   ],
   entryComponents: [
     CreateTesisProcesoDialogComponent

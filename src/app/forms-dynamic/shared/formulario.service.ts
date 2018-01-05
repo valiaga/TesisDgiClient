@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
+import { CampoService } from './campo.service';
 
 @Injectable()
 export class FormularioService {
@@ -17,7 +18,8 @@ export class FormularioService {
   }
 
   constructor(private http: HttpClient,
-    private snackBar: MatSnackBar) {
+    private snackBar: MatSnackBar,
+    private campoService: CampoService) {
 
 
     this.dataStore = { formularios: [] };
@@ -50,7 +52,17 @@ export class FormularioService {
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
+        
+        data.forEach((formulario, index) => {
+          formulario.campos = this.campoService.campos;
+          this.campoService.getCamposByFormularioId(formulario.id);
+          // this.campoService.getCamposByFormularioId$(formulario.id).subscribe((campos)=>{
+            // formulario.campos = campos
+          // });
+        });
+
         this.dataStore.formularios = data;
+
         this._formularios.next(Object.assign({}, this.dataStore).formularios);
       }, error => console.log('Could not load formularios.')
       )
