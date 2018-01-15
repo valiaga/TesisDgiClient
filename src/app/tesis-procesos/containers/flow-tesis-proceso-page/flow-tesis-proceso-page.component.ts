@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { EtapaService } from '../../../etapas/shared/etapa.service';
 import { Observable } from 'rxjs/Observable';
 import { Etapa } from '../../../etapas/shared/etapa';
@@ -7,38 +7,40 @@ import { MatStepper, MatStep } from '@angular/material';
 import { TareaService } from '../../../tareas/shared/tarea.service';
 import { Tarea } from '../../../tareas/shared/tarea';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Formulario } from '../../../forms-dynamic/models/formulario';
-import { FormularioService } from '../../../forms-dynamic/shared/formulario.service';
-import { CampoBase } from '../../../forms-dynamic/models/campo-base';
-import { FormGroup } from '@angular/forms/src/model';
-import { CampoService } from '../../../forms-dynamic/shared/campo.service';
+import { Formulario } from '../../../dynamic-form/models/formulario';
+import { FormularioService } from '../../../dynamic-form/shared/formulario.service';
+import { CampoBase } from '../../../dynamic-form/models/campo-base';
+import { Validators, FormGroup } from '@angular/forms';
+import { CampoService } from '../../../dynamic-form/shared/campo.service';
+import { DynamicFormComponent } from '../../../dynamic-form/containers/dynamic-form.component';
+import { FieldConfig } from '../../../dynamic-form/models/field-config';
 // import { ControlService } from '../../../forms-dynamic/shared/control.service';
 
 
 @Component({
   selector: 'dgi-flow-tesis-proceso-page',
-  // changeDetection: ChangeDetectionStrategy.OnPush,  
+  // changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <mat-sidenav-container class="flow-tesis-container">
-      
-      
       <mat-sidenav #sidenav mode="side" opened="true" class="mat-sidenav">
         <mat-vertical-stepper #verticalStepper>
-          <!-- <dgi-step-list 
+          <!-- <dgi-step-list
             [etapas]="etapas$ | async">
             </dgi-step-list> -->
             <mat-step *ngFor="let etapa of etapas$ | async" label="{{ etapa.id }}" >
               <ng-template matStepLabel>{{ etapa.nombre }}</ng-template>
-              {{ etapa.descripcion }} 
+              {{ etapa.descripcion }}
             </mat-step>
         </mat-vertical-stepper>
       </mat-sidenav>
 
-      
       <mat-sidenav-content>
         <mat-toolbar color="primary"> <!--warn, primary, accent-->
           <!--<span>Name Project</span>-->
-          <p class="name-project">Implementacion de una apliacion web para la gestion del proceso de tesis para titulo profesional en la Universidad Peruana Unión basado en la metodologia scrum y la ISO/IEC 29110.</p>
+          <p class="name-project">
+          Implementacion de una apliacion web para la gestion del
+          proceso de tesis para titulo profesional en la Universidad
+          Peruana Unión basado en la metodologia scrum y la ISO/IEC 29110.</p>
           <!--<p class="name-project">{{ proyecto_nombre }}</p> -->
         </mat-toolbar>
 
@@ -53,9 +55,17 @@ import { CampoService } from '../../../forms-dynamic/shared/campo.service';
                   <mat-card-title>{{formulario.nombre }}</mat-card-title>
                   <!-- <mat-card-title>{{formulario.nombre | uppecarse }}</mat-card-title> -->
                   <!-- <mat-card-subtitle>{{formulario.id}}</mat-card-subtitle>-->
-                </mat-card-header> 
+                </mat-card-header>
                 <mat-card-content>
-                      <dgi-dynamic-form [campos]="campos"></dgi-dynamic-form>
+                      <!--<dgi-dynamic-form [campos]="campos"></dgi-dynamic-form>-->
+                      <dgi-dynamic-form
+                        [config]="config"
+                        #form = "dgiDynamicForm"
+                        (submit)="submit($event)"
+                      ></dgi-dynamic-form>
+                      {{ form.valid }}
+                      {{ form.value | json }}
+                      <!--<dynamic-form [config]="config"></dynamic-form>-->
                 </mat-card-content>
               </mat-card>
 
@@ -68,7 +78,6 @@ import { CampoService } from '../../../forms-dynamic/shared/campo.service';
                     <!-- <input matInput placeholder="Nombre" formControlName="nombre" required>-->
                     <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
                     </mat-form-field>
-                    
                     <!-- Email field -->
                     <mat-form-field
                       [floatLabel]="['auto']">
@@ -80,16 +89,14 @@ import { CampoService } from '../../../forms-dynamic/shared/campo.service';
                     <div class="checkbox">
                       <mat-checkbox>Activo</mat-checkbox>
                     </div>
-                
                     <!-- Misión field -->
                     <mat-form-field
                       [floatLabel]="['auto']">
-                      <textarea matInput placeholder="Misión" matTextareaAutosize 
+                      <textarea matInput placeholder="Misión" matTextareaAutosize
                         matAutosizeMaxRows="5"
                         matAutosizeMinRows="2"></textarea>
                     </mat-form-field>
-                
-                    <!-- Seleccionar field -->      
+                    <!-- Seleccionar field -->
                     <mat-form-field
                       [hideRequiredMarker]="[false]">
                       <mat-select placeholder="Seleccionar" required>
@@ -99,7 +106,6 @@ import { CampoService } from '../../../forms-dynamic/shared/campo.service';
                     </mat-form-field>
 
                   </div>
-                  
 
 
 
@@ -123,90 +129,135 @@ import { CampoService } from '../../../forms-dynamic/shared/campo.service';
     CampoService,
   ]
 })
-export class FlowTesisProcesoPageComponent implements OnInit {
+export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   private etapas$: Observable<Etapa[]>;
   private tareas$: Observable<Tarea[]>;
   private formularios$: Observable<Formulario[]>;
-  
+
   private campos: any[];
 
   // private campos: CampoBase<any>[] = [];
   // private form: FormGroup;
+  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
 
-  
+
   @ViewChild('verticalStepper') private verticalStepper: MatStepper;
   @ViewChild('horizontalStepper') private horizontalStepper: MatStepper;
-  
+
   // https://stackoverflow.com/questions/46469233/can-i-programatically-move-the-steps-of-a-mat-horizontal-stepper-in-angular-an
   // https://stackblitz.com/edit/angular-material2-beta-ybbnhe?file=theme.scss
 
   constructor(
-    private etapaService: EtapaService, 
+    private etapaService: EtapaService,
     private route: ActivatedRoute,
     private tareaService: TareaService,
     private formularioService: FormularioService,
     private campoService: CampoService) { }
-    
+
   ngOnInit() {
     this.etapas$ = this.etapaService.etapas;
     this.tareas$ = this.tareaService.tareas;
     this.formularios$ = this.formularioService.formularios;
 
     this.campos = this.campoService.getCampos();
-    
+
     this.onSubscribeVerticalStepper();
     this.onSubscribeHorizontalStepper();
 
     // this.form = this.controlService.toFormGroup(this.campos);
 
     this.route.params.subscribe(params => {
-      let TesisProcesoId = params['id'];
-      if(TesisProcesoId) {
+      const TesisProcesoId = params['id'];
+      if (TesisProcesoId) {
         this.initEtapasByProcesoId(TesisProcesoId);
       } else {
-        console.log('No hay id de la tesis.')
+        console.log('No hay id de la tesis.');
       }
     });
   }
-  
+
   initEtapasByProcesoId(TesisProcesoId: string) {
     console.log('TesisProcesoId');
     console.log(TesisProcesoId);
     /** Traer Etapas */
     this.etapaService.getEtapasByTesisProcesoId(TesisProcesoId);
-    setTimeout(()=>{
+    setTimeout(() => {
       /** Traer Tareas de la etapa seleccionada */
       this.initGetTareas();
-    }, 1500)
+    }, 1500);
   }
 
   initGetTareas() {
     // let selectedIndex = this.verticalStepper.selectedIndex
-    let etapa_id = this.verticalStepper.selected.label;
-    this.tareaService.getTareasByEtapaId(etapa_id);
+    const etapaId = this.verticalStepper.selected.label;
+    this.tareaService.getTareasByEtapaId(etapaId);
 
-    setTimeout(()=>{
-      let tarea_id = this.horizontalStepper.selected.label;
-      this.formularioService.getFormulariosByTareaId(tarea_id);
-    }, 1000)
+    setTimeout(() => {
+      const tareaId = this.horizontalStepper.selected.label;
+      this.formularioService.getFormulariosByTareaId(tareaId);
+    }, 1000);
     // let selectedIndex = this.verticalStepper.selectedIndex
-    
   }
 
   onSubscribeVerticalStepper() {
     this.verticalStepper.selectionChange.asObservable()
         .subscribe((stepper: StepperSelectionEvent) => {
-          let etapa_id = stepper.selectedStep.label;
-          this.tareaService.getTareasByEtapaId(etapa_id);
+          const etapaId = stepper.selectedStep.label;
+          this.tareaService.getTareasByEtapaId(etapaId);
         });
   }
 
   onSubscribeHorizontalStepper() {
     this.horizontalStepper.selectionChange.asObservable()
         .subscribe((stepper: StepperSelectionEvent) => {
-          let tarea_id = stepper.selectedStep.label;
-          this.formularioService.getFormulariosByTareaId(tarea_id);
+          const tareaId = stepper.selectedStep.label;
+          this.formularioService.getFormulariosByTareaId(tareaId);
         });
-    
   }
+
+  ngAfterViewInit() {
+    setTimeout(() => {
+
+    let previousValid = this.form.valid;
+    this.form.changes.subscribe(() => {
+      if (this.form.valid !== previousValid) {
+        previousValid = this.form.valid;
+        this.form.setDisabled('submit', !previousValid);
+      }
+    });
+
+    this.form.setDisabled('submit', true);
+    this.form.setValue('name', 'Vitmar Aliaga');
+  }, 10000 );
+
+  }
+
+  submit(value: {[name: string]: any}) {
+    console.log('value');
+    console.log(value);
+  }
+
+
+  config: FieldConfig[] = [
+    {
+      type: 'input',
+      label: 'Full name',
+      name: 'name',
+      placeholder: 'Enter your name',
+      validation: [Validators.required, Validators.minLength(4)]
+    },
+    {
+      type: 'select',
+      label: 'Favourite Food',
+      name: 'food',
+      options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+      placeholder: 'Select an option',
+      validation: [Validators.required]
+    },
+    {
+      label: 'Guardar',
+      name: 'submit',
+      type: 'buttonSubmit'
+    }
+  ];
 }

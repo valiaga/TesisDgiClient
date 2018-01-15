@@ -86,16 +86,27 @@ export class CampoService {
         order: 3
       }),
       new CampoInput({
-        key: 'firstName',
-        label: 'First name',
-        value: 'Bombasto',
+        key: 'nombres',
+        // type: 'text',
+        label: 'Nombres',
+        value: 'Vitmar Jhonson',
         required: true,
         order: 1,
-        max: 10,
-        min: 0
+        maxLength: 20,
+        minLength: 5,
       }),
       new CampoInput({
-        key: 'emailAddress',
+        key: 'edad',
+        type: 'number',
+        label: 'Edad',
+        value: '15',
+        required: true,
+        order: 4,
+        max: 10,
+        min: 2,
+      }),
+      new CampoInput({
+        key: 'email',
         label: 'Email',
         type: 'email',
         required: true,

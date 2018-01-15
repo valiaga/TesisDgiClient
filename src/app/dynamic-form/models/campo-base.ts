@@ -6,15 +6,19 @@ export class CampoBase<T> {
     order: number;
     controlType: string;
 
+    // validation: {
+        // required?: true,
+    // }
+
     constructor(options: {
-        valor?: T,
+        value?: T,
         key?: string,
         label?: string;
         required?: boolean,
         order?: number,
         controlType?: string
     } = {}) {
-        this.value = options.valor;
+        this.value = options.value;
         this.key = options.key || '';
         this.label = options.label || '';
         this.required = !!options.required;

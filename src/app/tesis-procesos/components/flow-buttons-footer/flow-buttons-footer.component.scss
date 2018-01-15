@@ -1,7 +1,7 @@
 @import "../../../../styles.scss";
  
 .buttons-footer {
-    position: absolute;
+    position: relative;
     width: 100%;
     background-color: mat-color($dgi-primary);
     color: mat-color($dgi-primary, default-contrast);

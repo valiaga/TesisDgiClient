@@ -9,6 +9,18 @@ export const MESSAGES = {
         put: "Editar",
     },
 
+    /**
+     * Validadores formularios
+     */
+    formValidators: {
+        required: "El campo es requerido",
+        email: "Por favor, introduce una dirección de correo electrónico válida.",
+        minlength: "El tamaño mínimo de caracteres debe ser: ",
+        maxlength: "El tamaño máximo de caracteres debe ser: ",
+        min: "El valor mínimo debe ser: ",
+        max: "El valor máximo debe ser: "
+    },
+
 
     tesisProceso: {
         delete: "El proceso de tesis se eliminó con Éxito!.",

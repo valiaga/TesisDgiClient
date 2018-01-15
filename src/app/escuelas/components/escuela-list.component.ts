@@ -7,7 +7,7 @@ import { EscuelaService } from '../shared/escuela.service';
 @Component({
   selector: 'dgi-escuela-list',
   template: `
-    <dgi-escuela *ngFor="let escuela of escuelas" 
+    <dgi-escuela *ngFor="let escuela of escuelas"
       [escuela]="escuela"
       (onDeleteEscuela)="onDeleteEscuelaList.emit($event)"
       ></dgi-escuela>
@@ -15,8 +15,8 @@ import { EscuelaService } from '../shared/escuela.service';
   styles: [
     `
     :host {
-      display: flex;
-      flex-wrap: wrap;
+      /*display: flex;
+      flex-wrap: wrap;*/
       /*justify-content: center; */
       /* margin-top: 25px; */
     }
@@ -59,7 +59,7 @@ export class EscuelaDataSource extends DataSource<IEscuela> {
     super();
   }
 
-  // Función de conexión llamada por la tabla para recuperar una secuencia que contiene los datos para renderizar. 
+  // Función de conexión llamada por la tabla para recuperar una secuencia que contiene los datos para renderizar.
   connect(): Observable<IEscuela[]>{
     const displayDataChanges = [
       this.sort.sortChange,
