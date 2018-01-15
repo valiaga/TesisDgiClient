@@ -244,7 +244,21 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       label: 'Full name',
       name: 'name',
       placeholder: 'Enter your name',
-      validation: [Validators.required, Validators.minLength(4)]
+      validation: [Validators.required, Validators.minLength(4), Validators.maxLength(8)]
+    },
+    {
+      type: 'input',
+      label: 'Email',
+      name: 'email',
+      placeholder: 'Email',
+      validation: [Validators.required, Validators.email]
+    },
+    {
+      type: 'input',
+      label: 'Edad',
+      name: 'edad',
+      placeholder: 'Edad',
+      validation: [Validators.min(2), Validators.max(8)]
     },
     {
       type: 'select',

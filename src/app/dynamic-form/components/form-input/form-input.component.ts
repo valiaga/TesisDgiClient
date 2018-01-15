@@ -1,6 +1,7 @@
-import { Component, OnInit, group } from '@angular/core';
+import { Component, SimpleChange, OnInit, group, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config';
+import { FormTools } from '../../../shared/form-tools.service';
 
 @Component({
   selector: 'dgi-form-input',
@@ -25,6 +26,11 @@ import { FieldConfig } from '../../models/field-config';
       matInput [placeholder]="config.label" [formControlName]="config.name"
       [id]="config.name" [type]="config.type" [required]="[config.required]"
       >
+
+    <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">
+      <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>
+      <!-- <span *ngIf="isRequired">{{ formTools.getErrors(config.name) | json }}</span> -->
+    </mat-error>
     <!-- <dgi-form-validator [group]="group" [config]="config"></dgi-form-validator>-->
   </mat-form-field>
   `,
@@ -54,12 +60,22 @@ import { FieldConfig } from '../../models/field-config';
     `
   ]
 })
-export class FormInputComponent implements OnInit {
+export class FormInputComponent implements OnInit, OnChanges {
   public config: FieldConfig;
   public group: FormGroup;
+  formTools: FormTools;
 
-  constructor() { }
+  constructor() {
+
+   }
 
   ngOnInit() {
+    this.formTools = new FormTools(this.group);
+  }
+
+  ngOnChanges(changes: { [propKey: string]: SimpleChange}) {
+    if (changes['form']) {
+      this.formTools = new FormTools(this.group);
+    }
   }
 }

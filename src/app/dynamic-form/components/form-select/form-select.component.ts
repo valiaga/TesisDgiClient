@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config';
+import { FormTools } from '../../../shared/form-tools.service';
 
 @Component({
   selector: 'dgi-form-select',
@@ -25,7 +26,10 @@ import { FieldConfig } from '../../models/field-config';
     <mat-select [placeholder]="config.label" [id]="config.name" [formControlName]="config.name">
       <mat-option *ngFor="let option of config.options" [value]="option">{{ option }}</mat-option>
     </mat-select>
-    <!-- <dgi-form-validator [group]="group" [config]="config"></dgi-form-validator> -->
+    <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">
+      <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>
+      <!-- <span *ngIf="isRequired">{{ formTools.getErrors(config.name) | json }}</span> -->
+    </mat-error>
   </mat-form-field>
 
   `,
@@ -63,13 +67,21 @@ import { FieldConfig } from '../../models/field-config';
     `
   ]
 })
-export class FormSelectComponent implements OnInit {
+export class FormSelectComponent implements OnInit, OnChanges {
   public config: FieldConfig;
   public group: FormGroup;
+  formTools: FormTools;
 
   constructor() { }
 
   ngOnInit() {
+    this.formTools = new FormTools(this.group);
+  }
+
+  ngOnChanges(changes: { [propKey: string]: SimpleChange}) {
+    if (changes['form']) {
+      this.formTools = new FormTools(this.group);
+    }
   }
 
 }
