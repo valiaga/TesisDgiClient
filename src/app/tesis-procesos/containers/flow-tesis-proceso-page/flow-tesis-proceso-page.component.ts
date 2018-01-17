@@ -201,38 +201,39 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
 
   onSubscribeVerticalStepper() {
     this.verticalStepper.selectionChange.asObservable()
-        .subscribe((stepper: StepperSelectionEvent) => {
-          const etapaId = stepper.selectedStep.label;
-          this.tareaService.getTareasByEtapaId(etapaId);
-        });
+      .subscribe((stepper: StepperSelectionEvent) => {
+        const etapaId = stepper.selectedStep.label;
+        this.tareaService.getTareasByEtapaId(etapaId);
+      });
   }
 
   onSubscribeHorizontalStepper() {
     this.horizontalStepper.selectionChange.asObservable()
-        .subscribe((stepper: StepperSelectionEvent) => {
-          const tareaId = stepper.selectedStep.label;
-          this.formularioService.getFormulariosByTareaId(tareaId);
-        });
+      .subscribe((stepper: StepperSelectionEvent) => {
+        const tareaId = stepper.selectedStep.label;
+        this.formularioService.getFormulariosByTareaId(tareaId);
+      });
   }
 
   ngAfterViewInit() {
     setTimeout(() => {
 
-    let previousValid = this.form.valid;
-    this.form.changes.subscribe(() => {
-      if (this.form.valid !== previousValid) {
-        previousValid = this.form.valid;
-        this.form.setDisabled('submit', !previousValid);
-      }
-    });
+      let previousValid = this.form.valid;
+      this.form.changes.subscribe(() => {
+        if (this.form.valid !== previousValid) {
+          previousValid = this.form.valid;
+          this.form.setDisabled('submit', !previousValid);
+        }
+      });
 
-    this.form.setDisabled('submit', true);
-    this.form.setValue('name', 'Vitmar Aliaga');
-  }, 10000 );
+      this.form.setDisabled('submit', true);
+      this.form.setValue('name', 'Vitmar Aliaga');
+      this.form.setValue('edad', '15');
+    }, 10000);
 
   }
 
-  submit(value: {[name: string]: any}) {
+  submit(value: { [name: string]: any }) {
     console.log('value');
     console.log(value);
   }
@@ -244,21 +245,30 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       label: 'Full name',
       name: 'name',
       placeholder: 'Enter your name',
+      required: true,
       validation: [Validators.required, Validators.minLength(4), Validators.maxLength(8)]
     },
     {
-      type: 'input',
+      type: 'email',
       label: 'Email',
       name: 'email',
       placeholder: 'Email',
+      required: true,
       validation: [Validators.required, Validators.email]
     },
     {
-      type: 'input',
+      type: 'number',
       label: 'Edad',
       name: 'edad',
       placeholder: 'Edad',
-      validation: [Validators.min(2), Validators.max(8)]
+      validation: [Validators.min(2), Validators.max(11)]
+    },
+    {
+      type: 'tel',
+      label: 'Celular',
+      name: 'celular',
+      placeholder: 'Celular',
+      validation: [ Validators.maxLength(9)]
     },
     {
       type: 'select',
@@ -266,6 +276,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       name: 'food',
       options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
       placeholder: 'Select an option',
+      required: true,
       validation: [Validators.required]
     },
     {

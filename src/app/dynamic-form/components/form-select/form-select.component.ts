@@ -1,37 +1,22 @@
 import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config';
-import { FormTools } from '../../../shared/form-tools.service';
+import { FormToolsService } from '../../../shared/form-tools.service';
 
 @Component({
   selector: 'dgi-form-select',
   template: `
-  <!--
-  <div
-    class="dynamic-field form-select"
-    [formGroup]="group">
-    <label>{{ config.label }}</label>
-    <select [formControlName]="config.name">
-      <option value="">{{ config.placeholder }}</option>
-      <option *ngFor="let option of config.options">
-        {{ option }}
-      </option>
-    </select>
-  </div>
-  -->
   <mat-form-field
     [formGroup]="group"
     [hideRequiredMarker]="[!config.required]"
     [floatLabel]="['auto']">
-    <mat-select [placeholder]="config.label" [id]="config.name" [formControlName]="config.name">
+    <mat-select required [placeholder]="config.label" [id]="config.name" [formControlName]="config.name">
       <mat-option *ngFor="let option of config.options" [value]="option">{{ option }}</mat-option>
     </mat-select>
-    <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">
-      <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>
-      <!-- <span *ngIf="isRequired">{{ formTools.getErrors(config.name) | json }}</span> -->
+    <mat-error *ngIf="mustShowErrors(config.name)">
+      <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
     </mat-error>
   </mat-form-field>
-
   `,
   styles: [
     `
@@ -67,21 +52,31 @@ import { FormTools } from '../../../shared/form-tools.service';
     `
   ]
 })
-export class FormSelectComponent implements OnInit, OnChanges {
+export class FormSelectComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  formTools: FormTools;
+  // formTools: FormTools;
+  // private required = false;
 
-  constructor() { }
+  constructor(private formToolsService: FormToolsService) { }
 
   ngOnInit() {
-    this.formTools = new FormTools(this.group);
+    // this.formTools = new FormTools(this.group);
+    // this.required = this.formTools.getErrors(this.config.name) &&
+    // !this.formTools.getErrors(this.config.name).required;
   }
 
-  ngOnChanges(changes: { [propKey: string]: SimpleChange}) {
-    if (changes['form']) {
-      this.formTools = new FormTools(this.group);
-    }
+  // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+    // if (changes['form']) {
+      // this.formTools = new FormTools(this.group);
+    // }
+  // }
+  mustShowErrors(controlName: string): boolean {
+    return this.formToolsService.mustShowErrors(this.group, controlName);
+  }
+
+  getControlErrors(controlName: string) {
+    return this.formToolsService.getControlErrors(this.group, controlName);
   }
 
 }

@@ -1,13 +1,13 @@
-import { Component, SimpleChange, OnInit, group, OnChanges } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { OnChanges, Component, OnInit, SimpleChange } from '@angular/core';
 import { FieldConfig } from '../../models/field-config';
+import { FormGroup } from '@angular/forms';
 import { FormToolsService } from '../../../shared/form-tools.service';
 
 @Component({
-  selector: 'dgi-form-input',
+  selector: 'dgi-form-email',
   template: `
   <mat-form-field
-    [hideRequiredMarker]="[!config.required]"
+    [hideRequiredMarker]="!config.required"
     [formGroup]="group"
     [floatLabel]="['auto']">
 
@@ -21,49 +21,26 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     </mat-error>
   </mat-form-field>
   `,
-  styles: [
-    `
-    :host {
-      /* display: flex;
-      flex-wrap: wrap;*/
-      /*justify-content: center; */
-      /* margin-top: 25px; */
-    }
-    /*
-    input {
-      display: block;
-      font-family: inherit;
-      font-size: 14px;
-      width: 100%;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      outline: none;
-      padding: 10px 15px;
-      color: rgba(0, 0, 0, 0.7);
-      &:focus {
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-      }
-    }*/
-    `
-  ]
+  styles: []
 })
-export class FormInputComponent implements OnInit {
+export class FormEmailComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
   // formTools: FormTools;
   // private required = false;
 
-  constructor(private formToolsService: FormToolsService) {
-
-  }
+  constructor(private formToolsService: FormToolsService) { }
 
   ngOnInit() {
+    // this.formTools = new FormTools(this.group);
+    // this.required = this.formTools.getErrors(this.config.name) &&
+    // !this.formTools.getErrors(this.config.name).required;
   }
 
   // ngOnChanges(changes: { [propKey: string]: SimpleChange}) {
-  // if (changes['form']) {
-  // this.formTools = new FormTools(this.group);
-  // }
+  //   if (changes['form']) {
+  //     this.formTools = new FormTools(this.group);
+  //   }
   // }
 
   mustShowErrors(controlName: string): boolean {
@@ -75,4 +52,3 @@ export class FormInputComponent implements OnInit {
   }
 
 }
-

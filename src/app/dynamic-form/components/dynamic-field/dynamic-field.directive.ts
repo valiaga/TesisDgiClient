@@ -6,11 +6,17 @@ import { FormSelectComponent } from '../form-select/form-select.component';
 
 import { Field } from '../../models/field';
 import { FieldConfig } from '../../models/field-config';
+import { FormEmailComponent } from '../form-email/form-email.component';
+import { FormNumberComponent } from '../form-number/form-number.component';
+import { FormTelComponent } from '../form-tel/form-tel.component';
 
 const components: {[type: string]: Type<Field>} = {
   buttonSubmit: FormButtonSubmitComponent,
   input: FormInputComponent,
+  number: FormNumberComponent,
   select: FormSelectComponent,
+  email: FormEmailComponent,
+  tel: FormTelComponent,
 };
 
 

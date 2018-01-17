@@ -6,40 +6,16 @@ import { MESSAGES } from '../../../config/messages';
 
 @Component({
   selector: 'dgi-form-validator',
-  // encapsulation: ViewEncapsulation.Native,
   template: `
   <span >
-    <!-- {{ M.required }} -->
     {{ getMsmError }}
   </span>
-  <!--
-  <mat-error *ngIf="isEmail && !isRequired">
-     {{ M.email }} 
-    email
-  </mat-error>
-  <mat-error *ngIf="isMinlength && !isRequired">
-     {{ M.minlength }} {{ campo.minLength }}
-    minLength
-  </mat-error>
-  <mat-error *ngIf="isMaxlength && !isRequired">
-    {{ M.maxlength }} {{ campo.maxLength }}
-    maxlength
-  </mat-error>
-  <mat-error *ngIf="isMin">
-    {{ M.min }} {{ campo.min }}
-    min
-  </mat-error>
-  <mat-error *ngIf="isMax && !isMin">
-    {{ M.max }} {{ campo.max }} 
-    max
-  </mat-error>-->
   `,
   styles: []
 })
 export class FormValidatorComponent implements OnInit {
 
   @Input() hasError: any;
-  // @Input() config: FieldConfig;
 
   constructor() { }
 
@@ -47,6 +23,9 @@ export class FormValidatorComponent implements OnInit {
   }
 
   get getMsmError() {
+    // console.log('this.hasError.required');
+    console.log(this.hasError);
+    // console.log(this.hasError.required);
     if (this.hasError.required) {
       return MESSAGES.formValidators.required;
     } else if (this.hasError.minlength) {
@@ -65,30 +44,4 @@ export class FormValidatorComponent implements OnInit {
       ${MESSAGES.formValidators.maxActual}${this.hasError.max.actual}`;
     }
   }
-
-/*
-  get isRequired() {
-    return this.group.controls[this.config.name].hasError('required');
-  }
-
-  get isEmail() {
-    return this.group.controls[this.config.name].hasError('email');
-  }
-
-  get isMinlength() {
-    return this.group.controls[this.config.name].hasError('minlength');
-  }
-
-  get isMaxlength() {
-    return this.group.controls[this.config.name].hasError('maxlength');
-  }
-
-  get isMax() {
-    return this.group.controls[this.config.name].hasError('max');
-  }
-
-  get isMin() {
-    return this.group.controls[this.config.name].hasError('min');
-  }
-*/
 }
