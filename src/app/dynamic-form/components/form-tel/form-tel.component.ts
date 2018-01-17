@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { FormToolsService } from '../../../shared/form-tools.service';
+import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { FormTools } from '../../../shared/form-tools.service';
 import { FieldConfig } from '../../models/field-config';
 import { FormGroup } from '@angular/forms';
 
@@ -16,29 +16,38 @@ import { FormGroup } from '@angular/forms';
       [id]="config.name" [type]="config.type" required
       >
 
-    <mat-error *ngIf="mustShowErrors(config.name)">
-      <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
-    </mat-error>
-  </mat-form-field>
+      <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">
+      <!-- <mat-error *ngIf="mustShowErrors(config.name)">-->
+        <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>
+      <!-- <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>-->
+      </mat-error>
   `,
   styles: []
 })
-export class FormTelComponent implements OnInit {
+export class FormTelComponent implements OnInit, OnChanges {
   public config: FieldConfig;
   public group: FormGroup;
+  formTools: FormTools;
 
-  constructor(private formToolsService: FormToolsService) {
-
-  }
+  // constructor(private formToolsService: FormToolsService) { }
+  constructor() { }
 
   ngOnInit() {
+    this.formTools = new FormTools(this.group);
   }
 
-  mustShowErrors(controlName: string): boolean {
-    return this.formToolsService.mustShowErrors(this.group, controlName);
+  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+    if (changes['form']) {
+      this.formTools = new FormTools(this.group);
+    }
   }
 
-  getControlErrors(controlName: string) {
-    return this.formToolsService.getControlErrors(this.group, controlName);
-  }
+
+  // mustShowErrors(controlName: string): boolean {
+    // return this.formToolsService.mustShowErrors(this.group, controlName);
+  // }
+
+  // getControlErrors(controlName: string) {
+    // return this.formToolsService.getControlErrors(this.group, controlName);
+  // }
 }

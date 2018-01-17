@@ -1,7 +1,7 @@
 import { Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
 import { FieldConfig } from '../../models/field-config';
 import { FormGroup } from '@angular/forms';
-import { FormToolsService } from '../../../shared/form-tools.service';
+import { FormTools } from '../../../shared/form-tools.service';
 
 @Component({
   selector: 'dgi-form-number',
@@ -16,42 +16,38 @@ import { FormToolsService } from '../../../shared/form-tools.service';
       [id]="config.name" [type]="config.type" required
       >
 
-    <mat-error *ngIf="mustShowErrors(config.name)">
-      <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
-    </mat-error>
-  </mat-form-field>
+      <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">
+      <!-- <mat-error *ngIf="mustShowErrors(config.name)">-->
+        <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>
+      <!-- <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>-->
+      </mat-error>
   `,
   styles: []
 })
-export class FormNumberComponent implements OnInit {
+export class FormNumberComponent implements OnInit, OnChanges {
   public config: FieldConfig;
   public group: FormGroup;
+  formTools: FormTools;
   // private required = false;
 
-  constructor(private formToolsService: FormToolsService) { }
+  constructor() { }
 
   ngOnInit() {
-    // this.formTools = new FormTools(this.group);
-    // console.log('label ', this.config.label);
-    // console.log('group ', this.group);
-    // console.log('formTools ', this.formTools);
-    // console.log(this.formTools.getErrors(this.config.name));
-    // this.required = this.formTools.getErrors(this.config.name) &&
-                  // this.formTools.getErrors(this.config.name).required;
+    this.formTools = new FormTools(this.group);
   }
 
-  // ngOnChanges(changes: { [propKey: string]: SimpleChange}) {
-    // if (changes['form']) {
-      // this.formTools = new FormTools(this.group);
-    // }
+  ngOnChanges(changes: { [propKey: string]: SimpleChange}) {
+    if (changes['form']) {
+      this.formTools = new FormTools(this.group);
+    }
+  }
+
+  // mustShowErrors(controlName: string): boolean {
+    // return this.formToolsService.mustShowErrors(this.group, controlName);
   // }
 
-  mustShowErrors(controlName: string): boolean {
-    return this.formToolsService.mustShowErrors(this.group, controlName);
-  }
-
-  getControlErrors(controlName: string) {
-    return this.formToolsService.getControlErrors(this.group, controlName);
-  }
+  // getControlErrors(controlName: string) {
+    // return this.formToolsService.getControlErrors(this.group, controlName);
+  // }
 
 }

@@ -15,7 +15,7 @@ import { DynamicFieldDirective } from './components/dynamic-field/dynamic-field.
 import { FormValidatorComponent } from './components/form-validator.component';
 import { FormEmailComponent } from './components/form-email/form-email.component';
 import { FormNumberComponent } from './components/form-number/form-number.component';
-import { FormToolsService } from '../shared/form-tools.service';
+// import { FormToolsService } from '../shared/form-tools.service';
 import { FormTelComponent } from './components/form-tel/form-tel.component';
 
 const DYNAMIC_COMPONENTS: any[] = [
@@ -54,7 +54,7 @@ const DYNAMIC_COMPONENTS: any[] = [
     FormTelComponent,
   ],
   providers: [
-    FormToolsService,
+    // FormToolsService,
   ]
 })
 export class DynamicFormModule { }
