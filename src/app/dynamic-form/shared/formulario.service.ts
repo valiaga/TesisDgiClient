@@ -24,9 +24,9 @@ export class FormularioService {
 
     this.dataStore = { formularios: [] };
 
-    this._formularios = <BehaviorSubject<Formulario[]>> new BehaviorSubject([]);
+    this._formularios = <BehaviorSubject<Formulario[]>>new BehaviorSubject([]);
     this.formularios = this._formularios.asObservable();
-     }
+  }
 
   public getAllFormularios() {
     let apiUrl = environment.apiUrl;
@@ -35,7 +35,7 @@ export class FormularioService {
       // .get<IFormulario[]>(`${apiUrl}proceso/formularios/?all=true`)
       .get<IFormulario[]>(`${apiUrl}proceso/formularios/`)
       .subscribe(data => {
-        
+
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
 
         this.dataStore.formularios = data;
@@ -46,18 +46,18 @@ export class FormularioService {
 
   public getFormulariosByTareaId(tareaId: string) {
     let apiUrl = environment.apiUrl;
-    
+
     return this.http
       .get<IFormulario[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`)
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
-        
+
         data.forEach((formulario, index) => {
           formulario.campos = this.campoService.campos;
           this.campoService.getCamposByFormularioId(formulario.id);
           // this.campoService.getCamposByFormularioId$(formulario.id).subscribe((campos)=>{
-            // formulario.campos = campos
+          // formulario.campos = campos
           // });
         });
 

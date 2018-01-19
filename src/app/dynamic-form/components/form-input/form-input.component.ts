@@ -1,36 +1,54 @@
 import { Component, SimpleChange, OnInit, group, OnChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config';
-import { FormTools } from '../../../shared/form-tools.service';
+import { FormToolsService } from '../../../shared/form-tools.service';
 
 @Component({
   selector: 'dgi-form-input',
   template: `
+  <!--[hideRequiredMarker]="[!config.required]"-->
   <mat-form-field
-    [hideRequiredMarker]="[!config.required]"
+    [ngClass]="getControlClass()"
     [formGroup]="group"
     [floatLabel]="['auto']">
-
     <input
       matInput [placeholder]="config.label" [formControlName]="config.name"
-      [id]="config.name" [type]="config.type" required
+      [id]="config.name" [type]="config.type" [required]="config.required"
       >
 
-    <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">
-    <!-- <mat-error *ngIf="mustShowErrors(config.name)">-->
-      <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>
-    <!-- <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>-->
+    <!-- <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">-->
+    <mat-error *ngIf="mustShowErrors(config.name)">
+      <!-- <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>-->
+    <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
     </mat-error>
   </mat-form-field>
   `,
   styles: [
     `
+    /*
     :host {
-      /* display: flex;
-      flex-wrap: wrap;*/
-      /*justify-content: center; */
-      /* margin-top: 25px; */
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: column;
+      justify-content: center;
+      margin-top: 25px;
+    }*/
+    .input-100 {
+      width: 100%;
     }
+    .input-50 {
+      width: 49.5%;
+    }
+    .input-25 {
+      width: 24.5%;
+    }
+    .input-20 {
+      width: 24.5%;
+    }
+    .input-10 {
+      width: 24.5%;
+    }
+
     /*
     input {
       display: block;
@@ -49,34 +67,33 @@ import { FormTools } from '../../../shared/form-tools.service';
     `
   ]
 })
-export class FormInputComponent implements OnInit, OnChanges {
+export class FormInputComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  formTools: FormTools;
-  // private required = false;
 
-  // constructor(private formToolsService: FormToolsService) {
-  constructor() {
-
+  constructor(private formToolsService: FormToolsService) {
   }
 
   ngOnInit() {
-    this.formTools = new FormTools(this.group);
+    // this.formTools = new FormTools(this.group);
   }
 
-  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    if (changes['form']) {
-      this.formTools = new FormTools(this.group);
-    }
+  // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+  //   if (changes['form']) {
+  //     this.formTools = new FormTools(this.group);
+  //   }
+  // }
+  public getControlClass() {
+    return this.formToolsService.getControlClass(this.config);
   }
 
-  // mustShowErrors(controlName: string): boolean {
-    // return this.formToolsService.mustShowErrors(this.group, controlName);
-  // }
+  public mustShowErrors(controlName: string): boolean {
+    return this.formToolsService.mustShowErrors(this.group, controlName);
+  }
 
-  // getControlErrors(controlName: string) {
-    // return this.formToolsService.getControlErrors(this.group, controlName);
-  // }
+  public getControlErrors(controlName: string) {
+    return this.formToolsService.getControlErrors(this.group, controlName);
+  }
 
 }
 

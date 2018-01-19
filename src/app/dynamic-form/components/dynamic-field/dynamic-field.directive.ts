@@ -10,7 +10,7 @@ import { FormEmailComponent } from '../form-email/form-email.component';
 import { FormNumberComponent } from '../form-number/form-number.component';
 import { FormTelComponent } from '../form-tel/form-tel.component';
 
-const components: {[type: string]: Type<Field>} = {
+const components: { [type: string]: Type<Field> } = {
   buttonSubmit: FormButtonSubmitComponent,
   input: FormInputComponent,
   number: FormNumberComponent,

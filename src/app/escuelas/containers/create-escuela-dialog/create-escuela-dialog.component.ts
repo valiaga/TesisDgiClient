@@ -23,7 +23,7 @@ import { getMessageConfirm } from '../../../../config/general';
     .escuela-container .checkbox{
       margin-bottom: 20px;
     }
-    `    
+    `
   ]
 })
 export class CreateEscuelaDialogComponent implements OnInit {
@@ -35,14 +35,14 @@ export class CreateEscuelaDialogComponent implements OnInit {
 
 
   constructor(private dialogRef: MatDialogRef<CreateEscuelaDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: any,
-              @Inject(FormBuilder) private formBuilder: FormBuilder,
-              private escuelaService: EscuelaService,
-              private facultadService: FacultadService,
-              private snackBar: MatSnackBar,
-              private viewContainerRef: ViewContainerRef,
-              private tdDialogService: TdDialogService
-            ) { }
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(FormBuilder) private formBuilder: FormBuilder,
+    private escuelaService: EscuelaService,
+    private facultadService: FacultadService,
+    private snackBar: MatSnackBar,
+    private viewContainerRef: ViewContainerRef,
+    private tdDialogService: TdDialogService
+  ) { }
 
   ngOnInit() {
     this.cargarMaestros();
@@ -55,7 +55,7 @@ export class CreateEscuelaDialogComponent implements OnInit {
   }
 
   createNuevaEscuela() {
-    this.escuela = this.escuelaService.getNuevaEscuela()
+    this.escuela = this.escuelaService.getNuevaEscuela();
   }
 
   buildForm() {
@@ -63,39 +63,39 @@ export class CreateEscuelaDialogComponent implements OnInit {
     this.escuelaForm = this.formBuilder.group(controls);
   }
 
-  initializeControls(){
+  initializeControls() {
     const controls = {
       id: [this.escuela.id],
-      nombre: [this.escuela.nombre, [ Validators.required ]],
+      nombre: [this.escuela.nombre, [Validators.required]],
       alias: [this.escuela.alias],
-      activo: [ this.escuela.activo ],
-      logo: [ this.escuela.logo ],
-      mision: [ this.escuela.mision ],
-      vision: [ this.escuela.vision ],
-      facultad: [ this.escuela.facultad, [ Validators.required ] ],
+      activo: [this.escuela.activo],
+      logo: [this.escuela.logo],
+      mision: [this.escuela.mision],
+      vision: [this.escuela.vision],
+      facultad: [this.escuela.facultad, [Validators.required]],
       fecha_creacion: [this.escuela.fecha_creacion],
       fecha_actualizacion: [this.escuela.fecha_actualizacion]
-    }
+    };
     return controls;
   }
 
-  private prepareSave(){
-    let input = new FormData();
-    input.append('id', this.escuelaForm.get('id').value)
-    input.append('nombre', this.escuelaForm.get('nombre').value)
-    input.append('alias', this.escuelaForm.get('alias').value)
-    input.append('activo', this.escuelaForm.get('activo').value)
-    input.append('logo', this.escuelaForm.get('logo').value)
-    input.append('mision', this.escuelaForm.get('mision').value)
-    input.append('vision', this.escuelaForm.get('vision').value)
-    input.append('facultad', this.escuelaForm.get('facultad').value)
-    input.append('fecha_creacion', this.escuelaForm.get('fecha_creacion').value)
-    input.append('fecha_actualizacion', this.escuelaForm.get('fecha_actualizacion').value)
+  private prepareSave() {
+    const input = new FormData();
+    input.append('id', this.escuelaForm.get('id').value);
+    input.append('nombre', this.escuelaForm.get('nombre').value);
+    input.append('alias', this.escuelaForm.get('alias').value);
+    input.append('activo', this.escuelaForm.get('activo').value);
+    input.append('logo', this.escuelaForm.get('logo').value);
+    input.append('mision', this.escuelaForm.get('mision').value);
+    input.append('vision', this.escuelaForm.get('vision').value);
+    input.append('facultad', this.escuelaForm.get('facultad').value);
+    input.append('fecha_creacion', this.escuelaForm.get('fecha_creacion').value);
+    input.append('fecha_actualizacion', this.escuelaForm.get('fecha_actualizacion').value);
 
     return input;
   }
 
-  onSubmit(){
+  onSubmit() {
     const escuelaModel = this.prepareSave();
 
     const escuela = this.escuelaForm.value;
@@ -103,17 +103,17 @@ export class CreateEscuelaDialogComponent implements OnInit {
     if (valid) {
 
       this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.escuela.confirmCreate, this.viewContainerRef))
-      .afterClosed().subscribe((accept: boolean) => {
-        if (accept) {
-          // this.escuelaService.remove(id);
-          this.escuelaService.create(escuelaModel)
-          this.dialogRef.close();
-          this.escuelaForm.reset();
-        } else {
-        }
-      });
+        .afterClosed().subscribe((accept: boolean) => {
+          if (accept) {
+            // this.escuelaService.remove(id);
+            this.escuelaService.create(escuelaModel)
+            this.dialogRef.close();
+            this.escuelaForm.reset();
+          } else {
+          }
+        });
 
-      
+
     }
   }
 

@@ -10,4 +10,5 @@ export interface FieldConfig {
     required?: boolean;
     validation?: ValidatorFn[];
     value?: any;
+    width?: number;
 }

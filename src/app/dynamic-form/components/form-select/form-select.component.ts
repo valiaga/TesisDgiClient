@@ -1,29 +1,48 @@
 import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config';
-import { FormTools } from '../../../shared/form-tools.service';
+import { FormToolsService } from '../../../shared/form-tools.service';
 
 @Component({
   selector: 'dgi-form-select',
   template: `
+  <!-- [hideRequiredMarker]="[config.required]" -->
   <mat-form-field
+    [ngClass]="getControlClass()"
     [formGroup]="group"
-    [hideRequiredMarker]="[!config.required]"
     [floatLabel]="['auto']">
-    <mat-select required [placeholder]="config.label" [id]="config.name" [formControlName]="config.name">
+    <mat-select [required]="config.required" [placeholder]="config.label" [id]="config.name" [formControlName]="config.name">
       <mat-option *ngFor="let option of config.options" [value]="option">{{ option }}</mat-option>
     </mat-select>
-    <mat-error *ngIf="formTools.hasErrorsToShow(config.name)">
-    <!-- <mat-error *ngIf="mustShowErrors(config.name)">-->
-      <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator>
-    <!-- <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>-->
+    <!--<mat-error *ngIf="formTools.hasErrorsToShow(config.name)"> -->
+    <mat-error *ngIf="mustShowErrors(config.name)">
+      <!-- <dgi-form-validator [hasError]="formTools.getErrors(config.name)"></dgi-form-validator> -->
+      <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
     </mat-error>
   `,
   styles: [
     `
+    /*
     :host {
       display: flex;
+    } */
+
+    .input-100 {
+      width: 100%;
     }
+    .input-50 {
+      width: 49.5%;
+    }
+    .input-25 {
+      width: 24.5%;
+    }
+    .input-20 {
+      width: 24.5%;
+    }
+    .input-10 {
+      width: 24.5%;
+    }
+
     /*
     select {
       -webkit-appearance: none;
@@ -53,30 +72,33 @@ import { FormTools } from '../../../shared/form-tools.service';
     `
   ]
 })
-export class FormSelectComponent implements OnInit, OnChanges {
+export class FormSelectComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  formTools: FormTools;
+  // formTools: FormTools;
 
-  // constructor(private formToolsService: FormToolsService) { }
-  constructor() { }
+  constructor(private formToolsService: FormToolsService) { }
+  // constructor() { }
 
   ngOnInit() {
-    this.formTools = new FormTools(this.group);
+    // this.formTools = new FormTools(this.group);
   }
 
-  ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    if (changes['form']) {
-      this.formTools = new FormTools(this.group);
-    }
+  // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
+  //   if (changes['form']) {
+  //     this.formTools = new FormTools(this.group);
+  //   }
+  // }
+  public getControlClass() {
+    return this.formToolsService.getControlClass(this.config);
   }
 
-  // mustShowErrors(controlName: string): boolean {
-  //   return this.formToolsService.mustShowErrors(this.group, controlName);
-  // }
+  public mustShowErrors(controlName: string): boolean {
+    return this.formToolsService.mustShowErrors(this.group, controlName);
+  }
 
-  // getControlErrors(controlName: string) {
-  //   return this.formToolsService.getControlErrors(this.group, controlName);
-  // }
+  public getControlErrors(controlName: string) {
+    return this.formToolsService.getControlErrors(this.group, controlName);
+  }
 
 }

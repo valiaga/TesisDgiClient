@@ -24,7 +24,7 @@ export class FormValidatorComponent implements OnInit {
 
   get getMsmError() {
     // console.log('this.hasError.required');
-    console.log(this.hasError);
+    // console.log(this.hasError);
     // console.log(this.hasError.required);
     if (this.hasError.required) {
       return MESSAGES.formValidators.required;

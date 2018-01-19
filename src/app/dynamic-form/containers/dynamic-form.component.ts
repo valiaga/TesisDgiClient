@@ -1,15 +1,15 @@
 import { EventEmitter, Output, Component, OnInit, Input, OnChanges } from '@angular/core';
 import { CampoBase } from '../models/campo-base';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ControlService } from '../shared/control.service';
+// import { ControlService } from '../shared/control.service';
 import { FieldConfig } from '../models/field-config';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   exportAs: 'dgiDynamicForm',
   selector: 'dgi-dynamic-form',
   template: `
     <div>
-
     <!--(ngSubmit)="submitted.emit(form.value)"-->
       <form
         class="dynamic-form"
@@ -54,30 +54,8 @@ import { FieldConfig } from '../models/field-config';
     }
     `
   ],
-  providers: [
-    ControlService
-  ]
 })
 export class DynamicFormComponent implements OnChanges, OnInit {
-  /*
-  @Input() campos: CampoBase<any>[] = [];
-  form: FormGroup;
-  cargaUtil = '';
-
-
-  constructor(private controlService: ControlService) { }
-
-  ngOnInit() {
-    this.form = this.controlService.toFormGroup(this.campos)
-  }
-
-  onSubmit() {
-    this.cargaUtil = JSON.stringify(this.form.value)
-    console.log('cargaUtil=>');
-    console.log(this.cargaUtil);
-  }*/
-
-  // Ultimo
   @Input()
   public config: FieldConfig[] = [];
 
@@ -86,12 +64,16 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
   public form: FormGroup;
 
-  get controls() { return this.config.filter(({type}) => type !== 'button'); }
+  get controls() { return this.config.filter(({type}) => type !== 'buttonSubmit'); }
   get changes() { return this.form.valueChanges; }
   get valid() { return this.form.valid; }
   get value() { return this.form.value; }
 
   constructor(private formBuilder: FormBuilder) {}
+
+  ngOnInit() {
+    this.form = this.createGroup();
+  }
 
   createGroup() {
     const group = this.formBuilder.group({});
@@ -102,10 +84,6 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   createControl(config: FieldConfig) {
     const { disabled, validation, value } = config;
     return this.formBuilder.control({disabled, value}, validation);
-  }
-
-  ngOnInit() {
-    this.form = this.createGroup();
   }
 
   ngOnChanges() {

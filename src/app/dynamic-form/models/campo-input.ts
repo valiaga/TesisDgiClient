@@ -1,15 +1,15 @@
-import { CampoBase } from "./campo-base";
+import { CampoBase } from './campo-base';
 
-export class CampoInput extends CampoBase<string>{
+export class CampoInput extends CampoBase<string> {
     controlType = 'input';
     type: string;
 
-    max: number; //number
-    min: number; //number
-    minLength: number; //text
-    maxLength: number; //text
+    max: number; // number
+    min: number; // number
+    minLength: number; // text
+    maxLength: number; // text
 
-    constructor(options: {} = {}){
+    constructor(options: {} = {}) {
         super(options);
         this.type = options['type'] || '';
         this.max = options['max'] || '';

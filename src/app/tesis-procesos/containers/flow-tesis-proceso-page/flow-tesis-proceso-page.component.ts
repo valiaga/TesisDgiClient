@@ -10,7 +10,7 @@ import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Formulario } from '../../../dynamic-form/models/formulario';
 import { FormularioService } from '../../../dynamic-form/shared/formulario.service';
 import { CampoBase } from '../../../dynamic-form/models/campo-base';
-import { Validators, FormGroup } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CampoService } from '../../../dynamic-form/shared/campo.service';
 import { DynamicFormComponent } from '../../../dynamic-form/containers/dynamic-form.component';
 import { FieldConfig } from '../../../dynamic-form/models/field-config';
@@ -69,12 +69,13 @@ import { FieldConfig } from '../../../dynamic-form/models/field-config';
                 </mat-card-content>
               </mat-card>
 
-                  <!-- Nombre field -->
-                  <div class="flow-tesis-proceso-container">
+              <!-- Nombre field -->
+                <div class="flow-tesis-proceso-container">
+                  <form [formGroup]="formTest">
+                  <!-- [hideRequiredMarker]="[false]" -->
                     <mat-form-field
-                    [hideRequiredMarker]="[false]"
                     [floatLabel]="['auto']">
-                    <input matInput placeholder="Nombre" required>
+                    <input matInput placeholder="Nombre" formControlName="nombre" >
                     <!-- <input matInput placeholder="Nombre" formControlName="nombre" required>-->
                     <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
                     </mat-form-field>
@@ -82,9 +83,9 @@ import { FieldConfig } from '../../../dynamic-form/models/field-config';
                     <mat-form-field
                       [floatLabel]="['auto']">
                       <!-- <input matInput placeholder="Alias" formControlName="alias"> -->
-                      <input matInput type="email" placeholder="Email" >
+                      <input matInput type="email" placeholder="Email" formControlName="email">
                     </mat-form-field>
-
+                  </form>
                     <!-- Activo field -->
                     <div class="checkbox">
                       <mat-checkbox>Activo</mat-checkbox>
@@ -135,6 +136,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   private formularios$: Observable<Formulario[]>;
 
   private campos: any[];
+  public formTest: FormGroup;
 
   // private campos: CampoBase<any>[] = [];
   // private form: FormGroup;
@@ -152,6 +154,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private tareaService: TareaService,
     private formularioService: FormularioService,
+    private formBuilder: FormBuilder,
     private campoService: CampoService) { }
 
   ngOnInit() {
@@ -174,6 +177,13 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
         console.log('No hay id de la tesis.');
       }
     });
+
+    this.formTest = this.formBuilder.group({
+      nombre: [[], Validators.nullValidator ],
+      email: [[], ],
+    });
+    console.log('this.formTest.controls');
+    console.log(this.formTest.controls);
   }
 
   initEtapasByProcesoId(TesisProcesoId: string) {
@@ -215,6 +225,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       });
   }
 
+
   ngAfterViewInit() {
     setTimeout(() => {
 
@@ -227,8 +238,9 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       });
 
       this.form.setDisabled('submit', true);
-      this.form.setValue('name', 'Vitmar Aliaga');
-      this.form.setValue('edad', '15');
+      // this.form.setValue('name', 'Vitmar Aliaga');
+      // this.form.setValue('edad', '15');
+      // this.formTest = controls;
     }, 10000);
 
   }
@@ -242,33 +254,48 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   config: FieldConfig[] = [
     {
       type: 'input',
-      label: 'Full name',
-      name: 'name',
-      placeholder: 'Enter your name',
+      label: 'Nombres',
+      name: 'nombres',
+      placeholder: 'Nombres',
+      width: 50,
       required: true,
-      validation: [Validators.required, Validators.minLength(4), Validators.maxLength(8)]
+      validation: [ Validators.required ]
     },
     {
-      type: 'email',
-      label: 'Email',
-      name: 'email',
-      placeholder: 'Email',
+      type: 'input',
+      label: 'Apellido Paterno',
+      name: 'ap_paterno',
+      placeholder: 'Apellido Paterno',
+      width: 25,
       required: true,
-      validation: [Validators.required, Validators.email]
+      validation: [ Validators.required ]
     },
     {
-      type: 'number',
-      label: 'Edad',
-      name: 'edad',
-      placeholder: 'Edad',
-      validation: [Validators.min(2), Validators.max(11)]
+      type: 'input',
+      label: 'Apellido Materno',
+      name: 'ap_materno',
+      placeholder: 'Apellido Materno',
+      width: 25,
+      required: true,
+      validation: [ Validators.required ]
     },
     {
       type: 'tel',
       label: 'Celular',
       name: 'celular',
       placeholder: 'Celular',
-      validation: [ Validators.maxLength(9)]
+      width: 50,
+      required: false,
+      validation: [ ]
+    },
+    {
+      type: 'input',
+      label: 'Fecha de Nacimiento',
+      name: 'fech_nac',
+      placeholder: 'Fecha de Nacimiento',
+      width: 50,
+      required: false,
+      validation: [ ]
     },
     {
       type: 'select',
@@ -276,8 +303,9 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       name: 'food',
       options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
       placeholder: 'Select an option',
+      width: 50,
       required: true,
-      validation: [Validators.required]
+      validation: [ Validators.required ],
     },
     {
       label: 'Guardar',

@@ -51,12 +51,12 @@ export class FindEscuelaPageComponent implements OnInit {
   }
 
   openDialog() {
-    let dialogRef = this.dialog.open(CreateEscuelaDialogComponent, {
+    const dialogRef = this.dialog.open(CreateEscuelaDialogComponent, {
       width: '500px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('close dialog escuela')
+      console.log('close dialog escuela');
     });
   }
 }

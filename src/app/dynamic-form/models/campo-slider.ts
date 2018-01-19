@@ -1,10 +1,10 @@
-import { CampoBase } from "./campo-base";
+import { CampoBase } from './campo-base';
 
-export class CampoSlider extends CampoBase<string>{
+export class CampoSlider extends CampoBase<string> {
     controlType = 'slider';
     type: string;
 
-    constructor(options: {} = {}){
+    constructor(options: {} = {}) {
         super(options);
         this.type = options['type'] || '';
     }
