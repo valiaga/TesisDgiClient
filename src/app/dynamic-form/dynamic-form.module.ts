@@ -18,6 +18,12 @@ import { FormNumberComponent } from './components/form-number/form-number.compon
 // import { FormToolsService } from '../shared/form-tools.service';
 import { FormTelComponent } from './components/form-tel/form-tel.component';
 import { FormToolsService } from '../shared/form-tools.service';
+import { FormTextareaComponent } from './components/form-textarea/form-textarea.component';
+import { FormSlideToggleComponent } from './components/form-slide-toggle/form-slide-toggle.component';
+import { FormPasswordComponent } from './components/form-password/form-password.component';
+import { FormDatepickerComponent } from './components/form-datepicker/form-datepicker.component';
+import { FormRadioComponent } from './components/form-radio/form-radio.component';
+import { FormCheckboxComponent } from './components/form-checkbox/form-checkbox.component';
 
 const DYNAMIC_COMPONENTS: any[] = [
   DynamicFormCampoComponent,
@@ -31,6 +37,12 @@ const DYNAMIC_COMPONENTS: any[] = [
   FormEmailComponent,
   FormSelectComponent,
   FormTelComponent,
+  FormTextareaComponent,
+  FormSlideToggleComponent,
+  FormPasswordComponent,
+  FormDatepickerComponent,
+  FormRadioComponent,
+  FormCheckboxComponent,
 
   FormValidatorComponent,
 ];
@@ -53,6 +65,13 @@ const DYNAMIC_COMPONENTS: any[] = [
     FormEmailComponent,
     FormNumberComponent,
     FormTelComponent,
+    FormTextareaComponent,
+    FormSlideToggleComponent,
+    FormPasswordComponent,
+    FormDatepickerComponent,
+    FormRadioComponent,
+    FormCheckboxComponent,
+
   ],
   providers: [
     FormToolsService,

@@ -9,6 +9,12 @@ import { FieldConfig } from '../../models/field-config';
 import { FormEmailComponent } from '../form-email/form-email.component';
 import { FormNumberComponent } from '../form-number/form-number.component';
 import { FormTelComponent } from '../form-tel/form-tel.component';
+import { FormTextareaComponent } from '../form-textarea/form-textarea.component';
+import { FormSlideToggleComponent } from '../form-slide-toggle/form-slide-toggle.component';
+import { FormPasswordComponent } from '../form-password/form-password.component';
+import { FormDatepickerComponent } from '../form-datepicker/form-datepicker.component';
+import { FormRadioComponent } from '../form-radio/form-radio.component';
+import { FormCheckboxComponent } from '../form-checkbox/form-checkbox.component';
 
 const components: { [type: string]: Type<Field> } = {
   buttonSubmit: FormButtonSubmitComponent,
@@ -17,6 +23,12 @@ const components: { [type: string]: Type<Field> } = {
   select: FormSelectComponent,
   email: FormEmailComponent,
   tel: FormTelComponent,
+  textarea: FormTextareaComponent,
+  slideToggle: FormSlideToggleComponent,
+  password: FormPasswordComponent,
+  datepicker: FormDatepickerComponent,
+  radio: FormRadioComponent,
+  checkbox: FormCheckboxComponent,
 };
 
 

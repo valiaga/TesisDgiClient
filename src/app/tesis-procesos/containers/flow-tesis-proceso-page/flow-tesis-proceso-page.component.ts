@@ -179,8 +179,8 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     });
 
     this.formTest = this.formBuilder.group({
-      nombre: [[], Validators.nullValidator ],
-      email: [[], ],
+      nombre: [[], Validators.nullValidator],
+      email: [[],],
     });
     console.log('this.formTest.controls');
     console.log(this.formTest.controls);
@@ -259,7 +259,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       placeholder: 'Nombres',
       width: 50,
       required: true,
-      validation: [ Validators.required ]
+      validation: [Validators.required]
     },
     {
       type: 'input',
@@ -268,7 +268,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       placeholder: 'Apellido Paterno',
       width: 25,
       required: true,
-      validation: [ Validators.required ]
+      validation: [Validators.required]
     },
     {
       type: 'input',
@@ -277,7 +277,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       placeholder: 'Apellido Materno',
       width: 25,
       required: true,
-      validation: [ Validators.required ]
+      validation: [Validators.required]
     },
     {
       type: 'tel',
@@ -286,8 +286,9 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       placeholder: 'Celular',
       width: 50,
       required: false,
-      validation: [ ]
+      validation: []
     },
+    /*
     {
       type: 'input',
       label: 'Fecha de Nacimiento',
@@ -295,14 +296,90 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       placeholder: 'Fecha de Nacimiento',
       width: 50,
       required: false,
-      validation: [ ]
-    },
+      validation: []
+    },*/
     {
       type: 'select',
       label: 'Favourite Food',
       name: 'food',
       options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
       placeholder: 'Select an option',
+      width: 50,
+      required: true,
+      validation: [Validators.required],
+    },
+    {
+      type: 'textarea',
+      label: 'Descripción',
+      name: 'descripcion',
+      // options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+      placeholder: 'Descripción',
+      width: 50,
+      required: true,
+      validation: [Validators.required],
+    },
+    {
+      type: 'slideToggle',
+      label: 'Activo',
+      name: 'activo',
+      disabled: false,
+      // value: true, /** Solo fue prueva y funciono jejej. */
+      // options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+      placeholder: 'Activo',
+      width: 50,
+      required: true,
+      validation: [ Validators.requiredTrue ],
+    },
+    {
+      type: 'radio',
+      label: 'Sexo',
+      name: 'sexo',
+      options: [
+        { id: 'M', label: 'Masculino', },
+        { id: 'F', label: 'Femenino', },
+      ],
+      placeholder: 'Sexo',
+      width: 50,
+      directionVertical: false,
+      required: true,
+      validation: [ Validators.required ],
+    },
+    {
+      type: 'checkbox',
+      label: 'Es Alumno?',
+      name: 'es_alumno',
+      placeholder: 'Es Alumno?',
+      width: 50,
+      align: 'start', /** start/ end */
+      disabled: false,
+      // directionVertical: false,
+
+      required: true,
+      validation: [ Validators.required ],
+    },
+    // {
+      // type: 'password',
+      // label: 'Password',
+      // name: 'password',
+      // placeholder: 'Password',
+      // width: 50,
+      // required: true,
+      // validation: [ Validators.required ],
+    // },
+    {
+      type: 'datepicker',
+      label: 'Fecha de Nacimiento',
+      name: 'fech_nac',
+      placeholder: 'Fecha de Nacimiento',
+      width: 50,
+      // required: true,
+      // validation: [ Validators.required ],
+    },
+    {
+      type: 'datepicker',
+      label: 'Fecha Inicio de proyecto',
+      name: 'fech_ini_proyecto',
+      placeholder: 'Fecha Inicio de proyecto',
       width: 50,
       required: true,
       validation: [ Validators.required ],
