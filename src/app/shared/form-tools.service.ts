@@ -1,6 +1,7 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { FieldConfig } from '../dynamic-form/models/field-config';
+import { Form } from '../dynamic-form/models/form';
 
 @Injectable()
 export class FormToolsService {
@@ -47,6 +48,19 @@ export class FormToolsService {
     const objectClass = {
       'input-100': (width === 100) ? true : false,
       'input-50': (width === 50) ? true : false,
+      'input-25': (width === 25) ? true : false,
+      'input-20': (width === 20) ? true : false,
+      'input-10': (width === 10) ? true : false,
+    };
+    return objectClass;
+  }
+
+  getFormClass(formulario: Form) {
+    const width = (formulario && formulario.width) ? formulario.width : 100 ;
+    const objectClass = {
+      'input-100': (width === 100) ? true : false,
+      'input-50': (width === 50) ? true : false,
+      'input-33': (width === 33) ? true : false,
       'input-25': (width === 25) ? true : false,
       'input-20': (width === 20) ? true : false,
       'input-10': (width === 10) ? true : false,

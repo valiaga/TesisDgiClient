@@ -24,33 +24,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     </mat-error>
   </div>
   `,
-  styles: [
-    `
-    .checkbox-display {
-      display: inline-block;
-    }
-    .msm-error {
-      font-size: 75%;
-    }
-
-    .input-100 {
-      width: 100%;
-    }
-    .input-50 {
-      width: 49.5%;
-    }
-    .input-25 {
-      width: 24.5%;
-    }
-    .input-20 {
-      width: 24.5%;
-    }
-    .input-10 {
-      width: 24.5%;
-    }
-
-    `
-  ]
+  styleUrls: ['./form-checkbox.component.scss']
 })
 export class FormCheckboxComponent implements OnInit {
   public config: FieldConfig;

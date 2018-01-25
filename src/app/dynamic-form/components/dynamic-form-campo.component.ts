@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { CampoBase } from '../models/campo-base';
+import { CampoBase } from '../models.1/campo-base';
 import { FormGroup } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';

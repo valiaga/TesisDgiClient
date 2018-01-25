@@ -23,25 +23,7 @@ import { FieldConfig } from '../../models/field-config';
       </mat-error>
     </mat-form-field>
   `,
-  styles: [
-    `
-    .input-100 {
-      width: 100%;
-    }
-    .input-50 {
-      width: 49.5%;
-    }
-    .input-25 {
-      width: 24.5%;
-    }
-    .input-20 {
-      width: 24.5%;
-    }
-    .input-10 {
-      width: 24.5%;
-    }
-    `
-  ]
+  styleUrls: ['./form-datepicker.component.scss']
 })
 export class FormDatepickerComponent implements OnInit {
   public config: FieldConfig;

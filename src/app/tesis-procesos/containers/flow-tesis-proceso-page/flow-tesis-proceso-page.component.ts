@@ -7,13 +7,14 @@ import { MatStepper, MatStep } from '@angular/material';
 import { TareaService } from '../../../tareas/shared/tarea.service';
 import { Tarea } from '../../../tareas/shared/tarea';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { Formulario } from '../../../dynamic-form/models/formulario';
+// import { Formulario } from '../../../dynamic-form/models/formulario';
 import { FormularioService } from '../../../dynamic-form/shared/formulario.service';
-import { CampoBase } from '../../../dynamic-form/models/campo-base';
+// import { CampoBase } from '../../../dynamic-form/models/campo-base';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CampoService } from '../../../dynamic-form/shared/campo.service';
 import { DynamicFormComponent } from '../../../dynamic-form/containers/dynamic-form.component';
 import { FieldConfig } from '../../../dynamic-form/models/field-config';
+import { Form } from '../../../dynamic-form/models/form';
 // import { ControlService } from '../../../forms-dynamic/shared/control.service';
 
 
@@ -49,67 +50,26 @@ import { FieldConfig } from '../../../dynamic-form/models/field-config';
             <mat-step label="{{ tarea.id }}" *ngFor="let tarea of tareas$ | async">
               <ng-template matStepLabel>{{ tarea.nombre }}</ng-template>
 
-
+              <dgi-many-dynamic-form [formularios]="formularios"></dgi-many-dynamic-form>
+<!--
               <mat-card *ngFor="let formulario of formularios$ | async">
                 <mat-card-header>
-                  <mat-card-title>{{formulario.nombre }}</mat-card-title>
+                  <mat-card-title>{{formulario.nombre }}</mat-card-title>-->
                   <!-- <mat-card-title>{{formulario.nombre | uppecarse }}</mat-card-title> -->
                   <!-- <mat-card-subtitle>{{formulario.id}}</mat-card-subtitle>-->
-                </mat-card-header>
-                <mat-card-content>
+                <!--</mat-card-header>
+                <mat-card-content>-->
                       <!--<dgi-dynamic-form [campos]="campos"></dgi-dynamic-form>-->
-                      <dgi-dynamic-form
+                    <!--  <dgi-dynamic-form
                         [config]="config"
                         #form = "dgiDynamicForm"
                         (submit)="submit($event)"
                       ></dgi-dynamic-form>
                       {{ form.valid }}
-                      {{ form.value | json }}
+                      {{ form.value | json }}-->
                       <!--<dynamic-form [config]="config"></dynamic-form>-->
-                </mat-card-content>
-              </mat-card>
-
-              <!-- Nombre field -->
-                <div class="flow-tesis-proceso-container">
-                  <form [formGroup]="formTest">
-                  <!-- [hideRequiredMarker]="[false]" -->
-                    <mat-form-field
-                    [floatLabel]="['auto']">
-                    <input matInput placeholder="Nombre" formControlName="nombre" >
-                    <!-- <input matInput placeholder="Nombre" formControlName="nombre" required>-->
-                    <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
-                    </mat-form-field>
-                    <!-- Email field -->
-                    <mat-form-field
-                      [floatLabel]="['auto']">
-                      <!-- <input matInput placeholder="Alias" formControlName="alias"> -->
-                      <input matInput type="email" placeholder="Email" formControlName="email">
-                    </mat-form-field>
-                  </form>
-                    <!-- Activo field -->
-                    <div class="checkbox">
-                      <mat-checkbox>Activo</mat-checkbox>
-                    </div>
-                    <!-- Misión field -->
-                    <mat-form-field
-                      [floatLabel]="['auto']">
-                      <textarea matInput placeholder="Misión" matTextareaAutosize
-                        matAutosizeMaxRows="5"
-                        matAutosizeMinRows="2"></textarea>
-                    </mat-form-field>
-                    <!-- Seleccionar field -->
-                    <mat-form-field
-                      [hideRequiredMarker]="[false]">
-                      <mat-select placeholder="Seleccionar" required>
-                        <mat-option value="1" selected>-1-</mat-option>
-                        <mat-option value="2" selected>-2-</mat-option>
-                      </mat-select>
-                    </mat-form-field>
-
-                  </div>
-
-
-
+                <!--</mat-card-content>
+              </mat-card>-->
 
               <div>
                 <button mat-button matStepperPrevious>Back</button>
@@ -133,14 +93,14 @@ import { FieldConfig } from '../../../dynamic-form/models/field-config';
 export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   private etapas$: Observable<Etapa[]>;
   private tareas$: Observable<Tarea[]>;
-  private formularios$: Observable<Formulario[]>;
+  // private formularios$: Observable<Formulario[]>;
+  private formularios$: Observable<any[]>;
 
   private campos: any[];
-  public formTest: FormGroup;
 
   // private campos: CampoBase<any>[] = [];
   // private form: FormGroup;
-  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  // @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
 
 
   @ViewChild('verticalStepper') private verticalStepper: MatStepper;
@@ -178,12 +138,6 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       }
     });
 
-    this.formTest = this.formBuilder.group({
-      nombre: [[], Validators.nullValidator],
-      email: [[],],
-    });
-    console.log('this.formTest.controls');
-    console.log(this.formTest.controls);
   }
 
   initEtapasByProcesoId(TesisProcesoId: string) {
@@ -227,29 +181,154 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
-    setTimeout(() => {
+    // setTimeout(() => {
 
-      let previousValid = this.form.valid;
-      this.form.changes.subscribe(() => {
-        if (this.form.valid !== previousValid) {
-          previousValid = this.form.valid;
-          this.form.setDisabled('submit', !previousValid);
-        }
-      });
+    //   let previousValid = this.form.valid;
+    //   this.form.changes.subscribe(() => {
+    //     if (this.form.valid !== previousValid) {
+    //       previousValid = this.form.valid;
+    //       this.form.setDisabled('submit', !previousValid);
+    //     }
+    //   });
 
-      this.form.setDisabled('submit', true);
-      // this.form.setValue('name', 'Vitmar Aliaga');
-      // this.form.setValue('edad', '15');
-      // this.formTest = controls;
-    }, 10000);
+    //   this.form.setDisabled('submit', true);
+    //   // this.form.setValue('name', 'Vitmar Aliaga');
+    //   // this.form.setValue('edad', '15');
+    //   // this.formTest = controls;
+    // }, 10000);
 
   }
 
-  submit(value: { [name: string]: any }) {
-    console.log('value');
-    console.log(value);
-  }
+  // submit(value: { [name: string]: any }) {
+    // console.log('value');
+    // console.log(value);
+  // }
 
+  public formularios: Form[] = [
+    {
+      name: 'Mi primer formulario',
+      width: 33;
+      fieldConfigs: [
+        {
+          type: 'input',
+          label: 'Nombres',
+          name: 'nombres',
+          placeholder: 'Nombres',
+          width: 100,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          type: 'input',
+          label: 'Apellido Paterno',
+          name: 'ap_paterno',
+          placeholder: 'Apellido Paterno',
+          width: 50,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          type: 'input',
+          label: 'Apellido Materno',
+          name: 'ap_materno',
+          placeholder: 'Apellido Materno',
+          width: 50,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          type: 'datepicker',
+          label: 'Fecha de Nacimiento',
+          name: 'fech_nac',
+          placeholder: 'Fecha de Nacimiento',
+          width: 50,
+          // required: true,
+          // validation: [ Validators.required ],
+        },
+        {
+          label: 'Guardar',
+          name: 'submit',
+          type: 'buttonSubmit'
+        },
+      ],
+    },
+    {
+      name: 'Mi Segundo formulario',
+      width: 33,
+      fieldConfigs: [
+        {
+          type: 'input',
+          label: 'Nombres',
+          name: 'nombres',
+          placeholder: 'Nombres',
+          width: 100,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          type: 'input',
+          label: 'Apellido Paterno',
+          name: 'ap_paterno',
+          placeholder: 'Apellido Paterno',
+          width: 100,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          type: 'input',
+          label: 'Apellido Materno',
+          name: 'ap_materno',
+          placeholder: 'Apellido Materno',
+          width: 100,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          label: 'Guardar',
+          name: 'submit',
+          type: 'buttonSubmit'
+        },
+      ],
+    },
+    {
+      name: 'Mi tercer formulario',
+      width: 33;
+      fieldConfigs: [
+        {
+          type: 'input',
+          label: 'Nombres',
+          name: 'nombres',
+          placeholder: 'Nombres',
+          width: 100,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          type: 'input',
+          label: 'Apellido Paterno',
+          name: 'ap_paterno',
+          placeholder: 'Apellido Paterno',
+          width: 50,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          type: 'input',
+          label: 'Apellido Materno',
+          name: 'ap_materno',
+          placeholder: 'Apellido Materno',
+          width: 50,
+          required: true,
+          validation: [Validators.required]
+        },
+        {
+          label: 'Guardar',
+          name: 'submit',
+          type: 'buttonSubmit'
+        },
+      ],
+    },
+  ];
 
   config: FieldConfig[] = [
     {
@@ -328,7 +407,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       placeholder: 'Activo',
       width: 50,
       required: true,
-      validation: [ Validators.requiredTrue ],
+      validation: [Validators.requiredTrue],
     },
     {
       type: 'radio',
@@ -342,7 +421,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       width: 50,
       directionVertical: false,
       required: true,
-      validation: [ Validators.required ],
+      validation: [Validators.required],
     },
     {
       type: 'checkbox',
@@ -355,16 +434,16 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       // directionVertical: false,
 
       required: true,
-      validation: [ Validators.required ],
+      validation: [Validators.required],
     },
     // {
-      // type: 'password',
-      // label: 'Password',
-      // name: 'password',
-      // placeholder: 'Password',
-      // width: 50,
-      // required: true,
-      // validation: [ Validators.required ],
+    // type: 'password',
+    // label: 'Password',
+    // name: 'password',
+    // placeholder: 'Password',
+    // width: 50,
+    // required: true,
+    // validation: [ Validators.required ],
     // },
     {
       type: 'datepicker',
@@ -382,7 +461,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       placeholder: 'Fecha Inicio de proyecto',
       width: 50,
       required: true,
-      validation: [ Validators.required ],
+      validation: [Validators.required],
     },
     {
       label: 'Guardar',

@@ -24,11 +24,16 @@ import { FormPasswordComponent } from './components/form-password/form-password.
 import { FormDatepickerComponent } from './components/form-datepicker/form-datepicker.component';
 import { FormRadioComponent } from './components/form-radio/form-radio.component';
 import { FormCheckboxComponent } from './components/form-checkbox/form-checkbox.component';
+import { ManyDynamicFormComponent } from './containers/many-dynamic-form.component';
 
 const DYNAMIC_COMPONENTS: any[] = [
-  DynamicFormCampoComponent,
-  DynamicFormComponent,
+  // DynamicFormCampoComponent,
 
+  /** Components containers */
+  DynamicFormComponent,
+  ManyDynamicFormComponent,
+
+  /** Components form */
   DynamicFieldDirective,
   FormButtonComponent,
   FormButtonSubmitComponent,
@@ -55,7 +60,8 @@ const DYNAMIC_COMPONENTS: any[] = [
   ],
   declarations: DYNAMIC_COMPONENTS,
   exports: [
-    DynamicFormComponent
+    DynamicFormComponent,
+    ManyDynamicFormComponent,
   ],
   entryComponents: [
     FormButtonComponent,

@@ -23,26 +23,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
         <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
       </mat-error>
   `,
-  styles: [
-    `
-    .input-100 {
-      width: 100%;
-    }
-    .input-50 {
-      width: 49.5%;
-    }
-    .input-25 {
-      width: 24.5%;
-    }
-    .input-20 {
-      width: 24.5%;
-    }
-    .input-10 {
-      width: 24.5%;
-    }
-
-    `
-  ]
+  styleUrls: ['./form-number.component.scss']
 })
 export class FormNumberComponent implements OnInit {
   public config: FieldConfig;

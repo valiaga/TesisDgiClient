@@ -23,49 +23,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     </mat-error>
   </mat-form-field>
   `,
-  styles: [
-    `
-    /*
-    :host {
-      display: flex;
-      flex-wrap: wrap;
-      flex-direction: column;
-      justify-content: center;
-      margin-top: 25px;
-    }*/
-    .input-100 {
-      width: 100%;
-    }
-    .input-50 {
-      width: 49.5%;
-    }
-    .input-25 {
-      width: 24.5%;
-    }
-    .input-20 {
-      width: 24.5%;
-    }
-    .input-10 {
-      width: 24.5%;
-    }
-
-    /*
-    input {
-      display: block;
-      font-family: inherit;
-      font-size: 14px;
-      width: 100%;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      outline: none;
-      padding: 10px 15px;
-      color: rgba(0, 0, 0, 0.7);
-      &:focus {
-        border: 1px solid rgba(0, 0, 0, 0.4);
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
-      }
-    }*/
-    `
-  ]
+  styleUrls: ['./form-input.component.scss']
 })
 export class FormInputComponent implements OnInit {
   public config: FieldConfig;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Formulario, IFormulario } from '../models/formulario';
+import { Formulario, IFormulario } from '../models.1/formulario';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
@@ -15,7 +15,7 @@ export class FormularioService {
   private _formularios: BehaviorSubject<Formulario[]>;
   private dataStore: {
     formularios: Formulario[]
-  }
+  };
 
   constructor(private http: HttpClient,
     private snackBar: MatSnackBar,
@@ -29,7 +29,7 @@ export class FormularioService {
   }
 
   public getAllFormularios() {
-    let apiUrl = environment.apiUrl;
+    const apiUrl = environment.apiUrl;
 
     return this.http
       // .get<IFormulario[]>(`${apiUrl}proceso/formularios/?all=true`)
@@ -41,11 +41,11 @@ export class FormularioService {
         this.dataStore.formularios = data;
         this._formularios.next(Object.assign({}, this.dataStore).formularios);
       }, error => console.log('Could not load formularios.')
-      )
+      );
   }
 
   public getFormulariosByTareaId(tareaId: string) {
-    let apiUrl = environment.apiUrl;
+    const apiUrl = environment.apiUrl;
 
     return this.http
       .get<IFormulario[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`)

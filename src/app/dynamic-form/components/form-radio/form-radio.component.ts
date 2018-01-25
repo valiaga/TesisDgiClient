@@ -20,40 +20,7 @@ import { FieldConfig } from '../../models/field-config';
     <!-- <div>Mi sexo es {{group.controls[config.name].value}}</div> -->
   </div>
     `,
-  styles: [
-    `
-    .radio-vertical {
-      display: inline-flex;
-      flex-direction: column;
-    }
-    .mat-radio-button {
-      margin: 2px;
-    }
-    .msm-error {
-      font-size: 75%;
-    }
-    .radio-display {
-      display: inline-block;
-    }
-
-
-
-    .input-100 {
-      width: 100%;
-    }
-    .input-50 {
-      width: 49.5%;
-    }
-    .input-25 {
-      width: 24.5%;
-    }
-    .input-20 {
-      width: 24.5%;
-    }
-    .input-10 {
-      width: 24.5%;
-    }`
-  ]
+  styleUrls: ['./form-radio.component.scss']
 })
 export class FormRadioComponent implements OnInit {
   public config: FieldConfig;

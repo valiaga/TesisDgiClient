@@ -1,5 +1,5 @@
 import { EventEmitter, Output, Component, OnInit, Input, OnChanges } from '@angular/core';
-import { CampoBase } from '../models/campo-base';
+import { CampoBase } from '../models.1/campo-base';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 // import { ControlService } from '../shared/control.service';
 import { FieldConfig } from '../models/field-config';

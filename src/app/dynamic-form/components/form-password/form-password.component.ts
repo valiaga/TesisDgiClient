@@ -18,25 +18,8 @@ import { FormToolsService } from '../../../shared/form-tools.service';
         <!-- [type]="(hide ? 'password' : 'text')" -->
     </mat-form-field>
   `,
-  styles: [
-    `
-    .input-100 {
-      width: 100%;
-    }
-    .input-50 {
-      width: 49.5%;
-    }
-    .input-25 {
-      width: 24.5%;
-    }
-    .input-20 {
-      width: 24.5%;
-    }
-    .input-10 {
-      width: 24.5%;
-    }
-    `
-  ]
+  styleUrls: ['./form-password.component.scss']
+
 })
 export class FormPasswordComponent implements OnInit {
   public config: FieldConfig;
