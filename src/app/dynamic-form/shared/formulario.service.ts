@@ -68,7 +68,7 @@ export class FormularioReactiveService {
       .subscribe(data => {
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
         data.forEach((formulario, index) => {
-          formulario.campos = this.campoService.campos;
+          // formulario.campos = this.campoService.campos;
           this.campoService.getCamposByFormularioId(formulario.id);
         });
 

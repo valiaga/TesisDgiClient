@@ -12,8 +12,9 @@ import { Form } from '../models/form';
       <mat-card-subtitle> Formulario dinamico</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
+      <!-- [config]="formulario.fieldConfigs" -->
         <dgi-dynamic-form
-        [config]="formulario.fieldConfigs"
+        [config]="formulario.campos"
         #form = "dgiDynamicForm"
         (submit)="submit($event)"
           ></dgi-dynamic-form>

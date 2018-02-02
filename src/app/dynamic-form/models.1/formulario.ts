@@ -24,6 +24,6 @@ export interface IFormulario {
     fecha_creacion: string;
     fecha_actualizacion: string;
 
-    campos: Observable<Campo[]>;
-    campo: ICampo[];
+    // campos: Observable<Campo[]>;
+    campos: ICampo[];
 }
