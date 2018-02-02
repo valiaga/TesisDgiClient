@@ -172,7 +172,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   }
 
   initGetFormulariosByTareaId(tareaIdSelect: string) {
-    this.formularioService.getFormulariosByTareaId(tareaIdSelect)
+    this.formularioService.getFormulariosByTareaId$(tareaIdSelect)
       .subscribe(res => {
         console.log('formularios');
         console.log(res);
@@ -226,9 +226,9 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   // console.log(value);
   // }
 
-  public formularioss: Form[] = [
+  public formularioss: any[] = [
     {
-      name: 'Mi primer formulario',
+      nombre: 'Mi primer formulario',
       width: 33,
       fieldConfigs: [
         {
@@ -275,7 +275,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       ],
     },
     {
-      name: 'Mi Segundo formulario',
+      nombre: 'Mi Segundo formulario',
       width: 33,
       fieldConfigs: [
         {
@@ -313,7 +313,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       ],
     },
     {
-      name: 'Mi tercer formulario',
+      nombre: 'Mi tercer formulario',
       width: 33,
       fieldConfigs: [
         {

@@ -1,4 +1,4 @@
-import { ICampo } from './campo';
+import { ICampo, Campo } from './campo';
 import { Observable } from 'rxjs/Observable';
 
 export class Formulario {
@@ -24,5 +24,6 @@ export interface IFormulario {
     fecha_creacion: string;
     fecha_actualizacion: string;
 
-    campos: Observable<ICampo[]>;
+    campos: Observable<Campo[]>;
+    campo: ICampo[];
 }

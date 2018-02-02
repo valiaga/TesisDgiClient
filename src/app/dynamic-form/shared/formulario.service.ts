@@ -15,13 +15,13 @@ export class FormularioService {
 
   constructor(private http: HttpClient) { }
 
-  public getFomularios(): Observable<IFormulario[]> {
+  public getFomularios$(): Observable<IFormulario[]> {
     const apiUrl = environment.apiUrl;
     return this.http
       // .get<IFormulario[]>(`${apiUrl}proceso/formularios/?all=true`)
       .get<IFormulario[]>(`${apiUrl}proceso/formularios`);
   }
-  public getFormulariosByTareaId(tareaId: string): Observable<IFormulario[]> {
+  public getFormulariosByTareaId$(tareaId: string): Observable<IFormulario[]> {
     const apiUrl = environment.apiUrl;
     return this.http
       .get<IFormulario[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`);
@@ -50,7 +50,7 @@ export class FormularioReactiveService {
   public getAllFormularios() {
     const apiUrl = environment.apiUrl;
 
-    return this.formularioService.getFomularios()
+    return this.formularioService.getFomularios$()
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
@@ -64,7 +64,7 @@ export class FormularioReactiveService {
   public getFormulariosByTareaId(tareaId: string) {
     const apiUrl = environment.apiUrl;
 
-    return this.formularioService.getFormulariosByTareaId(tareaId)
+    return this.formularioService.getFormulariosByTareaId$(tareaId)
       .subscribe(data => {
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
         data.forEach((formulario, index) => {

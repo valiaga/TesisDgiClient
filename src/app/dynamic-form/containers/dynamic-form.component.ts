@@ -64,12 +64,12 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
   public form: FormGroup;
 
-  get controls() { return this.config.filter(({type}) => type !== 'buttonSubmit'); }
+  get controls() { return this.config && this.config.filter(({ type }) => type !== 'buttonSubmit'); }
   get changes() { return this.form.valueChanges; }
   get valid() { return this.form.valid; }
   get value() { return this.form.value; }
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.form = this.createGroup();
@@ -77,19 +77,23 @@ export class DynamicFormComponent implements OnChanges, OnInit {
 
   createGroup() {
     const group = this.formBuilder.group({});
-    this.controls.forEach(control => group.addControl(control.name, this.createControl(control)));
+    if (this.controls) {
+      this.controls.forEach(control => {
+        group.addControl(control.name, this.createControl(control));
+      });
+    }
     return group;
   }
 
   createControl(config: FieldConfig) {
     const { disabled, validation, value } = config;
-    return this.formBuilder.control({disabled, value}, validation);
+    return this.formBuilder.control({ disabled, value }, validation);
   }
 
   ngOnChanges() {
     if (this.form) {
       const controls = Object.keys(this.form.controls);
-      const configControls = this.controls.map((item) => item.name);
+      const configControls = this.controls && this.controls.map((item) => item.name);
 
       controls
         .filter((control) => !configControls.includes(control))
@@ -117,7 +121,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
       return;
     }
 
-    this.config = this.config.map((item) => {
+    this.config = this.config && this.config.map((item) => {
       if (item.name === name) {
         item.disabled = disable;
       }
@@ -126,7 +130,7 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   }
 
   setValue(name: string, value: any) {
-    this.form.controls[name].setValue(value, {emitEvent: true});
+    this.form.controls[name].setValue(value, { emitEvent: true });
   }
 }
 

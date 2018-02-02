@@ -8,7 +8,7 @@ import { Form } from '../models/form';
   template: `
     <mat-card [ngClass]="getFormClass(formulario)" *ngFor="let formulario of formularios">
       <mat-card-header>
-      <mat-card-title>{{ formulario.name }}</mat-card-title>
+      <mat-card-title>{{ formulario.nombre }}</mat-card-title>
       <mat-card-subtitle> Formulario dinamico</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
@@ -35,6 +35,7 @@ export class ManyDynamicFormComponent implements OnInit {
   ngOnInit() {
     setTimeout(() => {
 
+      // let previousValid = this.form && this.form.valid;
       let previousValid = this.form.valid;
       this.form.changes.subscribe(() => {
         if (this.form.valid !== previousValid) {
