@@ -15,8 +15,8 @@ import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-p
 import { FlowButtonsFooterComponent } from './components/flow-buttons-footer/flow-buttons-footer.component';
 import { StepComponent } from './components/step.component';
 import { StepListComponent } from './components/step-list.component';
-import { EtapaService } from '../etapas/shared/etapa.service';
-import { TareaService } from '../tareas/shared/tarea.service';
+import { EtapaService, EtapaReactiveService } from '../etapas/shared/etapa.service';
+import { TareaService, TareaReactiveService } from '../tareas/shared/tarea.service';
 
 
 import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
@@ -43,11 +43,14 @@ import { CampoService } from '../dynamic-form/shared/campo.service';
     StepListComponent
     ],
   providers: [
+
+    EtapaService,
+    EtapaReactiveService,
+    TareaService,
+    TareaReactiveService,
     TesisProcesoService,
     CampoService,
-    EtapaService,
     FormularioService,
-    TareaService,
     // ControlService,
   ],
   entryComponents: [

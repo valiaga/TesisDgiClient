@@ -9,37 +9,37 @@ import { NotFoundPageComponent } from './core/components/not-found-page.componen
 // import { AppComponent } from './app.component';
 
 
-//Array con las rutas de la aplicación
+// Array con las rutas de la aplicación
 const routes: Routes = [
-    {
-        path: '', 
-        loadChildren: './core/core.module#CoreModule',
-        canActivate: [
-    
-        ]
-    },
-    {
-      path: 'tesis-procesos', 
-      // path: 'tesis-etapas', 
-      loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
-      canActivate: [
-  
-      ]
-    },
-    { 
-        path: 'login',
-        loadChildren: './auth/auth.module#AuthModule'
-    },
-    {
-        path: '**',  //para casos not found
-        component: NotFoundPageComponent 
-    },
-]
+  {
+    path: '',
+    loadChildren: './core/core.module#CoreModule',
+    canActivate: [
+
+    ]
+  },
+  {
+    path: 'tesis-procesos',
+    // path: 'tesis-etapas',
+    loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
+    canActivate: [
+
+    ]
+  },
+  {
+    path: 'login',
+    loadChildren: './auth/auth.module#AuthModule'
+  },
+  {
+    path: '**',  // para casos not found
+    component: NotFoundPageComponent
+  },
+];
 
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, {useHash: true}) // configuración para un módulo raiz
+    RouterModule.forRoot(routes, { useHash: true }) // configuración para un módulo raiz
   ],
   exports: [
     RouterModule // se importará desde el módulo padre, el raiz

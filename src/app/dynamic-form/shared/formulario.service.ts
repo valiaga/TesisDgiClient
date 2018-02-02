@@ -9,15 +9,34 @@ import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
 import { CampoService } from './campo.service';
 
+
 @Injectable()
 export class FormularioService {
+
+  constructor(private http: HttpClient) { }
+
+  public getFomularios(): Observable<IFormulario[]> {
+    const apiUrl = environment.apiUrl;
+    return this.http
+      // .get<IFormulario[]>(`${apiUrl}proceso/formularios/?all=true`)
+      .get<IFormulario[]>(`${apiUrl}proceso/formularios`);
+  }
+  public getFormulariosByTareaId(tareaId: string): Observable<IFormulario[]> {
+    const apiUrl = environment.apiUrl;
+    return this.http
+      .get<IFormulario[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`);
+  }
+}
+
+@Injectable()
+export class FormularioReactiveService {
   formularios: Observable<Formulario[]>;
   private _formularios: BehaviorSubject<Formulario[]>;
   private dataStore: {
     formularios: Formulario[]
   };
 
-  constructor(private http: HttpClient,
+  constructor(private formularioService: FormularioService,
     private snackBar: MatSnackBar,
     private campoService: CampoService) {
 
@@ -31,9 +50,7 @@ export class FormularioService {
   public getAllFormularios() {
     const apiUrl = environment.apiUrl;
 
-    return this.http
-      // .get<IFormulario[]>(`${apiUrl}proceso/formularios/?all=true`)
-      .get<IFormulario[]>(`${apiUrl}proceso/formularios/`)
+    return this.formularioService.getFomularios()
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
@@ -47,24 +64,18 @@ export class FormularioService {
   public getFormulariosByTareaId(tareaId: string) {
     const apiUrl = environment.apiUrl;
 
-    return this.http
-      .get<IFormulario[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`)
+    return this.formularioService.getFormulariosByTareaId(tareaId)
       .subscribe(data => {
-
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);
-
         data.forEach((formulario, index) => {
           formulario.campos = this.campoService.campos;
           this.campoService.getCamposByFormularioId(formulario.id);
-          // this.campoService.getCamposByFormularioId$(formulario.id).subscribe((campos)=>{
-          // formulario.campos = campos
-          // });
         });
 
         this.dataStore.formularios = data;
 
         this._formularios.next(Object.assign({}, this.dataStore).formularios);
       }, error => console.log('Could not load formularios.')
-      )
+      );
   }
 }

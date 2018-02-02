@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
-import { EtapaService } from '../../../etapas/shared/etapa.service';
+import { EtapaService, EtapaReactiveService } from '../../../etapas/shared/etapa.service';
 import { Observable } from 'rxjs/Observable';
 import { Etapa } from '../../../etapas/shared/etapa';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -28,7 +28,7 @@ import { Form } from '../../../dynamic-form/models/form';
           <!-- <dgi-step-list
             [etapas]="etapas$ | async">
             </dgi-step-list> -->
-            <mat-step *ngFor="let etapa of etapas$ | async" label="{{ etapa.id }}" >
+            <mat-step *ngFor="let etapa of etapas" label="{{ etapa.id }}" >
               <ng-template matStepLabel>{{ etapa.nombre }}</ng-template>
               {{ etapa.descripcion }}
             </mat-step>
@@ -47,7 +47,7 @@ import { Form } from '../../../dynamic-form/models/form';
 
         <mat-card class="mat-card-content">
           <mat-horizontal-stepper #horizontalStepper [linear]="[true]">
-            <mat-step label="{{ tarea.id }}" *ngFor="let tarea of tareas$ | async">
+            <mat-step label="{{ tarea.id }}" *ngFor="let tarea of tareas">
               <ng-template matStepLabel>{{ tarea.nombre }}</ng-template>
 
               <dgi-many-dynamic-form [formularios]="formularios"></dgi-many-dynamic-form>
@@ -91,10 +91,13 @@ import { Form } from '../../../dynamic-form/models/form';
   ]
 })
 export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
-  private etapas$: Observable<Etapa[]>;
-  private tareas$: Observable<Tarea[]>;
+  // private etapas$: Observable<Etapa[]>;
+  private etapas: Etapa[];
+  // private tareas$: Observable<Tarea[]>;
+  private tareas: Tarea[];
   // private formularios$: Observable<Formulario[]>;
-  private formularios$: Observable<any[]>;
+  // private formularios$: Observable<any[]>;
+  private formularios: any[];
 
   private campos: any[];
 
@@ -111,6 +114,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
 
   constructor(
     private etapaService: EtapaService,
+    private etapaReactiveService: EtapaReactiveService,
     private route: ActivatedRoute,
     private tareaService: TareaService,
     private formularioService: FormularioService,
@@ -118,11 +122,11 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     private campoService: CampoService) { }
 
   ngOnInit() {
-    this.etapas$ = this.etapaService.etapas;
-    this.tareas$ = this.tareaService.tareas;
-    this.formularios$ = this.formularioService.formularios;
+    // this.etapas$ = this.etapaReactiveService.etapas;
+    // this.tareas$ = this.tareaService.tareas;
+    // this.formularios$ = this.formularioService.formularios;
 
-    this.campos = this.campoService.getCampos();
+    // this.campos = this.campoService.getCampos();
 
     this.onSubscribeVerticalStepper();
     this.onSubscribeHorizontalStepper();
@@ -137,37 +141,54 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
         console.log('No hay id de la tesis.');
       }
     });
-
   }
 
   initEtapasByProcesoId(TesisProcesoId: string) {
-    console.log('TesisProcesoId');
-    console.log(TesisProcesoId);
-    /** Traer Etapas */
-    this.etapaService.getEtapasByTesisProcesoId(TesisProcesoId);
-    setTimeout(() => {
-      /** Traer Tareas de la etapa seleccionada */
-      this.initGetTareas();
-    }, 1500);
+    this.etapaService.getEtapasByTesisProcesoId(TesisProcesoId)
+      .subscribe(etapas => {
+        this.etapas = etapas;
+        this.initGetTareasByEtapaId(etapas[0].id);
+      });
+    // this.etapaReactiveService.getEtapasByTesisProcesoId(TesisProcesoId);
+    // setTimeout(() => {
+    // this.initGetTareas();
+    // }, 1500);
   }
 
-  initGetTareas() {
+  initGetTareasByEtapaId(etapaIdSelect: string) {
     // let selectedIndex = this.verticalStepper.selectedIndex
-    const etapaId = this.verticalStepper.selected.label;
-    this.tareaService.getTareasByEtapaId(etapaId);
+    // const etapaId = this.verticalStepper.selected.label;
+    this.tareaService.getTareasByEtapaId(etapaIdSelect)
+      .subscribe(tareas => {
+        this.tareas = tareas;
+        this.initGetFormulariosByTareaId(tareas[0].id);
+      });
 
-    setTimeout(() => {
-      const tareaId = this.horizontalStepper.selected.label;
-      this.formularioService.getFormulariosByTareaId(tareaId);
-    }, 1000);
+    // setTimeout(() => {
+    // const tareaId = this.horizontalStepper.selected.label;
+    // this.formularioService.getFormulariosByTareaId(tareaId);
+    // }, 1000);
     // let selectedIndex = this.verticalStepper.selectedIndex
+  }
+
+  initGetFormulariosByTareaId(tareaIdSelect: string) {
+    this.formularioService.getFormulariosByTareaId(tareaIdSelect)
+      .subscribe(res => {
+        console.log('formularios');
+        console.log(res);
+        this.formularios = res;
+        // res[0]
+      });
   }
 
   onSubscribeVerticalStepper() {
     this.verticalStepper.selectionChange.asObservable()
       .subscribe((stepper: StepperSelectionEvent) => {
         const etapaId = stepper.selectedStep.label;
-        this.tareaService.getTareasByEtapaId(etapaId);
+        // console.log('etapaId');
+        this.initGetTareasByEtapaId(etapaId);
+        // console.log(etapaId);
+        // this.tareaService.getTareasByEtapaId(etapaId);
       });
   }
 
@@ -175,7 +196,8 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     this.horizontalStepper.selectionChange.asObservable()
       .subscribe((stepper: StepperSelectionEvent) => {
         const tareaId = stepper.selectedStep.label;
-        this.formularioService.getFormulariosByTareaId(tareaId);
+        this.initGetFormulariosByTareaId(tareaId);
+        // this.formularioService.getFormulariosByTareaId(tareaId);
       });
   }
 
@@ -200,14 +222,14 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   }
 
   // submit(value: { [name: string]: any }) {
-    // console.log('value');
-    // console.log(value);
+  // console.log('value');
+  // console.log(value);
   // }
 
-  public formularios: Form[] = [
+  public formularioss: Form[] = [
     {
       name: 'Mi primer formulario',
-      width: 33;
+      width: 33,
       fieldConfigs: [
         {
           type: 'input',
@@ -292,7 +314,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     },
     {
       name: 'Mi tercer formulario',
-      width: 33;
+      width: 33,
       fieldConfigs: [
         {
           type: 'input',

@@ -34,7 +34,7 @@ const routes: Routes = [
     path: ':proceso_id',
     loadChildren: '../tesis-procesos/tesis-procesos.module#TesisProcesosModule',
     // data: {
-      // title: 'Auth'
+    // title: 'Auth'
   }
 ];
 

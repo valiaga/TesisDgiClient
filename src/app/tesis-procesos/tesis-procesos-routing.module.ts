@@ -13,11 +13,11 @@ import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-p
 const routes: Routes = [
   {
     path: '',
-    component: FindTesisProcesoPageComponent
+    component: FindTesisProcesoPageComponent,
   },
   {
     path: ':id',
-    component: FlowTesisProcesoPageComponent    
+    component: FlowTesisProcesoPageComponent,
   }
 ];
 

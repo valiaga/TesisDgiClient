@@ -10,7 +10,7 @@ import { Proceso } from '../../procesos/shared/proceso.model';
       <img mat-card-avatar src="https://thumbs.dreamstime.com/z/diploma-y-casquillo-eps-de-la-graduaci%C3%B3n-1689288.jpg">
         <mat-card-title>{{proceso.nombre}}</mat-card-title>
       </mat-card-header>
-    <mat-divider></mat-divider>-->  
+    <mat-divider></mat-divider>-->
     <mat-card-content>
       <p> <b>{{ nombre }}</b>  </p>
       <!--  <mat-slide-toggle color="warn" [checked]="proceso.activo" >
@@ -48,7 +48,6 @@ import { Proceso } from '../../procesos/shared/proceso.model';
       box-sizing: border-box;
       /* margin: 16px */
     }
-    
     `
   ]
 })
@@ -64,7 +63,7 @@ export class ProcesoComponent implements OnInit {
   get id() {
     return this.proceso.id;
   }
-  
+
   get nombre() {
     return this.proceso.nombre;
   }
