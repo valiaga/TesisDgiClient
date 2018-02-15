@@ -8,6 +8,7 @@ import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
 import { CampoService } from './campo.service';
+import { Form } from '../models/form';
 
 
 @Injectable()
@@ -21,10 +22,10 @@ export class FormularioService {
       // .get<IFormulario[]>(`${apiUrl}proceso/formularios/?all=true`)
       .get<IFormulario[]>(`${apiUrl}proceso/formularios`);
   }
-  public getFormulariosByTareaId$(tareaId: string): Observable<IFormulario[]> {
+  public getFormulariosByTareaId$(tareaId: string): Observable<Form[]> {
     const apiUrl = environment.apiUrl;
     return this.http
-      .get<IFormulario[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`);
+      .get<Form[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`);
   }
 }
 

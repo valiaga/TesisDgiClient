@@ -27,7 +27,8 @@ import { Form } from '../models/form';
 })
 export class ManyDynamicFormComponent implements OnInit {
 
-  @Input('formularios') formularios: any[];
+  // @Input('formularios') formularios: any[];
+  @Input('formularios') formularios: Form[];
 
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
 
@@ -49,7 +50,7 @@ export class ManyDynamicFormComponent implements OnInit {
       // this.form.setValue('name', 'Vitmar Aliaga');
       // this.form.setValue('edad', '15');
       // this.formTest = controls;
-    }, 10000);
+    }, 2000);
   }
 
   submit(value: { [name: string]: any }) {

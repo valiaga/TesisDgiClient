@@ -23,6 +23,7 @@ export interface IFormulario {
     orden: number;
     fecha_creacion: string;
     fecha_actualizacion: string;
+    width: number;
 
     // campos: Observable<Campo[]>;
     campos: ICampo[];

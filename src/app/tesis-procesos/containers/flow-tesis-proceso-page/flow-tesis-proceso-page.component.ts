@@ -15,6 +15,9 @@ import { CampoService } from '../../../dynamic-form/shared/campo.service';
 import { DynamicFormComponent } from '../../../dynamic-form/containers/dynamic-form.component';
 import { FieldConfig } from '../../../dynamic-form/models/field-config';
 import { Form } from '../../../dynamic-form/models/form';
+import { IFormulario } from '../../../dynamic-form/models.1/formulario';
+import { Validation } from '../../../dynamic-form/models/validation';
+import { ValidatorFn, Validator } from '@angular/forms/src/directives/validators';
 // import { ControlService } from '../../../forms-dynamic/shared/control.service';
 
 
@@ -97,7 +100,8 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   private tareas: Tarea[];
   // private formularios$: Observable<Formulario[]>;
   // private formularios$: Observable<any[]>;
-  private formularios: any[];
+  // private formularios: IFormulario[];
+  private formularios: Form[];
 
   private campos: any[];
 
@@ -176,9 +180,48 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       .subscribe(res => {
         console.log('formularios');
         console.log(res);
-        this.formularios = res;
-        // res[0]
+        console.log(this.transformJsonForm(res));
+        this.formularios = this.transformJsonForm(res);
       });
+  }
+
+  private getValidatorFn(validation: Validation): ValidatorFn {
+
+    let validator: ValidatorFn;
+    switch (validation.validation) {
+      case 'required':
+        validator = Validators.required;
+        break;
+      case 'email':
+        validator = Validators.email;
+        break;
+      // default:
+      // break;
+    }
+
+    return validator;
+  }
+
+  private getListValidatorFn(validations: Validation[]): ValidatorFn[] {
+    if (!validations.length) {
+      return;
+    }
+    const validationsFn: ValidatorFn[] = validations.map(validation => this.getValidatorFn(validation));
+    return validationsFn;
+  }
+
+  private transformJsonForm(formularios: Form[]) {
+    const Iformularios: Form[] = [];
+
+    formularios.forEach(form => {
+      const ICampos: FieldConfig[] = [];
+      form.campos.forEach(campo => {
+        campo.validation = this.getListValidatorFn(campo.campovalidation_set);
+        ICampos.push(campo);
+      });
+      Iformularios.push(form);
+    });
+    return Iformularios;
   }
 
   onSubscribeVerticalStepper() {
@@ -230,7 +273,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     {
       nombre: 'Mi primer formulario',
       width: 33,
-      fieldConfigs: [
+      campos: [
         {
           type: 'input',
           label: 'Nombres',
@@ -277,7 +320,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     {
       nombre: 'Mi Segundo formulario',
       width: 33,
-      fieldConfigs: [
+      campos: [
         {
           type: 'input',
           label: 'Nombres',
@@ -315,7 +358,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     {
       nombre: 'Mi tercer formulario',
       width: 33,
-      fieldConfigs: [
+      campos: [
         {
           type: 'input',
           label: 'Nombres',
