@@ -9,39 +9,48 @@ import { AuthService } from './shared/auth.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material/material.module';
-import { LoginPageComponent } from './containers/login-page.component';
 import { LoginFormComponent } from './components/login-form.component';
 import { AngularModule } from '../shared/angular/angular.module';
+import { AuthComponent } from './auth.component';
+import {
+  RegisterPageComponent,
+  LoginPageComponent,
+} from './containers';
+import { HttpClientModule } from '@angular/common/http';
 
-
-export const COMPONENTS = [ 
-  UserComponent, 
+export const COMPONENTS = [
+  UserComponent,
   GroupComponent,
   LoginPageComponent,
-  LoginFormComponent
+  LoginFormComponent,
+  AuthComponent,
+  RegisterPageComponent,
 ];
 
 @NgModule({
   imports: [
-    // CommonModule,
-    // ReactiveFormsModule, 
+    CommonModule,
+    // ReactiveFormsModule,
     AuthRoutingModule,
+    HttpClientModule,
     AngularModule,
     MaterialModule,
     // RouterModule.forChild(routes),
     // AuthRoutingModule,
   ],
   declarations: COMPONENTS,
-  // exports: COMPONENTS
+  providers: [
+    AuthService,
+  ],
 })
 export class AuthModule {
   // static forRoot(): ModuleWithProviders {
-    // return {
-      // ngModule: RootAuthModule,
-      // providers: [ AuthService, AuthGuardService  ]
-    // }
+  // return {
+  // ngModule: RootAuthModule,
+  // providers: [ AuthService, AuthGuardService  ]
   // }
- }
+  // }
+}
 
 
 // @NgModule({

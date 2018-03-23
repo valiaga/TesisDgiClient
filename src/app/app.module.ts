@@ -7,6 +7,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { NotFoundPageComponent } from './core/components/not-found-page.component';
 import { MaterialModule } from './shared/material/material.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { TokenInterceptorService } from './lib/token-interceptor.service';
 // import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -19,12 +21,19 @@ import { MaterialModule } from './shared/material/material.module';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule,
     // BrowserModule,
     // CoreModule,
     // AuthModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [
     AppComponent,
     // ShellComponent

@@ -10,12 +10,12 @@ import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'dgi-tesis-proceso-list',
   template: `
-    <div class="card-container">  
+    <div class="card-container">
       <dgi-tesis-proceso *ngFor="let tesisProceso of tesisProcesos$ | async" [tesisProceso] = "tesisProceso">
       </dgi-tesis-proceso>
 
       <dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
-    </div>  
+    </div>
       `,
   styles: [
     `
@@ -28,14 +28,14 @@ import { Observable } from 'rxjs/Observable';
 })
 export class TesisProcesoListComponent implements OnInit {
 
-  private tesisProcesos$: Observable<TesisProceso[]>
-  private proceso_id: string = '';
+  private tesisProcesos$: Observable<TesisProceso[]>;
+  private procesoId = '';
 
-  constructor(private route: ActivatedRoute, 
-              private tesisProcesoService: TesisProcesoService,
-              private dialog: MatDialog,
-             ) { }
-              
+  constructor(private route: ActivatedRoute,
+    private tesisProcesoService: TesisProcesoService,
+    private dialog: MatDialog,
+  ) { }
+
   ngOnInit() {
     this.tesisProcesos$ = this.tesisProcesoService.tesisProcesos;
     /*
@@ -45,11 +45,11 @@ export class TesisProcesoListComponent implements OnInit {
       })
       .subscribe(da => console.log(da));
       */
-      
+
     this.route.params.subscribe(params => {
-      this.proceso_id = params['proceso_id'];
-      if (this.proceso_id){
-        this.getTesisProcesos(this.proceso_id.toString());
+      this.procesoId = params['proceso_id'];
+      if (this.procesoId) {
+        this.getTesisProcesos(this.procesoId.toString());
       } else {
         console.log('No hay parametros');
       }
@@ -60,8 +60,8 @@ export class TesisProcesoListComponent implements OnInit {
     this.tesisProcesoService.getTesisProcesosByProcesoId(proceso_id);
   }
 
-  openDialog():void{
-    let dialogRef = this.dialog.open(CreateTesisProcesoDialogComponent, {
+  openDialog(): void {
+    const dialogRef = this.dialog.open(CreateTesisProcesoDialogComponent, {
       width: '500px',
       // data: {
       //   proyectoNombre: '...'
@@ -70,17 +70,17 @@ export class TesisProcesoListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      if(result && result.submit){
+      if (result && result.submit) {
         this.guardarTesisProceso(result.realData);
-      }else{
-        console.log('has cancel')
-        console.log(result && result.realData)
+      } else {
+        console.log('has cancel');
+        console.log(result && result.realData);
       }
     });
   }
 
-  guardarTesisProceso(data){
-    data.proceso=this.proceso_id;
+  guardarTesisProceso(data) {
+    data.proceso = this.procesoId;
     this.tesisProcesoService.createTesisProcesoAndProyecto(data);
   }
 }

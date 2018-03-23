@@ -12,13 +12,6 @@ import { NotFoundPageComponent } from './core/components/not-found-page.componen
 // Array con las rutas de la aplicación
 const routes: Routes = [
   {
-    path: '',
-    loadChildren: './core/core.module#CoreModule',
-    canActivate: [
-
-    ]
-  },
-  {
     path: 'tesis-procesos',
     // path: 'tesis-etapas',
     loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
@@ -27,8 +20,15 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'login',
+    path: 'auth',
     loadChildren: './auth/auth.module#AuthModule'
+  },
+  {
+    path: '',
+    loadChildren: './core/core.module#CoreModule',
+    canActivate: [
+
+    ]
   },
   {
     path: '**',  // para casos not found

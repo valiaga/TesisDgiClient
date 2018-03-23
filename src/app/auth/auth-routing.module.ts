@@ -3,13 +3,35 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { UserComponent } from './user/user.component';
 import { GroupComponent } from './group/group.component';
-import { LoginPageComponent } from './containers/login-page.component';
+import {
+  RegisterPageComponent,
+  LoginPageComponent,
+} from './containers';
+import { AuthComponent } from './auth.component';
 
 const routes: Routes = [
-    // { path: '', redirectTo: 'login' },
-    { path: '', component: LoginPageComponent },
-    { path: 'groups', component: GroupComponent },
-    { path: 'users', component: UserComponent }
+  {
+    path: '',
+    component: AuthComponent,
+    children: [
+      {
+        path: 'login',
+        component: LoginPageComponent,
+      },
+      {
+        path: 'register',
+        component: RegisterPageComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+      },
+    ]
+    // component: LoginPageComponent
+  },
+  // { path: 'groups', component: GroupComponent },
+  // { path: 'users', component: UserComponent }
 ];
 
 @NgModule({

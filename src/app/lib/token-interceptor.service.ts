@@ -19,6 +19,8 @@ export class TokenInterceptorService implements HttpInterceptor {
   }
 
   private subscribeToTokenChanges() {
+    // console.log('Holaaaaaaaaaaaaaaaaaaaaaa');
+
     // this.busService.getUserToken$().subscribe(this.setTokenIfAny.bind(this));
   }
   private setTokenIfAny(data) {
@@ -26,10 +28,12 @@ export class TokenInterceptorService implements HttpInterceptor {
       this.token = data.token;
     }
   }
-  public intercept(
+  intercept(
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    console.log('holaaa');
+
     const authorizationReq = this.setAuthHeader(req);
     const authorizationAndUrlReq = this.setUrlHeader(authorizationReq);
     const handledRequest = next.handle(authorizationAndUrlReq);

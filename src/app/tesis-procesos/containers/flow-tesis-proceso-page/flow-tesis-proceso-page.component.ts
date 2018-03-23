@@ -269,6 +269,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   // console.log(value);
   // }
 
+  /*
   public formularioss: any[] = [
     {
       nombre: 'Mi primer formulario',
@@ -394,7 +395,9 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       ],
     },
   ];
+  */
 
+  /*
   config: FieldConfig[] = [
     {
       type: 'input',
@@ -442,96 +445,99 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       required: false,
       validation: []
     },*/
-    {
-      type: 'select',
-      label: 'Favourite Food',
-      name: 'food',
-      options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
-      placeholder: 'Select an option',
-      width: 50,
-      required: true,
-      validation: [Validators.required],
-    },
-    {
-      type: 'textarea',
-      label: 'Descripción',
-      name: 'descripcion',
-      // options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
-      placeholder: 'Descripción',
-      width: 50,
-      required: true,
-      validation: [Validators.required],
-    },
-    {
-      type: 'slideToggle',
-      label: 'Activo',
-      name: 'activo',
-      disabled: false,
-      // value: true, /** Solo fue prueva y funciono jejej. */
-      // options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
-      placeholder: 'Activo',
-      width: 50,
-      required: true,
-      validation: [Validators.requiredTrue],
-    },
-    {
-      type: 'radio',
-      label: 'Sexo',
-      name: 'sexo',
-      options: [
-        { id: 'M', label: 'Masculino', },
-        { id: 'F', label: 'Femenino', },
-      ],
-      placeholder: 'Sexo',
-      width: 50,
-      directionVertical: false,
-      required: true,
-      validation: [Validators.required],
-    },
-    {
-      type: 'checkbox',
-      label: 'Es Alumno?',
-      name: 'es_alumno',
-      placeholder: 'Es Alumno?',
-      width: 50,
-      align: 'start', /** start/ end */
-      disabled: false,
-      // directionVertical: false,
+  /*
+  {
+    type: 'select',
+    label: 'Favourite Food',
+    name: 'food',
+    options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+    placeholder: 'Select an option',
+    width: 50,
+    required: true,
+    validation: [Validators.required],
+  },
+  {
+    type: 'textarea',
+    label: 'Descripción',
+    name: 'descripcion',
+    // options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+    placeholder: 'Descripción',
+    width: 50,
+    required: true,
+    validation: [Validators.required],
+  },
+  {
+    type: 'slideToggle',
+    label: 'Activo',
+    name: 'activo',
+    disabled: false,
+    // value: true, /** Solo fue prueva y funciono jejej. */
+  // options: ['Pizza', 'Hot Dogs', 'Knakworstje', 'Coffee'],
+  /*
+  placeholder: 'Activo',
+  width: 50,
+  required: true,
+  validation: [Validators.requiredTrue],
+},
+{
+  type: 'radio',
+  label: 'Sexo',
+  name: 'sexo',
+  options: [
+    { id: 'M', label: 'Masculino', },
+    { id: 'F', label: 'Femenino', },
+  ],
+  placeholder: 'Sexo',
+  width: 50,
+  directionVertical: false,
+  required: true,
+  validation: [Validators.required],
+},
+{
+  type: 'checkbox',
+  label: 'Es Alumno?',
+  name: 'es_alumno',
+  placeholder: 'Es Alumno?',
+  width: 50,
+  align: 'start', /** start/ end */
+  // disabled: false,
+  // directionVertical: false,
 
-      required: true,
-      validation: [Validators.required],
-    },
-    // {
-    // type: 'password',
-    // label: 'Password',
-    // name: 'password',
-    // placeholder: 'Password',
-    // width: 50,
+  // required: true,
+  // validation: [Validators.required],
+  // },
+  // {
+  // type: 'password',
+  // label: 'Password',
+  // name: 'password',
+  // placeholder: 'Password',
+  // width: 50,
+  // required: true,
+  // validation: [ Validators.required ],
+  // },
+  /*
+  {
+    type: 'datepicker',
+    label: 'Fecha de Nacimiento',
+    name: 'fech_nac',
+    placeholder: 'Fecha de Nacimiento',
+    width: 50,
     // required: true,
     // validation: [ Validators.required ],
-    // },
-    {
-      type: 'datepicker',
-      label: 'Fecha de Nacimiento',
-      name: 'fech_nac',
-      placeholder: 'Fecha de Nacimiento',
-      width: 50,
-      // required: true,
-      // validation: [ Validators.required ],
-    },
-    {
-      type: 'datepicker',
-      label: 'Fecha Inicio de proyecto',
-      name: 'fech_ini_proyecto',
-      placeholder: 'Fecha Inicio de proyecto',
-      width: 50,
-      required: true,
-      validation: [Validators.required],
-    },
-    {
-      label: 'Guardar',
-      name: 'submit',
-      type: 'buttonSubmit'
-    }
-  ];
+  },
+  {
+    type: 'datepicker',
+    label: 'Fecha Inicio de proyecto',
+    name: 'fech_ini_proyecto',
+    placeholder: 'Fecha Inicio de proyecto',
+    width: 50,
+    required: true,
+    validation: [Validators.required],
+  },
+  {
+    label: 'Guardar',
+    name: 'submit',
+    type: 'buttonSubmit'
+  }
+];*/
 }
