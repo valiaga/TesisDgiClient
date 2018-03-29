@@ -56,6 +56,7 @@ export class CatchInterceptorService implements HttpInterceptor {
     this.navigateToLogin();
   }
   private navigateToLogin() {
-    this.router.navigateByUrl('/credentials/login');
+    // this.router.navigateByUrl('/credentials/login');
+    this.router.navigateByUrl('auth/login');
   }
 }

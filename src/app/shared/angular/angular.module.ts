@@ -5,9 +5,9 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 const ANGULAR_MODULES: any[] = [
-  FormsModule, 
+  FormsModule,
   ReactiveFormsModule,
-  HttpClientModule,
+  // HttpClientModule,
   CommonModule,
 ];
 

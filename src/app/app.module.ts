@@ -9,6 +9,8 @@ import { NotFoundPageComponent } from './core/components/not-found-page.componen
 import { MaterialModule } from './shared/material/material.module';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { TokenInterceptorService } from './lib/token-interceptor.service';
+import { AuthGuardService } from './auth/shared/auth-guard.service';
+import { LibModule } from './lib/lib.module';
 // import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -17,26 +19,20 @@ import { TokenInterceptorService } from './lib/token-interceptor.service';
     NotFoundPageComponent,
   ],
   imports: [
-    // BrowserModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule,
-    // BrowserModule,
-    // CoreModule,
+
+    // HttpClientModule,
+    LibModule,
     // AuthModule.forRoot(),
   ],
   providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    },
+    AuthGuardService,
   ],
   bootstrap: [
     AppComponent,
-    // ShellComponent
   ]
 })
 export class AppModule { }

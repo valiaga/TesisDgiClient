@@ -18,21 +18,20 @@ import { Ng5BreadcrumbModule } from 'ng5-breadcrumb';
 import { AngularModule } from '../shared/angular/angular.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { CovalentModule } from '../shared/covalent/covalent.module';
+import { AuthService } from '../auth/shared/auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const SHELL_COMPONENTS: any[] = [
-  ShellComponent, 
+  ShellComponent,
   ToolbarComponent, MainContentComponent,
-  SidenavComponent, SidenavComponent, FooterComponent
-  // ,
-  // NotFoundPageComponent
-  // BreadcrumbComponent
-]
+  SidenavComponent, SidenavComponent, FooterComponent,
+];
 
 @NgModule({
   imports: [
-    //routing App module
     CoreRoutingModule,
-
+    // HttpClientModule,
+    // routing App module
     AngularModule,
     MaterialModule,
     CovalentModule,
@@ -40,14 +39,10 @@ const SHELL_COMPONENTS: any[] = [
     Ng5BreadcrumbModule.forRoot()
   ],
   declarations: [
-    SHELL_COMPONENTS,
-    ],
-  exports: [
-    // ShellComponent,
-    // NotFoundPageComponent,
-    ],
-  // providers: [
-    // BreadcrumbService
-  // ]
+    ...SHELL_COMPONENTS,
+  ],
+  providers: [
+    AuthService,
+  ],
 })
 export class CoreModule { }

@@ -9,12 +9,14 @@ interface IResponse {
 
 @Injectable()
 export class AuthService {
-  // private readonly url = 'rest-auth';
-  private readonly url = 'http://localhost:8000/rest-auth';
 
   constructor(private httpClient: HttpClient) { }
 
   public login(data: any): Observable<IResponse> {
-    return this.httpClient.post<IResponse>(`${this.url}/login/`, data);
+    return this.httpClient.post<IResponse>(`login/`, data);
+  }
+
+  public logout(): Observable<IResponse> {
+    return this.httpClient.post<IResponse>(`logout/`, {});
   }
 }

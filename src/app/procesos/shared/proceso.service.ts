@@ -1,4 +1,4 @@
-import { environment } from '../../../environments/environment';
+// import { environment } from '../../../environments/environment';
 import { UserService } from '../../auth/user/user.service';
 // import { SettingsService } from '../../shared/settings.service';
 import { HttpClient } from '@angular/common/http';
@@ -19,51 +19,48 @@ export class ProcesoService {
   private _procesos: BehaviorSubject<Proceso[]>;
   private dataStore: {
     procesos: Proceso[]
-  }
+  };
 
   constructor(
     private http: HttpClient,
     private _userService: UserService,
     private snackBar: MatSnackBar) {
-      
-      // Config Rxjs.
-      this.dataStore = { procesos: []}
-      this._procesos = <BehaviorSubject<Proceso[]>> new BehaviorSubject([]);
-      this.procesos = this._procesos.asObservable();
-    }
-              
+
+    // Config Rxjs.
+    this.dataStore = { procesos: [] };
+    this._procesos = <BehaviorSubject<Proceso[]>>new BehaviorSubject([]);
+    this.procesos = this._procesos.asObservable();
+  }
+
   /**
    * Get the top 10 most recent procesos
    */
   // public getRecentProcesos$(): Observable<IResponse>{
-    // let apiUrl = this._settingsService.settings['apiUrl'];
-    // let apiUrl = environment.apiUrl;
-    // return this.http.get<IResponse>(`${apiUrl}proceso/procesos/`, { headers: this._userService.getHeaders()})
+  // let apiUrl = this._settingsService.settings['apiUrl'];
+  // let apiUrl = environment.apiUrl;
+  // return this.http.get<IResponse>(`proceso/procesos/`, { headers: this._userService.getHeaders()})
   // }
 
   /**
    * Get the all procesos
    */
-  public getAllProcesos() {
-    let apiUrl = environment.apiUrl;
-    
+  public getAllProcesos(params: any = { all: true }) {
     return this.http
-      .get<IProceso[]>(`${apiUrl}proceso/procesos/?all=true`)
+      .get<IProceso[]>(`proceso/procesos/`, { params: params })
       .subscribe(data => {
 
         this.dataStore.procesos = data;
         this._procesos.next(Object.assign({}, this.dataStore).procesos);
       }, error => console.log('Could not load procesos.')
-      )
+      );
   }
 
   /**
    * Gets a proceso by Id
-   * @param procesoId 
+   * @param procesoId
    */
   public getProcesoById(id: string) {
-    let apiUrl = environment.apiUrl;
-    this.http.get<IProceso>(`${apiUrl}proceso/procesos/${id}/`)
+    this.http.get<IProceso>(`proceso/procesos/${id}/`)
       .subscribe(data => {
         let notFound = true;
 
@@ -83,8 +80,7 @@ export class ProcesoService {
   }
 
   public createProceso(proceso: any) {
-    let apiUrl = environment.apiUrl;
-    this.http.post<IProceso>(`${apiUrl}proceso/procesos/`, proceso)
+    this.http.post<IProceso>(`proceso/procesos/`, proceso)
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.proceso.post, MESSAGES.actions.post, snackBarDuration);
@@ -96,30 +92,30 @@ export class ProcesoService {
 
 
   public updateProceso(proceso: Proceso) {
-    let apiUrl = environment.apiUrl;
-    this.http.put<IProceso>(`${apiUrl}proceso/procesos/${proceso.id}`, proceso)
-    .subscribe(data => {
 
-      this.snackBar.open(MESSAGES.proceso.put, MESSAGES.actions.put, snackBarDuration);
+    this.http.put<IProceso>(`proceso/procesos/${proceso.id}`, proceso)
+      .subscribe(data => {
 
-      this.dataStore.procesos.forEach((proceso, index) => {
-        if (proceso.id === data.id) { this.dataStore.procesos[index] = data; }
-      });
-      
-      this._procesos.next(Object.assign({}, this.dataStore).procesos);
-    }, error => console.log('Could not update proceso.'));
+        this.snackBar.open(MESSAGES.proceso.put, MESSAGES.actions.put, snackBarDuration);
+
+        this.dataStore.procesos.forEach((proc, index) => {
+          if (proc.id === data.id) { this.dataStore.procesos[index] = data; }
+        });
+
+        this._procesos.next(Object.assign({}, this.dataStore).procesos);
+      }, error => console.log('Could not update proceso.'));
   }
-  
+
   public deleteProceso(id: string) {
-    let apiUrl = environment.apiUrl;
-    this.http.delete<IProceso>(`${apiUrl}proceso/procesos/${id}/`)
+
+    this.http.delete<IProceso>(`proceso/procesos/${id}/`)
       .subscribe(response => {
 
         this.snackBar.open(MESSAGES.proceso.delete, MESSAGES.actions.delete, snackBarDuration);
-  
+
         this.dataStore.procesos.forEach((proceso, index) => {
           if (proceso.id === id) { this.dataStore.procesos.splice(index, 1); }
-          });
+        });
         this._procesos.next(Object.assign({}, this.dataStore).procesos);
       }, error => console.log('Could not delete proceso.'));
   }
@@ -129,7 +125,7 @@ export class ProcesoService {
    * Searches procesos by title, description and Active
    */
   // public search(): Observable<any> {
-    // return ;
+  // return ;
   // }
 
   private handleError(error: any, operation: string): Promise<any> {
@@ -140,8 +136,7 @@ export class ProcesoService {
   }
 
   /**
-    getPaginationProcesos(){ } 
-    
+    getPaginationProcesos(){ }
     getAllProcesos() { }
     getProcesosByTipoId() { }
     getProcesosByTipoId() { }
@@ -151,11 +146,9 @@ export class ProcesoService {
     getProcesoById(id: string) { }
     getProcesoByName(id: string) { }
     getProcesoByState(id: string) { }
-    
     searchProceso(term: string) { }
     createProceso(proceso: Proceso) { }
     createProcesoAndProyecto(proceso: Proceso, proyecto: Proyecto) { }
-    
     updateProceso(proceso: Proceso) { }
     deleteProceso(id: string) { }
    */

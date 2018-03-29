@@ -8,6 +8,7 @@ import { TdMediaService } from '@covalent/core';
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
+import { AuthService } from '../../auth/shared/auth.service';
 
 @Component({
   selector: 'dgi-shell',
@@ -19,34 +20,47 @@ import 'rxjs/add/operator/mergeMap';
 export class ShellComponent implements OnInit {
 
   constructor(public media: TdMediaService,
-            private breadcrumbService: BreadcrumbService,
-            
-            private router: Router,
-            private activatedRoute: ActivatedRoute,
-            private titleService: Title) { }
+    private breadcrumbService: BreadcrumbService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
+    private authService: AuthService,
+    private titleService: Title) { }
 
   ngOnInit() {
 
     this.changeTitleOnNavigation();
   }
 
-  get nameApp(){
-    return "Sistema de Tesis";
+  get nameApp() {
+    return 'Sistema de Tesis';
   }
 
+
+  public logout() {
+    this.authService.logout()
+      .subscribe(this.deleteDataOfLocalStorage.bind(this));
+  }
+
+  private deleteDataOfLocalStorage(res: any) {
+    // console.log('clear');
+    // console.log(res);
+    localStorage.clear();
+    this.router.navigateByUrl('auth/login');
+  }
   /**
    * Change Title
    */
-  private changeTitleOnNavigation () {
+  private changeTitleOnNavigation() {
     this.router.events
       .filter((event) => event instanceof NavigationEnd)
       .map(() => this.activatedRoute)
       .map((route) => {
-        while (route.firstChild) route = route.firstChild;
+        // while (route.firstChild) route = route.firstChild;
         return route;
       })
       .filter((route) => route.outlet === 'primary')
       .mergeMap((route) => route.data)
       .subscribe((event) => this.titleService.setTitle(event['title']));
-    }
+  }
 }

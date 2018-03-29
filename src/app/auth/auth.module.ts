@@ -16,7 +16,9 @@ import {
   RegisterPageComponent,
   LoginPageComponent,
 } from './containers';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatCardModule, MatInputModule, MatButtonModule } from '@angular/material';
+import { UrlAuthInterceptorService } from '../lib/url-auth-interceptor.service';
 
 export const COMPONENTS = [
   UserComponent,
@@ -27,20 +29,32 @@ export const COMPONENTS = [
   RegisterPageComponent,
 ];
 
+export const MATERIAL_MODULES: any = [
+  MatCardModule,
+  MatInputModule,
+  MatButtonModule,
+];
+
+export const ANGULAR_MODULES: any = [
+  CommonModule,
+  HttpClientModule,
+  ReactiveFormsModule,
+];
+
 @NgModule({
   imports: [
-    CommonModule,
-    // ReactiveFormsModule,
     AuthRoutingModule,
-    HttpClientModule,
-    AngularModule,
-    MaterialModule,
-    // RouterModule.forChild(routes),
-    // AuthRoutingModule,
+    ...MATERIAL_MODULES,
+    ...ANGULAR_MODULES,
   ],
   declarations: COMPONENTS,
   providers: [
     AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UrlAuthInterceptorService,
+      multi: true,
+    },
   ],
 })
 export class AuthModule {

@@ -4,6 +4,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { NotFoundPageComponent } from './core/components/not-found-page.component';
+import { AuthGuardService } from './auth/shared/auth-guard.service';
 // import { LoginPageComponent } from './auth/containers/login-page.component';
 // import { ShellComponent } from './core/shell/shell.component';
 // import { AppComponent } from './app.component';
@@ -14,25 +15,30 @@ const routes: Routes = [
   {
     path: 'tesis-procesos',
     // path: 'tesis-etapas',
-    loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
+    loadChildren: 'app/tesis-procesos/tesis-procesos.module#TesisProcesosModule',
     canActivate: [
-
+      AuthGuardService,
     ]
   },
   {
     path: 'auth',
-    loadChildren: './auth/auth.module#AuthModule'
+    loadChildren: 'app/auth/auth.module#AuthModule'
   },
   {
     path: '',
-    loadChildren: './core/core.module#CoreModule',
+    loadChildren: 'app/core/core.module#CoreModule',
     canActivate: [
-
+      AuthGuardService,
     ]
   },
   {
-    path: '**',  // para casos not found
+    path: '404',
     component: NotFoundPageComponent
+  },
+  {
+    path: '**',  // para casos not found
+    redirectTo: '404',
+    pathMatch: 'full',
   },
 ];
 
