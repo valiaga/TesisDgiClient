@@ -7,37 +7,34 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class LineaInvestigacionService {
+  private url = 'academico/linea-investigacions/';
 
   constructor(private http: HttpClient) { }
 
   public getLineaInvestigacions$(sort: string, order: string, page: number,
-    pageSize: number): Observable<IResponse>{
-    
+    pageSize: number): Observable<IResponse> {
     // console.log('getLineaInvestigacions========>>>>>>>>>');
     // console.log(sort);
     // console.log(order);
     // console.log(page);
     // console.log(pageSize);
-
-    let apiUrl = environment.apiUrl;
-    const query = `?page_size=${pageSize}&page=${(page+1)}`
+    const params: any = { page_size: pageSize, page: (page + 1) };
     return this.http
-      .get<IResponse>(`${apiUrl}academico/linea-investigacions/${query}`);
+      .get<IResponse>(this.url, { params: params });
   }
 
-  public getAllLineaInvestigacion$(): Observable<ILineaInvestigacion[]>{
-    let apiUrl = environment.apiUrl;
+  public getAllLineaInvestigacion$(): Observable<ILineaInvestigacion[]> {
+    const params: any = { all: true };
     return this.http
-      .get<ILineaInvestigacion[]>(`${apiUrl}academico/linea-investigacions/?all=true`);    
+      .get<ILineaInvestigacion[]>(this.url, { params: params });
   }
 
   public postLineaInvestigacion$(lineaInvestigacion: LineaInvestigacion): Observable<ILineaInvestigacion> {
-    let apiUrl = environment.apiUrl;
     return this.http
-      .post<ILineaInvestigacion>(`${apiUrl}academico/linea-investigacions/`, lineaInvestigacion);
-  } 
+      .post<ILineaInvestigacion>(this.url, lineaInvestigacion);
+  }
 
-  public getNuevaLineaInvestigacion(): LineaInvestigacion{
+  public getNuevaLineaInvestigacion(): LineaInvestigacion {
     return new LineaInvestigacion('', '', false, '');
   }
 }

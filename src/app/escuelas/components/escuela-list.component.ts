@@ -15,8 +15,8 @@ import { EscuelaService } from '../shared/escuela.service';
   styles: [
     `
     :host {
-      /*display: flex;
-      flex-wrap: wrap;*/
+      display: flex;
+      flex-wrap: wrap;
       /*justify-content: center; */
       /* margin-top: 25px; */
     }

@@ -13,6 +13,7 @@ import { snackBarDuration } from '../../../config/general';
 
 @Injectable()
 export class ProcesoService {
+  private readonly url = 'proceso/procesos/';
   public searchText: string;
 
   procesos: Observable<Proceso[]>;
@@ -46,7 +47,7 @@ export class ProcesoService {
    */
   public getAllProcesos(params: any = { all: true }) {
     return this.http
-      .get<IProceso[]>(`proceso/procesos/`, { params: params })
+      .get<IProceso[]>(this.url, { params: params })
       .subscribe(data => {
 
         this.dataStore.procesos = data;
@@ -60,7 +61,7 @@ export class ProcesoService {
    * @param procesoId
    */
   public getProcesoById(id: string) {
-    this.http.get<IProceso>(`proceso/procesos/${id}/`)
+    this.http.get<IProceso>(`${this.url}${id}/`)
       .subscribe(data => {
         let notFound = true;
 
@@ -80,7 +81,7 @@ export class ProcesoService {
   }
 
   public createProceso(proceso: any) {
-    this.http.post<IProceso>(`proceso/procesos/`, proceso)
+    this.http.post<IProceso>(this.url, proceso)
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.proceso.post, MESSAGES.actions.post, snackBarDuration);
@@ -93,7 +94,7 @@ export class ProcesoService {
 
   public updateProceso(proceso: Proceso) {
 
-    this.http.put<IProceso>(`proceso/procesos/${proceso.id}`, proceso)
+    this.http.put<IProceso>(`${this.url}${proceso.id}`, proceso)
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.proceso.put, MESSAGES.actions.put, snackBarDuration);
@@ -108,7 +109,7 @@ export class ProcesoService {
 
   public deleteProceso(id: string) {
 
-    this.http.delete<IProceso>(`proceso/procesos/${id}/`)
+    this.http.delete<IProceso>(`${this.url}${id}/`)
       .subscribe(response => {
 
         this.snackBar.open(MESSAGES.proceso.delete, MESSAGES.actions.delete, snackBarDuration);

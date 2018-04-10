@@ -21,7 +21,7 @@ interface IResponse {
 
 @Injectable()
 export class ProyectoService {
-
+  private readonly url = 'proyecto/proyectos/';
 
 
   constructor(private http: HttpClient) { }
@@ -32,7 +32,7 @@ export class ProyectoService {
    */
   public getProyectos$(): Observable<IResponse> {
 
-    return this.http.get<IResponse>(`proyecto/proyectos/`);
+    return this.http.get<IResponse>(this.url);
   }
 
   /**
@@ -41,8 +41,8 @@ export class ProyectoService {
    * @return Retorna muchos Observables de tipo proyecto
    */
   public searchProyectos$(queryTitulo: string): Observable<IResponse> {
-    const params = { 'search': queryTitulo };
-    return this.http.get<IResponse>(`proyecto/proyectos/`, { params: params });
+    const params = { search: queryTitulo };
+    return this.http.get<IResponse>(this.url, { params: params });
   }
 
   /**

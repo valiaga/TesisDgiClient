@@ -12,7 +12,7 @@
                     <input type="password" matInput placeholder="password" formControlName="password">
                 </mat-input-container>
             </p>
-            <p>
+            <p *ngIf="errorMessage" class="dgi-login-error">
                 {{ errorMessage }}
             </p>
             <p class="dgi-login-buttons">

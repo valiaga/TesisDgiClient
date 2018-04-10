@@ -19,6 +19,7 @@ import {
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatCardModule, MatInputModule, MatButtonModule } from '@angular/material';
 import { UrlAuthInterceptorService } from '../lib/url-auth-interceptor.service';
+import { UserStoreService } from '../lib/user-store.service';
 
 export const COMPONENTS = [
   UserComponent,
@@ -50,6 +51,7 @@ export const ANGULAR_MODULES: any = [
   declarations: COMPONENTS,
   providers: [
     AuthService,
+    UserStoreService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UrlAuthInterceptorService,

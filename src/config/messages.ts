@@ -52,8 +52,7 @@ export const MESSAGES = {
         getMany: 'Las escuelas académicas se listaron con Éxito.',
         getOne: 'La escuela académica se listó con Éxito.',
         put: 'La escuela académica se actualizó con Éxito.',
-        
-        confirmDelete: '¿Estas segur@ que quieres eliminar la escuela académica?',        
+        confirmDelete: '¿Estas segur@ que quieres eliminar la escuela académica?',
         confirmCreate: '¿Estas segur@ que quieres guardar la escuela académica?',
     },
     proceso: {
@@ -80,5 +79,4 @@ export const MESSAGES = {
         getOne: 'El Campo se listó con Éxito.',
         put: 'El Campo se actualizó con Éxito.'
     }
-
-}
+};

@@ -22,6 +22,6 @@ export class UserStoreService {
     }
 
     set profile(user: string) {
-        localStorage.setItem('user', user);
+        localStorage.setItem('user', JSON.stringify(user));
     }
 }

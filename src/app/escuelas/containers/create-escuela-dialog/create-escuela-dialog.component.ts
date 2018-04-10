@@ -17,7 +17,7 @@ import { getMessageConfirm } from '../../../../config/general';
   styles: [
     `
     .escuela-container {
-      display: flex; 
+      display: flex;
       flex-direction: column;
     }
     .escuela-container .checkbox{
@@ -106,7 +106,7 @@ export class CreateEscuelaDialogComponent implements OnInit {
         .afterClosed().subscribe((accept: boolean) => {
           if (accept) {
             // this.escuelaService.remove(id);
-            this.escuelaService.create(escuelaModel)
+            this.escuelaService.create(escuelaModel);
             this.dialogRef.close();
             this.escuelaForm.reset();
           } else {

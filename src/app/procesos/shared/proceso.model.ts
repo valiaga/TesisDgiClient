@@ -8,12 +8,12 @@ export class Proceso {
         public activo: boolean,
         public fecha_creacion: string,
         public fecha_actualizacion: string,
-        public id?: string //uuid
-    ){ }
+        public id?: string // uuid
+    ) { }
 }
 
 export interface IProceso {
-    id: string; //uuid
+    id: string; // uuid
     nombre: string;
     descripcion: string;
     activo: boolean;
@@ -28,11 +28,10 @@ class Options {
     next: number;
     previous: number;
     range: string;
-    page_size: number; 
+    page_size: number;
 }
-  
+
 export interface IResponse {
     options: Options;
     results: IProceso[];
 }
-  

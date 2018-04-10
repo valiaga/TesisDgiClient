@@ -8,18 +8,19 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class TareaService {
+  private readonly url = 'proceso/tareas/';
 
   constructor(private http: HttpClient) { }
 
   public getTareas(): Observable<ITarea[]> {
-    const apiUrl = environment.apiUrl;
+    const params: any = { all: true };
     return this.http
-      .get<ITarea[]>(`${apiUrl}proceso/tareas/?all=true`);
+      .get<ITarea[]>(this.url, { params: params });
   }
+
   public getTareasByEtapaId(etapaId: string): Observable<ITarea[]> {
-    const apiUrl = environment.apiUrl;
     return this.http
-      .get<ITarea[]>(`${apiUrl}proceso/etapas/${etapaId}/tareas/`);
+      .get<ITarea[]>(`${this.url}${etapaId}/tareas/`);
   }
 }
 

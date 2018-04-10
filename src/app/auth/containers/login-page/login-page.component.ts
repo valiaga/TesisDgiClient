@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../shared/auth.service';
 import { Router } from '@angular/router';
+import { UserStoreService } from '../../../lib/user-store.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'dgi-login-page',
@@ -9,16 +11,18 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-page.component.scss'],
 })
 export class LoginPageComponent implements OnInit {
-  public errorMessage: string;
+  public errorMessage: string | null;
   public loginForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
+    private userStoreService: UserStoreService,
   ) { }
 
   ngOnInit() {
+    this.errorMessage = null;
     this.buildForm();
   }
 
@@ -39,9 +43,14 @@ export class LoginPageComponent implements OnInit {
     const valid = this.loginForm.valid;
     const value = this.loginForm.value;
     if (valid) {
-      console.log(value);
       this.authService.login(value)
-        .subscribe(this.postLogin.bind(this));
+        .subscribe(this.postLogin.bind(this), this.showMessageError.bind(this));
+    }
+  }
+
+  private showMessageError(err: HttpErrorResponse) {
+    if (err.ok === false && err.status === 400) {
+      this.errorMessage = 'Credenciales Incorrectas.';
     }
   }
 
@@ -58,10 +67,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   private saveToken(token: string) {
-    localStorage.setItem('token', token);
+    this.userStoreService.token = token;
   }
 
   private saveUser(user: any) {
-    localStorage.setItem('user', JSON.stringify(user));
+    this.userStoreService.profile = user;
   }
 }

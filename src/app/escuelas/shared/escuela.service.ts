@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { Escuela, IEscuela, IResponse } from './escuela';
-import { environment } from '../../../environments/environment';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatSnackBar } from '@angular/material';
 import { MESSAGES } from '../../../config/messages';
@@ -11,39 +10,34 @@ import { snackBarDuration } from '../../../config/general';
 
 @Injectable()
 export class EscuelaService {
+  private readonly url = 'academico/escuelas/';
   escuelas: Observable<Escuela[]>;
   private _escuelas: BehaviorSubject<Escuela[]>;
   private dataStore: {
     escuelas: Escuela[]
-  }
+  };
 
   constructor(private http: HttpClient,
-              private snackBar: MatSnackBar) { 
-
-
-
+    private snackBar: MatSnackBar) {
     this.dataStore = { escuelas: [] };
-
-    this._escuelas = <BehaviorSubject<Escuela[]>> new BehaviorSubject([]);
+    this._escuelas = <BehaviorSubject<Escuela[]>>new BehaviorSubject([]);
     this.escuelas = this._escuelas.asObservable();
   }
 
   loadAll() {
-    let apiUrl = environment.apiUrl;
-    
+    const params: any = { all: true };
     return this.http
-      .get<IEscuela[]>(`${apiUrl}academico/escuelas/?all=true`)
+      .get<IEscuela[]>(this.url, { params: params })
       .subscribe(data => {
         this.snackBar.open(MESSAGES.escuela.getMany, MESSAGES.actions.get, snackBarDuration);
         this.dataStore.escuelas = data;
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not load escuelas.')
-      )
+      );
   }
 
   load(id: number | string) {
-    let apiUrl = environment.apiUrl;
-    this.http.get<IEscuela>(`${apiUrl}academico/escuelas/${id}`)
+    this.http.get<IEscuela>(`${this.url}${id}`)
       .subscribe(data => {
         let notFound = true;
 
@@ -64,44 +58,35 @@ export class EscuelaService {
   }
 
   create(escuela: any) {
-    let apiUrl = environment.apiUrl;
-    console.log('escuela');
-    console.log(escuela);
-    this.http.post<IEscuela>(`${apiUrl}academico/escuelas/`, escuela)
+    this.http.post<IEscuela>(this.url, escuela)
       .subscribe(data => {
-
         this.snackBar.open(MESSAGES.escuela.post, MESSAGES.actions.post, snackBarDuration);
-
         this.dataStore.escuelas.push(data);
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not create escuela.'));
   }
-  
+
   update(escuela: Escuela) {
-    let apiUrl = environment.apiUrl;
-    this.http.put<IEscuela>(`${apiUrl}academico/escuelas/${escuela.id}`, escuela)
-    .subscribe(data => {
+    this.http.put<IEscuela>(`${this.url}${escuela.id}`, escuela)
+      .subscribe(data => {
+        this.snackBar.open(MESSAGES.escuela.put, MESSAGES.actions.put, snackBarDuration);
+        this.dataStore.escuelas.forEach((e, index) => {
+          if (e.id === data.id) { this.dataStore.escuelas[index] = data; }
+        });
 
-      this.snackBar.open(MESSAGES.escuela.put, MESSAGES.actions.put, snackBarDuration);
-
-      this.dataStore.escuelas.forEach((escuela, index) => {
-        if (escuela.id === data.id) { this.dataStore.escuelas[index] = data; }
-      });
-      
-      this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
-    }, error => console.log('Could not update escuela.'));
+        this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
+      }, error => console.log('Could not update escuela.'));
   }
-  
+
   remove(id: string) {
-    let apiUrl = environment.apiUrl;
-    this.http.delete<IEscuela>(`${apiUrl}academico/escuelas/${id}/`)
+    this.http.delete<IEscuela>(`${this.url}${id}/`)
       .subscribe(response => {
 
         this.snackBar.open(MESSAGES.escuela.delete, MESSAGES.actions.delete, snackBarDuration);
-  
+
         this.dataStore.escuelas.forEach((escuela, index) => {
           if (escuela.id === id) { this.dataStore.escuelas.splice(index, 1); }
-          });
+        });
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
       }, error => console.log('Could not delete escuela.'));
   }
@@ -113,17 +98,16 @@ export class EscuelaService {
 
   // NORMAL
   public getEscuelas$(sort: string, order: string, page: number,
-    pageSize: number): Observable<IResponse>{
-    let apiUrl = environment.apiUrl;    
-    return this.http.get<IResponse>(`${apiUrl}academico/escuelas/`);
+    pageSize: number): Observable<IResponse> {
+    return this.http.get<IResponse>(this.url);
   }
-  
+
   /**
    * Importante para un combo en lineas de investigación.
    */
-  public getAllEscuelas$(): Observable<IEscuela[]>{
-    let apiUrl = environment.apiUrl;
-    return this.http.get<IEscuela[]>(`${apiUrl}academico/escuelas/?all=true`);    
+  public getAllEscuelas$(): Observable<IEscuela[]> {
+    const params: any = { all: true };
+    return this.http.get<IEscuela[]>(this.url, { params: params });
   }
-  
+
 }

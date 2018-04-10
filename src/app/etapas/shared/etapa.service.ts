@@ -9,18 +9,19 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class EtapaService {
+  private readonly url = 'proceso/etapas/';
 
   constructor(private http: HttpClient) { }
 
   public getEtapas(): Observable<IEtapa[]> {
-    const apiUrl = environment.apiUrl;
+    const params: any = { all: true };
     return this.http
-      .get<IEtapa[]>(`${apiUrl}proceso/etapas/?all=true`);
+      .get<IEtapa[]>(this.url, { params: params });
   }
   public getEtapasByTesisProcesoId(tesisProcesoId: string): Observable<IEtapa[]> {
-    const apiUrl = environment.apiUrl;
+    const params: any = { tesis_proceso_id: tesisProcesoId };
     return this.http
-      .get<IEtapa[]>(`${apiUrl}proceso/etapas/?tesis_proceso_id=${tesisProcesoId}`);
+      .get<IEtapa[]>(this.url, { params: params });
 
   }
 }
@@ -45,7 +46,6 @@ export class EtapaReactiveService {
 
 
   public getAllEtapas() {
-    const apiUrl = environment.apiUrl;
 
     return this.etapaService.getEtapas()
       .subscribe(data => {
@@ -57,8 +57,6 @@ export class EtapaReactiveService {
   }
 
   public getEtapasByTesisProcesoId(tesisProcesoId: string) {
-    const apiUrl = environment.apiUrl;
-
     return this.etapaService.getEtapasByTesisProcesoId(tesisProcesoId)
       .subscribe(data => {
 
