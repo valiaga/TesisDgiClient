@@ -1,5 +1,5 @@
 // import { SettingsService } from '../shared/settings.service';
-import { UserService } from '../auth/user/user.service';
+// import { UserService } from '../auth/user/user.service';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 // import { CommonModule } from '@angular/common';
@@ -18,15 +18,50 @@ import { ProcesoSearchComponent } from './components/proceso-search.component';
 import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
 
 import { ProcesoService } from './shared/proceso.service';
+import {
+  MatCardModule, MatInputModule,
+  MatSlideToggleModule, MatDividerCssMatStyler, MatListModule, MatTabsModule, MatButtonModule, MatExpansionModule,
+} from '@angular/material';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
+import { CommonModule } from '@angular/common';
+import { DgiButtonFabModule } from '../shared/dgi/button-fab';
+import { RolProcesoService } from './shared/rol-proceso.service';
+
+const MATERIAL_MODULES: any = [
+  MatCardModule,
+  MatInputModule,
+  MatSlideToggleModule,
+  MatListModule,
+  MatTabsModule,
+  MatButtonModule,
+  MatExpansionModule,
+];
+
+const ANGULAR_MODULES: any = [
+  ReactiveFormsModule,
+  CommonModule,
+];
+
+const COVALENT_MODULES: any = [
+  // CovalentExpansionPanelModule,
+  CovalentStepsModule,
+];
+
+const DGI_MODULES: any = [
+  DgiButtonFabModule,
+];
 
 @NgModule({
   imports: [
-    AngularModule,
-    MaterialModule,
-    CovalentModule,
+    // AngularModule,
+    // MaterialModule,
     // HttpClientModule,
-    UtilsModule,
-
+    // UtilsModule,
+    ...MATERIAL_MODULES,
+    ...ANGULAR_MODULES,
+    ...COVALENT_MODULES,
+    ...DGI_MODULES,
     ProcesosRoutingModule
   ],
   declarations: [
@@ -39,8 +74,7 @@ import { ProcesoService } from './shared/proceso.service';
   ],
   providers: [
     ProcesoService,
-    UserService,
-    // SettingsService
-  ]
+    RolProcesoService,
+  ],
 })
 export class ProcesosModule { }

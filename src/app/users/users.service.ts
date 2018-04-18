@@ -1,19 +1,19 @@
-import { Injectable }           from '@angular/core';
-import { HttpClient, HttpHeaders }        from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 // import { SettingsService } from '../../shared/settings.service';
 // import { MediatorService, Message, MessageType } from '../common/mediator.service';
 
 @Injectable()
-export class UserService {
+export class UsersService {
     constructor(private http: HttpClient
         // ,private _settingsService: SettingsService
     ) {
     }
 
     /**
-     * Requests a new auth token for the given credentials 
+     * Requests a new auth token for the given credentials
      * and stores it for future api calls
      */
     // public login(email, password) : Promise<void> {
@@ -24,7 +24,7 @@ export class UserService {
     //     let tokenUrl: string = this._settingsService.settings["tokenUrl"];
     //     let tokenRequest = (new TokenRequest(email, password)).toUrlEncoded();
 
-    //     this._mediator.broadcast(new Message(MessageType.BusyStart)); 
+    //     this._mediator.broadcast(new Message(MessageType.BusyStart));
     //     return this.http.post(tokenUrl, tokenRequest, { headers })
     //         .toPromise()
     //         .then((res) => {
@@ -67,7 +67,7 @@ export class UserService {
     // }
 
     /**
-     * Indicates wheather the current user has logged in 
+     * Indicates wheather the current user has logged in
      */
     // public isLoggedIn(): boolean {
     //     var userSession = this.getUserSession();
@@ -85,10 +85,10 @@ export class UserService {
      */
     public getHeaders(): HttpHeaders {
         // let authorization: string = this.getAuthToken();
-        let headers = new HttpHeaders()
-                        .set('Content-Type', 'application/json')
-                        .set('Accept', 'application/json')
-                        // .set('Authorization', authorization)
+        const headers = new HttpHeaders()
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+        // .set('Authorization', authorization)
 
         return headers;
     }
@@ -104,7 +104,7 @@ export class UserService {
 
     // private getUserSession(): UserSession {
     //     var storedValue: string = localStorage.getItem('userSession');
-    //     if (!!storedValue) {            
+    //     if (!!storedValue) {
     //         return new UserSession(storedValue);
     //     }
 
@@ -121,7 +121,7 @@ class TokenRequest {
     password: string;
 
     constructor(username: string, password: string) {
-        this.grantType = "password";
+        this.grantType = 'password';
         this.username = username;
         this.password = password;
     }
@@ -146,7 +146,7 @@ export class UserSession {
             return;
         }
 
-        var jsonObj = JSON.parse(jsonString);
+        const jsonObj = JSON.parse(jsonString);
         this.token = jsonObj.token;
         this.userName = jsonObj.userName;
         this.issueDate = new Date(jsonObj.issueDate);

@@ -1,4 +1,4 @@
-import { Proceso } from './proceso.model';
+import { Proceso } from '../models/proceso.model';
 
 export const PROCESOS: any[] = [
     {

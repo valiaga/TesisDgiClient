@@ -9,6 +9,7 @@ import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/mergeMap';
 import { AuthService } from '../../auth/shared/auth.service';
+import { UserStoreService } from '../../lib/user-store.service';
 
 @Component({
   selector: 'dgi-shell',
@@ -25,6 +26,7 @@ export class ShellComponent implements OnInit {
     private route: ActivatedRoute,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
+    private userStoreService: UserStoreService,
     private titleService: Title) { }
 
   ngOnInit() {
@@ -43,11 +45,9 @@ export class ShellComponent implements OnInit {
   }
 
   private deleteDataOfLocalStorage(res: any) {
-    // console.log('clear');
-    // console.log(res);
-    localStorage.clear();
-    this.router.navigateByUrl('auth/login');
+    this.userStoreService.logout();
   }
+
   /**
    * Change Title
    */

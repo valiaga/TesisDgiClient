@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { UserComponent } from './user/user.component';
+// import { UsersComponent } from '../users/users.component';
 import { GroupComponent } from './group/group.component';
 import {
   RegisterPageComponent,

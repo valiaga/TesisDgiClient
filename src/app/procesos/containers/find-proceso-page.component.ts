@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Proceso } from '../shared/proceso.model';
+import { Proceso } from '../models/proceso.model';
 import { Observable } from 'rxjs/Observable';
 import { ProcesoService } from '../shared/proceso.service';
 
@@ -10,8 +10,6 @@ import { ProcesoService } from '../shared/proceso.service';
     <dgi-proceso-list
       [procesos]="procesos$ | async"
       ></dgi-proceso-list>
-
-      
     <dgi-button-fab routerLink="/procesos/nuevo" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
     <!-- <dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab> -->
 
@@ -19,7 +17,7 @@ import { ProcesoService } from '../shared/proceso.service';
   styles: [
 
     `
-    /* 
+    /*
     .card-container{
       display: flex;
       flex-flow: row wrap;

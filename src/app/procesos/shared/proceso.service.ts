@@ -1,9 +1,8 @@
 // import { environment } from '../../../environments/environment';
-import { UserService } from '../../auth/user/user.service';
 // import { SettingsService } from '../../shared/settings.service';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { Proceso, IProceso, IResponse } from './proceso.model';
+import { Proceso, IProceso, IResponse } from '../models/proceso.model';
 import { PROCESOS } from './mock-procesos';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -24,7 +23,6 @@ export class ProcesoService {
 
   constructor(
     private http: HttpClient,
-    private _userService: UserService,
     private snackBar: MatSnackBar) {
 
     // Config Rxjs.
@@ -56,12 +54,17 @@ export class ProcesoService {
       );
   }
 
+
+  public getProcesoById$(id: string): Observable<IProceso> {
+    return this.http.get<IProceso>(`${this.url}${id}/`);
+  }
+
   /**
    * Gets a proceso by Id
    * @param procesoId
    */
   public getProcesoById(id: string) {
-    this.http.get<IProceso>(`${this.url}${id}/`)
+    this.getProcesoById$(id)
       .subscribe(data => {
         let notFound = true;
 
@@ -80,8 +83,12 @@ export class ProcesoService {
       }, error => console.log('Could not load proceso.'));
   }
 
+  public createProceso$(proceso: any): Observable<IProceso> {
+    return this.http.post<IProceso>(this.url, proceso);
+  }
+
   public createProceso(proceso: any) {
-    this.http.post<IProceso>(this.url, proceso)
+    this.createProceso$(proceso)
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.proceso.post, MESSAGES.actions.post, snackBarDuration);
@@ -91,10 +98,12 @@ export class ProcesoService {
       }, error => console.log('Could not create proceso.'));
   }
 
+  public updateProceso$(id: string, proceso: any): Observable<IProceso> {
+    return this.http.put<IProceso>(`${this.url}${id}/`, proceso);
+  }
 
   public updateProceso(proceso: Proceso) {
-
-    this.http.put<IProceso>(`${this.url}${proceso.id}`, proceso)
+    this.updateProceso$(proceso.id, proceso)
       .subscribe(data => {
 
         this.snackBar.open(MESSAGES.proceso.put, MESSAGES.actions.put, snackBarDuration);

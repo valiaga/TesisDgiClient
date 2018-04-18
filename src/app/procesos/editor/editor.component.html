@@ -1,12 +1,77 @@
-<mat-card  class="proceso-form-card" role="region">
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Información General
+      </mat-panel-title>
+      <mat-panel-description>
+        Información general del proceso.
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <form [formGroup]="procesoForm" novalidate (ngSubmit)="onSubmit()">
+      <div layout="row">
+        <mat-input-container flex>
+          <input matInput placeholder="Nombre" formControlName="nombre">
+        </mat-input-container>
+      </div>
+      <div layout="row">
+        <mat-input-container flex>
+          <input matInput placeholder="Descripción" formControlName="descripcion">
+        </mat-input-container>
+      </div>
+      <div layout="row">
+        <mat-slide-toggle formControlName="activo">Activo</mat-slide-toggle>
+      </div>
+      <div layout="row">
+        <button mat-raised-button color="primary" type="submit" [disabled]="procesoForm.invalid">Guardar</button>
+      </div>
+    </form>
+    <!-- <div layout=row>
+      {{ procesoForm.value | json }}
+      <br> {{ procesoForm.valid | json }}
+    </div> -->
+    <!-- <mat-tab-group>
+      <mat-tab label="Información">
+        hola
+      </mat-tab>
+      <mat-tab label="nInformación">
+          hola 2s
+      </mat-tab>
+    </mat-tab-group> -->
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Roles
+      </mat-panel-title>
+      <mat-panel-description>
+        <!-- Currently I am {{panelOpenState ? 'open' : 'closed'}} -->
+        Roles del proceso
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+    <button mat-raised-button color="primary" (click)="newRolProceso()" >Nuevo</button>
+
+    <mat-list>
+      <mat-list-item *ngFor="let item of rolProcesos | async">
+        <span flex>{{ item.nombre }} ({{ item.alias }})</span>
+        <mat-slide-toggle [checked]="item.activo" >Activo</mat-slide-toggle>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+    <!-- <p>I'm visible because I am open</p> -->
+  </mat-expansion-panel>
+</mat-accordion>
+
+<!-- 
+<mat-card class="proceso-form-card" role="region">
   <mat-tab-group>
     <mat-tab label="Información">
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Nombre</mat-card-title> 
-          <!-- <mat-card-subtitle>Formulario para crear un proceso</mat-card-subtitle> -->
+          <mat-card-title>Nombre</mat-card-title>
         </mat-card-header>
-        <!-- <mat-divider></mat-divider>   -->
         <mat-card-content>
           <p>
             Proceso de tesis para titulo profesional
@@ -15,77 +80,92 @@
       </mat-card>
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Descripcion</mat-card-title> 
-          <!-- <mat-card-subtitle>Formulario para crear un proceso</mat-card-subtitle> -->
+          <mat-card-title>Descripcion</mat-card-title>
         </mat-card-header>
-        <!-- <mat-divider></mat-divider>   -->
         <mat-card-content>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, iure repudiandae quas nobis temporibus error! Aliquid assumenda recusandae earum nobis voluptatibus dolorem! Reprehenderit neque, aliquam voluptatem a reiciendis deserunt dolor?</p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus saepe sed laudantium, itaque, delectus dolorum quam, reiciendis id totam veniam dicta velit amet quas iste officiis, mollitia quod dignissimos? Voluptatem.
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus, iure repudiandae quas nobis temporibus error!
+            Aliquid assumenda recusandae earum nobis voluptatibus dolorem! Reprehenderit neque, aliquam voluptatem a reiciendis
+            deserunt dolor?</p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus saepe sed laudantium, itaque, delectus dolorum quam, reiciendis
+          id totam veniam dicta velit amet quas iste officiis, mollitia quod dignissimos? Voluptatem.
           <p>
         </mat-card-content>
       </mat-card>
       <mat-card>
         <mat-card-header>
-          <mat-card-title>Activo</mat-card-title> 
-          <!-- <mat-card-subtitle>Formulario para crear un proceso</mat-card-subtitle> -->
+          <mat-card-title>Activo</mat-card-title>
         </mat-card-header>
-        <!-- <mat-divider></mat-divider>   -->
         <mat-card-content>
           <mat-slide-toggle [disabled]="true" [checked]="true">Activo</mat-slide-toggle>
         </mat-card-content>
       </mat-card>
       <mat-card>
-      <!-- {{ proceso | json }} -->
       </mat-card>
-      
-      
     </mat-tab>
     <mat-tab label="Etapas">
-      <td-expansion-panel label="Etapa 1" sublabel="Etapa 1" [disabled]="disabled">
-        <div class="mat-padding">
-          <h3 class="mat-subhead">Etapa 1</h3>
-          <div>Paso 1</div>
-          <div>Paso 2</div>
-          <div>Paso 3</div>
-        </div>
-      </td-expansion-panel>
-      <td-expansion-panel label="Etapa 2" sublabel="Etapa 2"  [disabled]="disabled">
-        <div class="mat-padding">
-          <h3 class="mat-subhead">Etapa 2</h3>
-          <div>Paso 1</div>
-          <div>Paso 2</div>
-          <div>Paso 3</div>
-        </div>
-      </td-expansion-panel>
+      <div>
+        <mat-accordion>
+          <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Personal data
+              </mat-panel-title>
+              <mat-panel-description>
+                Type your name and age
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+
+            <mat-form-field>
+              <input matInput placeholder="First name">
+            </mat-form-field>
+
+            <mat-form-field>
+              <input matInput placeholder="Age">
+            </mat-form-field>
+          </mat-expansion-panel>
+          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                Self aware panel
+              </mat-panel-title>
+              <mat-panel-description>
+                Currently I am {{panelOpenState ? 'open' : 'closed'}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>I'm visible because I am open</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </div>
+
+
     </mat-tab>
     <mat-tab label="Vista Previa">
       <td-steps mode="horizontal">
-        <td-step #step1 label="Etapa 1" sublabel="Esta es la etapa 1." [active]="true" [disabled]="disabled" >
-          <ng-template td-step-label><span>Etapa 1</span></ng-template>
+        <td-step #step1 label="Etapa 1" sublabel="Esta es la etapa 1." [active]="true" [disabled]="disabled">
+          <ng-template td-step-label>
+            <span>Etapa 1</span>
+          </ng-template>
           Etapa 1
         </td-step>
-        <!-- <td-step #step2 label="Etapa 2" sublabel="Esta es la etapa 2." [state]="stateStep2" [disabled]="disabled" disableRipple>
-          This step is required!
-          <ng-template td-step-actions> -->
-      <!-- <button mat-raised-button color="primary" (click)="toggleRequiredStep2()" class="text-upper">Toggle Require</button> -->
-      <!-- <button mat-button (click)="step2.active = false" class="text-upper">Cancel</button> -->
-          <!-- </ng-template>
-        </td-step> -->
-        <td-step #step2 label="Etapa 3" sublabel="Esta es la etapa 2." [active]="false" [disabled]="disabled" >
-          <ng-template td-step-label><span>Etapa 2</span></ng-template>
+        <td-step #step2 label="Etapa 3" sublabel="Esta es la etapa 2." [active]="false" [disabled]="disabled">
+          <ng-template td-step-label>
+            <span>Etapa 2</span>
+          </ng-template>
           Etapa 2
         </td-step>
-        <td-step #step3 label="Etapa 3" sublabel="Esta es la etapa 3." [active]="false" [disabled]="disabled" >
-          <ng-template td-step-label><span>Etapa 3</span></ng-template>
+        <td-step #step3 label="Etapa 3" sublabel="Esta es la etapa 3." [active]="false" [disabled]="disabled">
+          <ng-template td-step-label>
+            <span>Etapa 3</span>
+          </ng-template>
           Etapa 3
         </td-step>
-        <td-step #step4 label="Etapa 4" sublabel="Esta es la etapa 4." [active]="false" [disabled]="disabled" >
-          <ng-template td-step-label><span>Etapa 4</span></ng-template>
+        <td-step #step4 label="Etapa 4" sublabel="Esta es la etapa 4." [active]="false" [disabled]="disabled">
+          <ng-template td-step-label>
+            <span>Etapa 4</span>
+          </ng-template>
           Etapa 4
         </td-step>
       </td-steps>
     </mat-tab>
   </mat-tab-group>
-  
-</mat-card>
+</mat-card> -->

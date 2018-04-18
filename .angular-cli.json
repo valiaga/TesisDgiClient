@@ -21,7 +21,7 @@
       "prefix": "dgi",
       "styles": [
         "styles.scss",
-        "../node_modules/@covalent/core/theming/prebuilt/indigo-pink.scss",
+        "../node_modules/@covalent/core/theming/prebuilt/teal-orange.scss",
         "../node_modules/@covalent/core/common/platform.scss"
       ],
       "scripts": [

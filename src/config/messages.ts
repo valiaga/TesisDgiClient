@@ -78,5 +78,13 @@ export const MESSAGES = {
         getMany: 'Los Campos se listaron con Éxito.',
         getOne: 'El Campo se listó con Éxito.',
         put: 'El Campo se actualizó con Éxito.'
+    },
+    rolProceso: {
+        delete: 'El Rol del proceso se eliminó con Éxito!.',
+        deleteAll: 'Los Roles del proceso se eliminaron con Éxito!.',
+        post: 'El Rol del proceso se guardó con Éxito.',
+        getMany: 'Los Roles del proceso se listaron con Éxito.',
+        getOne: 'El Rol del proceso se listó con Éxito.',
+        put: 'El Rol del proceso se actualizó con Éxito.'
     }
 };

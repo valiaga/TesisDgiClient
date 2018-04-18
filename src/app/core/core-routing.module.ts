@@ -5,7 +5,7 @@ import { ShellComponent } from './shell/shell.component';
 
 const routes: Routes = [
     {
-        path: '', 
+        path: '',
         component: ShellComponent,
         children: [
             // {
@@ -56,6 +56,20 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'users',
+                loadChildren: '../users/users.module#UsersModule',
+                data: {
+                    title: 'Users'
+                }
+            },
+            {
+                path: 'groups',
+                loadChildren: '../groups/groups.module#GroupsModule',
+                data: {
+                    title: 'Groups'
+                }
+            },
+            {
                 path: 'linea-investigacions',
                 loadChildren: '../linea-investigacions/linea-investigacions.module#LineaInvestigacionsModule',
                 data: {
@@ -78,7 +92,6 @@ const routes: Routes = [
         ],
     }
 ];
-    
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Proceso } from '../../procesos/shared/proceso.model';
+import { Proceso } from '../../procesos/models/proceso.model';
 
 
 @Component({

@@ -9,10 +9,10 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule
   ],
   declarations: [
-    ButtonFabComponent
+    ButtonFabComponent,
   ],
   exports: [
-    ButtonFabComponent
-  ]
+    ButtonFabComponent,
+  ],
 })
 export class UtilsModule { }

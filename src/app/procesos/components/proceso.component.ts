@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Proceso } from '../shared/proceso.model';
+import { Proceso } from '../models/proceso.model';
 
 @Component({
   selector: 'dgi-proceso',
@@ -10,7 +10,7 @@ import { Proceso } from '../shared/proceso.model';
           <mat-card-title>{{ nombre }}</mat-card-title>
           <!--<mat-card-subtitle>Proceso de Tesis para titulo profesional de pregrado</mat-card-subtitle>-->
         </mat-card-header>
-      <mat-divider></mat-divider>  
+      <mat-divider></mat-divider>
       <mat-card-content>
         <p> {{descripcion}} </p>
           <mat-slide-toggle color="warn" [checked]="activo" >

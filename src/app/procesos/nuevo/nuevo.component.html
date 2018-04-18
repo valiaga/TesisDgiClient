@@ -5,17 +5,18 @@
   </mat-card-header>
   <mat-divider></mat-divider>  
   <mat-card-content>
-    <form class="example-form">
-      <mat-form-field>
-        <input matInput placeholder="Company" disabled value="Google">
-      </mat-form-field>
+    <form class="example-form" [formGroup]="procesoForm">
+      <!-- <mat-form-field> -->
+        <!-- <input matInput placeholder="Company" disabled value="Google"> -->
+      <!-- </mat-form-field> -->
       <div layout="row">
         <mat-input-container flex>
-          <input matInput placeholder="Nombre (50 max)" 
-                    maxlength="50" 
+          <input matInput placeholder="Nombre (100 max)" 
+                    maxlength="100" 
                     #inputNombre
+                    formControlName="nombre"
                     required>
-          <mat-hint align="end">{{inputNombre.value.length}} / 50</mat-hint>
+          <mat-hint align="end">{{inputNombre.value.length}} / 100</mat-hint>
         </mat-input-container>
       </div>
       <div layout="row" class="push-top">
@@ -24,11 +25,12 @@
                     maxlength="500" 
                     #inputDesc
                     type="text"
+                    formControlName="descripcion"
                     >
           <mat-hint align="end">{{inputDesc.value.length}} / 500</mat-hint>
         </mat-input-container>
       </div>
-      <div layout="row">
+      <div layout="row" flex>
         <mat-slide-toggle >Activo</mat-slide-toggle>
       </div>
     </form>

@@ -7,8 +7,8 @@ import { ProcesoService } from '../procesos/shared/proceso.service';
 import { ListProcesoPageComponent } from './containers/list-proceso-page.component';
 import { ProcesoListComponent } from './components/proceso-list.component';
 import { ProcesoComponent } from './components/proceso.component';
-import { SeguimientosRoutingModule } from "./seguimientos-routing.module";
-import { UserService } from '../auth/user/user.service';
+import { SeguimientosRoutingModule } from './seguimientos-routing.module';
+// import { UserService } from '../auth/user/user.service';
 
 @NgModule({
   imports: [
@@ -25,7 +25,7 @@ import { UserService } from '../auth/user/user.service';
   ],
   providers: [
     ProcesoService,
-    UserService
+    // UserService
   ]
 })
 export class SeguimientosModule { }

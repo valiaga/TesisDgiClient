@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserComponent } from './user/user.component';
+// import { UserComponent } from './user/user.component';
 import { GroupComponent } from './group/group.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { ModuleWithProviders } from '@angular/core';
@@ -22,7 +22,7 @@ import { UrlAuthInterceptorService } from '../lib/url-auth-interceptor.service';
 import { UserStoreService } from '../lib/user-store.service';
 
 export const COMPONENTS = [
-  UserComponent,
+  // UserComponent,
   GroupComponent,
   LoginPageComponent,
   LoginFormComponent,

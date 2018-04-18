@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Proceso } from '../../procesos/shared/proceso.model';
+import { Proceso } from '../../procesos/models/proceso.model';
 import { ProcesoService } from '../../procesos/shared/proceso.service';
 
 @Component({
@@ -15,7 +15,7 @@ import { ProcesoService } from '../../procesos/shared/proceso.service';
 export class ListProcesoPageComponent implements OnInit {
   public procesos$: Observable<Proceso[]>;
 
-  constructor(private procesoService:ProcesoService) { }
+  constructor(private procesoService: ProcesoService) { }
 
   ngOnInit() {
     this.procesos$ = this.procesoService.procesos;
