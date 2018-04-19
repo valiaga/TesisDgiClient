@@ -57,7 +57,9 @@
       <mat-list-item *ngFor="let item of rolProcesos | async">
         <span flex>{{ item.nombre }} ({{ item.alias }})</span>
         <mat-slide-toggle [checked]="item.activo">Activo</mat-slide-toggle>
-        <button mat-icon-button [matMenuTriggerFor]="menu" class="dgi-button-rol-proceso-list">
+        <button mat-icon-button [matMenuTriggerFor]="menu"
+        [matMenuTriggerData]="{rolProcesoId: item.id }"
+        class="dgi-button-rol-proceso-list">
           <mat-icon>more_vert</mat-icon>
         </button>
       </mat-list-item>
@@ -69,14 +71,16 @@
 
 
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>delete</mat-icon>
-    <span>Eliminar</span>
-  </button>
-  <button mat-menu-item disabled>
-    <mat-icon>edit</mat-icon>
-    <span>Editar</span>
-  </button>
+  <ng-template matMenuContent let-rolProcesoId="rolProcesoId">
+    <button mat-menu-item (click)="onDeleteRolProceso(rolProcesoId)">
+      <mat-icon>delete</mat-icon>
+      <span>Eliminar</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>edit</mat-icon>
+      <span>Editar</span>
+    </button>
+  </ng-template>
 </mat-menu>
 
 <!-- 

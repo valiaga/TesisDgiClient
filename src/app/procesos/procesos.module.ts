@@ -20,7 +20,7 @@ import { FindProcesoPageComponent } from './containers/find-proceso-page.compone
 import { ProcesoService } from './shared/proceso.service';
 import {
   MatCardModule, MatInputModule,
-  MatSlideToggleModule, MatDividerCssMatStyler, MatListModule, MatTabsModule,
+  MatSlideToggleModule, MatListModule, MatTabsModule,
   MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule, MatMenuModule, MatIconModule,
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';

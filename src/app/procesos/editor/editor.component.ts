@@ -45,6 +45,12 @@ export class EditorComponent implements OnInit {
 
   }
 
+  public onDeleteRolProceso(rolProcesosId: string) {
+    console.log('rolProcesosId');
+    console.log(rolProcesosId);
+
+  }
+
   public loadMaters(procesoId) {
     this.rolProcesoService.getAllRolProcesos({ proceso_id: procesoId });
   }
