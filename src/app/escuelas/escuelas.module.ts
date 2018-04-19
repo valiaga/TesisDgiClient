@@ -23,9 +23,11 @@ import { CovalentModule } from '../shared/covalent/covalent.module';
     EscuelasRoutingModule
   ],
   declarations: [
-    FindEscuelaPageComponent, 
-    EscuelaListComponent, 
-    EscuelaSearchComponent, EscuelaComponent, CreateEscuelaDialogComponent,
+    FindEscuelaPageComponent,
+    EscuelaListComponent,
+    EscuelaSearchComponent,
+    EscuelaComponent,
+    CreateEscuelaDialogComponent,
   ],
   providers: [
     EscuelaService,

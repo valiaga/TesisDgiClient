@@ -8,6 +8,8 @@ import { Proceso } from '../models/proceso.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RolProcesoService } from '../shared/rol-proceso.service';
 import { Observable } from 'rxjs/Observable';
+import { MatDialog } from '@angular/material';
+import { RolProcesoComponent } from '../components/rol-proceso/rol-proceso.component';
 
 @Component({
   selector: 'dgi-editor',
@@ -23,6 +25,7 @@ export class EditorComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private dialog: MatDialog,
     private procesoService: ProcesoService,
     private rolProcesoService: RolProcesoService,
   ) { }
@@ -47,7 +50,16 @@ export class EditorComponent implements OnInit {
   }
 
   public newRolProceso() {
+    const procesoId = this.procesoForm.get('id').value;
 
+    const dialogRef = this.dialog.open(RolProcesoComponent, {
+      width: '500px',
+      data: { procesoId: procesoId },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('close dialog escuela');
+    });
   }
 
   public getProceso(procesoId: string) {

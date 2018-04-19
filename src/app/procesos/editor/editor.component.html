@@ -51,18 +51,33 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <button mat-raised-button color="primary" (click)="newRolProceso()" >Nuevo</button>
+    <button mat-raised-button color="primary" (click)="newRolProceso()">Nuevo</button>
 
     <mat-list>
       <mat-list-item *ngFor="let item of rolProcesos | async">
         <span flex>{{ item.nombre }} ({{ item.alias }})</span>
-        <mat-slide-toggle [checked]="item.activo" >Activo</mat-slide-toggle>
+        <mat-slide-toggle [checked]="item.activo">Activo</mat-slide-toggle>
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="dgi-button-rol-proceso-list">
+          <mat-icon>more_vert</mat-icon>
+        </button>
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
     <!-- <p>I'm visible because I am open</p> -->
   </mat-expansion-panel>
 </mat-accordion>
+
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item>
+    <mat-icon>delete</mat-icon>
+    <span>Eliminar</span>
+  </button>
+  <button mat-menu-item disabled>
+    <mat-icon>edit</mat-icon>
+    <span>Editar</span>
+  </button>
+</mat-menu>
 
 <!-- 
 <mat-card class="proceso-form-card" role="region">

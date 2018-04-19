@@ -8,7 +8,7 @@ import { Escuela } from '../shared/escuela';
       <mat-card-header>
       <!-- <mat-card-title fxLayout  fxLayoutAlign="space-between stretch"> -->
         <!-- Esta es mi Tesis -->
-        <span flex></span>  
+        <span flex></span>
         <button mat-icon-button class=""
         color="primary"
         [matMenuTriggerFor]="escuelaMenu"
@@ -80,15 +80,15 @@ export class EscuelaComponent implements OnInit {
   ngOnInit() {
   }
 
-  get nombre(){
+  get nombre() {
     return this.escuela.nombre;
   }
 
-  get logo(){
+  get logo() {
     return this.escuela.logo;
   }
 
-  get id(){
+  get id() {
     return this.escuela.id;
   }
 }

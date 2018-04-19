@@ -20,13 +20,15 @@ import { FindProcesoPageComponent } from './containers/find-proceso-page.compone
 import { ProcesoService } from './shared/proceso.service';
 import {
   MatCardModule, MatInputModule,
-  MatSlideToggleModule, MatDividerCssMatStyler, MatListModule, MatTabsModule, MatButtonModule, MatExpansionModule,
+  MatSlideToggleModule, MatDividerCssMatStyler, MatListModule, MatTabsModule,
+  MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule, MatMenuModule, MatIconModule,
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
 import { CommonModule } from '@angular/common';
 import { DgiButtonFabModule } from '../shared/dgi/button-fab';
 import { RolProcesoService } from './shared/rol-proceso.service';
+import { RolProcesoComponent } from './components/rol-proceso/rol-proceso.component';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -36,6 +38,10 @@ const MATERIAL_MODULES: any = [
   MatTabsModule,
   MatButtonModule,
   MatExpansionModule,
+  MatDialogModule,
+  MatCheckboxModule,
+  MatMenuModule,
+  MatIconModule,
 ];
 
 const ANGULAR_MODULES: any = [
@@ -70,11 +76,15 @@ const DGI_MODULES: any = [
     ProcesoListComponent,
     ProcesoComponent,
     ProcesoSearchComponent,
-    FindProcesoPageComponent
+    FindProcesoPageComponent,
+    RolProcesoComponent,
   ],
   providers: [
     ProcesoService,
     RolProcesoService,
   ],
+  entryComponents: [
+    RolProcesoComponent,
+  ]
 })
 export class ProcesosModule { }

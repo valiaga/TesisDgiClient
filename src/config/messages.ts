@@ -85,6 +85,8 @@ export const MESSAGES = {
         post: 'El Rol del proceso se guardó con Éxito.',
         getMany: 'Los Roles del proceso se listaron con Éxito.',
         getOne: 'El Rol del proceso se listó con Éxito.',
-        put: 'El Rol del proceso se actualizó con Éxito.'
+        put: 'El Rol del proceso se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el rol del proceso?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el rol del proceso?',
     }
 };
