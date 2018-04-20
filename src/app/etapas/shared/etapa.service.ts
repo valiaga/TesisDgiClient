@@ -24,6 +24,13 @@ export class EtapaService {
       .get<IEtapa[]>(this.url, { params: params });
 
   }
+
+  public getEtapasByProcesoId(procesoId: string): Observable<IEtapa[]> {
+    const params: any = { proceso: procesoId };
+    return this.http
+      .get<IEtapa[]>(this.url, { params: params });
+
+  }
 }
 
 @Injectable()
@@ -58,6 +65,16 @@ export class EtapaReactiveService {
 
   public getEtapasByTesisProcesoId(tesisProcesoId: string) {
     return this.etapaService.getEtapasByTesisProcesoId(tesisProcesoId)
+      .subscribe(data => {
+
+        this.dataStore.etapas = data;
+        this._etapas.next(Object.assign({}, this.dataStore).etapas);
+      }, error => console.log('Could not load etapas.')
+      );
+  }
+
+  public getEtapasByProcesoId(procesoId: string) {
+    return this.etapaService.getEtapasByProcesoId(procesoId)
       .subscribe(data => {
 
         this.dataStore.etapas = data;

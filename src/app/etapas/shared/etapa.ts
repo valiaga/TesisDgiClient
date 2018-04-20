@@ -11,11 +11,11 @@ export class Etapa {
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
         public id?: string
-    ){}
+    ) { }
 }
 
 export interface IEtapa {
-    id: string; //uuid
+    id: string; // uuid
     nombre: string;
     descripcion: string;
     proceso: string;
@@ -35,9 +35,9 @@ class Options {
     next: number;
     previous: number;
     range: string;
-    page_size: number; 
+    page_size: number;
 }
-  
+
 export interface IResponse {
     options: Options;
     results: IEtapa[];

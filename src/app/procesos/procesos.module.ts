@@ -21,14 +21,19 @@ import { ProcesoService } from './shared/proceso.service';
 import {
   MatCardModule, MatInputModule,
   MatSlideToggleModule, MatListModule, MatTabsModule,
-  MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule, MatMenuModule, MatIconModule,
+  MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule, MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule,
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
 import { CommonModule } from '@angular/common';
 import { DgiButtonFabModule } from '../shared/dgi/button-fab';
-import { RolProcesoService } from './shared/rol-proceso.service';
 import { RolProcesoComponent } from './components/rol-proceso/rol-proceso.component';
+import { EtapaComponent } from './components/etapa/etapa.component';
+import { EtapaReactiveService, EtapaService } from '../etapas/shared/etapa.service';
+import { RolProcesoService } from '../rol-proceso/shared/rol-proceso.service';
+import { EtapaEditorComponent } from './components/etapa-editor/etapa-editor.component';
+import { EtapaTareasComponent } from './components/etapa-tareas/etapa-tareas.component';
+import { EtapaListaComponent } from './components/etapa-lista/etapa-lista.component';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -42,6 +47,8 @@ const MATERIAL_MODULES: any = [
   MatCheckboxModule,
   MatMenuModule,
   MatIconModule,
+  MatSelectModule,
+  MatStepperModule,
 ];
 
 const ANGULAR_MODULES: any = [
@@ -78,13 +85,20 @@ const DGI_MODULES: any = [
     ProcesoSearchComponent,
     FindProcesoPageComponent,
     RolProcesoComponent,
+    EtapaComponent,
+    EtapaEditorComponent,
+    EtapaTareasComponent,
+    EtapaListaComponent,
   ],
   providers: [
     ProcesoService,
     RolProcesoService,
+    EtapaReactiveService,
+    EtapaService,
   ],
   entryComponents: [
     RolProcesoComponent,
+    EtapaComponent,
   ]
 })
 export class ProcesosModule { }

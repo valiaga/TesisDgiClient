@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
-import { RolProceso, IRolProceso, IResponse } from '../models/rol-proceso.model';
+import { RolProceso, IRolProceso, IResponse } from './rol-proceso.model';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatSnackBar } from '@angular/material';
@@ -48,8 +48,6 @@ export class RolProcesoService {
     return this.getAllRolProcesos$(params)
       .map(response => response.results)
       .subscribe(data => {
-        console.log('>> ', data);
-
         this.dataStore.rolProcesos = data;
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
       }, error => console.log('Could not load rolProcesos.')
@@ -101,6 +99,25 @@ export class RolProcesoService {
 
   public updateRolProceso$(id: string, rolProceso: any): Observable<IRolProceso> {
     return this.http.put<IRolProceso>(`${this.url}${id}/`, rolProceso);
+  }
+
+
+  public patchRolProceso$(id: string, data: any): Observable<IRolProceso> {
+    return this.http.patch<IRolProceso>(`${this.url}${id}/`, data);
+  }
+
+  public patchRolProceso(id: string, data: any) {
+    this.patchRolProceso$(id, data)
+      .subscribe(response => {
+
+        this.snackBar.open(MESSAGES.rolProceso.put, MESSAGES.actions.put, snackBarDuration);
+
+        this.dataStore.rolProcesos.forEach((proc, index) => {
+          if (proc.id === response.id) { this.dataStore.rolProcesos[index] = response; }
+        });
+
+        this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
+      }, error => console.log('Could not update rolProceso.'));
   }
 
   public updateRolProceso(rolProceso: RolProceso) {

@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { RolProcesoService } from '../../shared/rol-proceso.service';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from '../../../../config/general';
 import { MESSAGES } from '../../../../config/messages';
+import { RolProcesoService } from '../../../rol-proceso/shared/rol-proceso.service';
 
 @Component({
   selector: 'dgi-rol-proceso',
@@ -39,7 +39,7 @@ export class RolProcesoComponent implements OnInit {
       alias: ['', []],
       descripcion: ['', []],
       activo: [true, []],
-      proceso: [this.data.procesoId, []],
+      proceso: [this.data.procesoId, [Validators.required]],
     };
 
     return controls;

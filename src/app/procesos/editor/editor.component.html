@@ -8,37 +8,27 @@
         Información general del proceso.
       </mat-panel-description>
     </mat-expansion-panel-header>
+    <div class="proceso-info-container">
+      <form [formGroup]="procesoForm" novalidate (ngSubmit)="onSubmit()">
+        <div layout="row">
+          <mat-input-container flex>
+            <input matInput placeholder="Nombre" formControlName="nombre">
+          </mat-input-container>
+        </div>
+        <div layout="row">
+          <mat-input-container flex>
+            <input matInput placeholder="Descripción" formControlName="descripcion">
+          </mat-input-container>
+        </div>
+        <div layout="row">
+          <mat-slide-toggle formControlName="activo">Activo</mat-slide-toggle>
+        </div>
+        <div layout="row">
+          <button mat-raised-button color="primary" type="submit" [disabled]="procesoForm.invalid">Guardar</button>
+        </div>
+      </form>
+    </div>
 
-    <form [formGroup]="procesoForm" novalidate (ngSubmit)="onSubmit()">
-      <div layout="row">
-        <mat-input-container flex>
-          <input matInput placeholder="Nombre" formControlName="nombre">
-        </mat-input-container>
-      </div>
-      <div layout="row">
-        <mat-input-container flex>
-          <input matInput placeholder="Descripción" formControlName="descripcion">
-        </mat-input-container>
-      </div>
-      <div layout="row">
-        <mat-slide-toggle formControlName="activo">Activo</mat-slide-toggle>
-      </div>
-      <div layout="row">
-        <button mat-raised-button color="primary" type="submit" [disabled]="procesoForm.invalid">Guardar</button>
-      </div>
-    </form>
-    <!-- <div layout=row>
-      {{ procesoForm.value | json }}
-      <br> {{ procesoForm.valid | json }}
-    </div> -->
-    <!-- <mat-tab-group>
-      <mat-tab label="Información">
-        hola
-      </mat-tab>
-      <mat-tab label="nInformación">
-          hola 2s
-      </mat-tab>
-    </mat-tab-group> -->
   </mat-expansion-panel>
   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header>
@@ -51,21 +41,57 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
 
-    <button mat-raised-button color="primary" (click)="newRolProceso()">Nuevo</button>
+    <button mat-raised-button color="primary" (click)="newRolProceso()">Nuevo Rol</button>
 
     <mat-list>
-      <mat-list-item *ngFor="let item of rolProcesos | async">
+      <mat-list-item *ngFor="let item of rolProcesos$ | async">
         <span flex>{{ item.nombre }} ({{ item.alias }})</span>
-        <mat-slide-toggle [checked]="item.activo">Activo</mat-slide-toggle>
-        <button mat-icon-button [matMenuTriggerFor]="menu"
-        [matMenuTriggerData]="{rolProcesoId: item.id }"
-        class="dgi-button-rol-proceso-list">
+
+
+        <mat-slide-toggle (change)="onChangeActivoRolProceso($event, item.id)" [checked]="item.activo">Activo</mat-slide-toggle>
+
+        <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{rolProcesoId: item.id }" class="dgi-button-rol-proceso-list">
           <mat-icon>more_vert</mat-icon>
         </button>
       </mat-list-item>
       <mat-divider></mat-divider>
     </mat-list>
     <!-- <p>I'm visible because I am open</p> -->
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Etapas
+      </mat-panel-title>
+      <mat-panel-description>
+        <!-- Actuamente yo estoy {{panelOpenState ? 'open' : 'closed'}} -->
+        Mantenimiento de Etapas del proceso
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <button mat-raised-button color="primary" (click)="newEtapa()">Nueva Etapa</button>
+
+    <mat-horizontal-stepper>
+      <mat-step *ngFor="let etapa of etapas$ | async" [label]="etapa.nombre">
+        <dgi-etapa-editor [etapa]="etapa" [etapas]="etapas$"></dgi-etapa-editor>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Tareas
+      </mat-panel-title>
+      <mat-panel-description>
+        <!-- Actuamente yo estoy {{panelOpenState ? 'open' : 'closed'}} -->
+        Mantenimiento de Tareas por Etapas
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!-- <button mat-raised-button color="primary" (click)="newEtapa()">Nueva Tarea</button> -->
+    <router-outlet></router-outlet>
+    
+
+
+
   </mat-expansion-panel>
 </mat-accordion>
 
@@ -76,10 +102,10 @@
       <mat-icon>delete</mat-icon>
       <span>Eliminar</span>
     </button>
-    <button mat-menu-item disabled>
+    <!-- <button mat-menu-item disabled>
       <mat-icon>edit</mat-icon>
       <span>Editar</span>
-    </button>
+    </button> -->
   </ng-template>
 </mat-menu>
 

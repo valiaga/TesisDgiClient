@@ -1,0 +1,78 @@
+<!-- {{ etapa | json }} -->
+
+<div class="etapa-editor-container">
+  <form [formGroup]="etapaEditorForm" (ngSubmit)="onSubmit()" novalidate class="etapa-editor-container">
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Nombre de la Etapa (DIsabled)" disabled [value]="nameEtapa">
+    </mat-form-field>
+    <table class="example-full-width" cellspacing="0">
+      <tr>
+        <td>
+          <!-- Nombre field -->
+          <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="example-full-width">
+            <input matInput placeholder="Nombre" formControlName="nombre" required>
+            <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
+          </mat-form-field>
+        </td>
+        <td>
+          <!-- Anterior field -->
+          <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
+            <mat-select placeholder="Seleccionar etapa Anterior" formControlName="anterior">
+              <mat-option value="" selected>-None-</mat-option>
+              <ng-template ngFor let-etapa [ngForOf]="etapas$ | async">
+                <mat-option *ngIf="etapa.id !== idEtapa " [value]="etapa.id">{{ etapa.nombre }}</mat-option>
+              </ng-template>
+            </mat-select>
+          </mat-form-field>
+        </td>
+        <td>
+          <!-- Tarea Activador -->
+          <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+            <input matInput placeholder="Tarea Activador" formControlName="tarea_activador">
+          </mat-form-field>
+        </td>
+        <td>
+          <!-- Tarea Desactivador -->
+          <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+            <input matInput placeholder="Tarea Deactivador" formControlName="tarea_desactivador">
+          </mat-form-field>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <!-- Pazo en días -->
+          <mat-form-field [floatLabel]="['auto']">
+            <input type="number" matInput placeholder="Pazo en días" formControlName="plazo_dias" required>
+          </mat-form-field>
+        </td>
+        <td>
+          <!-- Orden field -->
+          <mat-form-field [floatLabel]="['auto']">
+            <input type="number" matInput placeholder="Orden" formControlName="orden">
+          </mat-form-field>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Descripción field -->
+    <mat-form-field [floatLabel]="['auto']">
+      <textarea matInput placeholder="Descripción" matTextareaAutosize matAutosizeMaxRows="5" formControlName="descripcion" matAutosizeMinRows="2"></textarea>
+    </mat-form-field>
+
+    <!-- Buttons Actions -->
+    <div mat-dialog-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!etapaEditorForm.valid" tabindex="0">Aceptar</button>
+      <!-- <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button> -->
+    </div>
+    <!-- <br>
+    <mat-tab-group>
+      <mat-tab label="Información">
+        hola
+      </mat-tab>
+      <mat-tab label="nInformación">
+        hola 2s
+      </mat-tab>
+    </mat-tab-group> -->
+  </form>
+</div>

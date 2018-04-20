@@ -5,6 +5,8 @@ import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { EditorComponent } from './editor/editor.component';
 import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
+import { EtapaTareasComponent } from './components/etapa-tareas/etapa-tareas.component';
+import { EtapaListaComponent } from './components/etapa-lista/etapa-lista.component';
 
 /** Rutas que se manejan en este módulo
  * /procesos
@@ -33,7 +35,17 @@ const routes: Routes = [
   },
   {
     path: ':id', // parámetro variable id
-    component: EditorComponent // se verá dentro del router-oulet principal
+    component: EditorComponent, // se verá dentro del router-oulet principal
+    children: [
+      {
+        path: '',
+        component: EtapaListaComponent,
+      },
+      {
+        path: 'etapas/:id',
+        component: EtapaTareasComponent,
+      },
+    ]
   }
 ];
 
