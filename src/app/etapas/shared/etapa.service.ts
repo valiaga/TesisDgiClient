@@ -5,6 +5,8 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
+import { MESSAGES } from '../../../config/messages';
+import { snackBarDuration } from '../../../config/general';
 
 
 @Injectable()
@@ -23,6 +25,15 @@ export class EtapaService {
     return this.http
       .get<IEtapa[]>(this.url, { params: params });
 
+  }
+
+
+  public createEtapa$(etapa: any): Observable<IEtapa> {
+    return this.http.post<IEtapa>(this.url, etapa);
+  }
+
+  public updateEtapa$(id: string, etapa: any): Observable<IEtapa> {
+    return this.http.put<IEtapa>(`${this.url}/${id}`, etapa);
   }
 
   public getEtapasByProcesoId(procesoId: string): Observable<IEtapa[]> {
@@ -81,5 +92,29 @@ export class EtapaReactiveService {
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
       }, error => console.log('Could not load etapas.')
       );
+  }
+
+
+  public createEtapa(etapa: any) {
+    this.etapaService.createEtapa$(etapa)
+      .subscribe(data => {
+
+        this.snackBar.open(MESSAGES.rolProceso.post, MESSAGES.actions.post, snackBarDuration);
+
+        this.dataStore.etapas.push(data);
+        this._etapas.next(Object.assign({}, this.dataStore).etapas);
+      }, error => console.log('Could not create etapa.'));
+  }
+
+
+  public updateEtapa(id: string, etapa: any) {
+    this.etapaService.updateEtapa$(id, etapa)
+      .subscribe(data => {
+        this.snackBar.open(MESSAGES.etapa.put, MESSAGES.actions.put, snackBarDuration);
+        this.dataStore.etapas.forEach((e, index) => {
+          if (e.id === data.id) { this.dataStore.etapas[index] = data; }
+        });
+        this._etapas.next(Object.assign({}, this.dataStore).etapas);
+      }, error => console.log('Could not create etapa.'));
   }
 }

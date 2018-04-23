@@ -88,5 +88,15 @@ export const MESSAGES = {
         put: 'El Rol del proceso se actualizó con Éxito.',
         confirmDelete: '¿Estas segur@ que quieres eliminar el rol del proceso?',
         confirmCreate: '¿Estas segur@ que quieres guardar el rol del proceso?',
+    },
+    etapa: {
+        delete: 'La Etapa se eliminó con Éxito!.',
+        deleteAll: 'Las etapas se eliminaron con Éxito!.',
+        post: 'La Etapa se guardó con Éxito.',
+        getMany: 'Las etapas se listaron con Éxito.',
+        getOne: 'La Etapa se listó con Éxito.',
+        put: 'La Etapa se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar la Etapa?',
+        confirmCreate: '¿Estas segur@ que quieres guardar la Etapa?',
     }
 };

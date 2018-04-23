@@ -1,7 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Etapa } from '../../../etapas/shared/etapa';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
+import { EtapaReactiveService } from '../../../etapas/shared/etapa.service';
+import { TdDialogService } from '@covalent/core';
+import { getMessageConfirm } from '../../../../config/general';
+import { MESSAGES } from '../../../../config/messages';
 
 @Component({
   selector: 'dgi-etapa-editor',
@@ -25,6 +29,9 @@ export class EtapaEditorComponent implements OnInit {
   public etapaEditorForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder,
+    private etapaReactiveService: EtapaReactiveService,
+    private viewContainerRef: ViewContainerRef,
+    private tdDialogService: TdDialogService,
   ) { }
 
   ngOnInit() {
@@ -33,6 +40,7 @@ export class EtapaEditorComponent implements OnInit {
   public patchEtapaForm(etapa) {
     if (this.etapaEditorForm) {
       this.etapaEditorForm.patchValue({
+        id: etapa.id,
         nombre: etapa.nombre,
         descripcion: etapa.descripcion,
         proceso: etapa.proceso,
@@ -52,6 +60,20 @@ export class EtapaEditorComponent implements OnInit {
     }
   }
 
+  public onSubmit() {
+    const valid = this.etapaEditorForm.valid;
+    const value = this.etapaEditorForm.value;
+    if (valid) {
+      this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.etapa.confirmCreate, this.viewContainerRef))
+        .afterClosed().subscribe((accept: boolean) => {
+          if (accept) {
+            this.etapaReactiveService.updateEtapa(value.id, value);
+          } else {
+          }
+        });
+    }
+  }
+
   public buildForm() {
     const controls = this.initializeControls();
     this.etapaEditorForm = this.formBuilder.group(controls);
@@ -59,6 +81,7 @@ export class EtapaEditorComponent implements OnInit {
 
   public initializeControls() {
     const controls = {
+      id: ['', [Validators.required]],
       nombre: ['', [Validators.required]],
       descripcion: ['', []],
       proceso: ['', [Validators.required]],

@@ -42,7 +42,7 @@ const routes: Routes = [
         component: EtapaListaComponent,
       },
       {
-        path: 'etapas/:id',
+        path: 'etapas/:etapaId',
         component: EtapaTareasComponent,
       },
     ]

@@ -19,6 +19,9 @@
       <mat-select placeholder="Seleccionar etapa Anterior" formControlName="anterior" required>
         <!-- <mat-option value="" selected>-None-</mat-option> -->
         <mat-option *ngFor="let etapa of etapas$ | async" [value]="etapa.id">{{ etapa.nombre }}</mat-option>
+        <!-- <ng-template ngFor let-etapa [ngForOf]="etapas$ | async"> -->
+          <!-- <mat-option *ngIf="etapa.id !== idEtapa " [value]="etapa.id">{{ etapa.nombre }}</mat-option> -->
+        <!-- </ng-template> -->
       </mat-select>
     </mat-form-field>
 

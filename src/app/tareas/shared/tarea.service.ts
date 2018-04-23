@@ -8,7 +8,7 @@ import { environment } from '../../../environments/environment';
 
 @Injectable()
 export class TareaService {
-  private readonly url = 'proceso/tareas/';
+  private readonly url = 'proceso/etapas/';
 
   constructor(private http: HttpClient) { }
 

@@ -1,3 +1,9 @@
 <button mat-mini-fab color="accent" [routerLink]="['../../']">
-    <mat-icon aria-label="Example icon-button with a heart icon">reply</mat-icon>
-  </button>
+  <mat-icon aria-label="Example icon-button with a heart icon">reply</mat-icon>
+</button>
+
+<mat-horizontal-stepper>
+  <mat-step *ngFor="let tarea of tareas$ | async" [label]="tarea.nombre">
+    <!-- <dgi-tarea-editor [tarea]="tarea"></dgi-etapa-editor> -->
+  </mat-step>
+</mat-horizontal-stepper>

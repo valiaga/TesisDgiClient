@@ -1,6 +1,12 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TdDialogService } from '@covalent/core';
+import { getMessageConfirm } from '../../../../config/general';
+import { MESSAGES } from '../../../../config/messages';
+import { EtapaReactiveService } from '../../../etapas/shared/etapa.service';
+import { Etapa } from '../../../etapas/shared/etapa';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'dgi-etapa',
@@ -9,14 +15,19 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class EtapaComponent implements OnInit {
   public etapaForm: FormGroup;
+  public etapas$: Observable<Etapa[]>;
 
   constructor(private dialogRef: MatDialogRef<EtapaComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
+    private tdDialogService: TdDialogService,
+    private viewContainerRef: ViewContainerRef,
+    private etapaReactiveService: EtapaReactiveService,
   ) { }
 
   ngOnInit() {
     this.buildForm();
+    this.etapas$ = this.etapaReactiveService.etapas;
   }
 
   public buildForm() {
@@ -39,4 +50,21 @@ export class EtapaComponent implements OnInit {
     return controls;
   }
 
+  public onSubmit() {
+    const valid = this.etapaForm.valid;
+    const value = this.etapaForm.value;
+    // console.log('save', value);
+    if (valid) {
+      this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.etapa.confirmCreate, this.viewContainerRef))
+        .afterClosed().subscribe((accept: boolean) => {
+          if (accept) {
+
+            this.etapaReactiveService.createEtapa(value);
+            this.dialogRef.close();
+            this.etapaForm.reset();
+          } else {
+          }
+        });
+    }
+  }
 }

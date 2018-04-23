@@ -34,6 +34,7 @@ import { RolProcesoService } from '../rol-proceso/shared/rol-proceso.service';
 import { EtapaEditorComponent } from './components/etapa-editor/etapa-editor.component';
 import { EtapaTareasComponent } from './components/etapa-tareas/etapa-tareas.component';
 import { EtapaListaComponent } from './components/etapa-lista/etapa-lista.component';
+import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.service';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -95,6 +96,8 @@ const DGI_MODULES: any = [
     RolProcesoService,
     EtapaReactiveService,
     EtapaService,
+    TareaReactiveService,
+    TareaService,
   ],
   entryComponents: [
     RolProcesoComponent,
