@@ -1,6 +1,6 @@
 export class Tarea {
     constructor(
-        public id: string, //uuid
+        public id: string, // uuid
         public nombre: string,
         public descripcion: string,
         public etapa: string,
@@ -9,15 +9,15 @@ export class Tarea {
         public plazo_dias: string,
         public req_res_activador: string,
         public req_res_desactivador: string,
-    
+
         public fecha_creacion: string,
         public fecha_actualizacion: string
-    ){}
+    ) { }
 
 }
 
 export class ITarea {
-    id: string; //uuid
+    id: string; // uuid
     nombre: string;
     descripcion: string;
     etapa: string;
@@ -39,9 +39,9 @@ class Options {
     next: number;
     previous: number;
     range: string;
-    page_size: number; 
+    page_size: number;
 }
-  
+
 export interface IResponse {
     options: Options;
     results: ITarea[];

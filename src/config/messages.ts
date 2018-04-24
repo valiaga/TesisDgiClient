@@ -98,5 +98,15 @@ export const MESSAGES = {
         put: 'La Etapa se actualizó con Éxito.',
         confirmDelete: '¿Estas segur@ que quieres eliminar la Etapa?',
         confirmCreate: '¿Estas segur@ que quieres guardar la Etapa?',
+    },
+    tarea: {
+        delete: 'La Tarea se eliminó con Éxito!.',
+        deleteAll: 'Las Tareas se eliminaron con Éxito!.',
+        post: 'La Tarea se guardó con Éxito.',
+        getMany: 'Las Tareas se listaron con Éxito.',
+        getOne: 'La Tarea se listó con Éxito.',
+        put: 'La Tarea se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar la Tarea?',
+        confirmCreate: '¿Estas segur@ que quieres guardar la Tarea?',
     }
 };

@@ -5,22 +5,29 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
+import { MESSAGES } from '../../../config/messages';
+import { snackBarDuration } from '../../../config/general';
 
 @Injectable()
 export class TareaService {
-  private readonly url = 'proceso/etapas/';
+  private readonly urlFalse = 'proceso/etapas/';
+  private readonly url = 'proceso/tareas/';
 
   constructor(private http: HttpClient) { }
 
   public getTareas(): Observable<ITarea[]> {
     const params: any = { all: true };
     return this.http
-      .get<ITarea[]>(this.url, { params: params });
+      .get<ITarea[]>(this.urlFalse, { params: params });
   }
 
   public getTareasByEtapaId(etapaId: string): Observable<ITarea[]> {
     return this.http
-      .get<ITarea[]>(`${this.url}${etapaId}/tareas/`);
+      .get<ITarea[]>(`${this.urlFalse}${etapaId}/tareas/`);
+  }
+
+  public updateTarea$(id: string, etapa: any): Observable<ITarea> {
+    return this.http.put<ITarea>(`${this.url}${id}/`, etapa);
   }
 }
 
@@ -58,6 +65,17 @@ export class TareaReactiveService {
         this._tareas.next(Object.assign({}, this.dataStore).tareas);
       }, error => console.log('Could not load tareas.')
       );
+  }
+
+  public updateTarea(id: string, etapa: any) {
+    this.tareaService.updateTarea$(id, etapa)
+      .subscribe(data => {
+        this.snackBar.open(MESSAGES.tarea.put, MESSAGES.actions.put, snackBarDuration);
+        this.dataStore.tareas.forEach((e, index) => {
+          if (e.id === data.id) { this.dataStore.tareas[index] = data; }
+        });
+        this._tareas.next(Object.assign({}, this.dataStore).tareas);
+      }, error => console.log('Could not update tarea.'));
   }
 
 }

@@ -35,6 +35,7 @@ import { EtapaEditorComponent } from './components/etapa-editor/etapa-editor.com
 import { EtapaTareasComponent } from './components/etapa-tareas/etapa-tareas.component';
 import { EtapaListaComponent } from './components/etapa-lista/etapa-lista.component';
 import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.service';
+import { TareaEditorComponent } from './components/tarea-editor/tarea-editor.component';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -90,6 +91,7 @@ const DGI_MODULES: any = [
     EtapaEditorComponent,
     EtapaTareasComponent,
     EtapaListaComponent,
+    TareaEditorComponent,
   ],
   providers: [
     ProcesoService,

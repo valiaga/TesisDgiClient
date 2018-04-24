@@ -33,7 +33,7 @@ export class EtapaService {
   }
 
   public updateEtapa$(id: string, etapa: any): Observable<IEtapa> {
-    return this.http.put<IEtapa>(`${this.url}/${id}`, etapa);
+    return this.http.put<IEtapa>(`${this.url}${id}/`, etapa);
   }
 
   public getEtapasByProcesoId(procesoId: string): Observable<IEtapa[]> {
@@ -115,6 +115,6 @@ export class EtapaReactiveService {
           if (e.id === data.id) { this.dataStore.etapas[index] = data; }
         });
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
-      }, error => console.log('Could not create etapa.'));
+      }, error => console.log('Could not update etapa.'));
   }
 }

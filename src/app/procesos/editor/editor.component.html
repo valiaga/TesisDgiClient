@@ -72,7 +72,7 @@
 
     <mat-horizontal-stepper>
       <mat-step *ngFor="let etapa of etapas$ | async" [label]="etapa.nombre">
-        <dgi-etapa-editor [etapa]="etapa" [etapas]="etapas$"></dgi-etapa-editor>
+        <dgi-etapa-editor [etapa]="etapa"></dgi-etapa-editor>
       </mat-step>
     </mat-horizontal-stepper>
   </mat-expansion-panel>
@@ -88,7 +88,7 @@
     </mat-expansion-panel-header>
     <!-- <button mat-raised-button color="primary" (click)="newEtapa()">Nueva Tarea</button> -->
     <router-outlet></router-outlet>
-    
+
 
 
 

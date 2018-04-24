@@ -4,6 +4,6 @@
 
 <mat-horizontal-stepper>
   <mat-step *ngFor="let tarea of tareas$ | async" [label]="tarea.nombre">
-    <!-- <dgi-tarea-editor [tarea]="tarea"></dgi-etapa-editor> -->
+    <dgi-tarea-editor [tarea]="tarea"></dgi-tarea-editor>
   </mat-step>
 </mat-horizontal-stepper>

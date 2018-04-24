@@ -24,7 +24,7 @@ export class EtapaEditorComponent implements OnInit {
   }
 
   // tslint:disable-next-line:no-input-rename
-  @Input('etapas') etapas$: Observable<Etapa[]>;
+  public etapas$: Observable<Etapa[]>;
 
   public etapaEditorForm: FormGroup;
 
@@ -35,6 +35,7 @@ export class EtapaEditorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.etapas$ = this.etapaReactiveService.etapas;
   }
 
   public patchEtapaForm(etapa) {
