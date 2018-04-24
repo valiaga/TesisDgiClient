@@ -63,7 +63,7 @@
     <!-- Buttons Actions -->
     <div mat-dialog-actions>
       <button mat-raised-button color="primary" type="submit" [disabled]="!etapaEditorForm.valid" tabindex="0">Aceptar</button>
-      <!-- <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button> -->
+      <button mat-raised-button color="accent" type="button" (click)="eliminarEtapa()" tabindex="0">Eliminar Etapa</button>
     </div>
     <!-- <br>
     <mat-tab-group>

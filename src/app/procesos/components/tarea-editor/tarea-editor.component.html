@@ -66,17 +66,15 @@
 
           <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
             <mat-select placeholder="Seleccionar el Rol que ejecuta" formControlName="rol_ejecuta" multiple>
+              <!--
               <mat-select-trigger>
                 {{tareaEditorForm.controls['rol_ejecuta'].value ? tareaEditorForm.controls['rol_ejecuta'].value[0] : ''}}
                 <span *ngIf="tareaEditorForm.controls['rol_ejecuta'].value?.length > 1" class="example-additional-selection">
                   (+{{tareaEditorForm.controls['rol_ejecuta'].value.length - 1}} others)
                 </span>
-              </mat-select-trigger>
+              </mat-select-trigger> -->
               <mat-option value="" selected>-None-</mat-option>
-              <ng-template ngFor let-roleEjecuta [ngForOf]="rolesEjecuta$ | async"></ng-template>
-              <mat-option *ngIf="roleEjecuta.id !== idRolEjecuta" [value]="roleEjecuta.id">{{ roleEjecuta.nombre }}</mat-option>
-              <!-- <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option> -->
-              </ng-template>
+                <mat-option *ngFor="let rolEjecuta of rolesEjecuta$ | async" [value]="rolEjecuta.id">{{ rolEjecuta.nombre }}</mat-option>
             </mat-select>
           </mat-form-field>
         </td>
@@ -91,7 +89,7 @@
     <!-- Buttons Actions -->
     <div mat-dialog-actions>
       <button mat-raised-button color="primary" type="submit" [disabled]="!tareaEditorForm.valid" tabindex="0">Aceptar</button>
-      <!-- <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button> -->
+      <button mat-raised-button color="accent" type="button" (click)="eliminarTarea()" tabindex="0">Eliminar Tarea</button>
     </div>
   </form>
 </div>

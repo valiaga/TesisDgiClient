@@ -42,6 +42,10 @@ export class EtapaService {
       .get<IEtapa[]>(this.url, { params: params });
 
   }
+
+  public delete$(id: string): Observable<IEtapa> {
+    return this.http.delete<IEtapa>(`${this.url}${id}/`);
+  }
 }
 
 @Injectable()
@@ -116,5 +120,18 @@ export class EtapaReactiveService {
         });
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
       }, error => console.log('Could not update etapa.'));
+  }
+
+  remove(id: string) {
+    this.etapaService.delete$(id)
+      .subscribe(response => {
+
+        this.snackBar.open(MESSAGES.etapa.delete, MESSAGES.actions.delete, snackBarDuration);
+
+        this.dataStore.etapas.forEach((etapa, index) => {
+          if (etapa.id === id) { this.dataStore.etapas.splice(index, 1); }
+        });
+        this._etapas.next(Object.assign({}, this.dataStore).etapas);
+      }, error => console.log('Could not delete etapa.'));
   }
 }

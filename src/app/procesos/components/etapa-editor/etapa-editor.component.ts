@@ -75,6 +75,17 @@ export class EtapaEditorComponent implements OnInit {
     }
   }
 
+  public eliminarEtapa() {
+    const etapaId = this.etapaEditorForm.value.id;
+    this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.etapa.confirmDelete, this.viewContainerRef))
+      .afterClosed().subscribe((accept: boolean) => {
+        if (accept) {
+          this.etapaReactiveService.remove(etapaId);
+        } else {
+        }
+      });
+  }
+
   public buildForm() {
     const controls = this.initializeControls();
     this.etapaEditorForm = this.formBuilder.group(controls);

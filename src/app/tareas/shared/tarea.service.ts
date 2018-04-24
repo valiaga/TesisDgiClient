@@ -29,6 +29,10 @@ export class TareaService {
   public updateTarea$(id: string, etapa: any): Observable<ITarea> {
     return this.http.put<ITarea>(`${this.url}${id}/`, etapa);
   }
+
+  public delete$(id: string): Observable<ITarea> {
+    return this.http.delete<ITarea>(`${this.url}${id}/`);
+  }
 }
 
 
@@ -78,4 +82,16 @@ export class TareaReactiveService {
       }, error => console.log('Could not update tarea.'));
   }
 
+  remove(id: string) {
+    this.tareaService.delete$(id)
+      .subscribe(response => {
+
+        this.snackBar.open(MESSAGES.tarea.delete, MESSAGES.actions.delete, snackBarDuration);
+
+        this.dataStore.tareas.forEach((tarea, index) => {
+          if (tarea.id === id) { this.dataStore.tareas.splice(index, 1); }
+        });
+        this._tareas.next(Object.assign({}, this.dataStore).tareas);
+      }, error => console.log('Could not delete tarea.'));
+  }
 }

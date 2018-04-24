@@ -10,6 +10,10 @@ import { Tarea } from '../../../tareas/shared/tarea';
 import { TareaReactiveService } from '../../../tareas/shared/tarea.service';
 import { RolProcesoService } from '../../../rol-proceso/shared/rol-proceso.service';
 import { RolProceso } from '../../../rol-proceso/shared/rol-proceso.model';
+import { filter } from 'rxjs/operators';
+import { map } from 'rxjs/operator/map';
+import { mergeMap } from 'rxjs/operator/mergeMap';
+
 
 @Component({
   selector: 'dgi-tarea-editor',
@@ -40,7 +44,10 @@ export class TareaEditorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.rolesEjecuta$ = this.rolProcesoService.rolProcesos;
+    this.rolesEjecuta$ = this.rolProcesoService.rolProcesos
+      .map(res => res.filter(ress => ress.activo === true));
+
+
     this.tareas$ = this.tareaReactiveService.tareas;
   }
 
@@ -82,6 +89,17 @@ export class TareaEditorComponent implements OnInit {
           }
         });
     }
+  }
+
+  public eliminarTarea() {
+    const tareaId = this.tareaEditorForm.value.id;
+    this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tarea.confirmDelete, this.viewContainerRef))
+      .afterClosed().subscribe((accept: boolean) => {
+        if (accept) {
+          this.tareaReactiveService.remove(tareaId);
+        } else {
+        }
+      });
   }
 
   public buildForm() {

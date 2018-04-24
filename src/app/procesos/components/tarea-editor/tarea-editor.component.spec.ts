@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EtapaEditorComponent } from './etapa-editor.component';
+import { TareaEditorComponent } from './tarea-editor.component';
 
-describe('EtapaEditorComponent', () => {
-  let component: EtapaEditorComponent;
-  let fixture: ComponentFixture<EtapaEditorComponent>;
+describe('TareaEditorComponent', () => {
+  let component: TareaEditorComponent;
+  let fixture: ComponentFixture<TareaEditorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EtapaEditorComponent ]
+      declarations: [TareaEditorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EtapaEditorComponent);
+    fixture = TestBed.createComponent(TareaEditorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
