@@ -2,6 +2,8 @@
   <mat-icon aria-label="Example icon-button with a heart icon">reply</mat-icon>
 </button>
 
+<button mat-raised-button color="primary" (click)="newTarea()">Nueva Tarea</button>
+
 <mat-horizontal-stepper>
   <mat-step *ngFor="let tarea of tareas$ | async" [label]="tarea.nombre">
     <dgi-tarea-editor [tarea]="tarea"></dgi-tarea-editor>

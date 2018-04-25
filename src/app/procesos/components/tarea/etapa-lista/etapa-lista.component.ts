@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { EtapaReactiveService } from '../../../etapas/shared/etapa.service';
-import { Etapa } from '../../../etapas/shared/etapa';
+import { EtapaReactiveService } from '../../../../etapas/shared/etapa.service';
+import { Etapa } from '../../../../etapas/shared/etapa';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

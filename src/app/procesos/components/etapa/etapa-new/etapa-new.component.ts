@@ -2,22 +2,22 @@ import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from '../../../../config/general';
-import { MESSAGES } from '../../../../config/messages';
-import { EtapaReactiveService } from '../../../etapas/shared/etapa.service';
-import { Etapa } from '../../../etapas/shared/etapa';
+import { getMessageConfirm } from '../../../../../config/general';
+import { MESSAGES } from '../../../../../config/messages';
+import { EtapaReactiveService } from '../../../../etapas/shared/etapa.service';
+import { Etapa } from '../../../../etapas/shared/etapa';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'dgi-etapa',
-  templateUrl: './etapa.component.html',
-  styleUrls: ['./etapa.component.scss']
+  templateUrl: './etapa-new.component.html',
+  styleUrls: ['./etapa-new.component.scss']
 })
-export class EtapaComponent implements OnInit {
+export class EtapaNewComponent implements OnInit {
   public etapaForm: FormGroup;
   public etapas$: Observable<Etapa[]>;
 
-  constructor(private dialogRef: MatDialogRef<EtapaComponent>,
+  constructor(private dialogRef: MatDialogRef<EtapaNewComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
     private tdDialogService: TdDialogService,

@@ -2,10 +2,12 @@
 
 <div class="etapa-editor-container">
   <form [formGroup]="tareaEditorForm" (ngSubmit)="onSubmit()" novalidate class="etapa-editor-container">
-
+    
+    <!-- Nombre field Disabled -->
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Nombre de la Etapa (DIsabled)" disabled [value]="nameTarea">
     </mat-form-field>
+
     <table class="example-full-width" cellspacing="0">
       <tr>
         <td>

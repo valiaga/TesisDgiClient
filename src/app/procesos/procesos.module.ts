@@ -28,14 +28,15 @@ import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/cor
 import { CommonModule } from '@angular/common';
 import { DgiButtonFabModule } from '../shared/dgi/button-fab';
 import { RolProcesoComponent } from './components/rol-proceso/rol-proceso.component';
-import { EtapaComponent } from './components/etapa/etapa.component';
+import { EtapaNewComponent } from './components/etapa/etapa-new/etapa-new.component';
 import { EtapaReactiveService, EtapaService } from '../etapas/shared/etapa.service';
 import { RolProcesoService } from '../rol-proceso/shared/rol-proceso.service';
-import { EtapaEditorComponent } from './components/etapa-editor/etapa-editor.component';
-import { EtapaTareasComponent } from './components/etapa-tareas/etapa-tareas.component';
-import { EtapaListaComponent } from './components/etapa-lista/etapa-lista.component';
+import { EtapaEditorComponent } from './components/etapa/etapa-editor/etapa-editor.component';
+import { EtapaTareasComponent } from './components/tarea/etapa-tareas/etapa-tareas.component';
+import { EtapaListaComponent } from './components/tarea/etapa-lista/etapa-lista.component';
 import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.service';
-import { TareaEditorComponent } from './components/tarea-editor/tarea-editor.component';
+import { TareaEditorComponent } from './components/tarea/tarea-editor/tarea-editor.component';
+import { TareaNewComponent } from './components/tarea/tarea-new/tarea-new.component';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -87,11 +88,12 @@ const DGI_MODULES: any = [
     ProcesoSearchComponent,
     FindProcesoPageComponent,
     RolProcesoComponent,
-    EtapaComponent,
+    EtapaNewComponent,
     EtapaEditorComponent,
     EtapaTareasComponent,
     EtapaListaComponent,
     TareaEditorComponent,
+    TareaNewComponent,
   ],
   providers: [
     ProcesoService,
@@ -103,7 +105,8 @@ const DGI_MODULES: any = [
   ],
   entryComponents: [
     RolProcesoComponent,
-    EtapaComponent,
+    EtapaNewComponent,
+    TareaNewComponent,
   ]
 })
 export class ProcesosModule { }

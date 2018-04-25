@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
-import { Etapa } from '../../../etapas/shared/etapa';
+import { Etapa } from '../../../../etapas/shared/etapa';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { EtapaReactiveService } from '../../../etapas/shared/etapa.service';
+import { EtapaReactiveService } from '../../../../etapas/shared/etapa.service';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from '../../../../config/general';
-import { MESSAGES } from '../../../../config/messages';
+import { getMessageConfirm } from '../../../../../config/general';
+import { MESSAGES } from '../../../../../config/messages';
 
 @Component({
   selector: 'dgi-etapa-editor',

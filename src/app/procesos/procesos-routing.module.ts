@@ -5,8 +5,8 @@ import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { EditorComponent } from './editor/editor.component';
 import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
-import { EtapaTareasComponent } from './components/etapa-tareas/etapa-tareas.component';
-import { EtapaListaComponent } from './components/etapa-lista/etapa-lista.component';
+import { EtapaTareasComponent } from './components/tarea/etapa-tareas/etapa-tareas.component';
+import { EtapaListaComponent } from './components/tarea/etapa-lista/etapa-lista.component';
 
 /** Rutas que se manejan en este módulo
  * /procesos

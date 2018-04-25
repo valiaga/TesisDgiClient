@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
 import { RolProcesoComponent } from '../components/rol-proceso/rol-proceso.component';
 import { getMessageConfirm } from '../../../config/general';
 import { MESSAGES } from '../../../config/messages';
-import { EtapaComponent } from '../components/etapa/etapa.component';
+import { EtapaNewComponent } from '../components/etapa/etapa-new/etapa-new.component';
 import { EtapaReactiveService } from '../../etapas/shared/etapa.service';
 import { Etapa } from '../../etapas/shared/etapa';
 import { RolProceso } from '../../rol-proceso/shared/rol-proceso.model';
@@ -88,7 +88,7 @@ export class EditorComponent implements OnInit {
 
   public newEtapa() {
     const procesoId = this.procesoForm.get('id').value;
-    const dialogRef = this.dialog.open(EtapaComponent, {
+    const dialogRef = this.dialog.open(EtapaNewComponent, {
       width: '500px',
       data: { procesoId: procesoId },
     });

@@ -33,6 +33,10 @@ export class TareaService {
   public delete$(id: string): Observable<ITarea> {
     return this.http.delete<ITarea>(`${this.url}${id}/`);
   }
+
+  public create$(tarea: any): Observable<ITarea> {
+    return this.http.post<ITarea>(this.url, tarea);
+  }
 }
 
 
@@ -52,7 +56,7 @@ export class TareaReactiveService {
     this.tareas = this._tareas.asObservable();
   }
 
-  getAllTareas() {
+  public getAllTareas() {
 
     return this.tareaService.getTareas()
       .subscribe(data => {
@@ -62,7 +66,7 @@ export class TareaReactiveService {
       );
   }
 
-  getTareasByEtapaId(etapaId: string) {
+  public getTareasByEtapaId(etapaId: string) {
     return this.tareaService.getTareasByEtapaId(etapaId)
       .subscribe(data => {
         this.dataStore.tareas = data;
@@ -82,7 +86,16 @@ export class TareaReactiveService {
       }, error => console.log('Could not update tarea.'));
   }
 
-  remove(id: string) {
+  public create(etapa: any) {
+    this.tareaService.create$(etapa)
+      .subscribe(data => {
+        this.snackBar.open(MESSAGES.rolProceso.post, MESSAGES.actions.post, snackBarDuration);
+        this.dataStore.tareas.push(data);
+        this._tareas.next(Object.assign({}, this.dataStore).tareas);
+      }, error => console.log('Could not create tarea.'));
+  }
+
+  public remove(id: string) {
     this.tareaService.delete$(id)
       .subscribe(response => {
 

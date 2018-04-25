@@ -1,0 +1,61 @@
+<div class="tarea-container">
+    <form [formGroup]="tareaForm" (ngSubmit)="onSubmit()" novalidate class="tarea-container">
+
+        <h5>Nuevo tarea</h5>
+
+        <!-- Nombre field -->
+        <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']">
+            <input matInput placeholder="Nombre" formControlName="nombre" required>
+            <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
+        </mat-form-field>
+
+        <!-- Anterior field -->
+        <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
+            <mat-select placeholder="Seleccionar tarea Anterior" formControlName="anterior">
+                <mat-option value="" selected>-None-</mat-option>
+                <ng-template ngFor let-tarea [ngForOf]="tareas$ | async">
+                    <mat-option *ngIf="tarea.id !== idTarea" [value]="tarea.id">{{ tarea.nombre }}</mat-option>
+                </ng-template>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Requisito respuesta Activador -->
+        <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+            <input matInput placeholder="Requisito respuesta Activador" formControlName="req_res_activador">
+        </mat-form-field>
+
+        <!-- Requisito respuesta Desactivador -->
+        <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+            <input matInput placeholder="Requisito respuesta Deactivador" formControlName="req_res_desactivador">
+        </mat-form-field>
+
+        <!-- Pazo en días -->
+        <mat-form-field [floatLabel]="['auto']">
+            <input type="number" matInput placeholder="Pazo en días" formControlName="plazo_dias" required>
+        </mat-form-field>
+
+        <!-- Orden field -->
+        <mat-form-field [floatLabel]="['auto']">
+            <input type="number" matInput placeholder="Orden" formControlName="orden">
+        </mat-form-field>
+
+        <!-- Rol Ejecuta field -->
+        <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
+            <mat-select placeholder="Seleccionar el Rol que ejecuta" formControlName="rol_ejecuta" multiple>
+                <mat-option value="" selected>-None-</mat-option>
+                <mat-option *ngFor="let rolEjecuta of rolesEjecuta$ | async" [value]="rolEjecuta.id">{{ rolEjecuta.nombre }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Descripción field -->
+        <mat-form-field [floatLabel]="['auto']">
+            <textarea matInput placeholder="Descripción" matTextareaAutosize matAutosizeMaxRows="5" formControlName="descripcion" matAutosizeMinRows="2"></textarea>
+        </mat-form-field>
+
+        <!-- Buttons Actions -->
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!tareaForm.valid" tabindex="0">Aceptar</button>
+            <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+        </div>
+    </form>
+</div>
