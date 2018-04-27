@@ -61,6 +61,8 @@ export class TareaReactiveService {
     return this.tareaService.getTareas()
       .subscribe(data => {
         this.dataStore.tareas = data;
+        console.log(this.dataStore.tareas);
+
         this._tareas.next(Object.assign({}, this.dataStore).tareas);
       }, error => console.log('Could not load tareas.')
       );

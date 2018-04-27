@@ -15,8 +15,8 @@ export class EtapaService {
 
   constructor(private http: HttpClient) { }
 
-  public getEtapas(): Observable<IEtapa[]> {
-    const params: any = { all: true };
+  public getEtapas$(params?: any): Observable<IEtapa[]> {
+    // const params: any = { all: true };
     return this.http
       .get<IEtapa[]>(this.url, { params: params });
   }
@@ -36,12 +36,11 @@ export class EtapaService {
     return this.http.put<IEtapa>(`${this.url}${id}/`, etapa);
   }
 
-  public getEtapasByProcesoId(procesoId: string): Observable<IEtapa[]> {
-    const params: any = { proceso: procesoId };
-    return this.http
-      .get<IEtapa[]>(this.url, { params: params });
-
-  }
+  // public getEtapasByProcesoId(procesoId: string): Observable<IEtapa[]> {
+  //   const params: any = { proceso: procesoId };
+  //   return this.http
+  //     .get<IEtapa[]>(this.url, { params: params });
+  // }
 
   public delete$(id: string): Observable<IEtapa> {
     return this.http.delete<IEtapa>(`${this.url}${id}/`);
@@ -69,7 +68,7 @@ export class EtapaReactiveService {
 
   public getAllEtapas() {
 
-    return this.etapaService.getEtapas()
+    return this.etapaService.getEtapas$()
       .subscribe(data => {
 
         this.dataStore.etapas = data;
@@ -89,7 +88,7 @@ export class EtapaReactiveService {
   }
 
   public getEtapasByProcesoId(procesoId: string) {
-    return this.etapaService.getEtapasByProcesoId(procesoId)
+    return this.etapaService.getEtapas$({ proceso_id: procesoId })
       .subscribe(data => {
 
         this.dataStore.etapas = data;

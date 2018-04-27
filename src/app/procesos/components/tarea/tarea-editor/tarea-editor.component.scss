@@ -1,6 +1,11 @@
 .etapa-editor-container {
+    // display: flex;
     display: flex;
+    width: 50%;
     flex-direction: column;
+    form {
+        width: 100%;
+    }
 }
 .etapa-editor-container .checkbox {
     margin-bottom: 20px;
@@ -8,4 +13,8 @@
 
 .example-full-width {
     width: 100%;
-  }
+}
+
+:host {
+    display: flex;
+}
