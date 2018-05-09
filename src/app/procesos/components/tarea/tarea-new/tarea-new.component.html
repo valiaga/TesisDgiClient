@@ -42,7 +42,7 @@
         <!-- Rol Ejecuta field -->
         <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
             <mat-select placeholder="Seleccionar el Rol que ejecuta" formControlName="rol_ejecuta" multiple>
-                <mat-option value="" selected>-None-</mat-option>
+                <!-- <mat-option value="" selected>-None-</mat-option> -->
                 <mat-option *ngFor="let rolEjecuta of rolesEjecuta$ | async" [value]="rolEjecuta.id">{{ rolEjecuta.nombre }}</mat-option>
             </mat-select>
         </mat-form-field>

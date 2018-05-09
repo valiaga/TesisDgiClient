@@ -2,7 +2,7 @@
 
 <div class="etapa-editor-container">
   <form [formGroup]="tareaEditorForm" (ngSubmit)="onSubmit()" novalidate class="etapa-editor-container">
-    
+
     <!-- Nombre field Disabled -->
     <mat-form-field class="example-full-width">
       <input matInput placeholder="Nombre de la Etapa (DIsabled)" disabled [value]="nameTarea">
@@ -75,8 +75,8 @@
                   (+{{tareaEditorForm.controls['rol_ejecuta'].value.length - 1}} others)
                 </span>
               </mat-select-trigger> -->
-              <mat-option value="" selected>-None-</mat-option>
-                <mat-option *ngFor="let rolEjecuta of rolesEjecuta$ | async" [value]="rolEjecuta.id">{{ rolEjecuta.nombre }}</mat-option>
+              <!-- <mat-option value="" selected>-None-</mat-option> -->
+              <mat-option *ngFor="let rolEjecuta of rolesEjecuta$ | async" [value]="rolEjecuta.id">{{ rolEjecuta.nombre }}</mat-option>
             </mat-select>
           </mat-form-field>
         </td>
