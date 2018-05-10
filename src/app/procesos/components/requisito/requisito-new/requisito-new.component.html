@@ -1,0 +1,44 @@
+<div class="requisito-container">
+    <form [formGroup]="requisitoForm" (ngSubmit)="onSubmit()" novalidate class="requisito-container">
+
+        <h5>Nuevo requisito</h5>
+
+        <!-- Nombre field -->
+        <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']">
+            <input matInput placeholder="Nombre" formControlName="nombre" required>
+        </mat-form-field>
+
+        <!-- Anterior field -->
+        <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
+            <mat-select placeholder="Seleccionar el tipo" formControlName="tipo">
+                <!-- <mat-option value="" selected>-None-</mat-option> -->
+                <mat-option value="NORMAL" selected>Requisito normal</mat-option>
+                <mat-option value="TEMPORIZADOR">Requisito temporizador</mat-option>
+                <!-- <ng-template ngFor let-tarea [ngForOf]="tareas$ | async"> -->
+                <!-- <mat-option *ngIf="tarea.id !== idTarea" [value]="tarea.id">{{ tarea.nombre }}</mat-option> -->
+                <!-- </ng-template> -->
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Pazo en días -->
+        <mat-form-field [floatLabel]="['auto']">
+            <input type="number" matInput placeholder="Pazo en días" formControlName="plazo_dias" required>
+        </mat-form-field>
+
+        <!-- Activo field -->
+        <div class="checkbox">
+            <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+        </div>
+
+        <!-- Descripción field -->
+        <mat-form-field [floatLabel]="['auto']">
+            <textarea matInput placeholder="Descripción" matTextareaAutosize matAutosizeMaxRows="5" formControlName="descripcion" matAutosizeMinRows="2"></textarea>
+        </mat-form-field>
+
+        <!-- Buttons Actions -->
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!requisitoForm.valid" tabindex="0">Aceptar</button>
+            <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+        </div>
+    </form>
+</div>

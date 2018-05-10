@@ -108,5 +108,15 @@ export const MESSAGES = {
         put: 'La Tarea se actualizó con Éxito.',
         confirmDelete: '¿Estas segur@ que quieres eliminar la Tarea?',
         confirmCreate: '¿Estas segur@ que quieres guardar la Tarea?',
+    },
+    requisito: {
+        delete: 'El Requisito se eliminó con Éxito!.',
+        deleteAll: 'Los Requisitos se eliminaron con Éxito!.',
+        post: 'El Requisito se guardó con Éxito.',
+        getMany: 'Los Requisitos se listaron con Éxito.',
+        getOne: 'El Requisito se listó con Éxito.',
+        put: 'El Requisito se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el Requisito?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el Requisito?',
     }
 };

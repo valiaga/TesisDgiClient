@@ -90,20 +90,29 @@
 <div class="etapa-editor-container">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>Lista de requisitos</mat-card-title>
+      <mat-card-title>
+        Lista de requisitos
+      </mat-card-title>
+      <!-- <button mat-mini-fab color="primary" (click)="newRequisito()" matTooltip="Nuevo requisito!">
+        <mat-icon>assignment_turned_in</mat-icon>
+      </button> -->
+      <span flex></span>
+      <button mat-mini-fab color="primary" (click)="newRequisito()" matTooltip="Nuevo requisito">
+        <mat-icon>assignment_turned_in</mat-icon>
+      </button>
     </mat-card-header>
     <mat-list>
       <mat-selection-list #req>
         <!-- <mat-list-option *ngFor="let shoe of typesOfShoes"> -->
-        <mat-list-option>
-          Requisito 1
+        <mat-list-option *ngFor="let requisito of requisitos$ | async">
+          {{ requisito.nombre }}
         </mat-list-option>
-        <mat-list-option>
+        <!-- <mat-list-option>
           Requisito 2
         </mat-list-option>
         <mat-list-option>
           Requisito 3
-        </mat-list-option>
+        </mat-list-option> -->
       </mat-selection-list>
     </mat-list>
   </mat-card>
