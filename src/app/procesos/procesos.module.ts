@@ -38,6 +38,8 @@ import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.servi
 import { TareaEditorComponent } from './components/tarea/tarea-editor/tarea-editor.component';
 import { TareaNewComponent } from './components/tarea/tarea-new/tarea-new.component';
 import { ProcesosComponent } from './procesos.component';
+import { RequisitoReactiveService, RequisitosService } from '../requisitos/shared/requisitos.service';
+import { RequisitoNewComponent } from './components/requisito/requisito-new/requisito-new.component';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -96,6 +98,8 @@ const DGI_MODULES: any = [
     TareaEditorComponent,
     TareaNewComponent,
     ProcesosComponent,
+
+    RequisitoNewComponent,
   ],
   providers: [
     ProcesoService,
@@ -104,11 +108,15 @@ const DGI_MODULES: any = [
     EtapaService,
     TareaReactiveService,
     TareaService,
+
+    RequisitoReactiveService,
+    RequisitosService,
   ],
   entryComponents: [
     RolProcesoComponent,
     EtapaNewComponent,
     TareaNewComponent,
+    RequisitoNewComponent,
   ]
 })
 export class ProcesosModule { }

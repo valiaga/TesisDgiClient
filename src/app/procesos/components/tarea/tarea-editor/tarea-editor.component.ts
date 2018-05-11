@@ -14,6 +14,10 @@ import { filter } from 'rxjs/operators';
 import { map } from 'rxjs/operator/map';
 import { mergeMap } from 'rxjs/operator/mergeMap';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Requisito } from '../../../../requisitos/shared/requisito';
+import { RequisitoReactiveService } from '../../../../requisitos/shared/requisitos.service';
+import { MatDialog } from '@angular/material';
+import { RequisitoNewComponent } from '../../requisito/requisito-new/requisito-new.component';
 
 
 @Component({
@@ -34,6 +38,7 @@ export class TareaEditorComponent implements OnInit {
   }
 
   public tareas$: Observable<Tarea[]>;
+  public requisitos$: Observable<Requisito[]>;
   public rolesEjecuta$: Observable<RolProceso[]>;
   public tareaEditorForm: FormGroup;
 
@@ -44,6 +49,8 @@ export class TareaEditorComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private rolProcesoService: RolProcesoService,
+    private requisitoReactiveService: RequisitoReactiveService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -52,6 +59,7 @@ export class TareaEditorComponent implements OnInit {
 
 
     this.tareas$ = this.tareaReactiveService.tareas;
+    this.requisitos$ = this.requisitoReactiveService.requisitos;
 
     this.loadMaestros();
   }
@@ -121,6 +129,17 @@ export class TareaEditorComponent implements OnInit {
   public buildForm() {
     const controls = this.initializeControls();
     this.tareaEditorForm = this.formBuilder.group(controls);
+  }
+
+  public newRequisito() {
+    const tareaId = this.tareaEditorForm.value.id;
+    const dialogRef = this.dialog.open(RequisitoNewComponent, {
+      width: '500px',
+      data: { tareaId: tareaId },
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      // console.log('close dialog escuela');
+    });
   }
 
   public initializeControls() {

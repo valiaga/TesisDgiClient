@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { MatDialog } from '@angular/material';
 import { TareaNewComponent } from '../tarea-new/tarea-new.component';
+import { RequisitoReactiveService } from '../../../../requisitos/shared/requisitos.service';
 
 @Component({
   selector: 'dgi-etapa-tareas',
@@ -19,12 +20,18 @@ export class EtapaTareasComponent implements OnInit {
     private tareaReactiveService: TareaReactiveService,
     private route: ActivatedRoute,
     private dialog: MatDialog,
+    private requisitoReactiveService: RequisitoReactiveService,
   ) { }
 
   ngOnInit() {
     this.tareas$ = this.tareaReactiveService.tareas;
 
     this.loadMaestros();
+  }
+
+  public selectionChange(event: any) {
+    const tareaId = event.selectedStep.content.elementRef.nativeElement.parentElement.id;
+    this.requisitoReactiveService.getRequisitosByTareaId(tareaId);
   }
 
   public loadMaestros() {

@@ -14,8 +14,8 @@
 </mat-card>
 
 <mat-card>
-  <mat-horizontal-stepper>
-    <mat-step *ngFor="let tarea of tareas$ | async" [label]="tarea.nombre">
+  <mat-horizontal-stepper (selectionChange)="selectionChange($event)">
+    <mat-step *ngFor="let tarea of tareas$ | async" [label]="tarea.nombre" [id]="tarea.id">
       <dgi-tarea-editor [tarea]="tarea"></dgi-tarea-editor>
     </mat-step>
   </mat-horizontal-stepper>
