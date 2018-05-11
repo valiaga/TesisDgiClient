@@ -1,11 +1,22 @@
-<button mat-mini-fab color="accent" [routerLink]="['../../']">
-  <mat-icon aria-label="Example icon-button with a heart icon">reply</mat-icon>
-</button>
+<mat-card>
+  <mat-card-content layout="row">
+    <div layout="row">
+      <button mat-mini-fab color="default" [routerLink]="['../../']">
+        <mat-icon aria-label="Example icon-button with a heart icon">reply</mat-icon>
+      </button>
+      <p class="name-tarea">Nombre de la Etapa
+        <strong>| Tareas</strong>
+      </p>
+      <span flex></span>
+      <button mat-raised-button color="primary" (click)="newTarea()">Nueva Tarea</button>
+    </div>
+  </mat-card-content>
+</mat-card>
 
-<button mat-raised-button color="primary" (click)="newTarea()">Nueva Tarea</button>
-
-<mat-horizontal-stepper>
-  <mat-step *ngFor="let tarea of tareas$ | async" [label]="tarea.nombre">
-    <dgi-tarea-editor [tarea]="tarea"></dgi-tarea-editor>
-  </mat-step>
-</mat-horizontal-stepper>
+<mat-card>
+  <mat-horizontal-stepper>
+    <mat-step *ngFor="let tarea of tareas$ | async" [label]="tarea.nombre">
+      <dgi-tarea-editor [tarea]="tarea"></dgi-tarea-editor>
+    </mat-step>
+  </mat-horizontal-stepper>
+</mat-card>

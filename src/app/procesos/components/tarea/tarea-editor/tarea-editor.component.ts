@@ -13,6 +13,7 @@ import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
 import { filter } from 'rxjs/operators';
 import { map } from 'rxjs/operator/map';
 import { mergeMap } from 'rxjs/operator/mergeMap';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -40,6 +41,8 @@ export class TareaEditorComponent implements OnInit {
     private tareaReactiveService: TareaReactiveService,
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService,
+    private route: ActivatedRoute,
+    private router: Router,
     private rolProcesoService: RolProcesoService,
   ) { }
 
@@ -49,6 +52,19 @@ export class TareaEditorComponent implements OnInit {
 
 
     this.tareas$ = this.tareaReactiveService.tareas;
+
+    this.loadMaestros();
+  }
+
+  public loadMaestros() {
+    this.route.params.subscribe(params => {
+      const procesoId = params['id'].toString();
+      this.rolProcesoService.getAllRolProcesos({ proceso_id: procesoId });
+    });
+  }
+
+  public VerFormulariosDinamicos() {
+    // this.router.navigate(['../']);
   }
 
   public patchTareaForm(tarea) {

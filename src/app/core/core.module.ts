@@ -13,13 +13,14 @@ import { SidenavComponent } from './shell/sidenav/sidenav.component';
 import { FooterComponent } from './shell/footer/footer.component';
 // import { BreadcrumbComponent } from './shell/breadcrumb/breadcrumb.component';
 
-import { Ng5BreadcrumbModule } from 'ng5-breadcrumb';
+import { Ng5BreadcrumbModule } from './shell/breadcrumb';
 // import { NotFoundPageComponent } from './components/not-found-page.component';
 import { AngularModule } from '../shared/angular/angular.module';
 import { MaterialModule } from '../shared/material/material.module';
 import { CovalentModule } from '../shared/covalent/covalent.module';
 import { AuthService } from '../auth/shared/auth.service';
 import { HttpClientModule } from '@angular/common/http';
+
 
 const SHELL_COMPONENTS: any[] = [
   ShellComponent,
@@ -35,8 +36,7 @@ const SHELL_COMPONENTS: any[] = [
     AngularModule,
     MaterialModule,
     CovalentModule,
-
-    Ng5BreadcrumbModule.forRoot()
+    Ng5BreadcrumbModule.forRoot(),
   ],
   declarations: [
     ...SHELL_COMPONENTS,

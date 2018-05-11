@@ -87,7 +87,40 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <!-- <button mat-raised-button color="primary" (click)="newEtapa()">Nueva Tarea</button> -->
-    <router-outlet></router-outlet>
+    <!-- <router-outlet></router-outlet> -->
+
+    <h4>Lista de Etapas</h4>
+    <h5>(Busque la etapa e ingrese a ver sus tareas)</h5>
+    <mat-list>
+      <mat-list-item *ngFor="let etapa of etapas$ | async">
+        <span flex>{{ etapa.nombre }} ({{ etapa.plazo_dias }} Dias de plazo)</span>
+        <!-- <mat-slide-toggle (change)="onChangeActivoRolProceso($event, item.id)" [checked]="item.activo">Activo</mat-slide-toggle> -->
+        <button mat-icon-button [matMenuTriggerFor]="menuTarea" [matMenuTriggerData]="{etapaId: etapa.id }" class="dgi-button-rol-proceso-list">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+
+    <mat-menu #menuTarea="matMenu">
+      <ng-template matMenuContent let-etapaId="etapaId">
+        <button mat-menu-item [routerLink]="['etapas', etapaId ]">
+          <mat-icon>edit</mat-icon>
+          <span>Ver</span>
+        </button>
+      </ng-template>
+    </mat-menu>
+
+
+
+
+
+
+
+
+
+
+
   </mat-expansion-panel>
   <mat-expansion-panel>
     <mat-expansion-panel-header>
