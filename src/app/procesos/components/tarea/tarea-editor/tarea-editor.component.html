@@ -1,120 +1,127 @@
-<div class="etapa-editor-container">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Información general</mat-card-title>
-    </mat-card-header>
-    <mat-card-content layout="row">
-      <form [formGroup]="tareaEditorForm" (ngSubmit)="onSubmit()" novalidate class="">
+<div class="etapa-editor">
+    <div class="etapa-editor-container">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>Información general</mat-card-title>
+        </mat-card-header>
+        <mat-card-content layout="row">
+          <form [formGroup]="tareaEditorForm" (ngSubmit)="onSubmit()" novalidate>
 
-        <!-- Nombre field Disabled -->
-        <mat-form-field class="example-full-width">
-          <input matInput placeholder="Nombre de la Etapa (DIsabled)" disabled [value]="nameTarea">
-        </mat-form-field>
+            <!-- Nombre field Disabled -->
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Nombre de la Etapa (DIsabled)" disabled [value]="nameTarea">
+            </mat-form-field>
 
-        <table class="example-full-width" cellspacing="0">
-          <tr>
-            <td>
-              <!-- Nombre field -->
-              <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="example-full-width">
-                <input matInput placeholder="Nombre" formControlName="nombre" required>
-                <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
-              </mat-form-field>
-            </td>
-            <td>
+            <table class="example-full-width" cellspacing="0">
+              <tr>
+                <td>
+                  <!-- Nombre field -->
+                  <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="example-full-width">
+                    <input matInput placeholder="Nombre" formControlName="nombre" required>
+                    <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
+                  </mat-form-field>
+                </td>
+                <td>
 
-              <!-- Anterior field -->
-              <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
-                <mat-select placeholder="Seleccionar tarea Anterior" formControlName="anterior">
-                  <mat-option value="" selected>-None-</mat-option>
-                  <ng-template ngFor let-tarea [ngForOf]="tareas$ | async">
-                    <mat-option *ngIf="tarea.id !== idTarea" [value]="tarea.id">{{ tarea.nombre }}</mat-option>
-                  </ng-template>
-                </mat-select>
-              </mat-form-field>
-            </td>
-            <td>
-              <!-- Pazo en días -->
-              <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                <input type="number" matInput placeholder="Pazo en días" formControlName="plazo_dias" required>
-              </mat-form-field>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <!-- Requisito respuesta Activador -->
-              <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                <input matInput placeholder="Requisito respuesta Activador" formControlName="req_res_activador">
-              </mat-form-field>
-            </td>
-            <td>
-              <!-- Requisito respuesta Desactivador -->
-              <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                <input matInput placeholder="Requisito respuesta Deactivador" formControlName="req_res_desactivador">
-              </mat-form-field>
-            </td>
-            <td>
-              <!-- Orden field -->
-              <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                <input type="number" matInput placeholder="Orden" formControlName="orden">
-              </mat-form-field>
-            </td>
-            <!-- <td> -->
-            <!-- </td> -->
-          </tr>
-        </table>
+                  <!-- Anterior field -->
+                  <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
+                    <mat-select placeholder="Seleccionar tarea Anterior" formControlName="anterior">
+                      <mat-option value="" selected>-None-</mat-option>
+                      <ng-template ngFor let-tarea [ngForOf]="tareas$ | async">
+                        <mat-option *ngIf="tarea.id !== idTarea" [value]="tarea.id">{{ tarea.nombre }}</mat-option>
+                      </ng-template>
+                    </mat-select>
+                  </mat-form-field>
+                </td>
+                <td>
+                  <!-- Pazo en días -->
+                  <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                    <input type="number" matInput placeholder="Pazo en días" formControlName="plazo_dias" required>
+                  </mat-form-field>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <!-- Requisito respuesta Activador -->
+                  <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                    <input matInput placeholder="Requisito respuesta Activador" formControlName="req_res_activador">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <!-- Requisito respuesta Desactivador -->
+                  <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                    <input matInput placeholder="Requisito respuesta Deactivador" formControlName="req_res_desactivador">
+                  </mat-form-field>
+                </td>
+                <td>
+                  <!-- Orden field -->
+                  <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                    <input type="number" matInput placeholder="Orden" formControlName="orden">
+                  </mat-form-field>
+                </td>
+                <!-- <td> -->
+                <!-- </td> -->
+              </tr>
+            </table>
 
-        <!-- Rol Ejecuta field -->
-        <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
-          <mat-select placeholder="Seleccionar el Rol que ejecuta" formControlName="rol_ejecuta" multiple>
-            <mat-option value="" selected>-None-</mat-option>
-            <mat-option *ngFor="let rolEjecuta of rolesEjecuta$ | async" [value]="rolEjecuta.id">{{ rolEjecuta.nombre }}</mat-option>
-          </mat-select>
-        </mat-form-field>
+            <!-- Rol Ejecuta field -->
+            <mat-form-field [hideRequiredMarker]="[false]" class="example-full-width">
+              <mat-select placeholder="Seleccionar el Rol que ejecuta" formControlName="rol_ejecuta" multiple>
+                <mat-option value="" selected>-None-</mat-option>
+                <mat-option *ngFor="let rolEjecuta of rolesEjecuta$ | async" [value]="rolEjecuta.id">{{ rolEjecuta.nombre }}</mat-option>
+              </mat-select>
+            </mat-form-field>
 
-        <!-- Descripción field -->
-        <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-          <textarea matInput placeholder="Descripción" matTextareaAutosize matAutosizeMaxRows="5" formControlName="descripcion" matAutosizeMinRows="2"></textarea>
-        </mat-form-field>
+            <!-- Descripción field -->
+            <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+              <textarea matInput placeholder="Descripción" matTextareaAutosize matAutosizeMaxRows="5" formControlName="descripcion" matAutosizeMinRows="2"></textarea>
+            </mat-form-field>
 
-        <!-- Buttons Actions -->
-        <div mat-dialog-actions>
-          <button mat-raised-button color="primary" type="submit" [disabled]="!tareaEditorForm.valid" tabindex="0">Aceptar</button>
-          <button mat-raised-button color="accent" type="button" (click)="eliminarTarea()" tabindex="0">Eliminar Tarea</button>
-          <a mat-raised-button color="" type="button" [routerLink]="['./tareas']" tabindex="0">Formularios dinamicos</a>
-        </div>
-      </form>
-    </mat-card-content>
-  </mat-card>
+            <!-- Buttons Actions -->
+            <div mat-dialog-actions>
+              <button mat-raised-button color="primary" type="submit" [disabled]="!tareaEditorForm.valid" tabindex="0">Aceptar</button>
+              <button mat-raised-button color="accent" type="button" (click)="eliminarTarea()" tabindex="0">Eliminar Tarea</button>
+              <a mat-raised-button color="" type="button" [routerLink]="['./tareas', tareaEditorForm.get('id').value ]" tabindex="0">Formularios dinamicos</a>
+            </div>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <div class="etapa-editor-container">
+      <mat-card>
+        <mat-card-header>
+          <mat-card-title>
+            Lista de requisitos
+          </mat-card-title>
+          <!-- <button mat-mini-fab color="primary" (click)="newRequisito()" matTooltip="Nuevo requisito!">
+            <mat-icon>assignment_turned_in</mat-icon>
+          </button> -->
+          <span flex></span>
+          <button mat-mini-fab color="primary" (click)="newRequisito()" matTooltip="Nuevo requisito">
+            <mat-icon>assignment_turned_in</mat-icon>
+          </button>
+        </mat-card-header>
+        <mat-list>
+          <mat-selection-list #req>
+            <!-- <mat-list-option *ngFor="let shoe of typesOfShoes"> -->
+            <mat-list-option *ngFor="let requisito of requisitos$ | async">
+              {{ requisito.nombre }}
+            </mat-list-option>
+            <!-- <mat-list-option>
+              Requisito 2
+            </mat-list-option>
+            <mat-list-option>
+              Requisito 3
+            </mat-list-option> -->
+          </mat-selection-list>
+        </mat-list>
+      </mat-card>
+    </div>
 </div>
-
-<div class="etapa-editor-container">
+    
+<div class="etapa-editor-container-dynamic">
   <mat-card>
-    <mat-card-header>
-      <mat-card-title>
-        Lista de requisitos
-      </mat-card-title>
-      <!-- <button mat-mini-fab color="primary" (click)="newRequisito()" matTooltip="Nuevo requisito!">
-        <mat-icon>assignment_turned_in</mat-icon>
-      </button> -->
-      <span flex></span>
-      <button mat-mini-fab color="primary" (click)="newRequisito()" matTooltip="Nuevo requisito">
-        <mat-icon>assignment_turned_in</mat-icon>
-      </button>
-    </mat-card-header>
-    <mat-list>
-      <mat-selection-list #req>
-        <!-- <mat-list-option *ngFor="let shoe of typesOfShoes"> -->
-        <mat-list-option *ngFor="let requisito of requisitos$ | async">
-          {{ requisito.nombre }}
-        </mat-list-option>
-        <!-- <mat-list-option>
-          Requisito 2
-        </mat-list-option>
-        <mat-list-option>
-          Requisito 3
-        </mat-list-option> -->
-      </mat-selection-list>
-    </mat-list>
+    hola
   </mat-card>
 </div>
 

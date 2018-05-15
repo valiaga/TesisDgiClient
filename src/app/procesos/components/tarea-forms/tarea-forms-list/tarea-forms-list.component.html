@@ -1,0 +1,20 @@
+<mat-card>
+  <mat-card-content layout="row">
+    <div layout="row">
+      <button mat-mini-fab color="default" [routerLink]="['../../']">
+        <mat-icon aria-label="Example icon-button with a heart icon">reply</mat-icon>
+      </button>
+      <p class="name-tarea">Nombre de la Tarea
+        <strong>| Formularios</strong>
+      </p>
+      <span flex></span>
+      <button mat-raised-button color="primary" (click)="newTarea()">Nuevo Formulario</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<mat-card *ngFor="let formulario of formularios">
+  <mat-card-content layout="row">
+    {{ formulario.nombre }}
+  </mat-card-content>
+</mat-card>

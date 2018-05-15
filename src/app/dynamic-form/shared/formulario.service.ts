@@ -4,7 +4,6 @@ import { Formulario, IFormulario } from '../models.1/formulario';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
-import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
 import { CampoService } from './campo.service';
@@ -17,15 +16,12 @@ export class FormularioService {
   constructor(private http: HttpClient) { }
 
   public getFomularios$(): Observable<IFormulario[]> {
-    const apiUrl = environment.apiUrl;
     return this.http
-      // .get<IFormulario[]>(`${apiUrl}proceso/formularios/?all=true`)
-      .get<IFormulario[]>(`${apiUrl}proceso/formularios`);
+      .get<IFormulario[]>(`proceso/formularios/`);
   }
   public getFormulariosByTareaId$(tareaId: string): Observable<Form[]> {
-    const apiUrl = environment.apiUrl;
     return this.http
-      .get<Form[]>(`${apiUrl}proceso/tareas/${tareaId}/formularios/`);
+      .get<Form[]>(`proceso/tareas/${tareaId}/formularios/`);
   }
 }
 
@@ -49,7 +45,6 @@ export class FormularioReactiveService {
   }
 
   public getAllFormularios() {
-    const apiUrl = environment.apiUrl;
 
     return this.formularioService.getFomularios$()
       .subscribe(data => {
@@ -63,8 +58,6 @@ export class FormularioReactiveService {
   }
 
   public getFormulariosByTareaId(tareaId: string) {
-    const apiUrl = environment.apiUrl;
-
     return this.formularioService.getFormulariosByTareaId$(tareaId)
       .subscribe(data => {
         this.snackBar.open(MESSAGES.formulario.getMany, MESSAGES.actions.get, snackBarDuration);

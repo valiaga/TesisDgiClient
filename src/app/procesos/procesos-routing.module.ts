@@ -8,6 +8,7 @@ import { FindProcesoPageComponent } from './containers/find-proceso-page.compone
 import { EtapaTareasComponent } from './components/tarea/etapa-tareas/etapa-tareas.component';
 import { EtapaListaComponent } from './components/tarea/etapa-lista/etapa-lista.component';
 import { ProcesosComponent } from './procesos.component';
+import { TareaFormsListComponent } from './components/tarea-forms/tarea-forms-list/tarea-forms-list.component';
 
 /** Rutas que se manejan en este módulo
  * /procesos
@@ -37,8 +38,12 @@ const routes: Routes = [
         component: EtapaTareasComponent,
       },
       {
-        path: ':id/etapas/:etapaId/tareas/:tareaId',
+        path: ':id/etapas/:etapaId/tareas',
         component: EtapaTareasComponent,
+      },
+      {
+        path: ':id/etapas/:etapaId/tareas/:tareaId',
+        component: TareaFormsListComponent,
       },
     ],
   },

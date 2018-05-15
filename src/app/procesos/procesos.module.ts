@@ -19,7 +19,7 @@ import { FindProcesoPageComponent } from './containers/find-proceso-page.compone
 
 import { ProcesoService } from './shared/proceso.service';
 import {
-  MatCardModule, MatInputModule,
+  MatCardModule, MatInputModule, MatGridListModule,
   MatSlideToggleModule, MatListModule, MatTabsModule,
   MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule, MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule,
 } from '@angular/material';
@@ -40,6 +40,8 @@ import { TareaNewComponent } from './components/tarea/tarea-new/tarea-new.compon
 import { ProcesosComponent } from './procesos.component';
 import { RequisitoReactiveService, RequisitosService } from '../requisitos/shared/requisitos.service';
 import { RequisitoNewComponent } from './components/requisito/requisito-new/requisito-new.component';
+import { TareaFormsListComponent } from './components/tarea-forms/tarea-forms-list/tarea-forms-list.component';
+import { FormularioService } from '../dynamic-form/shared/formulario.service';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -55,6 +57,7 @@ const MATERIAL_MODULES: any = [
   MatIconModule,
   MatSelectModule,
   MatStepperModule,
+  MatGridListModule,
 ];
 
 const ANGULAR_MODULES: any = [
@@ -99,6 +102,8 @@ const DGI_MODULES: any = [
     TareaNewComponent,
     ProcesosComponent,
 
+    TareaFormsListComponent,
+
     RequisitoNewComponent,
   ],
   providers: [
@@ -108,6 +113,7 @@ const DGI_MODULES: any = [
     EtapaService,
     TareaReactiveService,
     TareaService,
+    FormularioService,
 
     RequisitoReactiveService,
     RequisitosService,

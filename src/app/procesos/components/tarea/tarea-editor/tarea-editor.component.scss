@@ -1,12 +1,26 @@
-.etapa-editor-container {
-    // display: flex;
+.etapa-editor {
+    width: 100%;
     display: flex;
-    width: 50%;
+    .etapa-editor-container {
+        // display: flex;
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        form {
+            width: 100%;
+        }
+    }
+}
+
+.etapa-editor-container-dynamic {
+    width: 100%;
     flex-direction: column;
-    form {
+    display: flex;
+    mat-card {
         width: 100%;
     }
 }
+
 .etapa-editor-container .checkbox {
     margin-bottom: 20px;
 }
@@ -16,5 +30,6 @@
 }
 
 :host {
-    display: flex;
+    // display: flex;
+    // display: -webkit-box;
 }
