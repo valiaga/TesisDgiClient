@@ -8,13 +8,20 @@
         <strong>| Formularios</strong>
       </p>
       <span flex></span>
-      <button mat-raised-button color="primary" (click)="newTarea()">Nuevo Formulario</button>
+      <button mat-raised-button color="primary" (click)="newFormulario()">Nuevo Formulario</button>
     </div>
   </mat-card-content>
 </mat-card>
 
-<mat-card *ngFor="let formulario of formularios">
-  <mat-card-content layout="row">
-    {{ formulario.nombre }}
-  </mat-card-content>
-</mat-card>
+<div class="content-forms">
+  <mat-card *ngFor="let formulario of formularios" [ngClass]="getFormClass(formulario)">
+    <mat-card-header>
+      <mat-card-title>{{ formulario.nombre }}</mat-card-title>
+      <mat-card-subtitle> Formulario dinamico</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <dgi-dynamic-form [config]="formulario?.campos" #form="dgiDynamicForm" (submit)="submit($event)"></dgi-dynamic-form>
+      {{ form?.valid }} {{ form?.value | json }}
+    </mat-card-content>
+  </mat-card>
+</div>

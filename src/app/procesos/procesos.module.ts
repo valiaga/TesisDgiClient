@@ -42,6 +42,9 @@ import { RequisitoReactiveService, RequisitosService } from '../requisitos/share
 import { RequisitoNewComponent } from './components/requisito/requisito-new/requisito-new.component';
 import { TareaFormsListComponent } from './components/tarea-forms/tarea-forms-list/tarea-forms-list.component';
 import { FormularioService } from '../dynamic-form/shared/formulario.service';
+import { FormToolsService } from '../shared/form-tools.service';
+import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
+import { FormNewComponent } from './components/tarea-forms/form-new/form-new.component';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -74,6 +77,10 @@ const DGI_MODULES: any = [
   DgiButtonFabModule,
 ];
 
+const FORM_COMPONENTS: any = [
+  FormNewComponent,
+];
+
 @NgModule({
   imports: [
     // AngularModule,
@@ -84,7 +91,10 @@ const DGI_MODULES: any = [
     ...ANGULAR_MODULES,
     ...COVALENT_MODULES,
     ...DGI_MODULES,
-    ProcesosRoutingModule
+    ProcesosRoutingModule,
+
+
+    DynamicFormModule,
   ],
   declarations: [
     NuevoComponent,
@@ -105,6 +115,7 @@ const DGI_MODULES: any = [
     TareaFormsListComponent,
 
     RequisitoNewComponent,
+    ...FORM_COMPONENTS,
   ],
   providers: [
     ProcesoService,
@@ -117,12 +128,15 @@ const DGI_MODULES: any = [
 
     RequisitoReactiveService,
     RequisitosService,
+
+    FormToolsService,
   ],
   entryComponents: [
     RolProcesoComponent,
     EtapaNewComponent,
     TareaNewComponent,
     RequisitoNewComponent,
+    FormNewComponent,
   ]
 })
 export class ProcesosModule { }

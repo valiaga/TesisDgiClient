@@ -1,0 +1,40 @@
+<div class="form-container">
+    <form [formGroup]="formForm" (ngSubmit)="onSubmit()" novalidate class="form-container">
+
+        <h5>Nuevo formulario</h5>
+
+        <!-- Nombre field -->
+        <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']">
+            <input matInput placeholder="Nombre" formControlName="nombre" required>
+            <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
+        </mat-form-field>
+
+
+        <!-- Alias field -->
+        <mat-form-field [floatLabel]="['auto']">
+            <input matInput placeholder="Alias" formControlName="alias">
+        </mat-form-field>
+
+
+        <!-- Descripción field -->
+        <mat-form-field [floatLabel]="['auto']">
+            <textarea matInput placeholder="Descripción" matTextareaAutosize matAutosizeMaxRows="5" formControlName="descripcion" matAutosizeMinRows="2"></textarea>
+        </mat-form-field>
+
+        <!-- Orden field -->
+        <mat-form-field [floatLabel]="['auto']">
+            <input type="number" matInput placeholder="Orden" formControlName="orden" required>
+        </mat-form-field>
+
+        <!-- Width -->
+        <mat-form-field [floatLabel]="['auto']">
+            <input type="number" matInput placeholder="Width" formControlName="width" required>
+        </mat-form-field>
+
+        <!-- Buttons Actions -->
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!formForm.valid" tabindex="0">Aceptar</button>
+            <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+        </div>
+    </form>
+</div>

@@ -69,7 +69,8 @@ export class DynamicFormComponent implements OnChanges, OnInit {
   get valid() { return this.form.valid; }
   get value() { return this.form.value; }
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+  ) { }
 
   ngOnInit() {
     this.form = this.createGroup();
