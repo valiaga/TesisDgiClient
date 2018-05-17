@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-content layout="row">
+    <div layout="row">
+      <button mat-mini-fab color="default" [routerLink]="['../../']">
+        <mat-icon aria-label="Example icon-button with a heart icon">reply</mat-icon>
+      </button>
+      <p class="name-tarea">Nombre de la Tarea
+        <strong>| Formularios</strong>
+      </p>
+      <span flex></span>
+      <button mat-raised-button color="primary" (click)="newFormulario()">Nuevo Formulario</button>
+    </div>
+  </mat-card-content>
+</mat-card>
+
+<div class="content-formularios">
+  <mat-card *ngFor="let formulario of formularios" [ngClass]="getFormClass(formulario)">
+    <mat-card-header>
+      <mat-card-title>{{ formulario.nombre }}</mat-card-title>
+      <mat-card-subtitle> Formulario dinamico</mat-card-subtitle>
+      <button class="dgi-more-field" mat-icon-button [matMenuTriggerFor]="toolbarMenuOptions" matTooltip="Opciones">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #toolbarMenuOptions="matMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
+        <button mat-menu-item>
+          <mat-icon>add</mat-icon>
+          <span>Agregar Campos</span>
+        </button>
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>delete</mat-icon>
+          <span>Eliminar</span>
+        </button>
+      </mat-menu>
+
+    </mat-card-header>
+    <mat-card-content>
+      <dgi-dynamic-form [config]="formulario?.campos" #form="dgiDynamicForm" (submit)="submit($event)"></dgi-dynamic-form>
+      {{ form?.valid }} {{ form?.value | json }}
+    </mat-card-content>
+  </mat-card>
+</div>

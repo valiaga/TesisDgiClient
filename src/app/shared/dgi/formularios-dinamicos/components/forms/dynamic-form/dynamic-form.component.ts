@@ -1,7 +1,6 @@
 import { EventEmitter, Output, Component, OnInit, Input, OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-// import { ControlService } from '../shared/control.service';
-import { FieldConfig } from '../models/field-config';
+import { FieldConfig } from '../../../models/field-config';
 import { AbstractControl } from '@angular/forms';
 
 @Component({

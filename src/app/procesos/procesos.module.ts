@@ -12,9 +12,6 @@ import { NuevoComponent } from './nuevo/nuevo.component';
 import { EditorComponent } from './editor/editor.component';
 
 import { ProcesosRoutingModule } from './procesos-routing.module';
-import { ProcesoListComponent } from './components/proceso-list.component';
-import { ProcesoComponent } from './components/proceso.component';
-import { ProcesoSearchComponent } from './components/proceso-search.component';
 import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
 
 import { ProcesoService } from './shared/proceso.service';
@@ -27,24 +24,27 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
 import { CommonModule } from '@angular/common';
 import { DgiButtonFabModule } from '../shared/dgi/button-fab';
-import { RolProcesoComponent } from './components/rol-proceso/rol-proceso.component';
-import { EtapaNewComponent } from './components/etapa/etapa-new/etapa-new.component';
 import { EtapaReactiveService, EtapaService } from '../etapas/shared/etapa.service';
 import { RolProcesoService } from '../rol-proceso/shared/rol-proceso.service';
-import { EtapaEditorComponent } from './components/etapa/etapa-editor/etapa-editor.component';
-import { EtapaTareasComponent } from './components/tarea/etapa-tareas/etapa-tareas.component';
-import { EtapaListaComponent } from './components/tarea/etapa-lista/etapa-lista.component';
 import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.service';
-import { TareaEditorComponent } from './components/tarea/tarea-editor/tarea-editor.component';
-import { TareaNewComponent } from './components/tarea/tarea-new/tarea-new.component';
 import { ProcesosComponent } from './procesos.component';
 import { RequisitoReactiveService, RequisitosService } from '../requisitos/shared/requisitos.service';
-import { RequisitoNewComponent } from './components/requisito/requisito-new/requisito-new.component';
-import { TareaFormsListComponent } from './components/tarea-forms/tarea-forms-list/tarea-forms-list.component';
 import { FormularioService } from '../dynamic-form/shared/formulario.service';
 import { FormToolsService } from '../shared/form-tools.service';
 import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
-import { FormNewComponent } from './components/tarea-forms/form-new/form-new.component';
+
+import { FormularioNewComponent, FormulariosListComponent } from './components/formularios';
+import { EtapaEditorComponent, EtapaNewComponent } from './components/etapas';
+import {
+  ProcesoComponent, ProcesoListComponent,
+  ProcesoSearchComponent,
+} from './components/procesos';
+import { RequisitoNewComponent } from './components/requisitos';
+import { RolProcesoComponent } from './components/rol-proceso/rol-proceso.component';
+import {
+  TareaEditorComponent,
+  TareaNewComponent, TareasListComponent, EtapaListaComponent,
+} from './components/tareas';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -77,8 +77,33 @@ const DGI_MODULES: any = [
   DgiButtonFabModule,
 ];
 
-const FORM_COMPONENTS: any = [
-  FormNewComponent,
+const ETAPAS_COMPONENTS: any = [
+  EtapaEditorComponent,
+  EtapaNewComponent,
+];
+
+const FORMULARIOS_COMPONENTS: any = [
+  FormularioNewComponent,
+  FormulariosListComponent
+];
+
+const ROL_PROCESO_COMPONENTS: any = [
+  RolProcesoComponent,
+];
+
+const REQUISITOS_COMPONENTS: any = [
+  RequisitoNewComponent,
+];
+
+const TAREAS_COMPONENTS: any = [
+  EtapaListaComponent,
+  TareaEditorComponent,
+  TareaNewComponent,
+  TareasListComponent
+];
+
+const PROCESOS_COMPONENTS: any = [
+  ProcesoComponent,
 ];
 
 @NgModule({
@@ -103,19 +128,14 @@ const FORM_COMPONENTS: any = [
     ProcesoComponent,
     ProcesoSearchComponent,
     FindProcesoPageComponent,
-    RolProcesoComponent,
-    EtapaNewComponent,
-    EtapaEditorComponent,
-    EtapaTareasComponent,
-    EtapaListaComponent,
-    TareaEditorComponent,
-    TareaNewComponent,
     ProcesosComponent,
-
-    TareaFormsListComponent,
-
     RequisitoNewComponent,
-    ...FORM_COMPONENTS,
+
+    ...ETAPAS_COMPONENTS,
+    ...FORMULARIOS_COMPONENTS,
+    ...ROL_PROCESO_COMPONENTS,
+    ...REQUISITOS_COMPONENTS,
+    ...TAREAS_COMPONENTS,
   ],
   providers: [
     ProcesoService,
@@ -136,7 +156,7 @@ const FORM_COMPONENTS: any = [
     EtapaNewComponent,
     TareaNewComponent,
     RequisitoNewComponent,
-    FormNewComponent,
-  ]
+    FormularioNewComponent,
+  ],
 })
 export class ProcesosModule { }

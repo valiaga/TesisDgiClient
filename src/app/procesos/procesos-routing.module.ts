@@ -5,10 +5,9 @@ import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { EditorComponent } from './editor/editor.component';
 import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
-import { EtapaTareasComponent } from './components/tarea/etapa-tareas/etapa-tareas.component';
-import { EtapaListaComponent } from './components/tarea/etapa-lista/etapa-lista.component';
+import { EtapaListaComponent, TareasListComponent } from './components/tareas';
 import { ProcesosComponent } from './procesos.component';
-import { TareaFormsListComponent } from './components/tarea-forms/tarea-forms-list/tarea-forms-list.component';
+import { FormulariosListComponent } from './components/formularios';
 
 /** Rutas que se manejan en este módulo
  * /procesos
@@ -35,15 +34,15 @@ const routes: Routes = [
       },
       {
         path: ':id/etapas/:etapaId',
-        component: EtapaTareasComponent,
+        component: TareasListComponent,
       },
       {
         path: ':id/etapas/:etapaId/tareas',
-        component: EtapaTareasComponent,
+        component: TareasListComponent,
       },
       {
         path: ':id/etapas/:etapaId/tareas/:tareaId',
-        component: TareaFormsListComponent,
+        component: FormulariosListComponent,
       },
     ],
   },

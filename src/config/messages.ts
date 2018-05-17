@@ -69,7 +69,9 @@ export const MESSAGES = {
         post: 'El Formulario se guardó con Éxito.',
         getMany: 'Los Formularios se listaron con Éxito.',
         getOne: 'El Formulario se listó con Éxito.',
-        put: 'El Formulario se actualizó con Éxito.'
+        put: 'El Formulario se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el formulario?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el formulario?',
     },
     campo: {
         delete: 'El Campo se eliminó con Éxito!.',
