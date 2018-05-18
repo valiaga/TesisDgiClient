@@ -5,35 +5,35 @@ import { FormGroup } from '@angular/forms';
 import { Field } from '../../models/field';
 import { FieldConfig } from '../../models/field-config';
 import {
-  FormButtonSubmitComponent,
-  FormInputComponent, FormNumberComponent,
-  FormSelectComponent, FormEmailComponent,
-  FormPasswordComponent, FormRadioComponent,
-  FormTelComponent, FormTextareaComponent,
-  FormSlideToggleComponent, FormDatepickerComponent,
-  FormCheckboxComponent,
+  DgiFormButtonSubmitComponent,
+  DgiFormInputComponent, DgiFormNumberComponent,
+  DgiFormSelectComponent, DgiFormEmailComponent,
+  DgiFormPasswordComponent, DgiFormRadioComponent,
+  DgiFormTelComponent, DgiFormTextareaComponent,
+  DgiFormSlideToggleComponent, DgiFormDatepickerComponent,
+  DgiFormCheckboxComponent,
 } from '../../components';
 
 const components: { [type: string]: Type<Field> } = {
-  buttonSubmit: FormButtonSubmitComponent,
-  input: FormInputComponent,
-  number: FormNumberComponent,
-  select: FormSelectComponent,
-  email: FormEmailComponent,
-  tel: FormTelComponent,
-  textarea: FormTextareaComponent,
-  slideToggle: FormSlideToggleComponent,
-  password: FormPasswordComponent,
-  datepicker: FormDatepickerComponent,
-  radio: FormRadioComponent,
-  checkbox: FormCheckboxComponent,
+  buttonSubmit: DgiFormButtonSubmitComponent,
+  input: DgiFormInputComponent,
+  number: DgiFormNumberComponent,
+  select: DgiFormSelectComponent,
+  email: DgiFormEmailComponent,
+  tel: DgiFormTelComponent,
+  textarea: DgiFormTextareaComponent,
+  slideToggle: DgiFormSlideToggleComponent,
+  password: DgiFormPasswordComponent,
+  datepicker: DgiFormDatepickerComponent,
+  radio: DgiFormRadioComponent,
+  checkbox: DgiFormCheckboxComponent,
 };
 
 
 @Directive({
   selector: '[dgiDynamicField]'
 })
-export class DynamicFieldDirective implements Field, OnChanges, OnInit {
+export class DgiDynamicFieldDirective implements Field, OnChanges, OnInit {
 
   @Input()
   config: FieldConfig;

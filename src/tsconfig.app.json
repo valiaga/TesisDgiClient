@@ -6,7 +6,15 @@
     "module": "es2015",
     "types": [
       "hammerjs"
-    ]
+    ],
+    "paths": {
+      "@dgi/*": [
+        "./app/shared/dgi/*"
+      ],
+      "@env/*": [
+        "./environments/*"
+      ]
+    }
   },
   "exclude": [
     "test.ts",

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ManyDynamicFormComponent } from './many-dynamic-form.component';
+import { DgiManyDynamicFormComponent } from './many-dynamic-form.component';
 
-describe('ManyDynamicFormComponent', () => {
-  let component: ManyDynamicFormComponent;
-  let fixture: ComponentFixture<ManyDynamicFormComponent>;
+describe('DgiManyDynamicFormComponent', () => {
+  let component: DgiManyDynamicFormComponent;
+  let fixture: ComponentFixture<DgiManyDynamicFormComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ManyDynamicFormComponent ]
+      declarations: [ DgiManyDynamicFormComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ManyDynamicFormComponent);
+    fixture = TestBed.createComponent(DgiManyDynamicFormComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

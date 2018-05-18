@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormPasswordComponent } from './form-password.component';
+import { DgiFormPasswordComponent } from './form-password.component';
 
-describe('FormPasswordComponent', () => {
-  let component: FormPasswordComponent;
-  let fixture: ComponentFixture<FormPasswordComponent>;
+describe('DgiFormPasswordComponent', () => {
+  let component: DgiFormPasswordComponent;
+  let fixture: ComponentFixture<DgiFormPasswordComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormPasswordComponent ]
+      declarations: [ DgiFormPasswordComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormPasswordComponent);
+    fixture = TestBed.createComponent(DgiFormPasswordComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

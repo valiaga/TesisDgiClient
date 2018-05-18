@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
-import { DynamicFormComponent } from './../dynamic-form/dynamic-form.component';
+import { DgiDynamicFormComponent } from './../dynamic-form/dynamic-form.component';
 import { Formulario } from '../../../models';
-import { FormToolsService } from '../../../tools/form-tools.service';
+import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 
 @Component({
   selector: 'dgi-many-dynamic-form',
   template: `
-    <mat-card [ngClass]="getFormClass(formulario)" *ngFor="let formulario of formularios">
+    <mat-card [ngClass]="getWidthFormClass(formulario)" *ngFor="let formulario of formularios">
       <mat-card-header>
       <mat-card-title>{{ formulario.nombre }}</mat-card-title>
       <mat-card-subtitle> Formulario dinamico</mat-card-subtitle>
@@ -25,13 +25,13 @@ import { FormToolsService } from '../../../tools/form-tools.service';
   `,
   styleUrls: ['./many-dynamic-form.component.scss']
 })
-export class ManyDynamicFormComponent implements OnInit {
+export class DgiManyDynamicFormComponent implements OnInit {
 
   @Input('formularios') formularios: Formulario[];
 
-  @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
+  @ViewChild(DgiDynamicFormComponent) form: DgiDynamicFormComponent;
 
-  constructor(private formToolsService: FormToolsService) { }
+  constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
     setTimeout(() => {
@@ -57,8 +57,8 @@ export class ManyDynamicFormComponent implements OnInit {
     console.log(value);
   }
 
-  public getFormClass(formulario: Formulario) {
-    return this.formToolsService.getFormClass(formulario);
+  public getWidthFormClass(formulario: Formulario) {
+    return this.formWidthToolsService.getWidthFormClass(formulario);
   }
 
 }

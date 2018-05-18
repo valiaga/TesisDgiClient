@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { FieldConfig } from '../../models/field-config';
+import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
-import { FormToolsService } from '../../../shared/form-tools.service';
+import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 
 @Component({
   selector: 'dgi-form-password',
   template: `
     <mat-form-field
-      [ngClass]="getControlClass()"
+      [ngClass]="getWidthControlClass()"
       [formGroup]="group"
       [floatLabel]="['auto']"
       >
@@ -21,24 +21,24 @@ import { FormToolsService } from '../../../shared/form-tools.service';
   styleUrls: ['./form-password.component.scss']
 
 })
-export class FormPasswordComponent implements OnInit {
+export class DgiFormPasswordComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
 
   private hide = true;
-  constructor(private formToolsService: FormToolsService) { }
+  constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
-  public getControlClass() {
-    return this.formToolsService.getControlClass(this.config);
+  public getWidthControlClass() {
+    return this.formWidthToolsService.getWidthControlClass(this.config);
   }
 
-  public mustShowErrors(controlName: string): boolean {
-    return this.formToolsService.mustShowErrors(this.group, controlName);
-  }
+  // public mustShowErrors(controlName: string): boolean {
+  //   return this.formToolsService.mustShowErrors(this.group, controlName);
+  // }
 
-  public getControlErrors(controlName: string) {
-    return this.formToolsService.getControlErrors(this.group, controlName);
-  }
+  // public getControlErrors(controlName: string) {
+  //   return this.formToolsService.getControlErrors(this.group, controlName);
+  // }
 }

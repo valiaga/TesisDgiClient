@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormButtonSubmitComponent } from './form-button-submit.component';
+import { DgiFormButtonSubmitComponent } from './form-button-submit.component';
 
-describe('FormButtonSubmitComponent', () => {
-  let component: FormButtonSubmitComponent;
-  let fixture: ComponentFixture<FormButtonSubmitComponent>;
+describe('DgiFormButtonSubmitComponent', () => {
+  let component: DgiFormButtonSubmitComponent;
+  let fixture: ComponentFixture<DgiFormButtonSubmitComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormButtonSubmitComponent ]
+      declarations: [ DgiFormButtonSubmitComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormButtonSubmitComponent);
+    fixture = TestBed.createComponent(DgiFormButtonSubmitComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

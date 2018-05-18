@@ -15,7 +15,7 @@ import { AbstractControl } from '@angular/forms';
         (submit)="handleSubmit($event)"
         >
         <ng-container
-          *ngFor="let field of config;"
+          *ngFor="let field of config"
           dgiDynamicField
           [config]="field"
           [group]="form">
@@ -53,7 +53,7 @@ import { AbstractControl } from '@angular/forms';
     `
   ],
 })
-export class DynamicFormComponent implements OnChanges, OnInit {
+export class DgiDynamicFormComponent implements OnChanges, OnInit {
   @Input()
   public config: FieldConfig[] = [];
 

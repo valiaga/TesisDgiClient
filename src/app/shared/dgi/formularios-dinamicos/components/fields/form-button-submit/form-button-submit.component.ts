@@ -53,7 +53,7 @@ import { FieldConfig } from '../../../models/field-config';
     `
   ]
 })
-export class FormButtonSubmitComponent implements OnInit {
+export class DgiFormButtonSubmitComponent implements OnInit {
 
   public config: FieldConfig;
   public group: FormGroup;

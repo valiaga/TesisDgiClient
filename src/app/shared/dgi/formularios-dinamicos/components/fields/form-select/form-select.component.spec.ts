@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormSelectComponent } from './form-select.component';
+import { DgiFormSelectComponent } from './form-select.component';
 
-describe('FormSelectComponent', () => {
-  let component: FormSelectComponent;
-  let fixture: ComponentFixture<FormSelectComponent>;
+describe('DgiFormSelectComponent', () => {
+  let component: DgiFormSelectComponent;
+  let fixture: ComponentFixture<DgiFormSelectComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormSelectComponent ]
+      declarations: [ DgiFormSelectComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormSelectComponent);
+    fixture = TestBed.createComponent(DgiFormSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

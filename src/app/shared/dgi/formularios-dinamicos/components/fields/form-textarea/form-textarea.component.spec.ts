@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormTextareaComponent } from './form-textarea.component';
+import { DgiFormTextareaComponent } from './form-textarea.component';
 
-describe('FormTextareaComponent', () => {
-  let component: FormTextareaComponent;
-  let fixture: ComponentFixture<FormTextareaComponent>;
+describe('DgiFormTextareaComponent', () => {
+  let component: DgiFormTextareaComponent;
+  let fixture: ComponentFixture<DgiFormTextareaComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormTextareaComponent ]
+      declarations: [ DgiFormTextareaComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormTextareaComponent);
+    fixture = TestBed.createComponent(DgiFormTextareaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

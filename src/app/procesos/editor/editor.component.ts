@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
 import { RolProcesoComponent } from '../components/rol-proceso/rol-proceso.component';
 import { getMessageConfirm } from '../../../config/general';
 import { MESSAGES } from '../../../config/messages';
-import { EtapaNewComponent } from '../components/etapa/etapa-new/etapa-new.component';
+import { EtapaNewComponent } from '../components/etapas/etapa-new/etapa-new.component';
 import { EtapaReactiveService } from '../../etapas/shared/etapa.service';
 import { Etapa } from '../../etapas/shared/etapa';
 import { RolProceso } from '../../rol-proceso/shared/rol-proceso.model';

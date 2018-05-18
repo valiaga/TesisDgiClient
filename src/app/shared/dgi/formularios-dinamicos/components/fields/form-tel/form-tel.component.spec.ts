@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormTelComponent } from './form-tel.component';
+import { DgiFormTelComponent } from './form-tel.component';
 
-describe('FormTelComponent', () => {
-  let component: FormTelComponent;
-  let fixture: ComponentFixture<FormTelComponent>;
+describe('DgiFormTelComponent', () => {
+  let component: DgiFormTelComponent;
+  let fixture: ComponentFixture<DgiFormTelComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormTelComponent ]
+      declarations: [ DgiFormTelComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormTelComponent);
+    fixture = TestBed.createComponent(DgiFormTelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

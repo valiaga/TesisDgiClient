@@ -31,7 +31,7 @@ import { ProcesosComponent } from './procesos.component';
 import { RequisitoReactiveService, RequisitosService } from '../requisitos/shared/requisitos.service';
 import { FormularioService } from '../dynamic-form/shared/formulario.service';
 import { FormToolsService } from '../shared/form-tools.service';
-import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
+// import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
 
 import { FormularioNewComponent, FormulariosListComponent } from './components/formularios';
 import { EtapaEditorComponent, EtapaNewComponent } from './components/etapas';
@@ -45,6 +45,7 @@ import {
   TareaEditorComponent,
   TareaNewComponent, TareasListComponent, EtapaListaComponent,
 } from './components/tareas';
+import { DgiFormulariosDinamicosModule } from '@dgi/formularios-dinamicos';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -119,7 +120,8 @@ const PROCESOS_COMPONENTS: any = [
     ProcesosRoutingModule,
 
 
-    DynamicFormModule,
+    // DynamicFormModule,
+    DgiFormulariosDinamicosModule,
   ],
   declarations: [
     NuevoComponent,

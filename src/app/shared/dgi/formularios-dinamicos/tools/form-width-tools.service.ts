@@ -2,15 +2,14 @@ import { Injectable } from '@angular/core';
 import { FieldConfig, Formulario } from '../models';
 
 @Injectable()
-export class FormToolsService {
+export class FormWidthToolsService {
 
   constructor() { }
 
-  getDateForControl(date: Date): string {
-    return date.toISOString().substring(0, 10);
-  }
-
-  getControlClass(config: FieldConfig) {
+  // getDateForControl(date: Date): string {
+  //   return date.toISOString().substring(0, 10);
+  // }
+  getWidthControlClass(config: FieldConfig) {
     const width = (config && config.width) ? config.width : 100;
     const objectClass = {
       'input-100': (width === 100) ? true : false,
@@ -22,7 +21,7 @@ export class FormToolsService {
     return objectClass;
   }
 
-  getFormClass(formulario: Formulario) {
+  getWidthFormClass(formulario: Formulario) {
     const width = (formulario && formulario.width) ? formulario.width : 100;
     const objectClass = {
       'input-100': (width === 100) ? true : false,

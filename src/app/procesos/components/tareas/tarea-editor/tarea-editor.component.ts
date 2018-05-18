@@ -17,8 +17,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Requisito } from '../../../../requisitos/shared/requisito';
 import { RequisitoReactiveService } from '../../../../requisitos/shared/requisitos.service';
 import { MatDialog } from '@angular/material';
-import { RequisitoNewComponent } from '../../requisito/requisito-new/requisito-new.component';
-
+import { RequisitoNewComponent } from '../../requisitos/requisito-new/requisito-new.component';
 
 @Component({
   selector: 'dgi-tarea-editor',

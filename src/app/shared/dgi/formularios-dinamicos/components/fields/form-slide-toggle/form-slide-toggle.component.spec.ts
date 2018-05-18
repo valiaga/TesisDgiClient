@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormSlideToggleComponent } from './form-slide-toggle.component';
+import { DgiFormSlideToggleComponent } from './form-slide-toggle.component';
 
-describe('FormSlideToggleComponent', () => {
-  let component: FormSlideToggleComponent;
-  let fixture: ComponentFixture<FormSlideToggleComponent>;
+describe('DgiFormSlideToggleComponent', () => {
+  let component: DgiFormSlideToggleComponent;
+  let fixture: ComponentFixture<DgiFormSlideToggleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormSlideToggleComponent ]
+      declarations: [ DgiFormSlideToggleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormSlideToggleComponent);
+    fixture = TestBed.createComponent(DgiFormSlideToggleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

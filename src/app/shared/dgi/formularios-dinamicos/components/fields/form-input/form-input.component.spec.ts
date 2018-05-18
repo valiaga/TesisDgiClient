@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormInputComponent } from './form-input.component';
+import { DgiFormInputComponent } from './form-input.component';
 
-describe('FormInputComponent', () => {
-  let component: FormInputComponent;
-  let fixture: ComponentFixture<FormInputComponent>;
+describe('DgiFormInputComponent', () => {
+  let component: DgiFormInputComponent;
+  let fixture: ComponentFixture<DgiFormInputComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormInputComponent ]
+      declarations: [ DgiFormInputComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormInputComponent);
+    fixture = TestBed.createComponent(DgiFormInputComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

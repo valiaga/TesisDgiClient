@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
-import { FormToolsService } from '../../../shared/form-tools.service';
+import { FormWidthToolsService } from '@dgi/formularios-dinamicos/tools/form-width-tools.service';
+// import { FormToolsService } from '../../../shared/form-tools.service';
 
 @Component({
   selector: 'dgi-form-checkbox',
   template: `
   <!--[(indeterminate)]="indeterminate"-->
-  <div [ngClass]="getControlClass()"
+  <div [ngClass]="getWidthControlClass()"
     [formGroup]="group"
     class="checkbox-display"
     >
@@ -19,31 +20,28 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     {{ config.label }}
 
     </mat-checkbox>
-    <mat-error *ngIf="mustShowErrors(config.name)" class="msm-error">
+    <!-- <mat-error *ngIf="mustShowErrors(config.name)" class="msm-error">
       <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
-    </mat-error>
+    </mat-error> -->
   </div>
   `,
   styleUrls: ['./form-checkbox.component.scss']
 })
-export class FormCheckboxComponent implements OnInit {
+export class DgiFormCheckboxComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
 
-  constructor(private formToolsService: FormToolsService) { }
+  constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
-  public getControlClass() {
-    return this.formToolsService.getControlClass(this.config);
+  public getWidthControlClass() {
+    return this.formWidthToolsService.getWidthControlClass(this.config);
   }
-
-  public mustShowErrors(controlName: string): boolean {
-    return this.formToolsService.mustShowErrors(this.group, controlName);
-  }
-
-  public getControlErrors(controlName: string) {
-    return this.formToolsService.getControlErrors(this.group, controlName);
-  }
-
+  // public mustShowErrors(controlName: string): boolean {
+  //   return this.formToolsService.mustShowErrors(this.group, controlName);
+  // }
+  // public getControlErrors(controlName: string) {
+  //   return this.formToolsService.getControlErrors(this.group, controlName);
+  // }
 }

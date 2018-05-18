@@ -17,7 +17,7 @@ import { FieldConfig } from '../../../models/field-config';
   `,
   styles: []
 })
-export class FormButtonComponent implements OnInit {
+export class DgiFormButtonComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
 
