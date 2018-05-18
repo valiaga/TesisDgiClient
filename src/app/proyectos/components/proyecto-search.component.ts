@@ -6,13 +6,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   <mat-card>
     <!-- <mat-card-title>Encontrar Proyecto de tesis</mat-card-title> -->
     <mat-card-content>
-      <mat-input-container>
-        <input matInput 
-            placeholder="Buscador para un proyecto" 
-            [value]="query" 
+      <mat-form-field>
+        <input matInput
+            placeholder="Buscador para un proyecto"
+            [value]="query"
             (keyup)="onBuscar($event.target.value)"
             >
-      </mat-input-container>
+      </mat-form-field>
       <mat-spinner [class.show]="buscando" [diameter]="30" [strokeWidth]="3"></mat-spinner>
     </mat-card-content>
     <mat-card-footer><span *ngIf="error">{{error}}</span></mat-card-footer>
@@ -60,9 +60,9 @@ export class ProyectoSearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  onBuscar(term){
+  onBuscar(term) {
     // if (term) {
-      this.buscar.emit(term);
+    this.buscar.emit(term);
     // }
   }
 }

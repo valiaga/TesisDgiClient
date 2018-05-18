@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { CreateLineaInvestigacionDialogComponent } from './create-linea-investigacion-dialog/create-linea-investigacion-dialog.component';
+import {
+  CreateLineaInvestigacionDialogComponent,
+} from './create-linea-investigacion-dialog/create-linea-investigacion-dialog.component';
 
 @Component({
   selector: 'dgi-find-linea-investigacion-page',
@@ -21,8 +23,8 @@ export class FindLineaInvestigacionPageComponent implements OnInit {
   ngOnInit() {
   }
 
-  openDialog(){
-    let dialogRef = this.dialog.open(CreateLineaInvestigacionDialogComponent, {
+  openDialog() {
+    const dialogRef = this.dialog.open(CreateLineaInvestigacionDialogComponent, {
       width: '500px'
     });
 

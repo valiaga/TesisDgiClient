@@ -5,7 +5,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { StepState, TdDialogService } from '@covalent/core';
 import { Proceso } from '../models/proceso.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { RolProcesoComponent } from '../components/rol-proceso/rol-proceso.component';
 import { getMessageConfirm } from '../../../config/general';

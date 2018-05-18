@@ -1,8 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Campo, ICampo } from '../models.1/campo';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';

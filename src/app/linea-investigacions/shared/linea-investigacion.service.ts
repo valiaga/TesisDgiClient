@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { LineaInvestigacion, ILineaInvestigacion, IResponse } from './linea-investigacion';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';

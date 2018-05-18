@@ -1,13 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
-import { Headers, Http } from '@angular/http';
 import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class SettingsService implements Resolve<any> {
-    private headers = new Headers({ 'Content-Type': 'application/json' });
+export class SettingsService {
+    // private headers = new Headers({ 'Content-Type': 'application/json' });
     private _settings: Object;
 
     /**
@@ -17,44 +16,36 @@ export class SettingsService implements Resolve<any> {
         return this._settings;
     }
 
-    constructor(private _http: Http) {
-
+    constructor(private _http: HttpClient) {
         this.load()
             .subscribe(obj => {
-                console.log('obj');
-                // console.log(obj);
                 const settings = Object.assign(new Object(), obj);
                 this._settings = settings;
             }, err => {
-                console.log('EROR: ', err);
             });
-
-        console.log('this.load()');
-        console.log(this.load());
     }
 
     /**
      * Resolves routes by ensuring that configuration is loaded.
      */
-    // public resolve(route: ActivatedRouteSnapshot): Observable<any> {
     public resolve(route: ActivatedRouteSnapshot) {
         return this.load()
             .subscribe(obj => {
-                console.log('obj');
-                console.log(obj);
                 const settings = Object.assign(new Object(), obj);
                 this._settings = settings;
             }, err => {
-                console.log('EROR: ', err);
             });
     }
 
-    private load(): Observable<any> {
-        // if (this._settings != null) {
-        //     return Observable.of(this._settings);
-        // }
-        return this._http.get('config/settings.json')
-            .map((res: any) => res.json());
-        // .catch((err:any) => console.log(err));
+    private load(): Observable<ISetting> {
+        return this._http.get<ISetting>('config/settings.json');
+            // .pipe(
+                // map((res: any) => res.json())
+            // );
     }
+}
+
+interface ISetting {
+    apiUrl: string;
+    tokenUrl: string;
 }

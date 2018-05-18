@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Proyecto } from '../models/proyecto'
+import { Proyecto } from '../models/proyecto';
 
 @Component({
   selector: 'dgi-proyecto-preview-list',
@@ -10,7 +10,7 @@ import { Proyecto } from '../models/proyecto'
     <!--
     <ng-template #noData >
       <mat-card>No hay Datos</mat-card>
-    </ng-template> -->    
+    </ng-template> -->
     `,
   styles: [
     `

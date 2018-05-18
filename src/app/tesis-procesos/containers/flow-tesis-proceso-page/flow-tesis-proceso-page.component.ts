@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
 import { EtapaService, EtapaReactiveService } from '../../../etapas/shared/etapa.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Etapa } from '../../../etapas/shared/etapa';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatStepper, MatStep } from '@angular/material';

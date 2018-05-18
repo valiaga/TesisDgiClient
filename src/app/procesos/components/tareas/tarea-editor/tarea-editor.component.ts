@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, ViewContainerRef } from '@angular/core';
 import { Etapa } from '../../../../etapas/shared/etapa';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { EtapaReactiveService } from '../../../../etapas/shared/etapa.service';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from '../../../../../config/general';
@@ -10,9 +10,7 @@ import { Tarea } from '../../../../tareas/shared/tarea';
 import { TareaReactiveService } from '../../../../tareas/shared/tarea.service';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
-import { filter } from 'rxjs/operators';
-import { map } from 'rxjs/operator/map';
-import { mergeMap } from 'rxjs/operator/mergeMap';
+import { mergeMap, map, filter } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Requisito } from '../../../../requisitos/shared/requisito';
 import { RequisitoReactiveService } from '../../../../requisitos/shared/requisitos.service';
@@ -54,7 +52,9 @@ export class TareaEditorComponent implements OnInit {
 
   ngOnInit() {
     this.rolesEjecuta$ = this.rolProcesoService.rolProcesos
-      .map(res => res.filter(ress => ress.activo === true));
+      .pipe(
+        map(res => res.filter(ress => ress.activo === true))
+      );
 
 
     this.tareas$ = this.tareaReactiveService.tareas;

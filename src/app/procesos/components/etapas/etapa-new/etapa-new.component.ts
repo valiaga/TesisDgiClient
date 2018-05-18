@@ -6,7 +6,7 @@ import { getMessageConfirm } from '../../../../../config/general';
 import { MESSAGES } from '../../../../../config/messages';
 import { EtapaReactiveService } from '../../../../etapas/shared/etapa.service';
 import { Etapa } from '../../../../etapas/shared/etapa';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'dgi-etapa',

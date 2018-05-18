@@ -14,8 +14,9 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     <mat-checkbox
     class="checkbox-margin"
     [formControlName]="config.name"
-    [align]="config.align"
+    [labelPosition]="config.align"
     [required]="config.required">
+    <!-- [align]="config.align" -->
     {{ config.label }}
 
     </mat-checkbox>

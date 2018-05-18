@@ -3,7 +3,7 @@ import {
   HttpRequest, HttpErrorResponse,
   HttpResponse, HttpHandler, HttpEvent, HttpInterceptor
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 

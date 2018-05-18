@@ -18,7 +18,7 @@ import { MESSAGES } from '../../../config/messages';
         <p class="p-small">Ingrese un título tentativo al proyecto</p>
         <mat-form-field class="full-width">
         <!-- <input matInput tabindex="1" [(ngModel)]="data.animal"> -->
-          <textarea matInput #proyectoTitulo tabindex="3" formControlName="proyecto_titulo" 
+          <textarea matInput #proyectoTitulo tabindex="3" formControlName="proyecto_titulo"
           maxlength="{{ lengtMaxProyectoTitulo }}"
           minlength="{{ lengtMinProyectoTitulo }}"></textarea>
           <mat-hint align="end">{{proyectoTitulo.value.length}} / {{ lengtMaxProyectoTitulo }}</mat-hint>

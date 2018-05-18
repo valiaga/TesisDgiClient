@@ -11,14 +11,14 @@
     <div class="proceso-info-container">
       <form [formGroup]="procesoForm" novalidate (ngSubmit)="onSubmit()">
         <div layout="row">
-          <mat-input-container flex>
+          <mat-form-field flex>
             <input matInput placeholder="Nombre" formControlName="nombre">
-          </mat-input-container>
+          </mat-form-field>
         </div>
         <div layout="row">
-          <mat-input-container flex>
+          <mat-form-field flex>
             <input matInput placeholder="Descripción" formControlName="descripcion">
-          </mat-input-container>
+          </mat-form-field>
         </div>
         <div layout="row">
           <mat-slide-toggle formControlName="activo">Activo</mat-slide-toggle>

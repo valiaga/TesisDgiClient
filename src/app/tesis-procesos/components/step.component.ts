@@ -6,7 +6,7 @@ import { Etapa } from '../../etapas/shared/etapa';
   template: `
   <mat-step label="{{ id }}" >
     <ng-template matStepLabel>{{ nombre }}</ng-template>
-    {{ descripcion }} 
+    {{ descripcion }}
   </mat-step>
   `,
   styles: []
@@ -20,15 +20,15 @@ export class StepComponent implements OnInit {
   ngOnInit() {
   }
 
-  get id(){
+  get id() {
     return this.etapa.id;
   }
 
-  get nombre(){
+  get nombre() {
     return this.etapa.nombre;
   }
 
-  get descripcion(){
+  get descripcion() {
     return this.etapa.descripcion;
   }
 }

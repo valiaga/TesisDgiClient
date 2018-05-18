@@ -39,11 +39,8 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
                     this.tareaId = tareaId;
                     return this.formulariosService.getFormulariosByTareaId$(tareaId);
                 }))
-            .subscribe(formularios => {
-                // setTimeout(() => {
+            .subscribe((formularios: any[]) => {
                 this.formularios = formularios;
-                console.log(formularios);
-                // }, 0);
             });
     }
 

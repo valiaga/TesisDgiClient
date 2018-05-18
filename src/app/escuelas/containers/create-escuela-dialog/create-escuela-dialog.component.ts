@@ -5,7 +5,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Escuela } from '../../shared/escuela';
 import { EscuelaService } from '../../shared/escuela.service';
 import { Facultad } from '../../../facultades/shared/facultad';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { FacultadService } from '../../../facultades/shared/facultad.service';
 import { MESSAGES } from '../../../../config/messages';
 import { TdDialogService } from '@covalent/core';

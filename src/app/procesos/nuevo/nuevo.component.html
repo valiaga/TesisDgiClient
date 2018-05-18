@@ -10,17 +10,18 @@
         <!-- <input matInput placeholder="Company" disabled value="Google"> -->
       <!-- </mat-form-field> -->
       <div layout="row">
-        <mat-input-container flex>
+        <mat-form-field flex>
+
           <input matInput placeholder="Nombre (100 max)" 
                     maxlength="100" 
                     #inputNombre
                     formControlName="nombre"
                     required>
           <mat-hint align="end">{{inputNombre.value.length}} / 100</mat-hint>
-        </mat-input-container>
+        </mat-form-field>
       </div>
       <div layout="row" class="push-top">
-        <mat-input-container flex>
+        <mat-form-field flex>
           <input matInput placeholder="Descripción (500 max)" 
                     maxlength="500" 
                     #inputDesc
@@ -28,7 +29,7 @@
                     formControlName="descripcion"
                     >
           <mat-hint align="end">{{inputDesc.value.length}} / 500</mat-hint>
-        </mat-input-container>
+        </mat-form-field>
       </div>
       <div layout="row" flex>
         <mat-slide-toggle >Activo</mat-slide-toggle>

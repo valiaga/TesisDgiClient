@@ -2,25 +2,17 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of, merge } from 'rxjs';
 import { ILineaInvestigacion, LineaInvestigacion } from '../shared/linea-investigacion';
 // import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LineaInvestigacionService } from '../shared/linea-investigacion.service';
-
-import 'rxjs/add/observable/merge';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/startWith';
-import 'rxjs/add/operator/switchMap';
-
+import { startWith, switchMap, map, catchError } from 'rxjs/operators';
 const scheduleMicrotask = Promise.resolve(null);
 
 @Component({
   selector: 'dgi-linea-investigacion-list',
   template: `
   <div class="linea-investigacion-container mat-elevation-z8">
-  
     <div class="example-loading-shade"
       *ngIf="dataSource.isLoadingResults || dataSource.isRateLimitReached">
       <mat-spinner *ngIf="dataSource.isLoadingResults"></mat-spinner>
@@ -30,10 +22,8 @@ const scheduleMicrotask = Promise.resolve(null);
     </div>
     <mat-table #table [dataSource]="dataSource" class="example-table"
     matSort matSortActive="fecha_creacion" matSortDisableClear matSortDirection="asc">
-  
       <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
-  
       <!-- Checkbox Column -->
       <!-- <ng-container matColumnDef="select">
         <mat-header-cell *matHeaderCellDef> -->
@@ -49,25 +39,23 @@ const scheduleMicrotask = Promise.resolve(null);
           </mat-checkbox> -->
         <!-- </mat-cell>
       </ng-container> -->
-  
       <!-- ID Column -->
       <ng-container matColumnDef="isId">
         <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.id}} </mat-cell>
       </ng-container>
-  
       <!-- Nombre Column -->
       <ng-container matColumnDef="nombre">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.nombre}} </mat-cell>
       </ng-container>
-  
+
       <!-- Descripcion Column -->
       <ng-container matColumnDef="descripcion">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Descripcion </mat-header-cell>
         <mat-cell *matCellDef="let row"> {{row.descripcion}} </mat-cell>
       </ng-container>
-  
+
       <!-- Activo Column -->
       <ng-container matColumnDef="activo">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Activo </mat-header-cell>
@@ -103,9 +91,9 @@ const scheduleMicrotask = Promise.resolve(null);
     <div class="example-no-results"
          [style.display]="dataSource.renderedData.length == 0 ? '' : 'none'">
       No linea investigación found matching filter.
-    </div> 
+    </div>
     -->
-  
+
     <mat-paginator #paginator
     [length]="dataSource.resultsLength"
     [pageIndex]="0"
@@ -134,7 +122,7 @@ const scheduleMicrotask = Promise.resolve(null);
       padding-left: 24px;
       font-size: 20px;
     } */
-    
+
     .mat-table {
       overflow: auto;
       max-height: 500px;
@@ -163,9 +151,9 @@ const scheduleMicrotask = Promise.resolve(null);
 })
 export class LineaInvestigacionListComponent implements OnInit {
   displayedColumns = [
-    'isId', 
-    'nombre', 
-    'descripcion', 
+    'isId',
+    'nombre',
+    'descripcion',
     'activo',
     'escuela',
     'fecha_creacion',
@@ -181,7 +169,7 @@ export class LineaInvestigacionListComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
-    this.lineaInvestigacionService = new LineaInvestigacionService(this.http)
+    this.lineaInvestigacionService = new LineaInvestigacionService(this.http);
     this.dataSource = new LineaInvestigacionDataSource(
       this.lineaInvestigacionService, this.paginator, this.sort);
   }
@@ -203,7 +191,7 @@ export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion
   }
 
   /** Función de conexión llamada por la tabla para recuperar una secuencia que contiene los datos para renderizar. */
-  connect(): Observable<ILineaInvestigacion[]>{
+  connect(): Observable<ILineaInvestigacion[]> {
     const displayDataChanges = [
       this.sort.sortChange,
       this.paginator.page
@@ -212,52 +200,44 @@ export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion
     // Si el usuario cambia el orden de clasificación, restablecer a la primera página.
     this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-    return Observable.merge(...displayDataChanges)
-      .startWith(null)
-      .switchMap(() => {
+    return merge(...displayDataChanges)
+      .pipe(
+        startWith(null),
+        switchMap(() => {
 
-        setTimeout(() => {
-          this.isLoadingResults = true;
-        }, 0);          
-        // scheduleMicrotask.then(() => {
+          setTimeout(() => {
+            this.isLoadingResults = true;
+          }, 0);
+          // scheduleMicrotask.then(() => {
           // this.isLoadingResults = true;
-        // });          
-        return this.lineaInvestigacionService.getLineaInvestigacions$(
-          this.sort.active, this.sort.direction, this.paginator.pageIndex,
-          this.paginator.pageSize
-        )
-      })
-      .map(data => {
-        // Da vuelta la bandera para mostrar que la carga ha terminado.
-        setTimeout(() => {
-          this.isLoadingResults = false;
-          this.isRateLimitReached = false;
-          this.resultsLength = data.options.count;
-          this.pageSize = data.options.page_size;
-        }, 0);
-
-        //  scheduleMicrotask.then(() => {
-          // this.isLoadingResults = false;
-          // this.isRateLimitReached = false;
-          // this.resultsLength = data.options.count;
-        // });
-        return data.results;
-      })
-      .catch(() => {
-
-        setTimeout(() => {
-          this.isLoadingResults = false;
-          // Capture si la API de Linea de investigación ha alcanzado su límite de velocidad. Devuelve datos vacíos.
-          this.isRateLimitReached = true;
-        }, 0);
-
-        // scheduleMicrotask.then(() => {
-          // this.isLoadingResults = false;
-          // this.isRateLimitReached = true;
-        // });
-        return Observable.of([]);
-      });
+          // });
+          return this.lineaInvestigacionService.getLineaInvestigacions$(
+            this.sort.active, this.sort.direction, this.paginator.pageIndex,
+            this.paginator.pageSize
+          );
+        }),
+        map(data => {
+          // Da vuelta la bandera para mostrar que la carga ha terminado.
+          setTimeout(() => {
+            this.isLoadingResults = false;
+            this.isRateLimitReached = false;
+            this.resultsLength = data.options.count;
+            this.pageSize = data.options.page_size;
+          }, 0);
+          return data.results;
+        }),
+        catchError(() => {
+          setTimeout(() => {
+            this.isLoadingResults = false;
+            // Capture si la API de Linea de investigación ha alcanzado su límite de velocidad. Devuelve datos vacíos.
+            this.isRateLimitReached = true;
+          }, 0);
+          return of([]);
+        })
+      );
   }
 
-  disconnect() {}
+  disconnect() {
+
+  }
 }

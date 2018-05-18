@@ -1,5 +1,5 @@
 import { ICampo, Campo } from './campo';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 export class Formulario {
     constructor(
@@ -11,7 +11,7 @@ export class Formulario {
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
         public id?: string // uuid
-    ) {}
+    ) { }
 }
 
 export interface IFormulario {

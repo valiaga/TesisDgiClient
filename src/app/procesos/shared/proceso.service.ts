@@ -1,11 +1,8 @@
-// import { environment } from '../../../environments/environment';
-// import { SettingsService } from '../../shared/settings.service';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Proceso, IProceso, IResponse } from '../models/proceso.model';
 import { PROCESOS } from './mock-procesos';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatSnackBar } from '@angular/material';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';

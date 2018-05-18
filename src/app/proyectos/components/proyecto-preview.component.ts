@@ -21,7 +21,7 @@ import { Proyecto } from '../models/proyecto';
         <!-- <dgi-proyecto-authors [proyecto]="proyecto"></dgi-proyecto-authors> -->
       </mat-card-footer>
     </mat-card>
-    </a> 
+    </a>
   `,
   styles: [
     `
@@ -88,13 +88,13 @@ export class ProyectoPreviewComponent implements OnInit {
   get id(){
     return this.proyecto.id;
   }
-   
+
   get titulo(){
     return this.proyecto.titulo;
   }
 
   get resumen(){
-    return this.proyecto.resumen
+    return this.proyecto.resumen;
   }
 
   get miniatura(): string | boolean{

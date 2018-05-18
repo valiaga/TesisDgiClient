@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { EscuelaService } from '../shared/escuela.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Escuela } from '../shared/escuela';
 import { MatDialog } from '@angular/material';
 import { CreateEscuelaDialogComponent } from './create-escuela-dialog/create-escuela-dialog.component';

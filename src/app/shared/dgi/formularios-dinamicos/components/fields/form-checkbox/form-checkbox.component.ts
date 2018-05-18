@@ -15,8 +15,9 @@ import { FormWidthToolsService } from '@dgi/formularios-dinamicos/tools/form-wid
     <mat-checkbox
     class="checkbox-margin"
     [formControlName]="config.name"
-    [align]="config.align"
+    [labelPosition]="config.align"
     [required]="config.required">
+    <!-- [align]="config.align" -->
     {{ config.label }}
 
     </mat-checkbox>

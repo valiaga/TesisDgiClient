@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Rx';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RolProceso, IRolProceso, IResponse } from './rol-proceso.model';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { MatSnackBar } from '@angular/material';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class RolProcesoService {
@@ -46,7 +46,9 @@ export class RolProcesoService {
    */
   public getAllRolProcesos(params: any = { all: true }) {
     return this.getAllRolProcesos$(params)
-      .map(response => response.results)
+      .pipe(
+        map(response => response.results)
+      )
       .subscribe(data => {
         this.dataStore.rolProcesos = data;
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);

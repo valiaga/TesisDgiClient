@@ -5,13 +5,13 @@ import { MatStepper } from '@angular/material';
   selector: 'dgi-flow-buttons-footer',
   template: `
   <div class="buttons-footer">
-    <button class="button-back" mat-button 
+    <button class="button-back" mat-button
       [disabled]="verticalStepper.selectedIndex === 0"
       (click)="goBackPaso(verticalStepper)">
     <mat-icon>arrow_back</mat-icon>
       Back General</button>
-    <!--<span flex></span> --> 
-    <button class="button-next" mat-button 
+    <!--<span flex></span> -->
+    <button class="button-next" mat-button
       [disabled]="verticalStepper.selectedIndex === (verticalStepper._steps && verticalStepper._steps.length-1)"
       (click)="goNextPaso(verticalStepper)">
     Next General
@@ -33,7 +33,7 @@ export class FlowButtonsFooterComponent implements OnInit {
   goBackPaso(stepper: MatStepper) {
     stepper.previous();
   }
-  
+
   goNextPaso(stepper: MatStepper) {
     stepper.next();
   }

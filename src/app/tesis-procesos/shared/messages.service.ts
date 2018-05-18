@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 class Options {
     delete: string;
@@ -9,9 +9,9 @@ class Options {
     put: string;
 }
 
-interface IMessage{
+interface IMessage {
     modulo: string;
-    options: Options
+    options: Options;
 }
 
 @Injectable()
@@ -26,7 +26,7 @@ export class MessagesService {
     public getMessages1() {
         return this.http.get(`config/messages.1.json`)
             .subscribe(res => {
-                console.log("RES: ", res['tesisProceso']['delete']);
+                console.log('RES: ', res['tesisProceso']['delete']);
             });
     }
 }

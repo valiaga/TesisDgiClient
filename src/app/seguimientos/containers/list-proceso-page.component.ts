@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Proceso } from '../../procesos/models/proceso.model';
 import { ProcesoService } from '../../procesos/shared/proceso.service';
 

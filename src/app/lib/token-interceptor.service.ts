@@ -5,7 +5,7 @@ import {
   HttpHandler,
   HttpRequest
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { AuthService } from '../auth/shared/auth.service';
 import { UserStoreService } from './user-store.service';

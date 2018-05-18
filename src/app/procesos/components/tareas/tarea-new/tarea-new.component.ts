@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Tarea } from '../../../../tareas/shared/tarea';
 import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { getMessageConfirm } from '../../../../../config/general';
 import { TdDialogService } from '@covalent/core';
 import { MESSAGES } from '../../../../../config/messages';
+import { map } from 'rxjs/operators';
 
 @Component({
     selector: 'dgi-tarea-new',
@@ -34,7 +35,9 @@ export class TareaNewComponent implements OnInit {
 
     ngOnInit() {
         this.rolesEjecuta$ = this.rolProcesoService.rolProcesos
-            .map(res => res.filter(ress => ress.activo === true));
+            .pipe(
+                map(res => res.filter(ress => ress.activo === true))
+            );
 
         this.tareas$ = this.tareaReactiveService.tareas;
 

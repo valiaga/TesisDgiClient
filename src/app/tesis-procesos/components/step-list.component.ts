@@ -11,12 +11,12 @@ import { Etapa } from '../../etapas/shared/etapa';
 export class StepListComponent implements OnInit {
 
   @Input() etapas: Etapa[];
- 
+
   constructor() { }
 
   ngOnInit() {
-    console.log('this.etapas.length')
-    console.log(this.etapas.length)
+    // console.log('this.etapas.length')
+    // console.log(this.etapas.length)
   }
 
 }

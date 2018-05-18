@@ -11,7 +11,7 @@ import { getMessageConfirm } from '../../../config/general';
 @Component({
   selector: 'dgi-tesis-proceso',
   template: `
-  <!-- <a > --> 
+  <!-- <a > -->
     <mat-card class="mat-card">
       <mat-card-header>
         <!-- <div mat-card-avatar class="example-header-image"></div> -->
@@ -49,18 +49,16 @@ import { getMessageConfirm } from '../../../config/general';
       padding-left: 0px;
       font-size: 13px;
     }
-    
     .mat-card-content {
       padding-right: 10px;
-      padding-left: 10px;  
-      /* cursor: pointer; */   
+      padding-left: 10px;
+      /* cursor: pointer; */
     }
 
     .mat-card{
       width: 10em;
       min-width: 10em;
     }
-    
     .mat-card:hover {
       box-shadow: 3px 3px 16px -2px rgba(0, 0, 0, .5);
     }
@@ -81,9 +79,9 @@ export class TesisProcesoComponent implements OnInit {
   @Input() tesisProceso: TesisProceso;
 
   constructor(private tesisProcesoService: TesisProcesoService,
-              private viewContainerRef: ViewContainerRef,
-              private tdDialogService: TdDialogService,
-             ) { }
+    private viewContainerRef: ViewContainerRef,
+    private tdDialogService: TdDialogService,
+  ) { }
 
   ngOnInit() {
 
@@ -98,7 +96,5 @@ export class TesisProcesoComponent implements OnInit {
         } else {
         }
       });
-  
-  
   }
 }

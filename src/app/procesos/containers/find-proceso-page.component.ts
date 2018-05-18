@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Proceso } from '../models/proceso.model';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ProcesoService } from '../shared/proceso.service';
 
 @Component({

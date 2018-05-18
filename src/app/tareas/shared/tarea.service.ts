@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Tarea, ITarea } from './tarea';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
