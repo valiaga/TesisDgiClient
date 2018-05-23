@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tarea } from '../../../../tareas/shared/tarea';
 import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { TareaReactiveService } from '../../../../tareas/shared/tarea.service';
@@ -10,6 +9,7 @@ import { getMessageConfirm } from '../../../../../config/general';
 import { TdDialogService } from '@covalent/core';
 import { MESSAGES } from '../../../../../config/messages';
 import { map } from 'rxjs/operators';
+import { Tarea } from '../../../../tareas/models/tarea';
 
 @Component({
     selector: 'dgi-tarea-new',

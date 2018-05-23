@@ -22,11 +22,15 @@
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-menu #toolbarMenuOptions="matMenu" xPosition="before" yPosition="below" [overlapTrigger]="false">
-        <button mat-menu-item>
+        <button mat-menu-item (click)="agregarCampos(formulario)">
           <mat-icon>add</mat-icon>
           <span>Agregar Campos</span>
         </button>
-        <button mat-menu-item (click)="logout()">
+        <button mat-menu-item (click)="editar(formulario)">
+          <mat-icon>edit</mat-icon>
+          <span>Editar</span>
+        </button>
+        <button mat-menu-item (click)="delete(formulario)">
           <mat-icon>delete</mat-icon>
           <span>Eliminar</span>
         </button>

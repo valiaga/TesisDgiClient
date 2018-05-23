@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Tarea, ITarea } from './tarea';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
 import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
+import { Tarea, ITarea } from '../models/tarea';
+import { IFormulario } from '../models/formulario';
 
 @Injectable()
 export class TareaService {
@@ -35,6 +36,11 @@ export class TareaService {
 
   public create$(tarea: any): Observable<ITarea> {
     return this.http.post<ITarea>(this.url, tarea);
+  }
+
+  public getFomulariosByTareaId$(tareaId: string): Observable<IFormulario[]> {
+    return this.http
+      .get<IFormulario[]>(`${this.url}${tareaId}/formularios/`);
   }
 }
 

@@ -20,7 +20,6 @@ import { TareaService, TareaReactiveService } from '../tareas/shared/tarea.servi
 
 
 import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
-import { FormularioService } from '../dynamic-form/shared/formulario.service';
 import { CampoService } from '../dynamic-form/shared/campo.service';
 
 @NgModule({
@@ -50,8 +49,6 @@ import { CampoService } from '../dynamic-form/shared/campo.service';
     TareaReactiveService,
     TesisProcesoService,
     CampoService,
-    FormularioService,
-    // ControlService,
   ],
   entryComponents: [
     CreateTesisProcesoDialogComponent

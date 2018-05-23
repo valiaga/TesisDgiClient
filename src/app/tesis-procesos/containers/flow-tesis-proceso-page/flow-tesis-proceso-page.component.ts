@@ -5,10 +5,9 @@ import { Etapa } from '../../../etapas/shared/etapa';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MatStepper, MatStep } from '@angular/material';
 import { TareaService } from '../../../tareas/shared/tarea.service';
-import { Tarea } from '../../../tareas/shared/tarea';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 // import { Formulario } from '../../../dynamic-form/models/formulario';
-import { FormularioService } from '../../../dynamic-form/shared/formulario.service';
+// import { FormularioService } from '../../../dynamic-form/shared/formulario.service';
 // import { CampoBase } from '../../../dynamic-form/models/campo-base';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { CampoService } from '../../../dynamic-form/shared/campo.service';
@@ -18,6 +17,7 @@ import { Form } from '../../../dynamic-form/models/form';
 import { IFormulario } from '../../../dynamic-form/models.1/formulario';
 import { Validation } from '../../../dynamic-form/models/validation';
 import { ValidatorFn, Validator } from '@angular/forms/src/directives/validators';
+import { Tarea } from '../../../tareas/models/tarea';
 // import { ControlService } from '../../../forms-dynamic/shared/control.service';
 
 
@@ -94,21 +94,11 @@ import { ValidatorFn, Validator } from '@angular/forms/src/directives/validators
   ]
 })
 export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
-  // private etapas$: Observable<Etapa[]>;
   private etapas: Etapa[];
-  // private tareas$: Observable<Tarea[]>;
   private tareas: Tarea[];
-  // private formularios$: Observable<Formulario[]>;
-  // private formularios$: Observable<any[]>;
-  // private formularios: IFormulario[];
   private formularios: Form[];
 
   private campos: any[];
-
-  // private campos: CampoBase<any>[] = [];
-  // private form: FormGroup;
-  // @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
-
 
   @ViewChild('verticalStepper') private verticalStepper: MatStepper;
   @ViewChild('horizontalStepper') private horizontalStepper: MatStepper;
@@ -121,21 +111,14 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     private etapaReactiveService: EtapaReactiveService,
     private route: ActivatedRoute,
     private tareaService: TareaService,
-    private formularioService: FormularioService,
+    // private formularioService: FormularioService,
     private formBuilder: FormBuilder,
     private campoService: CampoService) { }
 
   ngOnInit() {
-    // this.etapas$ = this.etapaReactiveService.etapas;
-    // this.tareas$ = this.tareaService.tareas;
-    // this.formularios$ = this.formularioService.formularios;
-
-    // this.campos = this.campoService.getCampos();
 
     this.onSubscribeVerticalStepper();
     this.onSubscribeHorizontalStepper();
-
-    // this.form = this.controlService.toFormGroup(this.campos);
 
     this.route.params.subscribe(params => {
       const TesisProcesoId = params['id'];
@@ -176,11 +159,8 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   }
 
   initGetFormulariosByTareaId(tareaIdSelect: string) {
-    this.formularioService.getFormulariosByTareaId$(tareaIdSelect)
+    this.tareaService.getFomulariosByTareaId$(tareaIdSelect)
       .subscribe(res => {
-        console.log('formularios');
-        console.log(res);
-        console.log(this.transformJsonForm(res));
         this.formularios = this.transformJsonForm(res);
       });
   }
@@ -195,8 +175,6 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
       case 'email':
         validator = Validators.email;
         break;
-      // default:
-      // break;
     }
 
     return validator;
@@ -210,7 +188,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     return validationsFn;
   }
 
-  private transformJsonForm(formularios: Form[]) {
+  private transformJsonForm(formularios: any[]) {
     const Iformularios: Form[] = [];
 
     formularios.forEach(form => {
@@ -228,10 +206,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     this.verticalStepper.selectionChange.asObservable()
       .subscribe((stepper: StepperSelectionEvent) => {
         const etapaId = stepper.selectedStep.label;
-        // console.log('etapaId');
         this.initGetTareasByEtapaId(etapaId);
-        // console.log(etapaId);
-        // this.tareaService.getTareasByEtapaId(etapaId);
       });
   }
 

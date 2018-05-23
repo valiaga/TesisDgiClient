@@ -10,8 +10,8 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue.
-$dgi-primary: mat-palette($mat-teal, 700);
-$dgi-accent:  mat-palette($mat-orange, 800, A100, A400);
+$dgi-primary: mat-palette($mat-indigo, 500);
+$dgi-accent:  mat-palette($mat-pink, A200, A100, A400);
 
 
 // Active icon color in list nav

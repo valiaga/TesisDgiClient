@@ -18,7 +18,8 @@ import { ProcesoService } from './shared/proceso.service';
 import {
   MatCardModule, MatInputModule, MatGridListModule,
   MatSlideToggleModule, MatListModule, MatTabsModule,
-  MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule, MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule,
+  MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule,
+  MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule,
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
@@ -29,11 +30,10 @@ import { RolProcesoService } from '../rol-proceso/shared/rol-proceso.service';
 import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.service';
 import { ProcesosComponent } from './procesos.component';
 import { RequisitoReactiveService, RequisitosService } from '../requisitos/shared/requisitos.service';
-import { FormularioService } from '../dynamic-form/shared/formulario.service';
 import { FormToolsService } from '../shared/form-tools.service';
 // import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
 
-import { FormularioNewComponent, FormulariosListComponent } from './components/formularios';
+import { FormularioNewComponent, FormulariosListComponent, FormularioEditComponent } from './components/formularios';
 import { EtapaEditorComponent, EtapaNewComponent } from './components/etapas';
 import {
   ProcesoComponent, ProcesoListComponent,
@@ -46,6 +46,8 @@ import {
   TareaNewComponent, TareasListComponent, EtapaListaComponent,
 } from './components/tareas';
 import { DgiFormulariosDinamicosModule } from '@dgi/formularios-dinamicos';
+import { FormularioService } from '../formularios/shared/formulario.service';
+import { CamposNewComponent } from './components/campos';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -85,7 +87,8 @@ const ETAPAS_COMPONENTS: any = [
 
 const FORMULARIOS_COMPONENTS: any = [
   FormularioNewComponent,
-  FormulariosListComponent
+  FormulariosListComponent,
+  FormularioEditComponent,
 ];
 
 const ROL_PROCESO_COMPONENTS: any = [
@@ -105,6 +108,10 @@ const TAREAS_COMPONENTS: any = [
 
 const PROCESOS_COMPONENTS: any = [
   ProcesoComponent,
+];
+
+const CAMPOS_COMPONENTS: any = [
+  CamposNewComponent,
 ];
 
 @NgModule({
@@ -138,6 +145,7 @@ const PROCESOS_COMPONENTS: any = [
     ...ROL_PROCESO_COMPONENTS,
     ...REQUISITOS_COMPONENTS,
     ...TAREAS_COMPONENTS,
+    ...CAMPOS_COMPONENTS,
   ],
   providers: [
     ProcesoService,
@@ -159,6 +167,8 @@ const PROCESOS_COMPONENTS: any = [
     TareaNewComponent,
     RequisitoNewComponent,
     FormularioNewComponent,
+    FormularioEditComponent,
+    CamposNewComponent,
   ],
 })
 export class ProcesosModule { }

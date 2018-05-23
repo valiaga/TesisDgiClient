@@ -1,0 +1,10 @@
+<mat-form-field>
+    <mat-select placeholder="Tipo de Campo" [formControl]="tipoCampo">
+        <mat-option>-- None --</mat-option>
+        <mat-optgroup *ngFor="let group of tiposDeCampos" [label]="group.name" [disabled]="group.disabled">
+            <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
+                {{ pokemon.viewValue }}
+            </mat-option>
+        </mat-optgroup>
+    </mat-select>
+</mat-form-field>

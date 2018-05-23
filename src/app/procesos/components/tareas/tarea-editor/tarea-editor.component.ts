@@ -6,7 +6,6 @@ import { EtapaReactiveService } from '../../../../etapas/shared/etapa.service';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from '../../../../../config/general';
 import { MESSAGES } from '../../../../../config/messages';
-import { Tarea } from '../../../../tareas/shared/tarea';
 import { TareaReactiveService } from '../../../../tareas/shared/tarea.service';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
@@ -16,6 +15,7 @@ import { Requisito } from '../../../../requisitos/shared/requisito';
 import { RequisitoReactiveService } from '../../../../requisitos/shared/requisitos.service';
 import { MatDialog } from '@angular/material';
 import { RequisitoNewComponent } from '../../requisitos/requisito-new/requisito-new.component';
+import { Tarea } from '../../../../tareas/models/tarea';
 
 @Component({
   selector: 'dgi-tarea-editor',

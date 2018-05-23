@@ -7,16 +7,16 @@ import { MESSAGES } from '../../../../../config/messages';
 import { FormularioService } from '../../../../formularios/shared/formulario.service';
 
 @Component({
-    selector: 'dgi-formulario-new',
-    templateUrl: 'formulario-new.component.html',
-    styleUrls: ['formulario-new.component.scss'],
+    selector: 'dgi-formulario-edit',
+    templateUrl: 'formulario-edit.component.html',
+    styleUrls: ['formulario-edit.component.scss'],
 })
 
-export class FormularioNewComponent implements OnInit {
+export class FormularioEditComponent implements OnInit {
 
     public formForm: FormGroup;
 
-    constructor(private dialogRef: MatDialogRef<FormularioNewComponent>,
+    constructor(private dialogRef: MatDialogRef<FormularioEditComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private formBuilder: FormBuilder,
         private tdDialogService: TdDialogService,
@@ -29,7 +29,6 @@ export class FormularioNewComponent implements OnInit {
         this.buildForm();
     }
 
-
     public buildForm() {
         const controls = this.initializeControls();
         this.formForm = this.formBuilder.group(controls);
@@ -37,13 +36,13 @@ export class FormularioNewComponent implements OnInit {
 
     public initializeControls() {
         const controls = {
-            id: [''],
-            nombre: ['', [Validators.required]],
-            alias: ['', []],
-            descripcion: [],
-            tarea: [this.data.tareaId, [Validators.required]],
-            orden: ['', [Validators.required]],
-            width: [100, [Validators.required]],
+            id: [this.data.formulario.id],
+            nombre: [this.data.formulario.nombre, [Validators.required]],
+            alias: [this.data.formulario.alias, []],
+            descripcion: [this.data.formulario.descripcion],
+            tarea: [this.data.formulario.tarea, [Validators.required]],
+            orden: [this.data.formulario.orden, [Validators.required]],
+            width: [this.data.formulario.width, [Validators.required]],
         };
 
         return controls;
@@ -56,7 +55,7 @@ export class FormularioNewComponent implements OnInit {
             this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.formulario.confirmCreate, this.viewContainerRef))
                 .afterClosed().subscribe((accept: boolean) => {
                     if (accept) {
-                        this.formularioService.create$(value).subscribe(res => {
+                        this.formularioService.update$(value.id, value).subscribe(res => {
                             this.dialogRef.close(value.tarea);
                             this.formForm.reset();
                         });
