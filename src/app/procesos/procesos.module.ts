@@ -48,6 +48,7 @@ import {
 import { DgiFormulariosDinamicosModule } from '@dgi/formularios-dinamicos';
 import { FormularioService } from '../formularios/shared/formulario.service';
 import { CamposNewComponent } from './components/campos';
+import { CamposService } from '../campos/shared/campos.service';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -158,6 +159,7 @@ const CAMPOS_COMPONENTS: any = [
 
     RequisitoReactiveService,
     RequisitosService,
+    CamposService,
 
     FormToolsService,
   ],

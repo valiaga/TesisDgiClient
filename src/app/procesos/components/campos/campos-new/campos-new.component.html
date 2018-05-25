@@ -1,10 +1,170 @@
-<mat-form-field>
+<!-- <mat-form-field>
     <mat-select placeholder="Tipo de Campo" [formControl]="tipoCampo">
         <mat-option>-- None --</mat-option>
         <mat-optgroup *ngFor="let group of tiposDeCampos" [label]="group.name" [disabled]="group.disabled">
-            <mat-option *ngFor="let pokemon of group.pokemon" [value]="pokemon.value">
-                {{ pokemon.viewValue }}
+            <mat-option *ngFor="let campo of group.campos" [value]="campo.value">
+                {{ campo.viewValue }}
             </mat-option>
         </mat-optgroup>
     </mat-select>
-</mat-form-field>
+</mat-form-field> -->
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="pasoOneForm">
+        <form [formGroup]="pasoOneForm">
+            <ng-template matStepLabel>Seleccionar Tipo</ng-template>
+
+
+            <mat-form-field>
+                <!-- <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required> -->
+                <mat-select placeholder="Tipo de Campo" formControlName="type">
+                    <mat-option>-- None --</mat-option>
+                    <mat-optgroup *ngFor="let group of tiposDeCampos" [label]="group.name" [disabled]="group.disabled">
+                        <mat-option *ngFor="let campo of group.campos" [value]="campo.value">
+                            {{ campo.viewValue }}
+                        </mat-option>
+                    </mat-optgroup>
+                </mat-select>
+            </mat-form-field>
+            <div>
+                <button mat-button matStepperNext>Siguiente</button>
+            </div>
+
+
+        </form>
+    </mat-step>
+    <mat-step [stepControl]="pasoTwoForm">
+        <ng-template matStepLabel>Atributos del Campo</ng-template>
+        <mat-card>
+            <mat-card-content>
+
+                <div class="campo-container">
+                    <form [formGroup]="pasoTwoForm" class="campo-container">
+                        <!-- Nombre field Disabled -->
+                        <mat-form-field class="example-full-width">
+                            <input matInput placeholder="Tipo del campo (DIsabled)" disabled [value]="pasoOneForm.get('type').value">
+                            <!-- <input matInput placeholder="Tipo del campo (DIsabled)" disabled [value]="'tipo'"> -->
+                        </mat-form-field>
+
+                        <table class="example-full-width" cellspacing="0">
+                            <tr>
+                                <td>
+                                    <!-- Label field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input matInput placeholder="Label" formControlName="label" required>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <!-- Name field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input matInput placeholder="Name" formControlName="name" required>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <!-- Placeholder field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input matInput placeholder="Placeholder" formControlName="placeholder" required>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!-- Width field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input type="number" matInput placeholder="Width" formControlName="width" required>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <!-- Orden field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input type="number" matInput placeholder="Orden" formControlName="orden" required>
+                                    </mat-form-field>
+                                </td>
+                                <td>
+                                    <!-- Icon field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input matInput placeholder="Icon" formControlName="icon">
+                                        <mat-hint align="start">
+                                            <strong>https://material.io/tools/icons</strong>
+                                        </mat-hint>
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <!-- Prefix field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input matInput placeholder="Prefix (Ejemplo: Códigos telefonicos)" formControlName="prefix">
+                                    </mat-form-field>
+                                </td>
+                                <td *ngIf="pasoOneForm.get('type').value === 'select'">
+                                    <!-- Model field -->
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                        <input matInput placeholder="Model (Solo para select)" formControlName="model">
+                                    </mat-form-field>
+                                </td>
+                            </tr>
+                        </table>
+
+                        <!-- JSON field -->
+                        <mat-form-field [floatLabel]="['auto']" *ngIf="pasoOneForm.get('type').value === 'select'">
+                            <textarea matInput placeholder="JSON (Solo para select)" matTextareaAutosize matAutosizeMaxRows="5" formControlName="json"
+                                matAutosizeMinRows="2"></textarea>
+                        </mat-form-field>
+
+                        <!-- Hint Start field -->
+                        <mat-form-field [floatLabel]="['auto']">
+                            <input matInput placeholder="Hint Start (Texto de ayúda.)" formControlName="hint_start">
+                        </mat-form-field>
+
+                        <!-- Requerido field -->
+                        <div layout="row">
+                            <mat-slide-toggle formControlName="required">Requerido</mat-slide-toggle>
+                        </div>
+
+                        <!-- Hint end count text field -->
+                        <div layout="row" *ngIf="pasoOneForm.get('type').value !== 'select'">
+                            <mat-slide-toggle formControlName="hint_end_count_text">Hint end count text</mat-slide-toggle>
+                        </div>
+
+                        <!-- Disabled field -->
+                        <div layout="row">
+                            <mat-slide-toggle formControlName="disabled">Disabled</mat-slide-toggle>
+                        </div>
+
+                        <!-- Multiselect field -->
+                        <div layout="row" *ngIf="pasoOneForm.get('type').value === 'select'">
+                            <mat-slide-toggle formControlName="multiselect">Multiselect (Solo para select)</mat-slide-toggle>
+                        </div>
+
+
+
+                    </form>
+                    <p>
+                        {{ pasoTwoForm.value | json }}
+                    </p>
+                </div>
+            </mat-card-content>
+        </mat-card>
+        <div>
+            <button mat-button matStepperPrevious>Regresar</button>
+            <button mat-button matStepperNext>Siguiente</button>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="pasoThreeForm">
+        <ng-template matStepLabel>Validadores</ng-template>
+        <div>
+            <button mat-button matStepperPrevious>Regresar</button>
+            <button mat-button matStepperNext>Siguiente</button>
+        </div>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Confirmar</ng-template>
+        Tu esta terminando.
+        <div>
+            <button mat-button matStepperPrevious>Regresar</button>
+            <button mat-button (click)="stepper.reset()">Limpiar Formulario</button>
+            <button mat-button (click)="save()">Guardar</button>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>

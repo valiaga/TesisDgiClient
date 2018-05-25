@@ -84,9 +84,12 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
 
     public agregarCampos(formulario: any) {
         const dialogRef = this.dialog.open(CamposNewComponent, {
-            width: '500px',
+            width: '900px',
             data: { formulario: formulario },
         });
+        dialogRef.afterClosed()
+            .pipe(mergeMap((res) => this.tareaService.getFomulariosByTareaId$(res)))
+            .subscribe(this.loadFormularios.bind(this));
     }
 
     public delete(formulario: any) {

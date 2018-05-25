@@ -3,22 +3,22 @@ export class Escuela {
         public nombre: string,
         public alias: string,
         public activo: boolean,
-        public logo: string|any,
+        public logo: string | any,
         public mision: string,
         public vision: string,
         public facultad: string,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
         public id?: string
-    ){}
+    ) { }
 }
 
 export interface IEscuela {
-    id: string; //uuid
+    id: string; // uuid
     nombre: string;
     alias: string;
     activo: boolean;
-    logo: string|any;
+    logo: string | any;
     mision: string;
     vision: string;
     facultad: string;
@@ -34,9 +34,9 @@ class Options {
     next: number;
     previous: number;
     range: string;
-    page_size: number; 
+    page_size: number;
 }
-  
+
 export interface IResponse {
     options: Options;
     results: IEscuela[];

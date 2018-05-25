@@ -79,7 +79,9 @@ export const MESSAGES = {
         post: 'El Campo se guardó con Éxito.',
         getMany: 'Los Campos se listaron con Éxito.',
         getOne: 'El Campo se listó con Éxito.',
-        put: 'El Campo se actualizó con Éxito.'
+        put: 'El Campo se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el Campo?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el Campo?',
     },
     rolProceso: {
         delete: 'El Rol del proceso se eliminó con Éxito!.',
