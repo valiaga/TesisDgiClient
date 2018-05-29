@@ -24,7 +24,7 @@ const components: { [type: string]: Type<Field> } = {
   textarea: DgiFormTextareaComponent,
   slideToggle: DgiFormSlideToggleComponent,
   password: DgiFormPasswordComponent,
-  datepicker: DgiFormDatepickerComponent,
+  date: DgiFormDatepickerComponent, /** datepicker */
   radio: DgiFormRadioComponent,
   checkbox: DgiFormCheckboxComponent,
 };

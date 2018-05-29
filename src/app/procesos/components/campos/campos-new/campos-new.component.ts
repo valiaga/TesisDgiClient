@@ -46,7 +46,7 @@ export class CamposNewComponent implements OnInit {
             formulario: [this.data.formulario.id],
             label: ['', Validators.required],
             name: ['', Validators.required],
-            required: ['', Validators.required],
+            required: [false, Validators.required],
             width: [100, Validators.required],
             placeholder: [''],
             model: [''],
@@ -64,6 +64,7 @@ export class CamposNewComponent implements OnInit {
     }
 
     public save() {
+        console.log('save');
 
         const pasoOneFormValue = this.pasoOneForm.value;
         const pasoTwoFormValue = this.pasoTwoForm.value;
@@ -75,7 +76,10 @@ export class CamposNewComponent implements OnInit {
         const pasoThreeFormValid = this.pasoThreeForm.valid;
 
         const data = Object.assign(pasoOneFormValue, pasoTwoFormValue);
-        // console.log(data);
+        console.log(data);
+        console.log(pasoOneFormValid);
+        console.log(pasoTwoFormValid);
+        console.log(pasoThreeFormValid);
 
 
         if (pasoOneFormValid && pasoTwoFormValid && pasoThreeFormValid) {
@@ -114,7 +118,8 @@ export class CamposNewComponent implements OnInit {
             {
                 name: 'Complejo',
                 campos: [
-                    { value: 'datepicker', viewValue: 'Datepicker' },
+                    // { value: 'datepicker', viewValue: 'Datepicker' },
+                    { value: 'date', viewValue: 'Datepicker' },
                 ]
             },
             {
