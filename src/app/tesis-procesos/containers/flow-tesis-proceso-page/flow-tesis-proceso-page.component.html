@@ -1,0 +1,39 @@
+<mat-sidenav-container class="flow-tesis-container">
+
+    <!-- Sidenav Etapas -->
+    <mat-sidenav #sidenav mode="side" opened="true" class="mat-sidenav">
+        <mat-vertical-stepper #sidenavEtapas>
+            <mat-step *ngFor="let etapa of etapas" label="{{ etapa.id }}">
+                <ng-template matStepLabel>{{ etapa.nombre }}</ng-template>
+                {{ etapa.descripcion }}
+            </mat-step>
+        </mat-vertical-stepper>
+    </mat-sidenav>
+
+    <!-- Stepper Tareas -->
+    <mat-sidenav-content>
+        <mat-toolbar color="primary">
+            <!--warn, primary, accent-->
+            <p class="name-project">
+                Implementacion de una apliacion web para la gestion del proceso de tesis para titulo profesional en la Universidad Peruana
+                Unión basado en la metodologia scrum y la ISO/IEC 29110.
+            </p>
+        </mat-toolbar>
+
+        <mat-card class="mat-card-content">
+            <mat-horizontal-stepper #tareasStepper [linear]="[true]">
+                <mat-step label="{{ tarea.id }}" *ngFor="let tarea of tareas">
+                    <ng-template matStepLabel>{{ tarea.nombre }}</ng-template>
+
+                    <dgi-many-dynamic-form [formularios]="formularios"></dgi-many-dynamic-form>
+
+                    <div>
+                        <button mat-button matStepperPrevious>Back</button>
+                        <button mat-button matStepperNext>Next</button>
+                    </div>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </mat-card>
+        <dgi-flow-buttons-footer [sidenavEtapas]="sidenavEtapas"></dgi-flow-buttons-footer>
+    </mat-sidenav-content>
+</mat-sidenav-container>

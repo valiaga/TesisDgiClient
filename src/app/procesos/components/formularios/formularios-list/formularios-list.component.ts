@@ -68,7 +68,7 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
             data: { tareaId: this.tareaId },
         });
         dialogRef.afterClosed()
-            .pipe(mergeMap((res) => this.tareaService.getFomulariosByTareaId$(res)))
+            .pipe(mergeMap((res) => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
             .subscribe(this.loadFormularios.bind(this));
     }
 
@@ -78,7 +78,7 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
             data: { formulario: formulario },
         });
         dialogRef.afterClosed()
-            .pipe(mergeMap((res) => this.tareaService.getFomulariosByTareaId$(res)))
+            .pipe(mergeMap((res) => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
             .subscribe(this.loadFormularios.bind(this));
     }
 
@@ -88,7 +88,7 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
             data: { formulario: formulario },
         });
         dialogRef.afterClosed()
-            .pipe(mergeMap((res) => this.tareaService.getFomulariosByTareaId$(res)))
+            .pipe(mergeMap((res) => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
             .subscribe(this.loadFormularios.bind(this));
     }
 

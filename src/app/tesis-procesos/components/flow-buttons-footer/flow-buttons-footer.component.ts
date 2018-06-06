@@ -6,15 +6,15 @@ import { MatStepper } from '@angular/material';
   template: `
   <div class="buttons-footer">
     <button class="button-back" mat-button
-      [disabled]="verticalStepper.selectedIndex === 0"
-      (click)="goBackPaso(verticalStepper)">
+      [disabled]="sidenavEtapas.selectedIndex === 0"
+      (click)="goBackEtapa(sidenavEtapas)">
     <mat-icon>arrow_back</mat-icon>
-      Back General</button>
+      Anterior</button>
     <!--<span flex></span> -->
     <button class="button-next" mat-button
-      [disabled]="verticalStepper.selectedIndex === (verticalStepper._steps && verticalStepper._steps.length-1)"
-      (click)="goNextPaso(verticalStepper)">
-    Next General
+      [disabled]="sidenavEtapas.selectedIndex === (sidenavEtapas._steps && sidenavEtapas._steps.length-1)"
+      (click)="goNextEtapa(sidenavEtapas)">
+      Siguiente
     <mat-icon>arrow_forward</mat-icon>
     </button>
   </div>
@@ -23,18 +23,18 @@ import { MatStepper } from '@angular/material';
 })
 export class FlowButtonsFooterComponent implements OnInit {
 
-  @Input() verticalStepper: MatStepper;
+  @Input() sidenavEtapas: MatStepper;
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  goBackPaso(stepper: MatStepper) {
+  goBackEtapa(stepper: MatStepper) {
     stepper.previous();
   }
 
-  goNextPaso(stepper: MatStepper) {
+  goNextEtapa(stepper: MatStepper) {
     stepper.next();
   }
 }

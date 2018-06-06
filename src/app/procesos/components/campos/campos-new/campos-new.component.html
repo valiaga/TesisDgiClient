@@ -80,9 +80,11 @@
                                         <input type="number" matInput placeholder="Orden" formControlName="orden" required>
                                     </mat-form-field>
                                 </td>
-                                <td>
+                                <td *ngIf="pasoOneForm.get('type').value !== 'fileinput'
+                                && pasoOneForm.get('type').value !== 'date'
+                                && pasoOneForm.get('type').value !== 'select'">
                                     <!-- Icon field -->
-                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width"*ngIf="pasoOneForm.get('type').value !== 'fileinput'">
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
                                         <input matInput placeholder="Icon" formControlName="icon">
                                         <mat-hint align="start">
                                             <strong>https://material.io/tools/icons</strong>
@@ -91,10 +93,11 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td *ngIf="pasoOneForm.get('type').value !== 'fileinput'
+                                && pasoOneForm.get('type').value !== 'date'
+                                && pasoOneForm.get('type').value !== 'select'">
                                     <!-- Prefix field -->
-                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width" *ngIf="pasoOneForm.get('type').value !== 'fileinput'
-                                     && pasoOneForm.get('type').value !== 'date'">
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
                                         <input matInput placeholder="Prefix (Ejemplo: Códigos telefónicos)" formControlName="prefix">
                                     </mat-form-field>
                                 </td>
@@ -109,8 +112,8 @@
 
                         <!-- JSON field -->
                         <mat-form-field [floatLabel]="['auto']" *ngIf="pasoOneForm.get('type').value === 'select'">
-                            <textarea matInput placeholder="JSON (Solo para select)" matTextareaAutosize matAutosizeMaxRows="5" formControlName="json"
-                                matAutosizeMinRows="2"></textarea>
+                            <textarea matInput placeholder="JSON (Solo para select Ejm: [{id: '1', label: 'Opcion 1'}, {id: '2', label: 'Opcion 2'}])"
+                                matTextareaAutosize matAutosizeMaxRows="5" formControlName="json" matAutosizeMinRows="2"></textarea>
                         </mat-form-field>
 
                         <!-- Hint Start field -->

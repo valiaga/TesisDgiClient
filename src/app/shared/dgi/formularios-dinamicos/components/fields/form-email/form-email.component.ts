@@ -16,6 +16,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       matInput [placeholder]="config.label" [formControlName]="config.name"
       [id]="config.name" [type]="config.type" [required]="config.required"
       >
+      <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
     <!--
       <mat-error *ngIf="mustShowErrors(config.name)">
         <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
