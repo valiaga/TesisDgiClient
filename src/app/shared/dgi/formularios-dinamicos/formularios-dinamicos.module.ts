@@ -41,6 +41,7 @@ import {
     DgiFormCheckboxComponent,
     DgiDynamicFormComponent,
     DgiManyDynamicFormComponent,
+    DgiFormFileInputComponent,
 } from './components';
 import {
     MatFormFieldModule, MatButtonModule,
@@ -54,7 +55,8 @@ import {
     MatSlideToggleModule,
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CovalentFileModule } from '@covalent/core';
 
 const DIRECTIVES: any[] = [
     DgiDynamicFieldDirective,
@@ -81,6 +83,7 @@ const COMPONENTS_FIELD: any[] = [
     DgiFormDatepickerComponent,
     DgiFormRadioComponent,
     DgiFormCheckboxComponent,
+    DgiFormFileInputComponent
 ];
 
 const MATERIAL_MODULES: any[] = [
@@ -97,11 +100,17 @@ const MATERIAL_MODULES: any[] = [
     MatSlideToggleModule,
 ];
 
+const COVALENT_MODULES: any[] = [
+    CovalentFileModule,
+];
+
 @NgModule({
     imports: [
         ReactiveFormsModule,
+        FormsModule,
         CommonModule,
         ...MATERIAL_MODULES,
+        ...COVALENT_MODULES,
     ],
     exports: [
         ...COMPONENTS_FORM,

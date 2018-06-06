@@ -21,7 +21,7 @@ import {
   MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule,
   MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule,
 } from '@angular/material';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
 import { CommonModule } from '@angular/common';
 import { DgiButtonFabModule } from '../shared/dgi/button-fab';
@@ -69,6 +69,7 @@ const MATERIAL_MODULES: any = [
 
 const ANGULAR_MODULES: any = [
   ReactiveFormsModule,
+  FormsModule,
   CommonModule,
 ];
 

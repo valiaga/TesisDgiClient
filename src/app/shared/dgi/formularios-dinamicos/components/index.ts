@@ -3,6 +3,7 @@ export * from './fields/form-button-submit/form-button-submit.component';
 export * from './fields/form-checkbox/form-checkbox.component';
 export * from './fields/form-datepicker/form-datepicker.component';
 export * from './fields/form-email/form-email.component';
+export * from './fields/form-file-input/form-file-input.component';
 export * from './fields/form-input/form-input.component';
 export * from './fields/form-number/form-number.component';
 export * from './fields/form-password/form-password.component';

@@ -20,6 +20,13 @@ export class CamposNewComponent implements OnInit {
     public pasoTwoForm: FormGroup;
     public pasoThreeForm: FormGroup;
 
+    public accept_fileinput = {
+        png: false,
+        jpg: false,
+        pdf: false,
+        docx: false,
+    };
+
     constructor(private dialogRef: MatDialogRef<CamposNewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private formBuilder: FormBuilder,
@@ -58,13 +65,34 @@ export class CamposNewComponent implements OnInit {
             disabled: [false],
             multiselect: [false],
             orden: ['', Validators.required],
+            multiple_fileinput: [false],
         });
 
         this.pasoThreeForm = this.formBuilder.group({});
     }
 
+    private prepareDataAccept() {
+        if (this.pasoOneForm.value.type !== 'fileinput') {
+            return '';
+        }
+        let data = '';
+
+        if (this.accept_fileinput.docx) {
+            data = `${data}.dock,`;
+        } if (this.accept_fileinput.jpg) {
+            data = `${data}.jpg,`;
+        } if (this.accept_fileinput.pdf) {
+            data = `${data}.pdf,`;
+        } if (this.accept_fileinput.png) {
+            data = `${data}.png,`;
+        }
+        data = data.slice(0, data.length - 1);
+
+        return data;
+    }
+
     public save() {
-        console.log('save');
+        // console.log('save');
 
         const pasoOneFormValue = this.pasoOneForm.value;
         const pasoTwoFormValue = this.pasoTwoForm.value;
@@ -75,11 +103,14 @@ export class CamposNewComponent implements OnInit {
         const pasoTwoFormValid = this.pasoTwoForm.valid;
         const pasoThreeFormValid = this.pasoThreeForm.valid;
 
-        const data = Object.assign(pasoOneFormValue, pasoTwoFormValue);
+        const acceptInputFile = this.prepareDataAccept();
+
+        const data = Object.assign({ accept_fileinput: acceptInputFile }, pasoOneFormValue, pasoTwoFormValue);
         console.log(data);
         console.log(pasoOneFormValid);
         console.log(pasoTwoFormValid);
         console.log(pasoThreeFormValid);
+        console.log(acceptInputFile);
 
 
         if (pasoOneFormValid && pasoTwoFormValid && pasoThreeFormValid) {
@@ -118,8 +149,8 @@ export class CamposNewComponent implements OnInit {
             {
                 name: 'Complejo',
                 campos: [
-                    // { value: 'datepicker', viewValue: 'Datepicker' },
-                    { value: 'date', viewValue: 'Datepicker' },
+                    { value: 'date', viewValue: 'Datepicker' }, /** Nos regimos al backend */
+                    { value: 'fileinput', viewValue: 'File Input' }, /** Nos regimos al backend */
                 ]
             },
             {

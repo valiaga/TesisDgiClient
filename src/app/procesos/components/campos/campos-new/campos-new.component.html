@@ -82,7 +82,7 @@
                                 </td>
                                 <td>
                                     <!-- Icon field -->
-                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width"*ngIf="pasoOneForm.get('type').value !== 'fileinput'">
                                         <input matInput placeholder="Icon" formControlName="icon">
                                         <mat-hint align="start">
                                             <strong>https://material.io/tools/icons</strong>
@@ -93,8 +93,9 @@
                             <tr>
                                 <td>
                                     <!-- Prefix field -->
-                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                                        <input matInput placeholder="Prefix (Ejemplo: Códigos telefonicos)" formControlName="prefix">
+                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width" *ngIf="pasoOneForm.get('type').value !== 'fileinput'
+                                     && pasoOneForm.get('type').value !== 'date'">
+                                        <input matInput placeholder="Prefix (Ejemplo: Códigos telefónicos)" formControlName="prefix">
                                     </mat-form-field>
                                 </td>
                                 <td *ngIf="pasoOneForm.get('type').value === 'select'">
@@ -117,13 +118,17 @@
                             <input matInput placeholder="Hint Start (Texto de ayúda.)" formControlName="hint_start">
                         </mat-form-field>
 
+                        <span>Adicionales</span>
+
                         <!-- Requerido field -->
                         <div layout="row">
                             <mat-slide-toggle formControlName="required">Requerido</mat-slide-toggle>
                         </div>
 
                         <!-- Hint end count text field -->
-                        <div layout="row" *ngIf="pasoOneForm.get('type').value !== 'select'">
+                        <div layout="row" *ngIf="pasoOneForm.get('type').value !== 'select'
+                         && pasoOneForm.get('type').value !== 'fileinput'
+                         && pasoOneForm.get('type').value !== 'date'">
                             <mat-slide-toggle formControlName="hint_end_count_text">Hint end count text</mat-slide-toggle>
                         </div>
 
@@ -137,12 +142,25 @@
                             <mat-slide-toggle formControlName="multiselect">Multiselect (Solo para select)</mat-slide-toggle>
                         </div>
 
+                        <!-- Multiple for Inputfile field -->
+                        <div layout="row" *ngIf="pasoOneForm.get('type').value === 'fileinput'">
+                            <mat-slide-toggle formControlName="multiple_fileinput">Multiple</mat-slide-toggle>
+                        </div>
 
+                        <!-- Accept field -->
+                        <div *ngIf="pasoOneForm.get('type').value === 'fileinput'">
+                            <span>Aceptar</span>
+                            <br>
+                            <mat-checkbox [(ngModel)]="accept_fileinput.png" [ngModelOptions]="{standalone: true}">.png</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="accept_fileinput.jpg" [ngModelOptions]="{standalone: true}">.jpg</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="accept_fileinput.pdf" [ngModelOptions]="{standalone: true}">.pdf</mat-checkbox>
+                            <mat-checkbox [(ngModel)]="accept_fileinput.docx" [ngModelOptions]="{standalone: true}">.docx</mat-checkbox>
+                        </div>
 
                     </form>
-                    <p>
+                    <!-- <p>
                         {{ pasoTwoForm.value | json }}
-                    </p>
+                    </p> -->
                 </div>
             </mat-card-content>
         </mat-card>

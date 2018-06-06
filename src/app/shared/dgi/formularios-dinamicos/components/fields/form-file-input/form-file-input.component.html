@@ -1,0 +1,8 @@
+<!-- <mat-form-field> -->
+<!-- </mat-form-field> -->
+<td-file-input [(ngModel)]="files" color="primary" (select)="selectEvent($event)" [accept]="config.accept_fileinput" [disabled]="disabled"
+    [multiple]="config.multiple_fileinput">
+    <mat-icon>attach_file</mat-icon>
+    <span>{{ config.label }}</span>
+    <!-- <span>{{ config | json }}</span> -->
+</td-file-input>
