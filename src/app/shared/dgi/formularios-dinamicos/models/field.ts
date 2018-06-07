@@ -1,5 +1,7 @@
 import { FieldConfig } from './field-config';
 import { FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { EventEmitter } from '@angular/core';
 
 /**
  * Field = Campo
@@ -7,4 +9,5 @@ import { FormGroup } from '@angular/forms';
 export interface Field {
     config: FieldConfig;
     group: FormGroup;
+    onUpdate(): Observable<any> | any;
 }

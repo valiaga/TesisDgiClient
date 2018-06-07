@@ -1,0 +1,15 @@
+@import '../../../styles/mixins.scss';
+
+.radio-vertical {
+  display: inline-flex;
+  flex-direction: column;
+}
+.mat-radio-button {
+  margin: 2px;
+}
+.msm-error {
+  font-size: 75%;
+}
+.radio-display {
+  display: inline-block;
+}

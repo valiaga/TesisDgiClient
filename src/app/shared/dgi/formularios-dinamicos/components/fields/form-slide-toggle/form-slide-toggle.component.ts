@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-slide-toggle',
@@ -30,22 +31,24 @@ export class DgiFormSlideToggleComponent implements OnInit {
   public group: FormGroup;
 
   private color = 'primary';
-  // private checked = true;
   private disabled = false;
+  private edit: Subject<string> = new Subject<string>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
+
+  public onEdit() {
+    this.edit.next();
+  }
+
+  public onUpdate(): Observable<any> {
+    return this.edit.asObservable();
+  }
+
   public getWidthControlClass() {
     return this.formWidthToolsService.getWidthControlClass(this.config);
   }
 
-  // public mustShowErrors(controlName: string): boolean {
-  //   return this.formToolsService.mustShowErrors(this.group, controlName);
-  // }
-
-  // public getControlErrors(controlName: string) {
-  //   return this.formToolsService.getControlErrors(this.group, controlName);
-  // }
 }

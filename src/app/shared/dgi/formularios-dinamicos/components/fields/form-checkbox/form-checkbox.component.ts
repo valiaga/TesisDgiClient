@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '@dgi/formularios-dinamicos/tools/form-width-tools.service';
+import { Observable, Subject } from 'rxjs';
 // import { FormToolsService } from '../../../shared/form-tools.service';
 
 @Component({
@@ -31,18 +32,22 @@ import { FormWidthToolsService } from '@dgi/formularios-dinamicos/tools/form-wid
 export class DgiFormCheckboxComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
+  private edit: Subject<string> = new Subject<string>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
+
   public getWidthControlClass() {
     return this.formWidthToolsService.getWidthControlClass(this.config);
   }
-  // public mustShowErrors(controlName: string): boolean {
-  //   return this.formToolsService.mustShowErrors(this.group, controlName);
-  // }
-  // public getControlErrors(controlName: string) {
-  //   return this.formToolsService.getControlErrors(this.group, controlName);
-  // }
+
+  public onEdit() {
+    this.edit.next();
+  }
+
+  public onUpdate(): Observable<any> {
+    return this.edit.asObservable();
+  }
 }

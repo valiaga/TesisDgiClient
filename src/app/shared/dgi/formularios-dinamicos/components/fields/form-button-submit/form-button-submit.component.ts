@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../../models/field-config';
+import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-button-submit',
@@ -57,10 +58,19 @@ export class DgiFormButtonSubmitComponent implements OnInit {
 
   public config: FieldConfig;
   public group: FormGroup;
+  private edit: Subject<string> = new Subject<string>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public onEdit() {
+    this.edit.next();
+  }
+
+  public onUpdate(): Observable<any> {
+    return this.edit.asObservable();
   }
 
 }
