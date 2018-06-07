@@ -13,8 +13,10 @@ import { Subject, Observable } from 'rxjs';
     [formGroup]="group"
     [floatLabel]="['auto']"
       >
-      <input matInput [id]="config.name" [matDatepicker]="picker" [type]="config.type"
+      <!-- [type]="config.type" -->
+      <input matInput [id]="config.name" [matDatepicker]="picker"
         [placeholder]="config.label" [formControlName]="config.name" [required]="config.required">
+      <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
       <mat-icon matSuffix class="dgi-icon-edit" (click)="onEdit()">edit</mat-icon>

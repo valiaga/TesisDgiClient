@@ -29,4 +29,6 @@ export interface FieldConfig {
     fecha_creacion?: string;
     fecha_actualizacion?: string;
     campovalidation_set?: Validation[];
+    multiple_fileinput: boolean;
+    accept_fileinput: string;
 }

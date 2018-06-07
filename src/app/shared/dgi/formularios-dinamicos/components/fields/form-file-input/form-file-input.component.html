@@ -1,0 +1,18 @@
+<div layout="row" class="dgi-file-input-content" [ngClass]="getWidthControlClass()">
+    <mat-form-field tdFileDrop [disabled]="disabled" (fileDrop)="files = $event" (click)="fileInput.inputElement.click()" (keyup.enter)="fileInput.inputElement.click()"
+        (keyup.delete)="fileInput.clear()" (keyup.backspace)="fileInput.clear()" flex>
+
+        <input matInput [placeholder]="textPlaceholder" [value]="files?.length ? (files?.length + ' files') : files?.name" [disabled]="disabled"
+            readonly>
+        <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
+    </mat-form-field>
+    <button mat-icon-button *ngIf="files" (click)="fileInput.clear()" (keyup.enter)="fileInput.clear()">
+        <mat-icon>cancel</mat-icon>
+    </button>
+    <td-file-input [(ngModel)]="files" #fileInput color="primary" (select)="selectEvent($event)" [accept]="config.accept_fileinput"
+        [disabled]="disabled" [multiple]="config.multiple_fileinput" [disabled]="disabled">
+        <mat-icon>attach_file</mat-icon>
+        <span>{{ textButton }} </span>
+        <!-- <span>{{ config.width }}</span> -->
+    </td-file-input>
+</div>

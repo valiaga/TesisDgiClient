@@ -18,7 +18,8 @@ import { Observable, Subject } from 'rxjs';
       [id]="config.name" [type]="config.type" [required]="config.required"
       >
       <mat-icon matSuffix class="dgi-icon-edit" (click)="onEdit()">edit</mat-icon>
-    <!--
+      <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
+      <!--
       <mat-error *ngIf="mustShowErrors(config.name)">
         <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
       </mat-error> -->

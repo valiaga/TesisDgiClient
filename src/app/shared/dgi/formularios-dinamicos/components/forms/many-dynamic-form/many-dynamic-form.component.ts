@@ -27,7 +27,8 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 })
 export class DgiManyDynamicFormComponent implements OnInit {
 
-  @Input('formularios') formularios: Formulario[];
+  @Input() formularios: Formulario[];
+  // @Input('formularios') formularios: Formulario[];
 
   @ViewChild(DgiDynamicFormComponent) form: DgiDynamicFormComponent;
 
