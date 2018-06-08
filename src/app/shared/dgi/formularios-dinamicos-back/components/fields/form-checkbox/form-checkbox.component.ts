@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
-import { FormWidthToolsService } from '@dgi/formularios-dinamicos/tools/form-width-tools.service';
+import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 // import { FormToolsService } from '../../../shared/form-tools.service';
 
 @Component({

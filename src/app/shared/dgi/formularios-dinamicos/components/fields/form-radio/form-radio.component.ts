@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../../models/field-config';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
-import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-radio',
@@ -27,7 +26,7 @@ import { Subject, Observable } from 'rxjs';
 export class DgiFormRadioComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private edit: Subject<string> = new Subject<string>();
+  public onUpdate = new EventEmitter<string>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
@@ -38,11 +37,8 @@ export class DgiFormRadioComponent implements OnInit {
     return this.formWidthToolsService.getWidthControlClass(this.config);
   }
 
-  public onEdit() {
-    this.edit.next();
+  public update(fieldId: string) {
+    return this.onUpdate.emit(fieldId);
   }
 
-  public onUpdate(): Observable<any> {
-    return this.edit.asObservable();
-  }
 }

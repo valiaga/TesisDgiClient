@@ -1,8 +1,7 @@
-import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../../models/field-config';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-select',
@@ -12,7 +11,7 @@ import { Observable, Subject } from 'rxjs';
 export class DgiFormSelectComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private edit: Subject<string> = new Subject<string>();
+  public onUpdate = new EventEmitter<string>();
 
   public JSONparse: any[] = [];
 
@@ -23,12 +22,8 @@ export class DgiFormSelectComponent implements OnInit {
     this.JSONparse = (new Function('return ' + this.config.json + ';')());
   }
 
-  public onEdit() {
-    this.edit.next();
-  }
-
-  public onUpdate(): Observable<any> {
-    return this.edit.asObservable();
+  public update(fieldId: string) {
+    return this.onUpdate.emit(fieldId);
   }
 
   public getWidthControlClass() {

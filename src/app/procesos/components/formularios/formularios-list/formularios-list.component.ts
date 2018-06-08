@@ -11,7 +11,7 @@ import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { FormularioEditComponent } from '../formulario-edit/formulario-edit.component';
-import { CamposNewComponent } from '../../campos';
+import { CamposNewComponent, CamposEditComponent } from '../../campos';
 
 @Component({
     selector: 'dgi-formularios-list',
@@ -59,6 +59,18 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
 
     public getFormClass(formulario: any) {
         return this.formToolsService.getFormClass(formulario);
+    }
+
+    public update(fieldId: string) {
+        // console.log(fieldId);
+        const dialogRef = this.dialog.open(CamposEditComponent, {
+            width: '900px',
+            data: { campoId: fieldId },
+        });
+
+        dialogRef.afterClosed()
+            .pipe(mergeMap(res => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
+            .subscribe(this.loadFormularios.bind(this));
     }
 
     public newFormulario() {

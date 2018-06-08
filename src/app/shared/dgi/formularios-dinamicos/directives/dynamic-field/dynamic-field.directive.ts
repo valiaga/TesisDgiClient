@@ -15,6 +15,7 @@ import {
   DgiFormTelComponent, DgiFormTextareaComponent,
   DgiFormSlideToggleComponent, DgiFormDatepickerComponent,
   DgiFormCheckboxComponent,
+  DgiFormFileInputComponent,
 } from '../../components';
 
 const components: { [type: string]: Type<Field> } = {
@@ -30,6 +31,7 @@ const components: { [type: string]: Type<Field> } = {
   date: DgiFormDatepickerComponent, /** datepicker */
   radio: DgiFormRadioComponent,
   checkbox: DgiFormCheckboxComponent,
+  fileinput: DgiFormFileInputComponent,
 };
 
 
@@ -44,7 +46,7 @@ export class DgiDynamicFieldDirective implements Field, OnChanges, OnInit {
   @Input()
   group: FormGroup;
 
-  @Output() onUpdate =  new EventEmitter<any>();
+  @Output() onUpdate = new EventEmitter<string>();
 
   private component: ComponentRef<Field>;
 
@@ -71,8 +73,9 @@ export class DgiDynamicFieldDirective implements Field, OnChanges, OnInit {
     this.component = this.container.createComponent(component);
     this.component.instance.config = this.config;
     this.component.instance.group = this.group;
-    this.component.instance.onUpdate().subscribe(res => {
-      console.log('Change is: ', res);
+    this.component.instance.onUpdate.subscribe(fieldId => {
+      // console.log('Change is: ', fieldId);
+      this.onUpdate.emit(fieldId);
     });
   }
 }

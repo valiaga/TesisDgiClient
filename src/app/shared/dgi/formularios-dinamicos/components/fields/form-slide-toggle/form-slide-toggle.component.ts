@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
-import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-slide-toggle',
@@ -32,19 +31,15 @@ export class DgiFormSlideToggleComponent implements OnInit {
 
   private color = 'primary';
   private disabled = false;
-  private edit: Subject<string> = new Subject<string>();
+  public onUpdate = new EventEmitter<string>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
 
-  public onEdit() {
-    this.edit.next();
-  }
-
-  public onUpdate(): Observable<any> {
-    return this.edit.asObservable();
+  public update(fieldId: string) {
+    return this.onUpdate.emit(fieldId);
   }
 
   public getWidthControlClass() {

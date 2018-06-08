@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
-import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-textarea',
@@ -14,7 +13,7 @@ import { Subject, Observable } from 'rxjs';
       <textarea matInput [placeholder]="config.label" [formControlName]="config.name"
             matTextareaAutosize [matAutosizeMinRows]="autosizeMinRows" [required]="config.required"
             [matAutosizeMaxRows]="autosizeMaxRows"></textarea>
-      <mat-icon matSuffix class="dgi-icon-edit" (click)="onEdit()">edit</mat-icon>
+      <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
 
       <!--
             <mat-error *ngIf="mustShowErrors(config.name)">
@@ -31,19 +30,15 @@ export class DgiFormTextareaComponent implements OnInit {
   public group: FormGroup;
   private autosizeMinRows = 2;
   private autosizeMaxRows = 5;
-  private edit: Subject<string> = new Subject<string>();
+  public onUpdate = new EventEmitter<string>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
 
-  public onEdit() {
-    this.edit.next();
-  }
-
-  public onUpdate(): Observable<any> {
-    return this.edit.asObservable();
+  public update(fieldId: string) {
+    return this.onUpdate.emit(fieldId);
   }
 
   public getWidthControlClass() {

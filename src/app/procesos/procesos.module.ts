@@ -47,7 +47,7 @@ import {
 } from './components/tareas';
 import { DgiFormulariosDinamicosModule } from '@dgi/formularios-dinamicos';
 import { FormularioService } from '../formularios/shared/formulario.service';
-import { CamposNewComponent } from './components/campos';
+import { CamposNewComponent, CamposEditComponent } from './components/campos';
 import { CamposService } from '../campos/shared/campos.service';
 
 const MATERIAL_MODULES: any = [
@@ -114,6 +114,7 @@ const PROCESOS_COMPONENTS: any = [
 
 const CAMPOS_COMPONENTS: any = [
   CamposNewComponent,
+  CamposEditComponent,
 ];
 
 @NgModule({
@@ -172,6 +173,7 @@ const CAMPOS_COMPONENTS: any = [
     FormularioNewComponent,
     FormularioEditComponent,
     CamposNewComponent,
+    CamposEditComponent,
   ],
 })
 export class ProcesosModule { }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../../models/field-config';
 
@@ -20,10 +20,14 @@ import { FieldConfig } from '../../../models/field-config';
 export class DgiFormButtonComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
+  public onUpdate = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  public update(fieldId: string) {
+    return this.onUpdate.emit(fieldId);
+  }
 }

@@ -6,18 +6,19 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 @Component({
   selector: 'dgi-many-dynamic-form',
   template: `
-    <mat-card [ngClass]="getWidthFormClass(formulario)" *ngFor="let formulario of formularios">
+    <mat-card *ngFor="let formulario of formularios" [ngClass]="getWidthFormClass(formulario)">
       <mat-card-header>
       <mat-card-title>{{ formulario.nombre }}</mat-card-title>
-      <mat-card-subtitle> Formulario dinamico</mat-card-subtitle>
+      <mat-card-subtitle> {{ formulario.descripcion }}</mat-card-subtitle>
       </mat-card-header>
       <mat-card-content>
-      <!-- [config]="formulario.fieldConfigs" -->
         <dgi-dynamic-form
-        [config]="formulario.campos"
-        #form = "dgiDynamicForm"
-        (submit)="submit($event)"
+          [config]="formulario.campos"
+          #form = "dgiDynamicForm"
+          (submit)="submit($event)"
+          (update)="update($event)"
           ></dgi-dynamic-form>
+
           {{ form.valid }}
           {{ form.value | json }}
       </mat-card-content>
@@ -53,9 +54,13 @@ export class DgiManyDynamicFormComponent implements OnInit {
     }, 2000);
   }
 
-  submit(value: { [name: string]: any }) {
+  public submit(value: { [name: string]: any }) {
     console.log('value');
     console.log(value);
+  }
+
+  public update(fieldId: string) {
+    // console.log('fieldId: ', fieldId);
   }
 
   public getWidthFormClass(formulario: Formulario) {

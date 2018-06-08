@@ -1,8 +1,7 @@
-import { Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { Component, OnChanges, OnInit, EventEmitter } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-number',
@@ -17,7 +16,7 @@ import { Observable, Subject } from 'rxjs';
       matInput [placeholder]="config.label" [formControlName]="config.name"
       [id]="config.name" [type]="config.type" [required]="config.required"
       >
-      <mat-icon matSuffix class="dgi-icon-edit" (click)="onEdit()">edit</mat-icon>
+      <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
       <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
       <!--
       <mat-error *ngIf="mustShowErrors(config.name)">
@@ -29,19 +28,15 @@ import { Observable, Subject } from 'rxjs';
 export class DgiFormNumberComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private edit: Subject<string> = new Subject<string>();
+  public onUpdate = new EventEmitter<string>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
 
-  public onEdit() {
-    this.edit.next();
-  }
-
-  public onUpdate(): Observable<any> {
-    return this.edit.asObservable();
+  public update(fieldId: string) {
+    return this.onUpdate.emit(fieldId);
   }
 
   public getWidthControlClass() {

@@ -1,8 +1,7 @@
-import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
-import { Observable, Subject } from 'rxjs';
 
 @Component({
   selector: 'dgi-form-tel',
@@ -18,7 +17,7 @@ import { Observable, Subject } from 'rxjs';
       [id]="config.name" [type]="config.type" [required]="config.required"
       >
     <mat-icon matSuffix>phone</mat-icon>
-    <mat-icon matSuffix class="dgi-icon-edit" (click)="onEdit()">edit</mat-icon>
+    <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
   <!--
     <mat-error *ngIf="mustShowErrors(config.name)">
       <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
@@ -32,19 +31,15 @@ export class DgiFormTelComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
   private codePostal = '+51';
-  private edit: Subject<string> = new Subject<string>();
+  public onUpdate = new EventEmitter<string>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
 
-  public onEdit() {
-    this.edit.next();
-  }
-
-  public onUpdate(): Observable<any> {
-    return this.edit.asObservable();
+  public update(fieldId: string) {
+    return this.onUpdate.emit(fieldId);
   }
 
   public getWidthControlClass() {

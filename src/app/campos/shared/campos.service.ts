@@ -14,8 +14,11 @@ export class CamposService {
         return this.httpClient.post<ICampo>(this.url, data);
     }
 
-    public update$(id: string, data: any): Observable<ICampo> {
+    public getById$(campoId: string, params?: any): Observable<ICampo> {
+        return this.httpClient.get<ICampo>(`${this.url}/${campoId}`, { params: params });
+    }
 
+    public update$(id: string, data: any): Observable<ICampo> {
         return this.httpClient.put<ICampo>(`${this.url}${id}/`, data);
     }
 }

@@ -9,5 +9,5 @@ import { EventEmitter } from '@angular/core';
 export interface Field {
     config: FieldConfig;
     group: FormGroup;
-    onUpdate(): Observable<any> | any;
+    onUpdate: EventEmitter<string>;
 }

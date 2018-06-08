@@ -17,6 +17,7 @@ import { AbstractControl } from '@angular/forms';
         <ng-container
           *ngFor="let field of config"
           dgiDynamicField
+          (onUpdate)="onUpdate($event)"
           [config]="field"
           [group]="form">
         </ng-container>
@@ -60,6 +61,9 @@ export class DgiDynamicFormComponent implements OnChanges, OnInit {
   @Output()
   public submit: EventEmitter<any> = new EventEmitter<any>();
 
+  @Output()
+  public update: EventEmitter<any> = new EventEmitter<any>();
+
   public form: FormGroup;
 
   get controls() { return this.config && this.config.filter(({ type }) => type !== 'buttonSubmit'); }
@@ -74,7 +78,12 @@ export class DgiDynamicFormComponent implements OnChanges, OnInit {
     this.form = this.createGroup();
   }
 
-  createGroup() {
+  public onUpdate(fieldId) {
+    // console.log(fieldId);
+    this.update.emit(fieldId);
+  }
+
+  public createGroup() {
     const group = this.formBuilder.group({});
     if (this.controls) {
       this.controls.forEach(control => {
@@ -84,7 +93,7 @@ export class DgiDynamicFormComponent implements OnChanges, OnInit {
     return group;
   }
 
-  createControl(config: FieldConfig) {
+  public createControl(config: FieldConfig) {
     const { disabled, validation, value } = config;
     return this.formBuilder.control({ disabled, value }, validation);
   }
@@ -107,13 +116,13 @@ export class DgiDynamicFormComponent implements OnChanges, OnInit {
     }
   }
 
-  handleSubmit(event: Event) {
+  public handleSubmit(event: Event) {
     event.preventDefault();
     event.stopPropagation();
     this.submit.emit(this.value);
   }
 
-  setDisabled(name: string, disable: boolean) {
+  public setDisabled(name: string, disable: boolean) {
     if (this.form.controls[name]) {
       const method = disable ? 'disable' : 'enable';
       this.form.controls[name][method]();
@@ -128,7 +137,7 @@ export class DgiDynamicFormComponent implements OnChanges, OnInit {
     });
   }
 
-  setValue(name: string, value: any) {
+  public setValue(name: string, value: any) {
     this.form.controls[name].setValue(value, { emitEvent: true });
   }
 }
