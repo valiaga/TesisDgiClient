@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FindTesisProcesoPageComponent } from './containers/find-tesis-proceso-page.component';
-import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-page/flow-tesis-proceso-page.component';
+import { FlowTesisProcesoPageComponent, FindTesisProcesoPageComponent } from './containers';
+import { TesisProcesosComponent } from './tesis-procesos.component';
 
 /**
  * Rutas que se manejan en este modulo
@@ -13,12 +13,24 @@ import { FlowTesisProcesoPageComponent } from './containers/flow-tesis-proceso-p
 const routes: Routes = [
   {
     path: '',
-    component: FindTesisProcesoPageComponent,
+    component: TesisProcesosComponent,
+    children: [
+      {
+        path: 'proyectos',
+        component: FindTesisProcesoPageComponent,
+      },
+      {
+        path: ':id',
+        component: FlowTesisProcesoPageComponent,
+      },
+      {
+        path: '',
+        redirectTo: 'proyectos',
+        pathMatch: 'full',
+      },
+    ],
   },
-  {
-    path: ':id',
-    component: FlowTesisProcesoPageComponent,
-  }
+
 ];
 
 

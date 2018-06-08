@@ -5,31 +5,13 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 
 @Component({
   selector: 'dgi-many-dynamic-form',
-  template: `
-    <mat-card *ngFor="let formulario of formularios" [ngClass]="getWidthFormClass(formulario)">
-      <mat-card-header>
-      <mat-card-title>{{ formulario.nombre }}</mat-card-title>
-      <mat-card-subtitle> {{ formulario.descripcion }}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-content>
-        <dgi-dynamic-form
-          [config]="formulario.campos"
-          #form = "dgiDynamicForm"
-          (submit)="submit($event)"
-          (update)="update($event)"
-          ></dgi-dynamic-form>
-
-          {{ form.valid }}
-          {{ form.value | json }}
-      </mat-card-content>
-    </mat-card>
-  `,
+  templateUrl: 'many-dynamic-form.component.html',
   styleUrls: ['./many-dynamic-form.component.scss']
 })
 export class DgiManyDynamicFormComponent implements OnInit, AfterViewChecked {
 
-  @Input() formularios: Formulario[];
   // @Input('formularios') formularios: Formulario[];
+  @Input() formularios: Formulario[];
 
   @ViewChild(DgiDynamicFormComponent) form: DgiDynamicFormComponent;
 
@@ -55,17 +37,13 @@ export class DgiManyDynamicFormComponent implements OnInit, AfterViewChecked {
     }, 2000);
   }
 
-  ngAfterViewChecked() {
-    this.changeDetector.detectChanges();
-  }
-
   public submit(value: { [name: string]: any }) {
     console.log('value');
     console.log(value);
   }
 
-  public update(fieldId: string) {
-    // console.log('fieldId: ', fieldId);
+  ngAfterViewChecked() {
+    this.changeDetector.detectChanges();
   }
 
   public getWidthFormClass(formulario: Formulario) {

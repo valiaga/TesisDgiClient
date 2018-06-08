@@ -27,8 +27,8 @@ import { Form } from '../models/form';
 })
 export class ManyDynamicFormComponent implements OnInit {
 
-  // @Input('formularios') formularios: any[];
-  @Input('formularios') formularios: Form[];
+  // @Input('formularios') formularios: Form[];
+  @Input() formularios: Form[];
 
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
 

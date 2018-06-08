@@ -8,7 +8,7 @@
 .dgi-file-input-content {
     display: inline-flex;
 }
-.mat-button-wrapper {
+:host /deep/ .td-file-input {
   width: 8.2rem;
   overflow: hidden;
   white-space: nowrap;

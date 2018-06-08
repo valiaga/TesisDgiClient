@@ -1,0 +1,40 @@
+$w100: 100%;
+$w50: 48%;
+$w33: 31%;
+$w25: 24%;
+$w20: 19%;
+$w10: 9%;
+
+$margin-left: 0.5rem;
+
+@mixin margin-left() {
+    margin-left: $margin-left;
+}
+
+.input-100 {
+    width: $w100;
+    @include margin-left();
+}
+.input-50 {
+    width: $w50;
+    @include margin-left();
+}
+.input-33 {
+    width: $w33;
+    @include margin-left();
+}
+.input-25 {
+    width: $w25;
+    @include margin-left();
+}
+.input-20 {
+    width: $w20;
+    @include margin-left();
+}
+.input-10 {
+    width: $w10;
+    @include margin-left();
+}
+.dgi-icon-edit {
+    cursor: pointer;
+}

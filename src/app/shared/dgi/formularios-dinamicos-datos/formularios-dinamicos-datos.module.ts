@@ -76,6 +76,7 @@ const COMPONENTS_FIELD: any[] = [
     DgiFormInputComponent,
     DgiFormNumberComponent,
     DgiFormEmailComponent,
+    DgiFormFileInputComponent,
     DgiFormSelectComponent,
     DgiFormTelComponent,
     DgiFormTextareaComponent,
@@ -84,7 +85,6 @@ const COMPONENTS_FIELD: any[] = [
     DgiFormDatepickerComponent,
     DgiFormRadioComponent,
     DgiFormCheckboxComponent,
-    DgiFormFileInputComponent
 ];
 
 const MATERIAL_MODULES: any[] = [
@@ -106,13 +106,14 @@ const COVALENT_MODULES: any[] = [
     CovalentFileModule,
 ];
 
+
 @NgModule({
     imports: [
         ReactiveFormsModule,
         FormsModule,
         CommonModule,
         ...MATERIAL_MODULES,
-        ...COVALENT_MODULES,
+        ...COVALENT_MODULES
     ],
     exports: [
         ...COMPONENTS_FORM,
@@ -129,4 +130,4 @@ const COVALENT_MODULES: any[] = [
         FormWidthToolsService,
     ],
 })
-export class DgiFormulariosDinamicosModule { }
+export class DgiFormulariosDinamicosDatosModule { }
