@@ -17,6 +17,8 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       [id]="config.name" [type]="config.type" [required]="config.required"
       >
     <mat-icon matSuffix>phone</mat-icon>
+    <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
+
   <!--
     <mat-error *ngIf="mustShowErrors(config.name)">
       <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>

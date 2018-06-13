@@ -11,11 +11,12 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     [ngClass]="getWidthControlClass()"
     [formGroup]="group"
     [floatLabel]="['auto']">
-
+    <span *ngIf="config.prefix" matPrefix>{{ config.prefix }} &nbsp;</span>
     <input
       matInput [placeholder]="config.label" [formControlName]="config.name"
       [id]="config.name" [type]="config.type" [required]="config.required"
       >
+      <mat-icon *ngIf="config.icon" matSuffix>{{ config.icon }}</mat-icon>
       <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
       <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
       <!--

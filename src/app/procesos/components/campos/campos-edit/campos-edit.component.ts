@@ -14,6 +14,7 @@ import { MESSAGES } from 'config/messages';
 
 export class CamposEditComponent implements OnInit {
     // public tipoCampo = new FormControl();
+    public tipoCampo: string;
     // public tiposDeCampos: any[];
 
     // public pasoOneForm: FormGroup;
@@ -43,7 +44,40 @@ export class CamposEditComponent implements OnInit {
     }
 
     public getCampoById(campoId) {
-        console.log();
+        this.camposService.getById$(campoId)
+            .subscribe(this.loadCampo.bind(this));
+    }
+
+    private loadCampo(campo) {
+        this.tipoCampo = campo.type;
+        console.log(campo);
+        this.patchForms(campo);
+    }
+
+    private patchForms(campo) {
+
+        if (this.pasoTwoForm) {
+
+            this.pasoTwoForm.patchValue({
+                id: campo.id,
+                formulario: campo.formulario,
+                label: campo.label,
+                name: campo.name,
+                required: campo.required,
+                width: campo.width,
+                placeholder: campo.placeholder,
+                model: campo.model,
+                json: campo.json,
+                icon: campo.icon,
+                prefix: campo.prefix,
+                hint_start: campo.hint_start,
+                hint_end_count_text: campo.hint_end_count_text,
+                disabled: campo.disabled,
+                multiselect: campo.multiselect,
+                order: campo.order,
+                multiple_fileinput: campo.multiple_fileinput,
+            });
+        }
     }
 
     private buildForm() {
@@ -66,7 +100,7 @@ export class CamposEditComponent implements OnInit {
             hint_end_count_text: [false],
             disabled: [false],
             multiselect: [false],
-            orden: ['', Validators.required],
+            order: ['', Validators.required],
             multiple_fileinput: [false],
         });
 
@@ -121,7 +155,7 @@ export class CamposEditComponent implements OnInit {
             this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmCreate, this.viewContainerRef))
                 .afterClosed().subscribe((accept: boolean) => {
                     if (accept) {
-                        this.camposService.save$(data).subscribe(res => {
+                        this.camposService.update$(data.id, data).subscribe(res => {
                             this.dialogRef.close(this.data.formulario.tarea);
                             // this.pasoOneForm.reset();
                             this.pasoTwoForm.reset();

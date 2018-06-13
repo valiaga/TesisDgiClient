@@ -11,9 +11,11 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       [formGroup]="group"
       [floatLabel]="['auto']"
       >
+      <span *ngIf="config.prefix" matPrefix>{{ config.prefix }} &nbsp;</span>
       <input [formControlName]="config.name"
         [required]="config.required" matInput [type]="config.type"
         [placeholder]="config.label">
+        <mat-icon *ngIf="config.icon" matSuffix>{{ config.icon }}</mat-icon>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
         <!-- [type]="(hide ? 'password' : 'text')" -->
     </mat-form-field>

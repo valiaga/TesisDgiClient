@@ -26,7 +26,7 @@
                     <form [formGroup]="pasoTwoForm" class="campo-container">
                         <!-- Nombre field Disabled -->
                         <mat-form-field class="example-full-width">
-                            <input matInput placeholder="Tipo del campo (DIsabled)" disabled value="hola este campo es para el tipo">
+                            <input matInput placeholder="Tipo del campo (DIsabled)" disabled [value]="tipoCampo">
                         </mat-form-field>
 
                         <table class="example-full-width" cellspacing="0">
@@ -60,10 +60,12 @@
                                 <td>
                                     <!-- Orden field -->
                                     <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                                        <input type="number" matInput placeholder="Orden" formControlName="orden" required>
+                                        <input type="number" matInput placeholder="Orden" formControlName="order" required>
                                     </mat-form-field>
                                 </td>
-                                <td>
+                                <td *ngIf="tipoCampo !== 'fileinput'
+                                && tipoCampo !== 'date'
+                                && tipoCampo !== 'select'">
                                     <!-- Icon field -->
                                     <mat-form-field [floatLabel]="['auto']" class="example-full-width">
                                         <input matInput placeholder="Icon" formControlName="icon">
@@ -74,13 +76,15 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
+                                <td *ngIf="tipoCampo !== 'fileinput'
+                                && tipoCampo !== 'date'
+                                && tipoCampo !== 'select'">
                                     <!-- Prefix field -->
                                     <mat-form-field [floatLabel]="['auto']" class="example-full-width">
                                         <input matInput placeholder="Prefix (Ejemplo: Códigos telefónicos)" formControlName="prefix">
                                     </mat-form-field>
                                 </td>
-                                <td>
+                                <td *ngIf="tipoCampo === 'select'">
                                     <!-- Model field -->
                                     <mat-form-field [floatLabel]="['auto']" class="example-full-width">
                                         <input matInput placeholder="Model (Solo para select)" formControlName="model">
@@ -90,7 +94,7 @@
                         </table>
 
                         <!-- JSON field -->
-                        <mat-form-field [floatLabel]="['auto']">
+                        <mat-form-field [floatLabel]="['auto']" *ngIf="tipoCampo === 'select'">
                             <textarea matInput placeholder="JSON (Solo para select Ejm: [{id: '1', label: 'Opcion 1'}, {id: '2', label: 'Opcion 2'}])"
                                 matTextareaAutosize matAutosizeMaxRows="5" formControlName="json" matAutosizeMinRows="2"></textarea>
                         </mat-form-field>
@@ -108,7 +112,9 @@
                         </div>
 
                         <!-- Hint end count text field -->
-                        <div layout="row">
+                        <div layout="row" *ngIf="tipoCampo !== 'select'
+                        && tipoCampo !== 'fileinput'
+                        && tipoCampo !== 'date'">
                             <mat-slide-toggle formControlName="hint_end_count_text">Hint end count text</mat-slide-toggle>
                         </div>
 
@@ -118,17 +124,17 @@
                         </div>
 
                         <!-- Multiselect field -->
-                        <div layout="row">
+                        <div layout="row" *ngIf="tipoCampo === 'select'">
                             <mat-slide-toggle formControlName="multiselect">Multiselect (Solo para select)</mat-slide-toggle>
                         </div>
 
                         <!-- Multiple for Inputfile field -->
-                        <div layout="row">
+                        <div layout="row" *ngIf="tipoCampo === 'fileinput'">
                             <mat-slide-toggle formControlName="multiple_fileinput">Multiple</mat-slide-toggle>
                         </div>
 
                         <!-- Accept field -->
-                        <div>
+                        <div *ngIf="tipoCampo === 'fileinput'">
                             <span>Aceptar</span>
                             <br>
                             <mat-checkbox [(ngModel)]="accept_fileinput.png" [ngModelOptions]="{standalone: true}">.png</mat-checkbox>
