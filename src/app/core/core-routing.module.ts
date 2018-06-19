@@ -9,9 +9,9 @@ const routes: Routes = [
         component: ShellComponent,
         children: [
             // {
-                // path: '',
-                // pathMatch: 'full',
-                // redirectTo: 'home'
+            // path: '',
+            // pathMatch: 'full',
+            // redirectTo: 'home'
             // },
             {
                 path: '',
@@ -46,6 +46,13 @@ const routes: Routes = [
                 loadChildren: '../seguimientos/seguimientos.module#SeguimientosModule',
                 data: {
                     title: 'Seguimientos'
+                }
+            },
+            {
+                path: 'asesores',
+                loadChildren: '../asesores/asesores.module#AsesoresModule',
+                data: {
+                    title: 'Asesores'
                 }
             },
             {
@@ -93,8 +100,8 @@ const routes: Routes = [
     }
 ];
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class CoreRoutingModule { }
 

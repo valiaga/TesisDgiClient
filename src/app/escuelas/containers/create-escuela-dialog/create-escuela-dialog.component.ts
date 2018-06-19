@@ -39,7 +39,7 @@ export class CreateEscuelaDialogComponent implements OnInit {
     @Inject(FormBuilder) private formBuilder: FormBuilder,
     private escuelaService: EscuelaService,
     private facultadService: FacultadService,
-    private snackBar: MatSnackBar,
+    // private snackBar: MatSnackBar,
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService
   ) { }

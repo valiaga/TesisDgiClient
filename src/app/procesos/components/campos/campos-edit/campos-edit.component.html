@@ -151,7 +151,8 @@
             </mat-card-content>
         </mat-card>
         <div>
-            <button mat-button matStepperPrevious>Regresar</button>
+            <!-- <button mat-button matStepperPrevious>Regresar</button> -->
+            <button mat-raised-button color="warn" (click)="onDeleteField()" class="dgi-button-delete">Eliminar Campo</button>
             <button mat-button matStepperNext>Siguiente</button>
         </div>
     </mat-step>

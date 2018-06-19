@@ -1,0 +1,10 @@
+<mat-card>
+    <mat-card-content>
+        <!-- search -->
+        <dgi-search></dgi-search>
+        <!-- list -->
+        <dgi-list [asesores]="asesores$ | async" (onUpdateAsesor)="onUpdateAsesor($event)" (onDeleteAsesor)="onDeleteAsesor($event)"></dgi-list>
+    </mat-card-content>
+</mat-card>
+
+<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
