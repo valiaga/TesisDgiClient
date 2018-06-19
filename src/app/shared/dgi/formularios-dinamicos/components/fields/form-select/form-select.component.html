@@ -7,6 +7,8 @@
     </ng-container>
   </mat-select>
   <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
+  <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
+
   <!--
     <mat-error *ngIf="mustShowErrors(config.name)">
       <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>

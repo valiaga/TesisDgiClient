@@ -21,4 +21,8 @@ export class CamposService {
     public update$(id: string, data: any): Observable<ICampo> {
         return this.httpClient.put<ICampo>(`${this.url}${id}/`, data);
     }
+
+    public delete$(id: string): Observable<ICampo> {
+        return this.httpClient.delete<ICampo>(`${this.url}${id}/`);
+    }
 }

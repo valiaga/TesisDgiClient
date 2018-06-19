@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: 'app/tesis-procesos/tesis-procesos.module#TesisProcesosModule',
     canActivate: [
       AuthGuardService,
-    ]
+    ],
   },
   {
     path: 'auth',
@@ -29,11 +29,11 @@ const routes: Routes = [
     loadChildren: 'app/core/core.module#CoreModule',
     canActivate: [
       AuthGuardService,
-    ]
+    ],
   },
   {
     path: '404',
-    component: NotFoundPageComponent
+    component: NotFoundPageComponent,
   },
   {
     path: '**',  // para casos not found

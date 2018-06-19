@@ -55,6 +55,16 @@ export const MESSAGES = {
         confirmDelete: '¿Estas segur@ que quieres eliminar la escuela académica?',
         confirmCreate: '¿Estas segur@ que quieres guardar la escuela académica?',
     },
+    asesor: {
+        delete: 'El Asesor se eliminó con Éxito!.',
+        deleteAll: 'Los Asesores se eliminaron con Éxito!.',
+        post: 'El Asesor se guardó con Éxito.',
+        getMany: 'Los Asesores se listaron con Éxito.',
+        getOne: 'El Asesor se listó con Éxito.',
+        put: 'El Asesor se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el Asesor?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el Asesor?',
+    },
     proceso: {
         delete: 'El proceso se eliminó con Éxito!.',
         deleteAll: 'Los procesos se eliminaron con Éxito!.',
