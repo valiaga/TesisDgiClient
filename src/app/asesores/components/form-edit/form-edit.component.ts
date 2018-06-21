@@ -44,6 +44,7 @@ export class FormEditComponent implements OnInit {
         nombres: response.persona.nombres,
         apellido_paterno: response.persona.apellido_paterno,
         apellido_materno: response.persona.apellido_materno,
+        num_doc: response.persona.num_doc,
         genero: response.persona.genero,
         fecha_nacimiento: response.persona.fecha_nacimiento,
       }
@@ -64,6 +65,7 @@ export class FormEditComponent implements OnInit {
         nombres: ['', Validators.required],
         apellido_paterno: ['', Validators.required],
         apellido_materno: ['', Validators.required],
+        num_doc: ['', Validators.required],
         genero: ['M', Validators.required],
         fecha_nacimiento: ['', Validators.required],
       })

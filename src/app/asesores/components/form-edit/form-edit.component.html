@@ -4,24 +4,33 @@
 
     <div formGroupName="persona" class="asesor-container">
 
-      <!-- Nombres field -->
-      <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']">
-        <input matInput placeholder="Nombres" formControlName="nombres" required>
-        <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
-      </mat-form-field>
-
       <table class="dgi-full-width" cellspacing="0">
         <tr>
+          <td>
+            <!-- Nombres field -->
+            <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']">
+              <input matInput placeholder="Nombres" formControlName="nombres" required>
+              <!-- <mat-error *ngIf="!nombre.invalid">Error</mat-error> -->
+            </mat-form-field>
+          </td>
           <td>
             <!-- Apellido Paterno field -->
             <mat-form-field [floatLabel]="['auto']" class="dgi-full-width">
               <input matInput placeholder="Apellido Paterno" formControlName="apellido_paterno" required>
             </mat-form-field>
           </td>
+        </tr>
+        <tr>
           <td>
             <!-- Apellido Materno field -->
             <mat-form-field [floatLabel]="['auto']" class="dgi-full-width">
               <input matInput placeholder="Apellido Materno" formControlName="apellido_materno" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <!-- Num doc field -->
+            <mat-form-field [floatLabel]="['auto']" class="dgi-full-width">
+              <input matInput placeholder="Número de documento" formControlName="num_doc" required>
             </mat-form-field>
           </td>
         </tr>

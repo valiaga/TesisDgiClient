@@ -40,6 +40,7 @@ export class FormNewComponent implements OnInit {
         nombres: ['', Validators.required],
         apellido_paterno: ['', Validators.required],
         apellido_materno: ['', Validators.required],
+        num_doc: ['', Validators.required],
         genero: ['M', Validators.required],
         // fecha_nacimiento: [(new Date()).toISOString(), Validators.required],
         fecha_nacimiento: ['', Validators.required],

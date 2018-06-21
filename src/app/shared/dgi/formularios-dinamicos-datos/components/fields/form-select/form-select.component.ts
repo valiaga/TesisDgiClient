@@ -11,7 +11,13 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     [ngClass]="getWidthControlClass()"
     [formGroup]="group"
     [floatLabel]="['auto']">
-    <mat-select [required]="config.required" [disabled]="config.disabled" [multiple]="config.multiselect" [placeholder]="config.label" [id]="config.name" [formControlName]="config.name">
+    <mat-select
+      [required]="config.required"
+      [disabled]="config.disabled"
+      [multiple]="config.multiselect"
+      [placeholder]="config.label"
+      [id]="config.name"
+      [formControlName]="config.name">
       <mat-option *ngFor="let option of config.options" [value]="option">{{ option }}</mat-option>
     </mat-select>
     <!--
