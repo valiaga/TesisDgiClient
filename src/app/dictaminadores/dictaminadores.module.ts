@@ -1,27 +1,28 @@
 import { NgModule } from '@angular/core';
 
-import { AsesoresComponent } from './asesores.component';
-import { AsesoresRoutingModule } from './asesores-routing.module';
-import {
-    SearchComponent, ListComponent,
-    FormNewComponent, FormEditComponent,
-} from './components';
-import { FindPageComponent, ProyectosPageComponent } from './containers';
-import { AsesoresService, AsesoresReactiveService } from './shared/asesores.service';
+import { DictaminadoresComponent } from './dictaminadores.component';
+import { DictaminadoresRoutingModule } from './dictaminadores-routing.module';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { FindPageComponent, ProyectosPageComponent } from './containers';
+import { FormEditComponent, FormNewComponent, ListComponent, SearchComponent } from './components';
 import {
     MatCardModule, MatDialogModule, MatFormFieldModule,
-    MatInputModule, MatRadioModule, MatDatepickerModule,
-    MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule,
+    MatInputModule, MatRadioModule,
+    MatDatepickerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';
+import { DictaminadoresReactiveService, DictaminadoresService } from './shared/dictaminadores.service';
 
 const COMPONENTS: any[] = [
-    AsesoresComponent, ListComponent, SearchComponent,
-    FindPageComponent, FormNewComponent, FormEditComponent,
+    DictaminadoresComponent,
+    FindPageComponent,
     ProyectosPageComponent,
+
+    FormEditComponent,
+    FormNewComponent,
+    ListComponent,
+    SearchComponent
 ];
 
 const MATERIAL_MODULES: any[] = [
@@ -44,10 +45,8 @@ const DGI_MODULES: any[] = [
 @NgModule({
     imports: [
         CommonModule,
-        RouterModule,
-        AsesoresRoutingModule,
+        DictaminadoresRoutingModule,
         ReactiveFormsModule,
-
         ...MATERIAL_MODULES,
         ...DGI_MODULES,
     ],
@@ -56,12 +55,12 @@ const DGI_MODULES: any[] = [
         ...COMPONENTS,
     ],
     providers: [
-        AsesoresService,
-        AsesoresReactiveService,
+        DictaminadoresReactiveService,
+        DictaminadoresService,
     ],
     entryComponents: [
         FormNewComponent,
         FormEditComponent,
-    ],
+    ]
 })
-export class AsesoresModule { }
+export class DictaminadoresModule { }

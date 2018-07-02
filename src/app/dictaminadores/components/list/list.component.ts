@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Asesor } from '../../shared/asesor';
+import { Dictaminador } from '../../shared/dictaminador';
 
 @Component({
   selector: 'dgi-list',
@@ -7,11 +7,11 @@ import { Asesor } from '../../shared/asesor';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent implements OnInit {
-  @Output() onUpdateAsesor = new EventEmitter<string>();
-  @Output() onDeleteAsesor = new EventEmitter<string>();
+  @Output() onUpdateDictaminador = new EventEmitter<string>();
+  @Output() onDeleteDictaminador = new EventEmitter<string>();
   @Output() onGetProyectos = new EventEmitter<string>();
 
-  @Input() asesores: Asesor[];
+  @Input() dictaminadores: Dictaminador[];
 
   constructor() { }
 

@@ -1,26 +1,22 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AsesoresComponent } from './asesores.component';
-import { FindPageComponent, ProyectosPageComponent } from './containers';
+import { DictaminadoresComponent } from './dictaminadores.component';
+import { ProyectosPageComponent, FindPageComponent } from './containers';
 
 const routes: Routes = [
     {
         path: '',
-        component: AsesoresComponent,
+        component: DictaminadoresComponent,
         children: [
             {
                 path: '',
                 component: FindPageComponent,
             },
             {
-                path: ':asesorId/proyectos',
+                path: ':dictaminadorId/proyectos',
                 component: ProyectosPageComponent,
             },
-            // {
-            //     path: 'new',
-            //     component: FindPageComponent,
-            // },
         ],
     },
 ];
@@ -29,4 +25,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule],
 })
-export class AsesoresRoutingModule { }
+export class DictaminadoresRoutingModule { }

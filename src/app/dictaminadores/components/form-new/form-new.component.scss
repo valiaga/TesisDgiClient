@@ -1,0 +1,14 @@
+.dictaminador-container {
+    display: flex;
+    flex-direction: column;
+    .checkbox{
+        margin-bottom: 20px;
+        margin-top: 20px;
+    }
+    .mat-radio-button {
+        margin-right: 20px;
+    }
+    .dgi-full-width {
+        width: 100%;
+    }
+}

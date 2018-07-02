@@ -56,6 +56,13 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'dictaminadores',
+                loadChildren: '../dictaminadores/dictaminadores.module#DictaminadoresModule',
+                data: {
+                    title: 'Dictaminadores'
+                }
+            },
+            {
                 path: 'auth',
                 loadChildren: '../auth/auth.module#AuthModule',
                 data: {

@@ -16,6 +16,9 @@
       <!-- <mat-icon>dialpad</mat-icon> -->
       <span>Editar</span>
     </button>
+    <button mat-menu-item (click)="onGetProyectos.emit(asesorId)">
+      <span>Proyectos</span>
+    </button>
     <button mat-menu-item (click)="onDeleteAsesor.emit(asesorId)">
       <!-- <mat-icon>dialpad</mat-icon> -->
       <span>Eliminar</span>

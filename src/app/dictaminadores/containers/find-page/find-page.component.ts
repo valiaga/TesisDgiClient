@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { AsesoresService, AsesoresReactiveService } from '../../shared/asesores.service';
-import { Asesor } from '../../shared/asesor';
 import { MatDialog } from '@angular/material';
 import { FormNewComponent, FormEditComponent } from '../../components';
 import { map } from 'rxjs/operators';
@@ -9,6 +7,8 @@ import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DictaminadoresReactiveService } from '../../shared/dictaminadores.service';
+import { Dictaminador } from '../../shared/dictaminador';
 
 @Component({
     selector: 'dgi-find-page',
@@ -16,10 +16,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class FindPageComponent implements OnInit {
-    public asesores$: Observable<Asesor[]>;
+    public dictaminadores$: Observable<Dictaminador[]>;
 
     constructor(
-        private asesoresReactiveService: AsesoresReactiveService,
+        private dictaminadoresReactiveService: DictaminadoresReactiveService,
         private dialog: MatDialog,
         private viewContainerRef: ViewContainerRef,
         private tdDialogService: TdDialogService,
@@ -29,12 +29,12 @@ export class FindPageComponent implements OnInit {
 
     ngOnInit() {
 
-        this.asesores$ = this.asesoresReactiveService.asesores;
-        this.getAsesores();
+        this.dictaminadores$ = this.dictaminadoresReactiveService.dictaminadores;
+        this.getDictaminadores();
     }
 
-    private getAsesores() {
-        this.asesoresReactiveService.getList();
+    private getDictaminadores() {
+        this.dictaminadoresReactiveService.getList();
     }
 
     public openDialog() {
@@ -43,29 +43,29 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog asesor');
+            console.log('close dialog dictaminador');
         });
     }
 
-    public onUpdateAsesor(event) {
+    public onUpdateDictaminador(event) {
         console.log('Update: ', event);
         const dialogRef = this.dialog.open(FormEditComponent, {
             width: '500px',
             data: {
-                asesorId: event,
+                dictaminadorId: event,
             },
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog asesor');
+            console.log('close dialog dictaminador');
         });
 
     }
-    public onDeleteAsesor(event) {
-        this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.asesor.confirmDelete, this.viewContainerRef))
+    public onDeleteDictaminador(event) {
+        this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.dictaminador.confirmDelete, this.viewContainerRef))
             .afterClosed().subscribe((accept: boolean) => {
                 if (accept) {
-                    this.asesoresReactiveService.delete(event);
+                    this.dictaminadoresReactiveService.delete(event);
                 } else {
                 }
             });

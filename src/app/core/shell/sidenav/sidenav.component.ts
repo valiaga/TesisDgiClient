@@ -21,6 +21,7 @@ export class SidenavComponent implements OnInit {
         { name: 'Proyectos', icon: 'school', route: 'proyectos' },
         { name: 'Seguimiento', icon: 'cached', route: 'seguimientos' },
         { name: 'Asesores', icon: 'recent_actors', route: 'asesores' },
+        { name: 'Dictaminadores', icon: 'recent_actors', route: 'dictaminadores' },
       ]
     },
     {
