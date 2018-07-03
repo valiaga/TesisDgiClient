@@ -1,0 +1,30 @@
+<mat-card class="example-card" *ngFor="let jurado of jurados">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"> </div>
+    <mat-card-title>{{ jurado.persona.nombres }} {{ jurado.persona.apellido_paterno }} {{ jurado.persona.apellido_materno }}</mat-card-title>
+    <mat-card-subtitle>{{ jurado.activo }}</mat-card-subtitle>
+    <span flex></span>
+    <button mat-icon-button class="" color="primary" [matMenuTriggerFor]="juradoMenu" [matMenuTriggerData]="{juradoId: jurado.id}">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+  </mat-card-header>
+</mat-card>
+
+<mat-menu #juradoMenu="matMenu" yPosition="below" xPosition="before">
+  <ng-template matMenuContent let-juradoId="juradoId">
+    <button mat-menu-item (click)="onUpdateJurado.emit(juradoId)">
+      <!-- <mat-icon>dialpad</mat-icon> -->
+      <span>Editar</span>
+    </button>
+    <button mat-menu-item (click)="onGetProyectos.emit(juradoId)">
+      <span>Proyectos</span>
+    </button>
+    <button mat-menu-item (click)="onDeleteJurado.emit(juradoId)">
+      <!-- <mat-icon>dialpad</mat-icon> -->
+      <span>Eliminar</span>
+    </button>
+    <button mat-menu-item>
+      <span>Settings</span>
+    </button>
+  </ng-template>
+</mat-menu>

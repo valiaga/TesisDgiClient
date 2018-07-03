@@ -75,6 +75,16 @@ export const MESSAGES = {
         confirmDelete: '¿Estas segur@ que quieres eliminar el Dictaminador?',
         confirmCreate: '¿Estas segur@ que quieres guardar el Dictaminador?',
     },
+    jurado: {
+        delete: 'El Jurado se eliminó con Éxito!.',
+        deleteAll: 'Los Jurados se eliminaron con Éxito!.',
+        post: 'El Jurado se guardó con Éxito.',
+        getMany: 'Los Jurados se listaron con Éxito.',
+        getOne: 'El Jurado se listó con Éxito.',
+        put: 'El Jurado se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el Jurado?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el Jurado?',
+    },
     proceso: {
         delete: 'El proceso se eliminó con Éxito!.',
         deleteAll: 'Los procesos se eliminaron con Éxito!.',

@@ -63,6 +63,13 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'jurados',
+                loadChildren: '../jurados/jurados.module#JuradosModule',
+                data: {
+                    title: 'Jurados'
+                }
+            },
+            {
                 path: 'auth',
                 loadChildren: '../auth/auth.module#AuthModule',
                 data: {
