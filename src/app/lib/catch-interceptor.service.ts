@@ -6,12 +6,15 @@ import {
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { snackBarDuration } from 'config/general';
 
 @Injectable()
 export class CatchInterceptorService implements HttpInterceptor {
   private started;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private snackBar: MatSnackBar) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     this.started = Date.now();
@@ -47,6 +50,7 @@ export class CatchInterceptorService implements HttpInterceptor {
       this.catchUnauthorized();
     } else {
       console.warn(err.statusText);
+      this.snackBar.open(err.status.toString(), err.statusText, snackBarDuration);
     }
   }
 
