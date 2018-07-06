@@ -50,7 +50,7 @@
 
       <mat-autocomplete #persona="matAutocomplete" [displayWith]="displayFn">
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          {{ option.nombres }}
+          {{ option.nombres }} {{ option.apellido_paterno }} {{ option.apellido_materno }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

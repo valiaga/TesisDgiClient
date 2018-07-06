@@ -18,6 +18,7 @@ import {
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PersonasService } from '../personas/shared/personas.service';
 
 const COMPONENTS: any[] = [
     AsesoresComponent, ListComponent, SearchComponent,
@@ -61,6 +62,7 @@ const DGI_MODULES: any[] = [
     providers: [
         AsesoresService,
         AsesoresReactiveService,
+        PersonasService,
     ],
     entryComponents: [
         FormNewComponent,

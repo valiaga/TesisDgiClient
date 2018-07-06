@@ -5,12 +5,13 @@ import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { AsesoresReactiveService } from '../../shared/asesores.service';
-import { startWith, map } from 'rxjs/operators';
+import { startWith, map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { PersonasService } from '../../../personas/shared/personas.service';
 
-export interface Persona {
-  nombres: string;
-}
+// export interface Persona {
+//   nombres: string;
+// }
 
 @Component({
   selector: 'dgi-form-vincule',
@@ -21,13 +22,13 @@ export class FormVinculeComponent implements OnInit {
   public asesorVinculeForm: FormGroup;
 
 
-  personas: Persona[] = [
-    { nombres: 'Mary' },
-    { nombres: 'Shelley' },
-    { nombres: 'Igor' }
-  ];
+  // personas: Persona[] = [
+  //   { nombres: 'Mary' },
+  //   { nombres: 'Shelley' },
+  //   { nombres: 'Igor' }
+  // ];
 
-  filteredOptions: Observable<Persona[]>;
+  filteredOptions: Observable<any[]>;
 
   constructor(
     private dialogRef: MatDialogRef<FormVinculeComponent>,
@@ -35,6 +36,7 @@ export class FormVinculeComponent implements OnInit {
     private formBuilder: FormBuilder,
     private tdDialogService: TdDialogService,
     private asesoresReactiveService: AsesoresReactiveService,
+    private personasService: PersonasService,
   ) { }
 
   ngOnInit() {
@@ -48,20 +50,20 @@ export class FormVinculeComponent implements OnInit {
       this.filteredOptions = this.asesorVinculeForm.controls['persona']
         .valueChanges
         .pipe(
-          startWith<string | Persona>(''),
+          startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value.nombres),
-          map(nombres => nombres ? this._filter(nombres) : this.personas.slice()),
-      );
+          switchMap(nombres => nombres ? this.getPersonas(nombres) : [])
+        );
     }
   }
 
-  public displayFn(user?: Persona): string | undefined {
-    return user ? user.nombres : undefined;
+  private getPersonas(query) {
+    const params = { query: query, fields: 'nombres,apellido_paterno,apellido_materno' };
+    return this.personasService.getList$(params);
   }
 
-  private _filter(nombres) {
-    const filterValue = nombres.toLowerCase();
-    return this.personas.filter(option => option.nombres.toLowerCase().indexOf(filterValue) === 0);
+  public displayFn(user?: any): string | undefined {
+    return user ? `${user.nombres} ${user.apellido_paterno} ${user.apellido_materno}` : undefined;
   }
 
   private buildForm() {
@@ -98,6 +100,8 @@ export class FormVinculeComponent implements OnInit {
     // console.log(this.prepareFechaNacimiento(value.fecha_nacimiento));
 
     // value.persona.fecha_nacimiento = this.prepareFechaNacimiento(value.persona.fecha_nacimiento);
+    console.log(value);
+
 
     if (valid) {
 
