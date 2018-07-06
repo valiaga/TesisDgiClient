@@ -13,6 +13,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'dgi-find-page',
     templateUrl: 'find-page.component.html',
+    styleUrls: ['find-page.component.scss'],
 })
 
 export class FindPageComponent implements OnInit {

@@ -5,6 +5,7 @@ import { AsesoresRoutingModule } from './asesores-routing.module';
 import {
     SearchComponent, ListComponent,
     FormNewComponent, FormEditComponent,
+    FormVinculeComponent,
 } from './components';
 import { FindPageComponent, ProyectosPageComponent } from './containers';
 import { AsesoresService, AsesoresReactiveService } from './shared/asesores.service';
@@ -13,7 +14,7 @@ import { RouterModule } from '@angular/router';
 import {
     MatCardModule, MatDialogModule, MatFormFieldModule,
     MatInputModule, MatRadioModule, MatDatepickerModule,
-    MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule,
+    MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, MatAutocompleteModule,
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -21,7 +22,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 const COMPONENTS: any[] = [
     AsesoresComponent, ListComponent, SearchComponent,
     FindPageComponent, FormNewComponent, FormEditComponent,
-    ProyectosPageComponent,
+    ProyectosPageComponent, FormVinculeComponent,
 ];
 
 const MATERIAL_MODULES: any[] = [
@@ -35,6 +36,8 @@ const MATERIAL_MODULES: any[] = [
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatTooltipModule,
+    MatAutocompleteModule,
 ];
 
 const DGI_MODULES: any[] = [
@@ -62,6 +65,7 @@ const DGI_MODULES: any[] = [
     entryComponents: [
         FormNewComponent,
         FormEditComponent,
+        FormVinculeComponent,
     ],
 })
 export class AsesoresModule { }

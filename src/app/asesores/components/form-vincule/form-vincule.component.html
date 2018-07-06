@@ -1,0 +1,74 @@
+<div class="asesor-vincule-container">
+  <form [formGroup]="asesorVinculeForm" (ngSubmit)="onSubmit()" novalidate class="asesor-vincule-container">
+    <h5>Vincular un persona para Asesor</h5>
+
+    <!-- <div formGroupName="persona" class="asesor-vincule-container">
+
+      <table class="dgi-full-width" cellspacing="0">
+        <tr>
+          <td>
+            <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']">
+              <input matInput placeholder="Nombres" formControlName="nombres" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field [floatLabel]="['auto']" class="dgi-full-width">
+              <input matInput placeholder="Apellido Paterno" formControlName="apellido_paterno" required>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <mat-form-field [floatLabel]="['auto']" class="dgi-full-width">
+              <input matInput placeholder="Apellido Materno" formControlName="apellido_materno" required>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field [floatLabel]="['auto']" class="dgi-full-width">
+              <input matInput placeholder="Número de documento" formControlName="num_doc" required>
+            </mat-form-field>
+          </td>
+        </tr>
+      </table>
+
+      <mat-form-field>
+        <input matInput [matDatepicker]="fechaNac" placeholder="Fecha de Nacimiento" formControlName="fecha_nacimiento">
+        <mat-datepicker-toggle matSuffix [for]="fechaNac"></mat-datepicker-toggle>
+        <mat-datepicker #fechaNac></mat-datepicker>
+      </mat-form-field>
+
+      <mat-radio-group formControlName="genero" required>
+        <mat-radio-button value="M">Masculino</mat-radio-button>
+        <mat-radio-button value="F">Femenino</mat-radio-button>
+      </mat-radio-group>
+
+    </div> -->
+
+    <!-- Persona -->
+    <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="dgi-full-width">
+      <input matInput placeholder="Nombres o Número de documento de la persona" formControlName="persona" required [matAutocomplete]="persona">
+
+      <mat-autocomplete #persona="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{ option.nombres }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- Activo field -->
+    <div class="checkbox">
+      <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+    </div>
+
+    <!-- Buttons Actions -->
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!asesorVinculeForm.valid" tabindex="0">Aceptar</button>
+      <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+    </div>
+  </form>
+</div>
+<!-- <br>
+<br>
+<p>
+  {{ asesorForm.value | json }}
+</p> -->

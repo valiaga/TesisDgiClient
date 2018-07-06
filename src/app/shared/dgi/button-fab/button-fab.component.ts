@@ -17,6 +17,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class DgiButtonFabComponent implements OnInit {
     @Input() color: string; /** primary; accent, warn */
     @Input() icon: string;
+    @Input() title: string;
 
     constructor() { }
 

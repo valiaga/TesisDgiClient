@@ -8,7 +8,7 @@ import { FormEditComponent, FormNewComponent, ListComponent, SearchComponent } f
 import {
     MatCardModule, MatDialogModule, MatFormFieldModule,
     MatInputModule, MatRadioModule,
-    MatDatepickerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule
+    MatDatepickerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -36,6 +36,7 @@ const MATERIAL_MODULES: any[] = [
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatTooltipModule,
 ];
 
 const DGI_MODULES: any[] = [

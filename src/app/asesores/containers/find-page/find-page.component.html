@@ -3,8 +3,13 @@
         <!-- search -->
         <dgi-search></dgi-search>
         <!-- list -->
-        <dgi-list [asesores]="asesores$ | async" (onGetProyectos)="onGetProyectos($event)" (onUpdateAsesor)="onUpdateAsesor($event)" (onDeleteAsesor)="onDeleteAsesor($event)"></dgi-list>
+        <dgi-list [asesores]="asesores$ | async" (onGetProyectos)="onGetProyectos($event)" (onUpdateAsesor)="onUpdateAsesor($event)"
+            (onDeleteAsesor)="onDeleteAsesor($event)"></dgi-list>
     </mat-card-content>
 </mat-card>
 
-<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
+<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']" title="Crear nuevo Asesor"></dgi-button-fab>
+
+<button mat-fab (click)="onVincule()" color="accent" class="button-fab" matTooltip="Vincular persona como Asesor">
+    <mat-icon>link</mat-icon>
+</button>

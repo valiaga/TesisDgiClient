@@ -8,4 +8,8 @@
     </mat-card-content>
 </mat-card>
 
-<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
+<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']" title="Crear nuevo Jurado"></dgi-button-fab>
+
+<button mat-fab color="accent" class="button-fab" matTooltip="Vincular persona como Jurado">
+    <mat-icon>link</mat-icon>
+</button>

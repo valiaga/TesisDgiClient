@@ -13,6 +13,13 @@ import { Dictaminador } from '../../shared/dictaminador';
 @Component({
     selector: 'dgi-find-page',
     templateUrl: 'find-page.component.html',
+    styles: [`
+    .button-fab{
+        position: absolute;
+        right: 90px;
+        bottom: 20px
+    }
+    `]
 })
 
 export class FindPageComponent implements OnInit {
