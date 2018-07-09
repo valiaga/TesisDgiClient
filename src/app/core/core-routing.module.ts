@@ -103,6 +103,13 @@ const routes: Routes = [
                 data: {
                     title: 'Escuelas'
                 }
+            },
+            {
+                path: 'personas',
+                loadChildren: '../personas/personas.module#PersonasModule',
+                data: {
+                    title: 'Personas'
+                }
             }
             // ,
             // {

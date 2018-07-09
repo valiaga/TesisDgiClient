@@ -31,6 +31,7 @@ export class SidenavComponent implements OnInit {
       navItems: [
         { name: 'Lineas de investigación', icon: 'cached', route: 'linea-investigacions' },
         { name: 'Escuelas', icon: 'cached', route: 'escuelas' },
+        { name: 'Personas', icon: 'users', route: 'personas' },
         { name: 'Configuración', icon: 'settings', route: 'config' },
         { name: 'Ayuda', icon: 'help', route: 'help' },
         { name: 'Usuarios', icon: 'beenhere', route: 'users' },

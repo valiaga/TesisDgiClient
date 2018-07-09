@@ -1,0 +1,15 @@
+<mat-card>
+    <mat-card-content>
+        <!-- search -->
+        <dgi-search></dgi-search>
+        <!-- list -->
+        <dgi-list [personas]="personas$ | async" (onGetProyectos)="onGetProyectos($event)" (onUpdatePersona)="onUpdatePersona($event)"
+            (onDeletePersona)="onDeletePersona($event)"></dgi-list>
+    </mat-card-content>
+</mat-card>
+
+<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']" title="Crear nueva Persona"></dgi-button-fab>
+<!-- 
+<button mat-fab (click)="onVincule()" color="accent" class="button-fab" matTooltip="Vincular persona como Asesor">
+    <mat-icon>link</mat-icon>
+</button> -->

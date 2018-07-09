@@ -65,6 +65,16 @@ export const MESSAGES = {
         confirmDelete: '¿Estas segur@ que quieres eliminar el Asesor?',
         confirmCreate: '¿Estas segur@ que quieres guardar el Asesor?',
     },
+    persona: {
+        delete: 'La Persona se eliminó con Éxito!.',
+        deleteAll: 'Las Personas se eliminaron con Éxito!.',
+        post: 'La Persona se guardó con Éxito.',
+        getMany: 'Las Personas se listaron con Éxito.',
+        getOne: 'La Persona se listó con Éxito.',
+        put: 'La Persona se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar la Persona?',
+        confirmCreate: '¿Estas segur@ que quieres guardar la Persona?',
+    },
     dictaminador: {
         delete: 'El Dictaminador se eliminó con Éxito!.',
         deleteAll: 'Los Dictaminadores se eliminaron con Éxito!.',
