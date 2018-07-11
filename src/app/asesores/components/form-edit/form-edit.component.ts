@@ -36,6 +36,7 @@ export class FormEditComponent implements OnInit {
 
   private patchToForm(response) {
     // console.log(response);
+    
     this.asesorForm.patchValue({
       id: response.id,
       activo: response.activo,
