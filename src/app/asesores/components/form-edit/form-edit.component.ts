@@ -35,19 +35,17 @@ export class FormEditComponent implements OnInit {
   }
 
   private patchToForm(response) {
-    // console.log(response);
-    
     this.asesorForm.patchValue({
       id: response.id,
       activo: response.activo,
       persona: {
-        id: response.persona.id,
-        nombres: response.persona.nombres,
-        apellido_paterno: response.persona.apellido_paterno,
-        apellido_materno: response.persona.apellido_materno,
-        num_doc: response.persona.num_doc,
-        genero: response.persona.genero,
-        fecha_nacimiento: response.persona.fecha_nacimiento,
+        id: response.data_persona.id,
+        nombres: response.data_persona.nombres,
+        apellido_paterno: response.data_persona.apellido_paterno,
+        apellido_materno: response.data_persona.apellido_materno,
+        num_doc: response.data_persona.num_doc,
+        genero: response.data_persona.genero,
+        fecha_nacimiento: response.data_persona.fecha_nacimiento,
       }
     });
   }

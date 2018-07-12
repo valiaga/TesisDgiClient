@@ -20,7 +20,7 @@ import { Proceso } from '../../../procesos/models/proceso.model';
     <mat-card-actions align = 'end'>
       <!-- <button color="accent" mat-button>LIKE</button>-->
       <!-- <button color="accent"  [routerLink]="['/seguimiento/proyectos/', proceso.id]" mat-button >INGRESAR</button> -->
-      <button color="accent"  [routerLink]="['/seguimientos/', id]" mat-button >INGRESAR</button>
+      <button color="accent"  [routerLink]="['./', id]" mat-button >INGRESAR</button>
     </mat-card-actions>
   </mat-card>
 
@@ -61,10 +61,12 @@ export class ProcesoComponent implements OnInit {
   }
 
   get id() {
+    console.log(this.proceso);
     return this.proceso.id;
   }
 
   get nombre() {
+    console.log(this.proceso);
     return this.proceso.nombre;
   }
 }

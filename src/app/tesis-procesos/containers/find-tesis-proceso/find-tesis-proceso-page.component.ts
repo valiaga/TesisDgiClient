@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   styles: [],
 })
 export class FindTesisProcesoPageComponent implements OnInit {
-  private tesisProcesos$: Observable<TesisProceso[]>;
+  public tesisProcesos$: Observable<TesisProceso[]>;
   private procesoId = null;
 
   constructor(

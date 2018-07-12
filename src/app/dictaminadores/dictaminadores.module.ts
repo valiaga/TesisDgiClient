@@ -4,15 +4,16 @@ import { DictaminadoresComponent } from './dictaminadores.component';
 import { DictaminadoresRoutingModule } from './dictaminadores-routing.module';
 import { CommonModule } from '@angular/common';
 import { FindPageComponent, ProyectosPageComponent } from './containers';
-import { FormEditComponent, FormNewComponent, ListComponent, SearchComponent } from './components';
+import { FormEditComponent, FormNewComponent, ListComponent, SearchComponent, FormVinculeComponent } from './components';
 import {
     MatCardModule, MatDialogModule, MatFormFieldModule,
     MatInputModule, MatRadioModule,
-    MatDatepickerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule
+    MatDatepickerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, MatAutocompleteModule
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DictaminadoresReactiveService, DictaminadoresService } from './shared/dictaminadores.service';
+import { PersonasService } from '../personas/shared/personas.service';
 
 const COMPONENTS: any[] = [
     DictaminadoresComponent,
@@ -20,6 +21,7 @@ const COMPONENTS: any[] = [
     ProyectosPageComponent,
 
     FormEditComponent,
+    FormVinculeComponent,
     FormNewComponent,
     ListComponent,
     SearchComponent
@@ -37,6 +39,8 @@ const MATERIAL_MODULES: any[] = [
     MatIconModule,
     MatMenuModule,
     MatTooltipModule,
+    MatAutocompleteModule,
+
 ];
 
 const DGI_MODULES: any[] = [
@@ -58,10 +62,12 @@ const DGI_MODULES: any[] = [
     providers: [
         DictaminadoresReactiveService,
         DictaminadoresService,
+        PersonasService,
     ],
     entryComponents: [
         FormNewComponent,
         FormEditComponent,
-    ]
+        FormVinculeComponent,
+    ],
 })
 export class DictaminadoresModule { }

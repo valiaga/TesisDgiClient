@@ -41,7 +41,10 @@ export class FindPageComponent implements OnInit {
     }
 
     private getAsesores() {
-        this.asesoresReactiveService.getList();
+        const params = {
+            page_size: 15,
+        };
+        this.asesoresReactiveService.getList(params);
     }
 
     public openDialog() {
@@ -65,7 +68,7 @@ export class FindPageComponent implements OnInit {
     }
 
     public onUpdateAsesor(event) {
-        console.log('Update: ', event);
+        // console.log('Update: ', event);
         const dialogRef = this.dialog.open(FormEditComponent, {
             width: '500px',
             data: {

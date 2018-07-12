@@ -10,6 +10,6 @@
 
 <dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']" title="Crear nuevo Dictaminador"></dgi-button-fab>
 
-<button mat-fab color="accent" class="button-fab" matTooltip="Vincular persona como Dictaminador">
+<button mat-fab (click)="onVincule()" color="accent" class="button-fab" matTooltip="Vincular persona como Dictaminador">
     <mat-icon>link</mat-icon>
 </button>
