@@ -35,6 +35,7 @@ export class SidenavComponent implements OnInit {
         { name: 'Configuración', icon: 'settings', route: 'config' },
         { name: 'Ayuda', icon: 'help', route: 'help' },
         { name: 'Usuarios', icon: 'beenhere', route: 'users' },
+        { name: 'Perfiles', icon: 'beenhere', route: 'perfiles' },
         { name: 'Grupos', icon: 'beenhere', route: 'groups' },
         { name: 'Cerrar Sesión', icon: 'exit_to_app', route: 'logout' }
       ]

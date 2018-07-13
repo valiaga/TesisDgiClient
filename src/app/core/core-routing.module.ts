@@ -110,7 +110,14 @@ const routes: Routes = [
                 data: {
                     title: 'Personas'
                 }
-            }
+            },
+            {
+                path: 'perfiles',
+                loadChildren: '../perfiles/perfiles.module#PerfilesModule',
+                data: {
+                    title: 'Perfiles'
+                }
+            },
             // ,
             // {
             //     path: '**', //para casos not found
