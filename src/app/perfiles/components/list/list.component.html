@@ -1,5 +1,49 @@
-<table>
+<!-- <table>
   <tr *ngFor="let perfil of perfiles">
     <td>{{ perfil | json }}</td>
   </tr>
-</table>
+</table> -->
+
+<mat-table #table [dataSource]="dataSource">
+
+  <!-- Column Usuario -->
+  <ng-container matColumnDef="username">
+    <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_usuario.username }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Email -->
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_usuario.email }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Is Staff -->
+  <ng-container matColumnDef="is_staff">
+    <mat-header-cell *matHeaderCellDef>Is Staff</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_usuario.is_staff }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Nombres y Apellidos -->
+  <ng-container matColumnDef="nombres">
+    <mat-header-cell *matHeaderCellDef>Nombres y Apellidos</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_persona.nombres }} {{ element.data_persona.apellido_paterno }} {{ element.data_persona.apellido_materno
+      }} </mat-cell>
+  </ng-container>
+
+  <!-- Column Num Doc -->
+  <ng-container matColumnDef="num_doc">
+    <mat-header-cell *matHeaderCellDef>Num Doc</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_persona.num_doc }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Fecha de Nacimiento -->
+  <ng-container matColumnDef="fecha_nacimiento">
+    <mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_persona.fecha_nacimiento }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+</mat-table>

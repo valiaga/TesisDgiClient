@@ -1,0 +1,31 @@
+<div class="perfil-container">
+  <form [formGroup]="perfilForm" (ngSubmit)="onSubmit()" novalidate class="perfil-container">
+    <h5>Nuevo Perfil</h5>
+
+    <!-- Persona -->
+    <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="dgi-full-width">
+      <input matInput placeholder="Nombres o Número de documento de la persona" formControlName="persona" required [matAutocomplete]="persona">
+      <mat-autocomplete #persona="matAutocomplete" [displayWith]="displayFnPersonas">
+        <mat-option *ngFor="let persona of filteredPersonas | async" [value]="persona">
+          {{ persona.nombres }} {{ persona.apellido_paterno }} {{ persona.apellido_materno }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- Usuario -->
+    <!-- <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="dgi-full-width">
+      <input matInput placeholder="Usuario o Email" formControlName="usuario" required [matAutocomplete]="usuario">
+      <mat-autocomplete #usuario="matAutocomplete" [displayWith]="displayFnUsuarios">
+        <mat-option *ngFor="let usuario of filteredUsuarios | async" [value]="usuario">
+          {{ usuario.username }} {{ usuario.email }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field> -->
+
+    <!-- Buttons Actions -->
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!perfilForm.valid" tabindex="0">Aceptar</button>
+      <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+    </div>
+  </form>
+</div>

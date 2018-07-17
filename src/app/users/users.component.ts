@@ -87,7 +87,7 @@ export class UsersComponent implements OnInit {
   }
 
   private getUsers() {
-    this.usersService.getAllUsers()
+    this.usersService.getList$()
       .subscribe(this.loadUsers.bind(this));
   }
 

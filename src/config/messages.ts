@@ -65,6 +65,16 @@ export const MESSAGES = {
         confirmDelete: '¿Estas segur@ que quieres eliminar el Asesor?',
         confirmCreate: '¿Estas segur@ que quieres guardar el Asesor?',
     },
+    perfil: {
+        delete: 'El Perfíl se eliminó con Éxito!.',
+        deleteAll: 'Los Perfiles se eliminaron con Éxito!.',
+        post: 'El Perfíl se guardó con Éxito.',
+        getMany: 'Los Perfiles se listaron con Éxito.',
+        getOne: 'El Perfíl se listó con Éxito.',
+        put: 'El Perfíl se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el Perfíl?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el Perfíl?',
+    },
     persona: {
         delete: 'La Persona se eliminó con Éxito!.',
         deleteAll: 'Las Personas se eliminaron con Éxito!.',

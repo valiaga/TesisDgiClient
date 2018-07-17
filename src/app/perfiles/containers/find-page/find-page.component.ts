@@ -10,6 +10,7 @@ import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { FormNewComponent } from '../../components';
 
 @Component({
     selector: 'dgi-find-page',
@@ -48,13 +49,13 @@ export class FindPageComponent implements OnInit {
     }
 
     public openDialog() {
-        // const dialogRef = this.dialog.open(FormNewComponent, {
-        // width: '500px',
-        // });
+        const dialogRef = this.dialog.open(FormNewComponent, {
+        width: '500px',
+        });
 
-        // dialogRef.afterClosed().subscribe(result => {
-        // console.log('close dialog jurado');
-        // });
+        dialogRef.afterClosed().subscribe(result => {
+        console.log('close dialog perfil');
+        });
     }
 
     public onVincule() {

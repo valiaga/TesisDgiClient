@@ -9,9 +9,13 @@ import {
   MatCardModule, MatDialogModule, MatFormFieldModule,
   MatInputModule, MatRadioModule, MatDatepickerModule,
   MatCheckboxModule, MatButtonModule, MatIconModule,
-  MatMenuModule, MatTooltipModule, MatAutocompleteModule,
+  MatMenuModule, MatTooltipModule, MatAutocompleteModule, MatTableModule,
 } from '@angular/material';
-import { ListComponent, SearchComponent } from './components';
+import { FormNewComponent, ListComponent, SearchComponent } from './components';
+import { CdkTableModule } from '@angular/cdk/table';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PersonasService } from '../personas/shared/personas.service';
+import { UsersService } from '../users/shared/users.service';
 
 
 const COMPONENTS: any[] = [
@@ -22,7 +26,7 @@ const COMPONENTS: any[] = [
 
   // FormEditComponent,
   // FormVinculeComponent,
-  // FormNewComponent,
+  FormNewComponent,
   ListComponent,
   SearchComponent,
 ];
@@ -41,6 +45,9 @@ const MATERIAL_MODULES: any[] = [
   MatMenuModule,
   MatTooltipModule,
   MatAutocompleteModule,
+
+  CdkTableModule,
+  MatTableModule,
 ];
 
 const DGI_MODULES: any[] = [
@@ -50,6 +57,7 @@ const DGI_MODULES: any[] = [
 @NgModule({
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     PerfilesRoutingModule,
     ...MATERIAL_MODULES,
     ...DGI_MODULES,
@@ -57,5 +65,12 @@ const DGI_MODULES: any[] = [
   declarations: [
     ...COMPONENTS,
   ],
+  providers: [
+    PersonasService,
+    UsersService,
+  ],
+  entryComponents: [
+    FormNewComponent,
+  ]
 })
 export class PerfilesModule { }
