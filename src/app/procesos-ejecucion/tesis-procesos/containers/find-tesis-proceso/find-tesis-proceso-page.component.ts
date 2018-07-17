@@ -30,9 +30,13 @@ export class FindTesisProcesoPageComponent implements OnInit {
     //   }
     // });
 
-    this.route.paramMap.pipe(map(params => params.get('proceso_id'))).subscribe(procesoId => {
-      console.log('procesoId: ', procesoId);
-    });
+    this.route.parent.paramMap
+      .pipe(map(params => params.get('proceso_id')))
+      .subscribe(procesoId => {
+        this.procesoId = procesoId;
+        console.log('procesoId: ', procesoId);
+        this.getTesisProcesos(this.procesoId.toString());
+      });
   }
 
   public getTesisProcesos(proceso_id: string) {

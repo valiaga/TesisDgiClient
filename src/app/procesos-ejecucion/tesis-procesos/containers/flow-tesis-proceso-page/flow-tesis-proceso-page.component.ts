@@ -1,34 +1,25 @@
-import { Component, OnInit, ViewChild, ChangeDetectionStrategy, AfterViewInit } from '@angular/core';
-import { EtapaService, EtapaReactiveService } from '../../../etapas/shared/etapa.service';
-import { Observable } from 'rxjs';
-import { Etapa } from '../../../etapas/shared/etapa';
-import { ActivatedRoute, Params } from '@angular/router';
-import { MatStepper, MatStep } from '@angular/material';
-import { TareaService } from '../../../tareas/shared/tarea.service';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { MatStepper } from '@angular/material';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { CampoService } from '../../../dynamic-form/shared/campo.service';
-import { DynamicFormComponent } from '../../../dynamic-form/containers/dynamic-form.component';
-import { FieldConfig } from '../../../dynamic-form/models/field-config';
-import { Form } from '../../../dynamic-form/models/form';
-import { IFormulario } from '../../../dynamic-form/models.1/formulario';
-import { Validation } from '../../../dynamic-form/models/validation';
-import { ValidatorFn, Validator } from '@angular/forms/src/directives/validators';
-import { Tarea } from '../../../tareas/models/tarea';
-
+import { Validators, Form } from '@angular/forms';
+import { ValidatorFn } from '@angular/forms/src/directives/validators';
+import { Etapa } from '../../../../etapas/shared/etapa';
+import { Tarea } from '../../../../tareas/models/tarea';
+import { EtapaService } from '../../../../etapas/shared/etapa.service';
+import { TareaService } from '../../../../tareas/shared/tarea.service';
+import { Validation } from '@dgi/formularios-dinamicos-datos/models';
+import { FieldConfig } from '../../../../dynamic-form/models.1/field-config';
 
 @Component({
   selector: 'dgi-flow-tesis-proceso-page',
   templateUrl: 'flow-tesis-proceso-page.component.html',
   styleUrls: ['./flow-tesis-proceso-page.component.scss'],
-  providers: [
-    CampoService,
-  ]
 })
 export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
-  private etapas: Etapa[];
-  private tareas: Tarea[];
-  private formularios: Form[];
+  public etapas: Etapa[];
+  public tareas: Tarea[];
+  public formularios: Form[];
 
   private campos: any[];
 
@@ -40,11 +31,9 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
 
   constructor(
     private etapaService: EtapaService,
-    private etapaReactiveService: EtapaReactiveService,
     private route: ActivatedRoute,
     private tareaService: TareaService,
-    private formBuilder: FormBuilder,
-    private campoService: CampoService) { }
+  ) { }
 
   ngOnInit() {
 

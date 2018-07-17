@@ -1,9 +1,7 @@
 // import { TesisProcesoService, TesisProceso } from '../../shared';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { MatDialog } from '@angular/material';
 import { CreateTesisProcesoDialogComponent } from '../../containers';
-import { Observable } from 'rxjs';
 import { TesisProceso } from '../../shared';
 
 

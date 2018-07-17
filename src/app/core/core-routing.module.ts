@@ -41,11 +41,18 @@ const routes: Routes = [
                     title: 'Proyectos'
                 }
             },
+            // {
+            //     path: 'seguimientos',
+            //     loadChildren: '../seguimientos/seguimientos.module#SeguimientosModule',
+            //     data: {
+            //         title: 'Seguimientos'
+            //     }
+            // },
             {
-                path: 'seguimientos',
-                loadChildren: '../seguimientos/seguimientos.module#SeguimientosModule',
+                path: 'procesos-ejecucion',
+                loadChildren: '../procesos-ejecucion/procesos-ejecucion.module#ProcesosEjecucionModule',
                 data: {
-                    title: 'Seguimientos'
+                    title: 'Procesos en ejecución'
                 }
             },
             {

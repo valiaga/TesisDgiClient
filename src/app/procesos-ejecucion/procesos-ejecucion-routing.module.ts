@@ -1,16 +1,16 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ListProcesoPageComponent } from './containers';
-import { SeguimientosComponent } from './seguimientos.component';
+import { ProcesosEjecucionComponent } from './procesos-ejecucion.component';
 
 /** Rutas que se manejan en este módulo
- * /seguimientos
- * /seguimientos/42
+ * /procesos-ejecucion
+ * /procesos-ejecucion/42
  */
 const routes: Routes = [
   {
     path: '',
-    component: SeguimientosComponent,
+    component: ProcesosEjecucionComponent,
     children: [ // rutas hijas, se verán dentro del router-oulet componente contenedor
       {
         path: '',
@@ -18,11 +18,10 @@ const routes: Routes = [
       },
       {
         path: ':proceso_id',
-        loadChildren: '../tesis-procesos/tesis-procesos.module#TesisProcesosModule',
+        loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
       }
     ],
   },
-
 ];
 
 
@@ -31,4 +30,4 @@ const routes: Routes = [
   exports: [RouterModule], // se importará en su módulo funcional asociado
   providers: []
 })
-export class SeguimientosRoutingModule { }
+export class ProcesosEjecucionRoutingModule { }

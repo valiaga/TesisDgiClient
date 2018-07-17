@@ -3,8 +3,8 @@ import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { TesisProcesoService, TesisProceso } from '../../shared';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from '../../../../config/general';
-import { MESSAGES } from '../../../../config/messages';
+import { MESSAGES } from 'config/messages';
+import { getMessageConfirm } from 'config/general';
 
 
 @Component({
@@ -31,7 +31,6 @@ export class CreateTesisProcesoDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<CreateTesisProcesoDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
-    private tesisProcesoService: TesisProcesoService,
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService,
   ) { }

@@ -1,9 +1,9 @@
 import { Component, OnInit, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { TesisProcesoService, TesisProceso } from '../../shared';
 import { MatMenuTrigger, MatSnackBar } from '@angular/material';
-import { MESSAGES } from '../../../../config/messages';
-import { getMessageConfirm } from '../../../../config/general';
 import { TdDialogService } from '@covalent/core';
+import { MESSAGES } from 'config/messages';
+import { getMessageConfirm } from 'config/general';
 
 @Component({
   selector: 'dgi-tesis-proceso',
@@ -71,17 +71,8 @@ import { TdDialogService } from '@covalent/core';
     .mat-card:hover {
       box-shadow: 3px 3px 16px -2px rgba(0, 0, 0, .5);
     }
-  /*
-    a {
-      color: inherit;
-      text-decoration: none;
-    }*/
-
     `
   ],
-  providers: [
-    // MessagesService
-  ]
 })
 export class TesisProcesoComponent implements OnInit {
 

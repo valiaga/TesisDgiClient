@@ -11,6 +11,8 @@ export class AuthGuardService implements CanActivate {
   ) { }
 
   canActivate() {
+    console.log('canActivate');
+
     if (this.userStoreService.isLogged) {
       return true;
     }

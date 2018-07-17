@@ -1,11 +1,10 @@
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITesisProceso, TesisProceso } from './tesis-proceso';
 import { MatSnackBar } from '@angular/material';
-import { MESSAGES } from '../../../config/messages';
-import { snackBarDuration } from '../../../config/general';
+import { MESSAGES } from 'config/messages';
+import { snackBarDuration } from 'config/general';
 
 
 @Injectable()

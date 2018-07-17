@@ -55,6 +55,8 @@ export class DictaminadoresReactiveService {
             .getList$(params)
             .pipe(map(res => res.results))
             .subscribe(data => {
+                console.log(data);
+
                 this.snackBar.open(MESSAGES.dictaminador.getMany, MESSAGES.actions.get, snackBarDuration);
                 this.dataStore.dictaminadores = data;
                 this._dictaminadores.next(Object.assign({}, this.dataStore).dictaminadores);

@@ -6,8 +6,8 @@ import { ProcesoService } from '../procesos/shared/proceso.service';
 
 import { ListProcesoPageComponent } from './containers';
 import { ProcesoComponent, ProcesoListComponent } from './components';
-import { SeguimientosRoutingModule } from './seguimientos-routing.module';
-import { SeguimientosComponent } from './seguimientos.component';
+import { ProcesosEjecucionRoutingModule } from './procesos-ejecucion-routing.module';
+import { ProcesosEjecucionComponent } from './procesos-ejecucion.component';
 // import { UserService } from '../auth/user/user.service';
 
 @NgModule({
@@ -15,11 +15,10 @@ import { SeguimientosComponent } from './seguimientos.component';
     MaterialModule,
     AngularModule,
 
-    // HttpModule,
-    SeguimientosRoutingModule
+    ProcesosEjecucionRoutingModule
   ],
   declarations: [
-    SeguimientosComponent,
+    ProcesosEjecucionComponent,
     ListProcesoPageComponent,
     ProcesoListComponent,
     ProcesoComponent,
@@ -29,4 +28,4 @@ import { SeguimientosComponent } from './seguimientos.component';
     // UserService
   ]
 })
-export class SeguimientosModule { }
+export class ProcesosEjecucionModule { }
