@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router';
+// import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 
 import { TesisProcesosRoutingModule } from './tesis-procesos-routing.module';
@@ -52,7 +52,7 @@ import { CampoService } from '../../dynamic-form/shared/campo.service';
     CampoService,
   ],
   entryComponents: [
-    CreateTesisProcesoDialogComponent
-  ]
+    CreateTesisProcesoDialogComponent,
+  ],
 })
 export class TesisProcesosModule { }

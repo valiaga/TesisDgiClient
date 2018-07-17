@@ -15,7 +15,6 @@ export class TokenInterceptorService implements HttpInterceptor {
   private token = 'InitialAuthorizationToken';
 
   constructor(private userStoreService: UserStoreService) {
-    // constructor(private busService: BusService) {
     this.subscribeToTokenChanges();
   }
 

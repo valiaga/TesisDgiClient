@@ -39,13 +39,20 @@ export class FormNewComponent implements OnInit {
 
   private subscribePersonaAutocomplete() {
     if (this.perfilForm) {
+      console.log('hola>>>');
+
       this.filteredPersonas = this.perfilForm.controls['persona']
+      // this.perfilForm.controls['persona']
         .valueChanges
         .pipe(
           startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value.nombres),
-          switchMap(nombres => nombres ? this.getPersonas(nombres) : [])
-        );
+          switchMap(nombres => {
+            console.log('nombres');
+            console.log(nombres);
+            return nombres ? this.getPersonas(nombres) : [];
+          }),
+      );
     }
   }
 
@@ -89,7 +96,7 @@ export class FormNewComponent implements OnInit {
   private initializeControls() {
     const controls = {
       id: [''],
-      usuario: ['', Validators.required],
+      usuario: ['', [Validators.required]],
       persona: ['', [Validators.required]]
     };
 
