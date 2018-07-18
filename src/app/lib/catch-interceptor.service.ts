@@ -8,12 +8,14 @@ import { tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { snackBarDuration } from 'config/general';
+import { UserStoreService } from './user-store.service';
 
 @Injectable()
 export class CatchInterceptorService implements HttpInterceptor {
   private started;
 
   constructor(private router: Router,
+    private userStoreService: UserStoreService,
     private snackBar: MatSnackBar) { }
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -56,11 +58,10 @@ export class CatchInterceptorService implements HttpInterceptor {
 
 
   private catchUnauthorized() {
-    console.log('Not authorized');
+    // console.log('Not authorized');
     this.navigateToLogin();
   }
   private navigateToLogin() {
-    // this.router.navigateByUrl('/credentials/login');
-    this.router.navigateByUrl('auth/login');
+    this.userStoreService.logout();
   }
 }

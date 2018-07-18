@@ -57,8 +57,9 @@ const DGI_MODULES: any[] = [
 @NgModule({
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     PerfilesRoutingModule,
+    ReactiveFormsModule,
+
     ...MATERIAL_MODULES,
     ...DGI_MODULES,
   ],

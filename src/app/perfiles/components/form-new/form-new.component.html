@@ -13,21 +13,19 @@
     </mat-form-field>
 
     <!-- Usuario -->
-    <!-- <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="dgi-full-width">
+    <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="dgi-full-width">
       <input matInput placeholder="Usuario o Email" formControlName="usuario" required [matAutocomplete]="usuario">
       <mat-autocomplete #usuario="matAutocomplete" [displayWith]="displayFnUsuarios">
         <mat-option *ngFor="let usuario of filteredUsuarios | async" [value]="usuario">
           {{ usuario.username }} {{ usuario.email }}
         </mat-option>
       </mat-autocomplete>
-    </mat-form-field> -->
+    </mat-form-field>
 
     <!-- Buttons Actions -->
     <div mat-dialog-actions>
-      <button mat-button type="submit" [disabled]="!perfilForm.valid" tabindex="0">Aceptar</button>
+      <button mat-button type="submit" [disabled]="perfilForm.invalid" tabindex="0">Aceptar</button>
       <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
     </div>
   </form>
 </div>
-
-{{ perfilForm.value | json }}

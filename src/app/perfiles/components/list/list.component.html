@@ -3,8 +3,28 @@
     <td>{{ perfil | json }}</td>
   </tr>
 </table> -->
+<div class="button-row" *ngIf="moreOfOneSelected">
+  <button mat-icon-button matTooltip="Eliminar seleccionados">
+    <mat-icon aria-label="Eliminar seleccionados" color="warn">delete</mat-icon>
+  </button>
+  <button mat-icon-button>
+    <mat-icon aria-label="Eliminar seleccionados" color="warn">star</mat-icon>
+  </button>
+</div>
 
-<mat-table #table [dataSource]="dataSource">
+<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
 
   <!-- Column Usuario -->
   <ng-container matColumnDef="username">
@@ -44,6 +64,6 @@
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
 
 </mat-table>

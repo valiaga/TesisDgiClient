@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from 'config/general';
+import { getMessageConfirm, snackBarDuration } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { PerfilesService } from '../../shared/perfiles.service';
 import { Observable } from 'rxjs';
@@ -29,6 +29,7 @@ export class FormNewComponent implements OnInit {
     private perfilesService: PerfilesService,
     private personasService: PersonasService,
     private userService: UsersService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -39,29 +40,20 @@ export class FormNewComponent implements OnInit {
 
   private subscribePersonaAutocomplete() {
     if (this.perfilForm) {
-      console.log('hola>>>');
-
       this.filteredPersonas = this.perfilForm.controls['persona']
-      // this.perfilForm.controls['persona']
         .valueChanges
         .pipe(
           startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value.nombres),
-          switchMap(nombres => {
-            console.log('nombres');
-            console.log(nombres);
-            return nombres ? this.getPersonas(nombres) : [];
-          }),
+          switchMap(nombres => nombres ? this.getPersonas(nombres) : []),
       );
     }
   }
 
   private getPersonas(query) {
-    console.log('si');
     const params = { query: query, fields: 'nombres,apellido_paterno,apellido_materno' };
     return this.personasService.getList$(params);
   }
-
 
   public displayFnPersonas(persona?: any): string | undefined {
     return persona ? `${persona.nombres} ${persona.apellido_paterno} ${persona.apellido_materno}` : undefined;
@@ -69,7 +61,7 @@ export class FormNewComponent implements OnInit {
 
   private subscribeUsuarioAutocomplete() {
     if (this.perfilForm) {
-      this.filteredPersonas = this.perfilForm.controls['usuario']
+      this.filteredUsuarios = this.perfilForm.controls['usuario']
         .valueChanges
         .pipe(
           startWith<string | any>(''),
@@ -106,15 +98,20 @@ export class FormNewComponent implements OnInit {
   public onSubmit() {
     const value = this.perfilForm.value;
     const valid = this.perfilForm.valid;
-
     if (valid) {
+      const data = {
+        persona: value.persona && value.persona.id || null,
+        usuario: value.usuario && value.usuario.id || null,
+      };
 
       this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.perfil.confirmCreate, this.viewContainerRef))
         .afterClosed().subscribe((accept: boolean) => {
           if (accept) {
-            this.perfilesService.save$(value).subscribe();
-            this.dialogRef.close();
-            this.perfilForm.reset();
+            this.perfilesService.save$(data).subscribe(response => {
+              this.snackBar.open(MESSAGES.perfil.post, MESSAGES.actions.post, snackBarDuration);
+              this.dialogRef.close(true);
+              this.perfilForm.reset();
+            });
           } else {
           }
         });

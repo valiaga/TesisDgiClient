@@ -1,16 +1,18 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { PerfilesService } from '../../shared/perfiles.service';
 import { Perfil } from '../../shared/perfil';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 // import { FormNewComponent, FormEditComponent, FormVinculeComponent } from '../../components';
 // import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from 'config/general';
-import { MESSAGES } from 'config/messages';
-import { Router, ActivatedRoute } from '@angular/router';
+// import { Observable } from 'rxjs';
+// import { TdDialogService } from '@covalent/core';
+// import { getMessageConfirm } from 'config/general';
+// import { MESSAGES } from 'config/messages';
+// import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { FormNewComponent } from '../../components';
+import { MESSAGES } from 'config/messages';
+import { snackBarDuration } from 'config/general';
 
 @Component({
     selector: 'dgi-find-page',
@@ -25,10 +27,12 @@ export class FindPageComponent implements OnInit {
     constructor(
         private perfilesService: PerfilesService,
         private dialog: MatDialog,
-        private viewContainerRef: ViewContainerRef,
-        private tdDialogService: TdDialogService,
-        private router: Router,
-        private route: ActivatedRoute,
+        private snackBar: MatSnackBar,
+
+        // private viewContainerRef: ViewContainerRef,
+        // private tdDialogService: TdDialogService,
+        // private router: Router,
+        // private route: ActivatedRoute,
     ) { }
 
     ngOnInit() {
@@ -45,16 +49,20 @@ export class FindPageComponent implements OnInit {
     }
 
     private loadPerfiles(response) {
+        this.snackBar.open(MESSAGES.perfil.getMany, MESSAGES.actions.get, snackBarDuration);
         this.perfiles = response;
     }
 
     public openDialog() {
         const dialogRef = this.dialog.open(FormNewComponent, {
-        width: '500px',
+            width: '500px',
         });
 
         dialogRef.afterClosed().subscribe(result => {
-        console.log('close dialog perfil');
+            console.log('close dialog perfil');
+            if (result) {
+                this.getPerfiles();
+            }
         });
     }
 

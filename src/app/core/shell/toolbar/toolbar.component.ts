@@ -13,7 +13,7 @@ export class ToolbarComponent implements OnInit {
   ngOnInit() {
   }
 
-  public sidenavToggle(){
+  public sidenavToggle() {
     // this.stateSidenavOpened.emit(!this.isSidenavOpened)
   }
 
