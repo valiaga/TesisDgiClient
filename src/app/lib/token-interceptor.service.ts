@@ -15,7 +15,6 @@ export class TokenInterceptorService implements HttpInterceptor {
   private token = 'InitialAuthorizationToken';
 
   constructor(private userStoreService: UserStoreService) {
-    this.subscribeToTokenChanges();
   }
 
   private subscribeToTokenChanges() {
@@ -32,6 +31,8 @@ export class TokenInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
+    // Hice este cambiooooooooooooooooooooooooooooo  no se si funcione
+    this.subscribeToTokenChanges();
 
     const authorizationReq = this.setAuthHeader(req);
     const handledRequest = next.handle(authorizationReq);
