@@ -59,20 +59,19 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog perfil');
             if (result) {
                 this.getPerfiles();
             }
         });
     }
 
-    public onVincule() {
-        // const dialogRef = this.dialog.open(FormVinculeComponent, {
-        // width: '500px',
-        // });
-        // dialogRef.afterClosed().subscribe(result => {
-        // console.log('close dialog vincule jurado');
-        // });
+    public onDelete(event: string[]) {
+        event.forEach(perfilId => {
+            this.perfilesService.delete$(perfilId).subscribe(response => {
+                this.snackBar.open(MESSAGES.perfil.deleteAll, MESSAGES.actions.delete, snackBarDuration);
+                this.getPerfiles();
+            });
+        });
     }
 
     // public onUpdateJurado(event) {

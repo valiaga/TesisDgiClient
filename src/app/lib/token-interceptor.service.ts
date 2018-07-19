@@ -31,7 +31,6 @@ export class TokenInterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    // Hice este cambiooooooooooooooooooooooooooooo  no se si funcione
     this.subscribeToTokenChanges();
 
     const authorizationReq = this.setAuthHeader(req);

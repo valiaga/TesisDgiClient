@@ -77,6 +77,13 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'tesistas',
+                loadChildren: '../tesistas/tesistas.module#TesistasModule',
+                data: {
+                    title: 'Tesistas'
+                }
+            },
+            {
                 path: 'auth',
                 loadChildren: '../auth/auth.module#AuthModule',
                 data: {

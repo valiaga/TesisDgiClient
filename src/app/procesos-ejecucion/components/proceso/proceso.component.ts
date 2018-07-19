@@ -61,12 +61,12 @@ export class ProcesoComponent implements OnInit {
   }
 
   get id() {
-    console.log(this.proceso);
+    // console.log(this.proceso);
     return this.proceso.id;
   }
 
   get nombre() {
-    console.log(this.proceso);
+    // console.log(this.proceso);
     return this.proceso.nombre;
   }
 }

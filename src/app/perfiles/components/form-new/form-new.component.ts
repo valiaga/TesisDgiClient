@@ -44,7 +44,7 @@ export class FormNewComponent implements OnInit {
         .valueChanges
         .pipe(
           startWith<string | any>(''),
-          map(value => typeof value === 'string' ? value : value.nombres),
+          map(value => typeof value === 'string' ? value : value && value.nombres || null),
           switchMap(nombres => nombres ? this.getPersonas(nombres) : []),
       );
     }
@@ -65,7 +65,7 @@ export class FormNewComponent implements OnInit {
         .valueChanges
         .pipe(
           startWith<string | any>(''),
-          map(value => typeof value === 'string' ? value : value.username),
+          map(value => typeof value === 'string' ? value : value && value.username || null),
           switchMap(username => username ? this.getUsuarios(username) : [])
         );
     }

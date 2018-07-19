@@ -1,10 +1,10 @@
 import { Component, OnInit, Input, ViewContainerRef, Output, EventEmitter } from '@angular/core';
-import { IPerfil } from '../../shared/perfil';
 import { MatTableDataSource } from '@angular/material';
 import { SelectionModel } from '@angular/cdk/collections';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
+import { ITesista } from '../../shared/tesista';
 
 @Component({
   selector: 'dgi-list',
@@ -14,21 +14,22 @@ import { MESSAGES } from 'config/messages';
 export class ListComponent implements OnInit {
 
   @Output() onDelete = new EventEmitter<string[]>();
+  @Output() onUpdateTesista = new EventEmitter<string>();
 
-  @Input() set perfiles(perfiles: IPerfil[]) {
-    this.dataSource = new MatTableDataSource<IPerfil>(perfiles);
+  @Input() set tesistas(tesistas: ITesista[]) {
+    // console.log(tesistas);
+    this.dataSource = new MatTableDataSource<ITesista>(tesistas);
   }
   public dataSource: any;
-  public selection = new SelectionModel<IPerfil>(true, []);
+  public selection = new SelectionModel<ITesista>(true, []);
   public displayedColumns = [
-    // 'id',
     'select',
-    'username',
-    'email',
-    'is_staff',
-    'nombres',
+    'nombres_apellidos',
     'num_doc',
+    'celular',
+    'genero',
     'fecha_nacimiento',
+    'activo',
   ];
 
   constructor(
@@ -42,8 +43,12 @@ export class ListComponent implements OnInit {
 
   get moreOfOneSelected() {
     const numSelected = this.selection.selected.length;
-    // console.log(numSelected);
     return numSelected > 0 ? true : false;
+  }
+
+  get oneSelected() {
+    const numSelected = this.selection.selected.length;
+    return numSelected === 1 ? true : false;
   }
 
 
@@ -54,17 +59,22 @@ export class ListComponent implements OnInit {
     return numSelected === numRows;
   }
 
-  public onDeletePerfiles() {
-    const perfilesSelected = (this.selection.selected).map(perfil => perfil.id);
+  public onDeleteTesistas() {
+    const tesistasSelected = (this.selection.selected).map(tesista => tesista.id);
 
-    this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.perfil.confirmDelete, this.viewContainerRef))
+    this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tesista.confirmDelete, this.viewContainerRef))
       .afterClosed().subscribe((accept: boolean) => {
         if (accept) {
-          // console.log(perfilesSelected);
-          this.onDelete.emit(perfilesSelected);
+          this.onDelete.emit(tesistasSelected);
         } else {
         }
       });
+  }
+
+
+  public onEditarTesista() {
+    const tesistaSelected = (this.selection.selected).map(tesista => tesista.id)[0];
+    this.onUpdateTesista.emit(tesistaSelected);
   }
 
   public masterToggle() {

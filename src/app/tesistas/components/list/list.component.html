@@ -4,15 +4,18 @@
   </tr>
 </table> -->
 <mat-card>
-  <div class="button-row" [ngClass]="{'gbi-not-visivility': !moreOfOneSelected}">
-  <!-- <div class="button-row"> -->
-    <button mat-icon-button matTooltip="Eliminar seleccionados" (click)="onDeletePerfiles()">
+  <div class="button-row">
+    <!-- <div class="button-row"> -->
+    <button [ngClass]="{'gbi-not-visivility': !oneSelected}" mat-icon-button matTooltip="Editar seleccionado" (click)="onEditarTesista()">
+      <mat-icon aria-label="Eliminar seleccionados" color="warn">edit</mat-icon>
+    </button>
+    <button [ngClass]="{'gbi-not-visivility': !moreOfOneSelected}" mat-icon-button matTooltip="Eliminar seleccionados" (click)="onDeleteTesistas()">
       <mat-icon aria-label="Eliminar seleccionados" color="warn">delete</mat-icon>
     </button>
   </div>
 </mat-card>
 
-<mat-table #table [dataSource]="dataSource" class="mat-elevation-z8">
+<mat-table #table [dataSource]="dataSource">
 
   <!-- Checkbox Column -->
   <ng-container matColumnDef="select">
@@ -26,41 +29,43 @@
     </mat-cell>
   </ng-container>
 
-  <!-- Column Usuario -->
-  <ng-container matColumnDef="username">
-    <mat-header-cell *matHeaderCellDef>Username</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.data_usuario.username }}</mat-cell>
-  </ng-container>
-
-  <!-- Column Email -->
-  <ng-container matColumnDef="email">
-    <mat-header-cell *matHeaderCellDef>Email</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.data_usuario.email }}</mat-cell>
-  </ng-container>
-
-  <!-- Column Is Staff -->
-  <ng-container matColumnDef="is_staff">
-    <mat-header-cell *matHeaderCellDef>Is Staff</mat-header-cell>
-    <mat-cell *matCellDef="let element">{{ element.data_usuario.is_staff }}</mat-cell>
-  </ng-container>
-
-  <!-- Column Nombres y Apellidos -->
-  <ng-container matColumnDef="nombres">
+  <!-- Column Nombres Apellidos -->
+  <ng-container matColumnDef="nombres_apellidos">
     <mat-header-cell *matHeaderCellDef>Nombres y Apellidos</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.data_persona.nombres }} {{ element.data_persona.apellido_paterno }} {{ element.data_persona.apellido_materno
-      }} </mat-cell>
+      }}
+    </mat-cell>
   </ng-container>
 
   <!-- Column Num Doc -->
   <ng-container matColumnDef="num_doc">
-    <mat-header-cell *matHeaderCellDef>Num Doc</mat-header-cell>
+    <mat-header-cell *matHeaderCellDef>Num. Documento</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.data_persona.num_doc }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Celular -->
+  <ng-container matColumnDef="celular">
+    <mat-header-cell *matHeaderCellDef>Celular</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_persona.celular }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Género -->
+  <ng-container matColumnDef="genero">
+    <mat-header-cell *matHeaderCellDef>Género</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.data_persona.genero }}
+    </mat-cell>
   </ng-container>
 
   <!-- Column Fecha de Nacimiento -->
   <ng-container matColumnDef="fecha_nacimiento">
     <mat-header-cell *matHeaderCellDef>Fecha de Nacimiento</mat-header-cell>
     <mat-cell *matCellDef="let element">{{ element.data_persona.fecha_nacimiento }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Estado -->
+  <ng-container matColumnDef="activo">
+    <mat-header-cell *matHeaderCellDef>Activo</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.activo }}</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -7,13 +7,12 @@
         <dgi-list [perfiles]="perfiles" (onGetProyectos)="onGetProyectos($event)" (onUpdateJurado)="onUpdateJurado($event)"
             (onDeleteJurado)="onDeleteJurado($event)"></dgi-list> -->
 
-        <dgi-list [perfiles]="perfiles" (onDelete)="onDelete($event)"></dgi-list>
-
+        <dgi-list [tesistas]="tesistas" (onDelete)="onDelete($event)" (onUpdateTesista)="onUpdateTesista($event)"></dgi-list>
     </mat-card-content>
 </mat-card>
 
-<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']" title="Crear nuevo Perfil"></dgi-button-fab>
-<!-- 
-<button mat-fab (click)="onVincule()" color="accent" class="button-fab" matTooltip="Vincular usuario con Perfil">
+<dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']" title="Crear nuevo Tesista"></dgi-button-fab>
+
+<button mat-fab (click)="onVincule()" color="accent" class="button-fab" matTooltip="Vincular persona con Tesita">
     <mat-icon>link</mat-icon>
-</button> -->
+</button>

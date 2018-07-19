@@ -17,8 +17,7 @@ export class UserStoreService {
     }
 
     get isLogged() {
-        console.log('this.token : ', this.token);
-
+        // console.log('this.token : ', this.token);
         return !!this.token;
     }
 
