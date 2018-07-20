@@ -10,7 +10,7 @@ import { ProyectoSearchComponent } from './proyecto-search.component';
 
 import { PipesModule } from '../../shared/pipes/index';
 import { MaterialModule } from '../../shared/material/material.module';
-import { ProyectoService } from '../shared/proyecto.service';
+import { ProyectosService } from '../shared/proyectos.service';
 
 export const COMPONENTS = [
   ProyectoAuthorsComponent,
@@ -30,7 +30,7 @@ export const COMPONENTS = [
   declarations: COMPONENTS,
   exports: COMPONENTS,
   providers: [
-    ProyectoService
+    ProyectosService
   ]
 })
 export class ComponentsModule { }

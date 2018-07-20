@@ -7,9 +7,9 @@
       <input matInput placeholder="Nombres o Número de documento del Tesista" formControlName="tesista" required [matAutocomplete]="persona">
 
       <mat-autocomplete #persona="matAutocomplete" [displayWith]="displayFn">
-        <mat-option *ngFor="let tesista of filteredOptions | async" [value]="persona">
-          {{ tesista | json }}
-          <!-- {{ tesista.persona.nombres }} {{ tesista.persona.apellido_paterno }} {{ tesista.persona.apellido_materno }} -->
+        <mat-option *ngFor="let tesista of filteredOptions | async" [value]="tesista">
+          <!-- {{ tesista | json }} -->
+          {{ tesista.data_persona.nombres }} {{ tesista.data_persona.apellido_paterno }} {{ tesista.data_persona.apellido_materno }}
         </mat-option>
       </mat-autocomplete>
     </mat-form-field>

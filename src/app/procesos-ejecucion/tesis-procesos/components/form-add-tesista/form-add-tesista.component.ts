@@ -1,11 +1,13 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map, switchMap } from 'rxjs/operators';
 import { TesistasService } from '../../../../tesistas/shared/tesistas.service';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from 'config/general';
+import { getMessageConfirm, snackBarDuration } from 'config/general';
 import { MESSAGES } from 'config/messages';
+import { ProyectosService } from '../../../../proyectos/shared/proyectos.service';
+import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'dgi-form-add-tesista',
@@ -16,9 +18,14 @@ export class FormAddTesistaComponent implements OnInit {
   public addTesistaForm: FormGroup;
   public filteredOptions: Observable<any[]>;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private dialogRef: MatDialogRef<FormAddTesistaComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private formBuilder: FormBuilder,
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService,
+    private proyectosService: ProyectosService,
+    private snackBar: MatSnackBar,
     private tesistasService: TesistasService) { }
 
   ngOnInit() {
@@ -40,12 +47,13 @@ export class FormAddTesistaComponent implements OnInit {
   }
 
   private getTesistas(query) {
-    const params = { query: query, fields: 'nombres,apellido_paterno,apellido_materno' };
+    const params = { query: query, fields: 'persona__nombres,persona__apellido_paterno,persona__apellido_materno' };
     return this.tesistasService.getWithQuery$(params).pipe(map(response => response.results));
   }
 
-  public displayFn(user?: any): string | undefined {
-    return user ? `${user.nombres} ${user.apellido_paterno} ${user.apellido_materno}` : undefined;
+  public displayFn(tesista?: any): string | undefined {
+    return tesista ?
+      `${tesista.data_persona.nombres} ${tesista.data_persona.apellido_paterno} ${tesista.data_persona.apellido_materno}` : undefined;
   }
 
   private buildForm() {
@@ -65,15 +73,19 @@ export class FormAddTesistaComponent implements OnInit {
     const value = this.addTesistaForm.value;
 
     if (valid) {
+      const { tesista, ...rest } = this.data.proyecto;
+      const data = { ...rest, tesista: [...tesista, value.tesista.id] };
 
       this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tesisProceso.confirmAddTesista, this.viewContainerRef))
         .afterClosed().subscribe((accept: boolean) => {
           if (accept) {
-            // this.tesistaService.add$(value).subscribe(tesista => {
-              // this.snackBar.open(MESSAGES.tesista.post, MESSAGES.actions.post, snackBarDuration);
-              // this.dialogRef.close(true);
-              console.log(value);
+            console.log(data);
+            this.proyectosService.update$(data.id, data).subscribe(response => {
+              this.snackBar.open(MESSAGES.tesista.post, MESSAGES.actions.post, snackBarDuration);
+              this.dialogRef.close(true);
               this.addTesistaForm.reset();
+            });
+            // this.tesistaService.add$(value).subscribe(tesista => {
             // });
           } else {
           }

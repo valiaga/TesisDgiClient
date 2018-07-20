@@ -9,7 +9,7 @@ import { TesisProceso } from '../../shared';
   selector: 'dgi-tesis-proceso-list',
   template: `
     <div class="card-container">
-      <dgi-tesis-proceso *ngFor="let tesisProceso of tesisProcesos" [tesisProceso] = "tesisProceso">
+      <dgi-tesis-proceso *ngFor="let tesisProceso of tesisProcesos" [tesisProceso] = "tesisProceso" (onRefresh)="onRefresh.emit($event)">
       </dgi-tesis-proceso>
 
       <dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
@@ -28,6 +28,7 @@ export class TesisProcesoListComponent implements OnInit {
 
   @Input() tesisProcesos: TesisProceso[];
   @Output() onSave = new EventEmitter<any>();
+  @Output() onRefresh = new EventEmitter<any>();
 
   constructor(
     private dialog: MatDialog,

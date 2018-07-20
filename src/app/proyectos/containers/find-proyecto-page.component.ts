@@ -1,6 +1,6 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Proyecto } from '../models/proyecto';
-import { ProyectoService } from '../shared/proyecto.service';
+import { ProyectosService } from '../shared/proyectos.service';
 import { Observable, Subject } from 'rxjs';
 import {
   tap, debounceTime,
@@ -33,7 +33,7 @@ export class FindProyectoPageComponent implements OnInit {
 
   private debouncer = new Subject<string>();
 
-  constructor(private proyectoService: ProyectoService) { }
+  constructor(private proyectosService: ProyectosService) { }
 
   ngOnInit() {
     // this.proyectos$ = this.proyectoService.getProyectos$().map(res => res.results);
@@ -46,7 +46,7 @@ export class FindProyectoPageComponent implements OnInit {
         }),
         debounceTime(500),
         distinctUntilChanged(),
-        switchMap(term => this.proyectoService.searchProyectos$(term)),
+        switchMap(term => this.proyectosService.searchProyectos$(term)),
         map(res => res.results),
         tap(() => {
           this.cargando$ = new Observable<boolean>((observer) => {

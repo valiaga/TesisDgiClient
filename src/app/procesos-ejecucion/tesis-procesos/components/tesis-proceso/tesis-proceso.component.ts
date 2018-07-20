@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ViewContainerRef, EventEmitter, Output } from '@angular/core';
 import { TesisProcesoService, TesisProceso } from '../../shared';
 import { MatMenuTrigger, MatSnackBar, MatDialog } from '@angular/material';
 import { TdDialogService } from '@covalent/core';
@@ -17,11 +17,15 @@ import { FormAddTesistaComponent } from '../form-add-tesista/form-add-tesista.co
         <button mat-icon-button color="primary" [matMenuTriggerFor]="tesisProcesoMenu">
           <mat-icon>more_vert</mat-icon>
         </button>
-        <mat-card-subtitle>Vitmar Aliaga & Alejandro Carpio</mat-card-subtitle>
+        <mat-card-subtitle>
+        <ng-container *ngFor="let tesista of (tesisProceso.data_proyecto.data_tesista)">
+          {{ tesista.data_persona.nombres }} {{ tesista.data_persona.apellido_paterno }} {{ tesista.data_persona.apellido_materno }}
+        </ng-container>
+        </mat-card-subtitle>
       </mat-card-header>
       <!-- <img mat-card-image src="http://wellmedicated.com/wp-content/uploads/2009/06/moral-relativism.jpg" alt="Mi Libro">      -->
       <mat-card-content>
-        {{ tesisProceso.proyecto }}
+        {{ tesisProceso.data_proyecto.titulo }}
           <!-- <img src="http://wellmedicated.com/wp-content/uploads/2009/06/moral-relativism.jpg" alt=""> -->
           <!-- {{ tp.id }}-->
       </mat-card-content>
@@ -33,7 +37,7 @@ import { FormAddTesistaComponent } from '../form-add-tesista/form-add-tesista.co
       <mat-icon>class</mat-icon>
       <span>Ver</span>
     </a>
-    <button mat-menu-item (click)="addTesista()">
+    <button mat-menu-item (click)="addTesista(tesisProceso.data_proyecto)">
       <mat-icon>person_add</mat-icon>
       <span>Agregar Tesista</span>
     </button>
@@ -78,8 +82,10 @@ import { FormAddTesistaComponent } from '../form-add-tesista/form-add-tesista.co
 export class TesisProcesoComponent implements OnInit {
 
   @Input() tesisProceso: TesisProceso;
+  @Output() onRefresh = new EventEmitter<string>();
 
-  constructor(private tesisProcesoService: TesisProcesoService,
+  constructor(
+    private tesisProcesoService: TesisProcesoService,
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService,
     private dialog: MatDialog,
@@ -100,13 +106,17 @@ export class TesisProcesoComponent implements OnInit {
       });
   }
 
-  public addTesista() {
+  public addTesista(proyecto) {
     const dialogRef = this.dialog.open(FormAddTesistaComponent, {
       width: '500px',
+      data: {
+        proyecto: proyecto,
+      },
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
+        this.onRefresh.emit();
         // this.getPerfiles();
       }
     });

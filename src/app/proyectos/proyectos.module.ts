@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ProyectosRoutingModule } from './proyectos-routing.module';
 import { FindProyectoPageComponent } from './containers/find-proyecto-page.component';
@@ -19,7 +18,7 @@ import { AngularModule } from '../shared/angular/angular.module';
 
   ],
   declarations: [
-    FindProyectoPageComponent, 
+    FindProyectoPageComponent,
   ]
 })
 export class ProyectosModule { }

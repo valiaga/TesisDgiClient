@@ -21,15 +21,6 @@ export class FindTesisProcesoPageComponent implements OnInit {
   ngOnInit() {
     this.tesisProcesos$ = this.tesisProcesoService.tesisProcesos;
 
-    // this.route.params.subscribe(params => {
-    //   this.procesoId = params['proceso_id'];
-    //   if (this.procesoId) {
-    //     this.getTesisProcesos(this.procesoId.toString());
-    //   } else {
-    //     console.log('No hay parametros');
-    //   }
-    // });
-
     this.route.parent.paramMap
       .pipe(map(params => params.get('proceso_id')))
       .subscribe(procesoId => {
@@ -46,6 +37,10 @@ export class FindTesisProcesoPageComponent implements OnInit {
   public onSave(data) {
     data.proceso = this.procesoId;
     this.tesisProcesoService.createTesisProcesoAndProyecto(data);
+  }
+
+  public onRefresh(event) {
+
   }
 
 }

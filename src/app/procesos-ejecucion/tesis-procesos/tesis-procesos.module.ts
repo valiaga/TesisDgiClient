@@ -28,6 +28,7 @@ import {
   MatIconModule, MatMenuModule,
   MatTooltipModule, MatAutocompleteModule, MatStepperModule, MatSidenavModule, MatToolbarModule,
 } from '@angular/material';
+import { ProyectosService } from '../../proyectos/shared/proyectos.service';
 
 const COMPONENTS: any[] = [
   TesisProcesosComponent,
@@ -85,6 +86,7 @@ const MATERIAL_MODULES: any[] = [
     TareaReactiveService,
     TesisProcesoService,
     CampoService,
+    ProyectosService,
   ],
   entryComponents: [
     CreateTesisProcesoDialogComponent,

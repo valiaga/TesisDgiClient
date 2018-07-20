@@ -20,11 +20,23 @@ interface IResponse {
 }
 
 @Injectable()
-export class ProyectoService {
+export class ProyectosService {
   private readonly url = 'proyecto/proyectos/';
 
 
   constructor(private http: HttpClient) { }
+
+  public add$(proyecto: Proyecto): Observable<Proyecto> {
+    return this.http.post<Proyecto>(this.url, proyecto);
+  }
+
+  public update$(id: string, proyecto: Proyecto): Observable<Proyecto> {
+    return this.http.put<Proyecto>(`${this.url}${id}/`, proyecto);
+  }
+
+  public patch$(id: string, attrModify: any): Observable<Proyecto> {
+    return this.http.patch<Proyecto>(`${this.url}${id}/`, attrModify);
+  }
 
   /**
    * Método para recuperar todos los proyectos
