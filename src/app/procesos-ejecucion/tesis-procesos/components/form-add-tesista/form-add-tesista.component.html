@@ -1,0 +1,23 @@
+<div class="add-tesista-container">
+  <form [formGroup]="addTesistaForm" (ngSubmit)="onSubmit()" novalidate class="add-tesista-container">
+    <h5> Tesista</h5>
+
+    <!-- Tesista -->
+    <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="dgi-full-width">
+      <input matInput placeholder="Nombres o Número de documento del Tesista" formControlName="tesista" required [matAutocomplete]="persona">
+
+      <mat-autocomplete #persona="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let tesista of filteredOptions | async" [value]="persona">
+          {{ tesista | json }}
+          <!-- {{ tesista.persona.nombres }} {{ tesista.persona.apellido_paterno }} {{ tesista.persona.apellido_materno }} -->
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- Buttons Actions -->
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!addTesistaForm.valid" tabindex="0">Aceptar</button>
+      <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+    </div>
+  </form>
+</div>

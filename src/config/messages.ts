@@ -35,6 +35,7 @@ export const MESSAGES = {
         put: 'El proceso de tesis se actualizó con Éxito.',
 
         confirmDelete: '¿Estas segur@ que quieres eliminar el proceso de tesis?',
+        confirmAddTesista: '¿Estas segur@ que quieres agregar al tesista al proceso?',
         confirmCreate: '¿Estas segur@ que quieres guardar el proceso de tesis?',
     },
     lineaInvestigacion: {

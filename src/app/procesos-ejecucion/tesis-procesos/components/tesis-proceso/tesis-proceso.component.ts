@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, ViewChild, ViewContainerRef } from '@angular/core';
 import { TesisProcesoService, TesisProceso } from '../../shared';
-import { MatMenuTrigger, MatSnackBar } from '@angular/material';
+import { MatMenuTrigger, MatSnackBar, MatDialog } from '@angular/material';
 import { TdDialogService } from '@covalent/core';
 import { MESSAGES } from 'config/messages';
 import { getMessageConfirm } from 'config/general';
+import { FormAddTesistaComponent } from '../form-add-tesista/form-add-tesista.component';
 
 @Component({
   selector: 'dgi-tesis-proceso',
@@ -32,7 +33,7 @@ import { getMessageConfirm } from 'config/general';
       <mat-icon>class</mat-icon>
       <span>Ver</span>
     </a>
-    <button mat-menu-item [routerLink]="['./tesis-procesos', tesisProceso.id]">
+    <button mat-menu-item (click)="addTesista()">
       <mat-icon>person_add</mat-icon>
       <span>Agregar Tesista</span>
     </button>
@@ -81,6 +82,7 @@ export class TesisProcesoComponent implements OnInit {
   constructor(private tesisProcesoService: TesisProcesoService,
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService,
+    private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
@@ -96,5 +98,17 @@ export class TesisProcesoComponent implements OnInit {
         } else {
         }
       });
+  }
+
+  public addTesista() {
+    const dialogRef = this.dialog.open(FormAddTesistaComponent, {
+      width: '500px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        // this.getPerfiles();
+      }
+    });
   }
 }
