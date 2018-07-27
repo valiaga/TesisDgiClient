@@ -17,7 +17,9 @@ export interface FieldConfig {
 
 
     id: string;
-    model?: string;
+    model_name?: string;
+    model_pk?: string;
+    model_label?: string;
     json?: string;
     formulario?: string;
     icon?: string;

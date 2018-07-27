@@ -1,10 +1,10 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
-import { TesisProcesoService, TesisProceso } from '../../shared';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { TdDialogService } from '@covalent/core';
 import { MESSAGES } from 'config/messages';
 import { getMessageConfirm } from 'config/general';
+import { TesisProceso } from '../../../tesis-procesos/shared';
 
 
 @Component({

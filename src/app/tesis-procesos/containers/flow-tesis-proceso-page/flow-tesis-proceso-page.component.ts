@@ -4,12 +4,17 @@ import { MatStepper } from '@angular/material';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { Validators, Form } from '@angular/forms';
 import { ValidatorFn } from '@angular/forms/src/directives/validators';
-import { Etapa } from '../../../../etapas/shared/etapa';
-import { Tarea } from '../../../../tareas/models/tarea';
-import { EtapaService } from '../../../../etapas/shared/etapa.service';
-import { TareaService } from '../../../../tareas/shared/tarea.service';
+// import { Etapa } from '../../../../etapas/shared/etapa';
+// import { Tarea } from '../../../../tareas/models/tarea';
+// import { EtapaService } from '../../../../etapas/shared/etapa.service';
+// import { TareaService } from '../../../../tareas/shared/tarea.service';
 import { Validation } from '@dgi/formularios-dinamicos-datos/models';
-import { FieldConfig } from '../../../../dynamic-form/models.1/field-config';
+import { Etapa } from '../../../etapas/shared/etapa';
+import { Tarea } from '../../../tareas/models/tarea';
+import { EtapaService } from '../../../etapas/shared/etapa.service';
+import { TareaService } from '../../../tareas/shared/tarea.service';
+import { FieldConfig } from '../../../dynamic-form/models.1/field-config';
+// import { FieldConfig } from '../../../../dynamic-form/models.1/field-config';
 
 @Component({
   selector: 'dgi-flow-tesis-proceso-page',
@@ -36,7 +41,6 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit() {
-
     this.onSubscribeSidenavEtapas();
     this.onSubscribeTareasStepper();
 

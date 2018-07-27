@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TesisProcesoService, TesisProceso } from '../../shared';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { TesisProceso, TesisProcesoService } from '../../../tesis-procesos/shared';
 
 @Component({
   selector: 'dgi-find-tesis-proceso-page',

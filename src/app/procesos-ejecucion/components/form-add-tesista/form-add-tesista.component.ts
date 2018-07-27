@@ -2,12 +2,12 @@ import { Component, OnInit, ViewContainerRef, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map, switchMap } from 'rxjs/operators';
-import { TesistasService } from '../../../../tesistas/shared/tesistas.service';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm, snackBarDuration } from 'config/general';
 import { MESSAGES } from 'config/messages';
-import { ProyectosService } from '../../../../proyectos/shared/proyectos.service';
 import { MAT_DIALOG_DATA, MatDialogRef, MatSnackBar } from '@angular/material';
+import { ProyectosService } from '../../../proyectos/shared/proyectos.service';
+import { TesistasService } from '../../../tesistas/shared/tesistas.service';
 
 @Component({
   selector: 'dgi-form-add-tesista',

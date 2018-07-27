@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { FlowTesisProcesoPageComponent, FindTesisProcesoPageComponent } from './containers';
+import { FlowTesisProcesoPageComponent } from './containers';
 import { TesisProcesosComponent } from './tesis-procesos.component';
 
 /**
@@ -16,17 +16,8 @@ const routes: Routes = [
     component: TesisProcesosComponent,
     children: [
       {
-        path: 'proyectos',
-        component: FindTesisProcesoPageComponent,
-      },
-      {
         path: ':id',
         component: FlowTesisProcesoPageComponent,
-      },
-      {
-        path: '',
-        redirectTo: 'proyectos',
-        pathMatch: 'full',
       },
     ],
   },

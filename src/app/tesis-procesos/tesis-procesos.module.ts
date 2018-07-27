@@ -4,23 +4,25 @@ import { NgModule } from '@angular/core';
 import { TesisProcesosRoutingModule } from './tesis-procesos-routing.module';
 import { TesisProcesoService } from './shared/tesis-proceso.service';
 import {
-  FlowTesisProcesoPageComponent, FindTesisProcesoPageComponent,
-  CreateTesisProcesoDialogComponent,
+  FlowTesisProcesoPageComponent,
+  //  FindTesisProcesoPageComponent,
+  // CreateTesisProcesoDialogComponent,
 } from './containers';
 import {
-  TesisProcesoComponent, TesisProcesoListComponent,
+  // TesisProcesoComponent,
+  // TesisProcesoListComponent,
   StepComponent, StepListComponent, FlowButtonsFooterComponent,
-  FormAddTesistaComponent,
+  // FormAddTesistaComponent,
 } from './components';
 
 import { DgiFormulariosDinamicosDatosModule } from '@dgi/formularios-dinamicos-datos';
 import { TesisProcesosComponent } from './tesis-procesos.component';
-import { AngularModule } from '../../shared/angular/angular.module';
-import { MaterialModule } from '../../shared/material/material.module';
-import { UtilsModule } from '../../shared/components/utils.module';
-import { EtapaService, EtapaReactiveService } from '../../etapas/shared/etapa.service';
-import { TareaService, TareaReactiveService } from '../../tareas/shared/tarea.service';
-import { CampoService } from '../../dynamic-form/shared/campo.service';
+// import { AngularModule } from '../../shared/angular/angular.module';
+// import { MaterialModule } from '../../shared/material/material.module';
+// import { UtilsModule } from '../../shared/components/utils.module';
+// import { EtapaService, EtapaReactiveService } from '../../etapas/shared/etapa.service';
+// import { TareaService, TareaReactiveService } from '../../tareas/shared/tarea.service';
+// import { CampoService } from '../../dynamic-form/shared/campo.service';
 import {
   MatCardModule, MatFormFieldModule,
   MatDialogModule, MatInputModule, MatRadioModule,
@@ -28,19 +30,22 @@ import {
   MatIconModule, MatMenuModule,
   MatTooltipModule, MatAutocompleteModule, MatStepperModule, MatSidenavModule, MatToolbarModule,
 } from '@angular/material';
-import { ProyectosService } from '../../proyectos/shared/proyectos.service';
+import { CommonModule } from '../../../node_modules/@angular/common';
+import { EtapaService } from '../etapas/shared/etapa.service';
+import { TareaService } from '../tareas/shared/tarea.service';
+// import { ProyectosService } from '../../proyectos/shared/proyectos.service';
 
 const COMPONENTS: any[] = [
   TesisProcesosComponent,
-  TesisProcesoListComponent,
-  CreateTesisProcesoDialogComponent,
-  FindTesisProcesoPageComponent,
-  TesisProcesoComponent,
+  // TesisProcesoListComponent,
+  // CreateTesisProcesoDialogComponent,
+  // FindTesisProcesoPageComponent,
+  // TesisProcesoComponent,
   FlowTesisProcesoPageComponent,
   FlowButtonsFooterComponent,
   StepComponent,
   StepListComponent,
-  FormAddTesistaComponent
+  // FormAddTesistaComponent
 ];
 
 const MATERIAL_MODULES: any[] = [
@@ -66,10 +71,11 @@ const MATERIAL_MODULES: any[] = [
 
 @NgModule({
   imports: [
-    AngularModule,
+    // AngularModule,
     // MaterialModule,
+    CommonModule,
     ...MATERIAL_MODULES,
-    UtilsModule,
+    // UtilsModule,
     // DynamicFormModule,
     DgiFormulariosDinamicosDatosModule,
 
@@ -80,17 +86,17 @@ const MATERIAL_MODULES: any[] = [
   ],
   providers: [
 
-    EtapaService,
-    EtapaReactiveService,
     TareaService,
-    TareaReactiveService,
+    // TareaReactiveService,
     TesisProcesoService,
-    CampoService,
-    ProyectosService,
+    EtapaService,
+    // CampoService,
+    // ProyectosService,
   ],
   entryComponents: [
-    CreateTesisProcesoDialogComponent,
-    FormAddTesistaComponent,
+    // CreateTesisProcesoDialogComponent,
+    // FormAddTesistaComponent,
   ],
 })
-export class TesisProcesosModule { }
+export class TesisProcesosModule {
+}

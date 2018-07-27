@@ -12,13 +12,13 @@ import { AuthGuardService } from './auth/shared/auth-guard.service';
 
 // Array con las rutas de la aplicación
 const routes: Routes = [
-  // {
-    // path: 'tesis-procesos',
-    // loadChildren: 'app/tesis-procesos/tesis-procesos.module#TesisProcesosModule',
-    // canActivate: [
-      // AuthGuardService,
-    // ],
-  // },
+  {
+    path: 'tesis-procesos',
+    loadChildren: 'app/tesis-procesos/tesis-procesos.module#TesisProcesosModule',
+    canActivate: [
+      AuthGuardService,
+    ],
+  },
   {
     path: 'auth',
     loadChildren: 'app/auth/auth.module#AuthModule'

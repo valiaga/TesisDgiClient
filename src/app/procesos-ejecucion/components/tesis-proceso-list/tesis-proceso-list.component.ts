@@ -1,8 +1,7 @@
-// import { TesisProcesoService, TesisProceso } from '../../shared';
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { CreateTesisProcesoDialogComponent } from '../../containers';
-import { TesisProceso } from '../../shared';
+import { TesisProceso } from '../../../tesis-procesos/shared';
 
 
 @Component({

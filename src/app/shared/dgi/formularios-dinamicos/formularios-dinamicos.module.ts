@@ -58,6 +58,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CovalentFileModule } from '@covalent/core';
+import { SelectModelService } from '@dgi/formularios-dinamicos/components/fields/form-select/select-model.service';
 
 const DIRECTIVES: any[] = [
     DgiDynamicFieldDirective,
@@ -127,6 +128,8 @@ const COVALENT_MODULES: any[] = [
     ],
     providers: [
         FormWidthToolsService,
+
+        SelectModelService,
     ],
 })
 export class DgiFormulariosDinamicosModule { }

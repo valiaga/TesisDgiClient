@@ -1,10 +1,11 @@
 <!-- [hideRequiredMarker]="[config.required]" -->
 <mat-form-field [ngClass]="getWidthControlClass()" [formGroup]="group" [floatLabel]="['auto']">
-  <mat-select [required]="config.required" [disabled]="config.disabled" [multiple]="config.multiselect" [placeholder]="config.label" [id]="config.name" [formControlName]="config.name">
+  <mat-select [required]="config.required" [disabled]="config.disabled" [multiple]="config.multiselect" [placeholder]="config.label"
+    [id]="config.name" [formControlName]="config.name">
     <mat-option value="">{{ config.placeholder }}</mat-option>
-    <ng-container *ngIf="!config.model">
-      <mat-option *ngFor="let option of JSONparse" [value]="option?.id">{{ option?.label }}</mat-option>
-    </ng-container>
+    <!-- <ng-container *ngIf="config.model"> -->
+    <mat-option *ngFor="let option of JSONparse" [value]="option?.id">{{ option?.label }}</mat-option>
+    <!-- </ng-container> -->
   </mat-select>
   <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
   <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
