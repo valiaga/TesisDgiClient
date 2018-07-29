@@ -1,0 +1,24 @@
+<mat-card class="proceso-card" role="region">
+  <mat-card-content>
+    <p>
+      <b>{{ nombre | uppercase }}</b>
+    </p>
+  </mat-card-content>
+  <mat-card-actions align='end'>
+    <button color="accent" [routerLink]="['./', id]" mat-button>INGRESAR</button>
+  </mat-card-actions>
+</mat-card>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title fxLayout fxLayoutAlign="space-between stretch">
+      Esta es mi Tesis
+      <button mat-icon-button color="primary" (click)="add()">
+        <mat-icon>playlist_add</mat-icon>
+      </button>
+    </mat-card-title>
+    <mat-card-subtitle>
+      subtitle
+    </mat-card-subtitle>
+    <img mat-card-avatar>
+  </mat-card-header>
+</mat-card>

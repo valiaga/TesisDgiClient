@@ -3,6 +3,10 @@ import { TesisProcesoService, TesisProceso } from '../../shared';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
+import { ProcesosService } from '../../../../procesos/shared/proceso.service';
+import { MESSAGES } from 'config/messages';
+import { snackBarDuration } from 'config/general';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'dgi-find-tesis-proceso-page',
@@ -10,37 +14,52 @@ import { map } from 'rxjs/operators';
   styles: [],
 })
 export class FindTesisProcesoPageComponent implements OnInit {
-  public tesisProcesos$: Observable<TesisProceso[]>;
+  // public tesisProcesos$: Observable<TesisProceso[]>;
+  public tesisProcesos: TesisProceso[];
   private procesoId = null;
 
   constructor(
     private tesisProcesoService: TesisProcesoService,
+    private procesosService: ProcesosService,
     private route: ActivatedRoute,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
-    this.tesisProcesos$ = this.tesisProcesoService.tesisProcesos;
-
     this.route.parent.paramMap
       .pipe(map(params => params.get('proceso_id')))
       .subscribe(procesoId => {
         this.procesoId = procesoId;
-        console.log('procesoId: ', procesoId);
         this.getTesisProcesos(this.procesoId.toString());
       });
   }
 
   public getTesisProcesos(proceso_id: string) {
-    this.tesisProcesoService.getTesisProcesosByProcesoId(proceso_id);
+    this.procesosService.getTesisProcesos$(proceso_id)
+      .subscribe(this.loadTesisProcesos.bind(this));
+  }
+  private loadTesisProcesos(response) {
+    this.tesisProcesos = response;
   }
 
   public onSave(data) {
     data.proceso = this.procesoId;
-    this.tesisProcesoService.createTesisProcesoAndProyecto(data);
+    this.tesisProcesoService.addTesisProcesoAndProyecto$(data)
+      .subscribe(() => {
+        this.snackBar.open(MESSAGES.tesisProceso.post, MESSAGES.actions.post, snackBarDuration);
+        this.onRefreshLista();
+      });
   }
 
-  public onRefresh(event) {
+  public onRefreshLista(event?) {
+    this.getTesisProcesos(this.procesoId.toString());
+  }
 
+  public onDelete(event) {
+    this.tesisProcesoService.delete$(event).subscribe(() => {
+      this.snackBar.open(MESSAGES.tesisProceso.delete, MESSAGES.actions.delete, snackBarDuration);
+      this.onRefreshLista();
+    });
   }
 
 }

@@ -1,5 +1,5 @@
 import { ActivatedRoute } from '@angular/router';
-import { ProcesoService } from '../shared/proceso.service';
+// import { ProcesoService } from '../shared/proceso.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 import { StepState, TdDialogService } from '@covalent/core';
@@ -15,6 +15,7 @@ import { EtapaReactiveService } from '../../etapas/shared/etapa.service';
 import { Etapa } from '../../etapas/shared/etapa';
 import { RolProceso } from '../../rol-proceso/shared/rol-proceso.model';
 import { RolProcesoService } from '../../rol-proceso/shared/rol-proceso.service';
+import { ProcesosReactiveService, ProcesosService } from '../shared/proceso.service';
 
 @Component({
   selector: 'dgi-editor',
@@ -32,7 +33,8 @@ export class EditorComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private dialog: MatDialog,
-    private procesoService: ProcesoService,
+    private procesosReactiveService: ProcesosReactiveService,
+    private procesosService: ProcesosService,
     private tdDialogService: TdDialogService,
     private rolProcesoService: RolProcesoService,
     private etapaReactiveService: EtapaReactiveService,
@@ -98,7 +100,7 @@ export class EditorComponent implements OnInit {
   }
 
   public getProceso(procesoId: string) {
-    this.procesoService.getProcesoById$(procesoId)
+    this.procesosService.getById$(procesoId)
       .subscribe(this.patchProceso.bind(this));
   }
 
@@ -106,7 +108,7 @@ export class EditorComponent implements OnInit {
     const valid = this.procesoForm.valid;
     const value = this.procesoForm.value;
     if (valid) {
-      this.procesoService.updateProceso(value);
+      this.procesosReactiveService.update(value);
     }
   }
 

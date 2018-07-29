@@ -1,20 +1,8 @@
-// import { SettingsService } from '../shared/settings.service';
-// import { UserService } from '../auth/user/user.service';
-import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-// import { CommonModule } from '@angular/common';
-import { AngularModule } from '../shared/angular/angular.module';
-import { MaterialModule } from '../shared/material/material.module';
-import { CovalentModule } from '../shared/covalent/covalent.module';
-import { UtilsModule } from '../shared/components/utils.module';
-
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { EditorComponent } from './editor/editor.component';
-
 import { ProcesosRoutingModule } from './procesos-routing.module';
 import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
-
-import { ProcesoService } from './shared/proceso.service';
 import {
   MatCardModule, MatInputModule, MatGridListModule,
   MatSlideToggleModule, MatListModule, MatTabsModule,
@@ -22,7 +10,7 @@ import {
   MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule,
 } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { CovalentExpansionPanelModule, CovalentStepsModule } from '@covalent/core';
+import { CovalentStepsModule } from '@covalent/core';
 import { CommonModule } from '@angular/common';
 import { DgiButtonFabModule } from '../shared/dgi/button-fab';
 import { EtapaReactiveService, EtapaService } from '../etapas/shared/etapa.service';
@@ -31,7 +19,6 @@ import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.servi
 import { ProcesosComponent } from './procesos.component';
 import { RequisitoReactiveService, RequisitosService } from '../requisitos/shared/requisitos.service';
 import { FormToolsService } from '../shared/form-tools.service';
-// import { DynamicFormModule } from '../dynamic-form/dynamic-form.module';
 
 import { FormularioNewComponent, FormulariosListComponent, FormularioEditComponent } from './components/formularios';
 import { EtapaEditorComponent, EtapaNewComponent } from './components/etapas';
@@ -151,7 +138,6 @@ const CAMPOS_COMPONENTS: any = [
     ...CAMPOS_COMPONENTS,
   ],
   providers: [
-    ProcesoService,
     RolProcesoService,
     EtapaReactiveService,
     EtapaService,

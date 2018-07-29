@@ -12,3 +12,9 @@ export interface IResponse {
     options: Options;
     results: any[];
 }
+
+export interface IModel {
+    id: string;
+    fecha_creacion: String;
+    fecha_actualizacion: String;
+}

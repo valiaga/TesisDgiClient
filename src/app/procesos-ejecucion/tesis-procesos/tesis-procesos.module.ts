@@ -2,13 +2,13 @@
 import { NgModule } from '@angular/core';
 
 import { TesisProcesosRoutingModule } from './tesis-procesos-routing.module';
-import { TesisProcesoService } from './shared/tesis-proceso.service';
+import { TesisProcesoService, TesisProcesoReactiveService } from './shared/tesis-proceso.service';
 import {
   FlowTesisProcesoPageComponent, FindTesisProcesoPageComponent,
   CreateTesisProcesoDialogComponent,
 } from './containers';
 import {
-  TesisProcesoComponent, TesisProcesoListComponent,
+  TesisProcesoListComponent,
   StepComponent, StepListComponent, FlowButtonsFooterComponent,
   FormAddTesistaComponent,
 } from './components';
@@ -29,13 +29,13 @@ import {
   MatTooltipModule, MatAutocompleteModule, MatStepperModule, MatSidenavModule, MatToolbarModule,
 } from '@angular/material';
 import { ProyectosService } from '../../proyectos/shared/proyectos.service';
+import { ProcesosService } from '../../procesos/shared/proceso.service';
 
 const COMPONENTS: any[] = [
   TesisProcesosComponent,
   TesisProcesoListComponent,
   CreateTesisProcesoDialogComponent,
   FindTesisProcesoPageComponent,
-  TesisProcesoComponent,
   FlowTesisProcesoPageComponent,
   FlowButtonsFooterComponent,
   StepComponent,
@@ -85,6 +85,8 @@ const MATERIAL_MODULES: any[] = [
     TareaService,
     TareaReactiveService,
     TesisProcesoService,
+    TesisProcesoReactiveService,
+    ProcesosService,
     CampoService,
     ProyectosService,
   ],

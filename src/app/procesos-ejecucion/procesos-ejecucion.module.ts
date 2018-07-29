@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { MaterialModule } from '../shared/material/material.module';
 import { AngularModule } from '../shared/angular/angular.module';
-import { ProcesoService } from '../procesos/shared/proceso.service';
+import { ProcesosService } from '../procesos/shared/proceso.service';
 
 import { ListProcesoPageComponent } from './containers';
 import { ProcesoComponent, ProcesoListComponent } from './components';
@@ -24,7 +24,7 @@ import { ProcesosEjecucionComponent } from './procesos-ejecucion.component';
     ProcesoComponent,
   ],
   providers: [
-    ProcesoService,
+    ProcesosService,
     // UserService
   ]
 })

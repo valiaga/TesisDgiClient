@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Proceso } from '../models/proceso.model';
 import { Observable } from 'rxjs';
-import { ProcesoService } from '../shared/proceso.service';
+import { ProcesosReactiveService } from '../shared/proceso.service';
+// import { ProcesoService } from '../shared/proceso.service';
 
 @Component({
   selector: 'dgi-find-proceso-page',
@@ -33,15 +34,15 @@ import { ProcesoService } from '../shared/proceso.service';
 export class FindProcesoPageComponent implements OnInit {
   public procesos$: Observable<Proceso[]>;
 
-  constructor(private procesoService: ProcesoService) { }
+  constructor(private procesosReactiveService: ProcesosReactiveService) { }
 
   ngOnInit() {
-    this.procesos$ = this.procesoService.procesos;
+    this.procesos$ = this.procesosReactiveService.procesos;
     this.getProcesos();
   }
 
   getProcesos() {
-    this.procesoService.getAllProcesos();
+    this.procesosReactiveService.getAll();
   }
 
 }

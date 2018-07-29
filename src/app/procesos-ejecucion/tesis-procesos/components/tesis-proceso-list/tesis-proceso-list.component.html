@@ -1,0 +1,40 @@
+<div class="card-container">
+    <mat-card class="mat-card" *ngFor="let tesisProceso of tesisProcesos">
+        <mat-card-header>
+            <button mat-icon-button color="primary" [matMenuTriggerFor]="tesisProcesoMenu" [matMenuTriggerData]="{tesisProceso: tesisProceso}">
+                <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-card-subtitle>
+                <ng-container *ngFor="let tesista of (tesisProceso.data_proyecto.data_tesista)">
+                    {{ tesista.data_persona.nombres }} {{ tesista.data_persona.apellido_paterno }} {{ tesista.data_persona.apellido_materno }}
+                </ng-container>
+            </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            {{ tesisProceso.data_proyecto.titulo }}
+        </mat-card-content>
+    </mat-card>
+    <dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
+</div>
+
+
+<mat-menu #tesisProcesoMenu="matMenu" yPosition="below" xPosition="before">
+    <ng-template matMenuContent let-tesisProceso="tesisProceso">
+        <a target="_blank" mat-menu-item [routerLink]="['/tesis-procesos', tesisProceso.id]">
+            <mat-icon>class</mat-icon>
+            <span>Ver</span>
+        </a>
+        <button mat-menu-item (click)="addTesista(tesisProceso.data_proyecto)">
+            <mat-icon>person_add</mat-icon>
+            <span>Agregar Tesista</span>
+        </button>
+        <button mat-menu-item (click)="deleteTesisProceso(tesisProceso.id)">
+            <mat-icon>delete</mat-icon>
+            <span>Eliminar</span>
+        </button>
+        <button mat-menu-item>
+            <mat-icon>settings</mat-icon>
+            <span>Settings</span>
+        </button>
+    </ng-template>
+</mat-menu>

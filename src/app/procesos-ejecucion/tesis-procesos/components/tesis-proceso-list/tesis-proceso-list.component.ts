@@ -1,37 +1,29 @@
-// import { TesisProcesoService, TesisProceso } from '../../shared';
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { CreateTesisProcesoDialogComponent } from '../../containers';
 import { TesisProceso } from '../../shared';
-
+import { TdDialogService } from '@covalent/core';
+import { getMessageConfirm } from 'config/general';
+import { MESSAGES } from 'config/messages';
+import { FormAddTesistaComponent } from '../form-add-tesista/form-add-tesista.component';
 
 @Component({
   selector: 'dgi-tesis-proceso-list',
-  template: `
-    <div class="card-container">
-      <dgi-tesis-proceso *ngFor="let tesisProceso of tesisProcesos" [tesisProceso] = "tesisProceso" (onRefresh)="onRefresh.emit($event)">
-      </dgi-tesis-proceso>
-
-      <dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
-    </div>
-      `,
-  styles: [
-    `
-    .card-container{
-      display: flex;
-      flex-flow: row wrap;
-    }
-    `
-  ]
+  templateUrl: 'tesis-proceso-list.component.html',
+  styleUrls: ['tesis-proceso-list.component.scss'],
 })
 export class TesisProcesoListComponent implements OnInit {
 
   @Input() tesisProcesos: TesisProceso[];
   @Output() onSave = new EventEmitter<any>();
-  @Output() onRefresh = new EventEmitter<any>();
+  @Output() onRefreshLista = new EventEmitter<any>();
+  @Output() onDelete = new EventEmitter<string>();
 
   constructor(
+    // private tesisProcesoReactiveService: TesisProcesoReactiveService,
+    private tdDialogService: TdDialogService,
     private dialog: MatDialog,
+    private viewContainerRef: ViewContainerRef,
   ) { }
 
   ngOnInit() {
@@ -48,6 +40,34 @@ export class TesisProcesoListComponent implements OnInit {
       } else {
         console.log('has cancel');
         console.log(result && result.realData);
+      }
+    });
+  }
+
+  public deleteTesisProceso(tesisProcesoId: string) {
+
+    this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tesisProceso.confirmDelete, this.viewContainerRef))
+      .afterClosed().subscribe((accept: boolean) => {
+        if (accept) {
+          this.onDelete.emit(tesisProcesoId);
+          // this.tesisProcesoReactiveService.delete(tesisProcesoId);
+        } else {
+        }
+      });
+  }
+
+  public addTesista(proyecto) {
+    const dialogRef = this.dialog.open(FormAddTesistaComponent, {
+      width: '500px',
+      data: {
+        proyecto: proyecto,
+      },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.onRefreshLista.emit();
+        // this.getPerfiles();
       }
     });
   }
