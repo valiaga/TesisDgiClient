@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { TesisProcesosRoutingModule } from './tesis-procesos-routing.module';
 import { TesisProcesoService } from './shared/tesis-proceso.service';
 import { FlowTesisProcesoPageComponent } from './containers';
-import { StepListComponent, FlowButtonsFooterComponent } from './components';
+import { StepListComponent, FlowButtonsFooterComponent, StepComponent } from './components';
 import { DgiFormulariosDinamicosDatosModule } from '@dgi/formularios-dinamicos-datos';
 import { TesisProcesosComponent } from './tesis-procesos.component';
 import {
@@ -15,6 +15,7 @@ import {
 
 import { CommonModule } from '../../../node_modules/@angular/common';
 import { TareaService } from '../tareas/shared/tarea.service';
+import { EtapaService } from '../etapas/shared/etapa.service';
 
 const COMPONENTS: any[] = [
   TesisProcesosComponent,
@@ -22,6 +23,7 @@ const COMPONENTS: any[] = [
   FlowTesisProcesoPageComponent,
   FlowButtonsFooterComponent,
   StepListComponent,
+  StepComponent,
 ];
 
 const MATERIAL_MODULES: any[] = [
@@ -55,6 +57,7 @@ const MATERIAL_MODULES: any[] = [
   providers: [
     TareaService,
     TesisProcesoService,
+    EtapaService,
   ],
   entryComponents: [
   ],

@@ -1,0 +1,53 @@
+<mat-card>
+  <div class="button-row">
+    <button [ngClass]="{'gbi-not-visivility': !oneSelected}" mat-icon-button matTooltip="Editar seleccionado" (click)="onEditarDocumento()">
+      <mat-icon aria-label="Eliminar seleccionados" color="warn">edit</mat-icon>
+    </button>
+    <button [ngClass]="{'gbi-not-visivility': !moreOfOneSelected}" mat-icon-button matTooltip="Eliminar seleccionados" (click)="onDeleteDocumentos()">
+      <mat-icon aria-label="Eliminar seleccionados" color="warn">delete</mat-icon>
+    </button>
+  </div>
+</mat-card>
+
+<mat-table #table [dataSource]="dataSource">
+
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <mat-header-cell *matHeaderCellDef>
+      <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()" [indeterminate]="selection.hasValue() && !isAllSelected()">
+      </mat-checkbox>
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)">
+      </mat-checkbox>
+    </mat-cell>
+  </ng-container>
+
+  <!-- Column Nombre -->
+  <ng-container matColumnDef="nombre">
+    <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.nombre }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Alias -->
+  <ng-container matColumnDef="alias">
+    <mat-header-cell *matHeaderCellDef>Alias</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.alias }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Llave -->
+  <ng-container matColumnDef="llave_documento">
+    <mat-header-cell *matHeaderCellDef>Llave</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.llave_documento }}</mat-cell>
+  </ng-container>
+
+  <!-- Column Estado -->
+  <ng-container matColumnDef="activo">
+    <mat-header-cell *matHeaderCellDef>Activo</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{ element.activo }}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></mat-row>
+
+</mat-table>

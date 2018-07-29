@@ -36,6 +36,8 @@ import { DgiFormulariosDinamicosModule } from '@dgi/formularios-dinamicos';
 import { FormularioService } from '../formularios/shared/formulario.service';
 import { CamposNewComponent, CamposEditComponent } from './components/campos';
 import { CamposService } from '../campos/shared/campos.service';
+import { ValidadorNewComponent } from './components/validadores';
+import { GeneradorDocumentosNewComponent } from './components/generador-documentos';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -105,6 +107,14 @@ const CAMPOS_COMPONENTS: any = [
   CamposEditComponent,
 ];
 
+const VALIDADORES_COMPONENTS: any[] = [
+  ValidadorNewComponent,
+];
+
+const GENERADOR_DOCUMENTO_COMPONENTS: any[] = [
+  GeneradorDocumentosNewComponent,
+];
+
 @NgModule({
   imports: [
     // AngularModule,
@@ -137,6 +147,8 @@ const CAMPOS_COMPONENTS: any = [
     ...REQUISITOS_COMPONENTS,
     ...TAREAS_COMPONENTS,
     ...CAMPOS_COMPONENTS,
+    ...GENERADOR_DOCUMENTO_COMPONENTS,
+    ...VALIDADORES_COMPONENTS,
   ],
   providers: [
     RolProcesoService,
@@ -161,6 +173,9 @@ const CAMPOS_COMPONENTS: any = [
     FormularioEditComponent,
     CamposNewComponent,
     CamposEditComponent,
+
+    GeneradorDocumentosNewComponent,
+    ValidadorNewComponent,
   ],
 })
 export class ProcesosModule { }

@@ -10,6 +10,7 @@ import { Tarea } from '../../../tareas/models/tarea';
 import { EtapaService } from '../../../etapas/shared/etapa.service';
 import { TareaService } from '../../../tareas/shared/tarea.service';
 import { FieldConfig } from '../../../dynamic-form/models.1/field-config';
+import { TesisProcesoService } from '../../shared';
 
 @Component({
   selector: 'dgi-flow-tesis-proceso-page',
@@ -20,6 +21,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   public etapas: Etapa[];
   public tareas: Tarea[];
   public formularios: Form[];
+  public tesisProceso: any;
 
   private campos: any[];
 
@@ -33,6 +35,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     private etapaService: EtapaService,
     private route: ActivatedRoute,
     private tareaService: TareaService,
+    private TesisProcesoService: TesisProcesoService,
   ) { }
 
   ngOnInit() {
@@ -42,39 +45,48 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     this.route.params.subscribe(params => {
       const TesisProcesoId = params['id'];
       if (TesisProcesoId) {
-        this.initEtapasByProcesoId(TesisProcesoId);
+        this.getEtapasByTesisProcesoId(TesisProcesoId);
+        this.getTesisProcesoById(TesisProcesoId);
       } else {
         console.warn('No hay id de la tesis.');
       }
     });
   }
 
-  public initEtapasByProcesoId(TesisProcesoId: string) {
+  public getTesisProcesoById(tesisProcesoId) {
+    this.TesisProcesoService.getById$(tesisProcesoId).subscribe(response => {
+      this.tesisProceso = response;
+    });
+  }
+
+  public getEtapasByTesisProcesoId(TesisProcesoId: string) {
     this.etapaService.getEtapasByTesisProcesoId(TesisProcesoId)
       .subscribe(this.loadEtapasByTesisProcesoId.bind(this));
   }
 
   private loadEtapasByTesisProcesoId(etapas) {
     this.etapas = etapas;
-    this.initGetTareasByEtapaId(etapas[0].id);
+    this.getTareasByEtapaId(etapas[0].id);
   }
 
-  public initGetTareasByEtapaId(etapaId: string) {
+  public getTareasByEtapaId(etapaId: string) {
     this.tareaService.getTareasByEtapaId(etapaId)
       .subscribe(this.loadTareasByEtapaId.bind(this));
   }
 
   private loadTareasByEtapaId(tareas) {
     this.tareas = tareas;
-    this.initGetFormulariosByTareaId(tareas[0].id);
+    this.getFormulariosByTareaId(tareas[0].id);
   }
 
-  public initGetFormulariosByTareaId(tareaIdSelect: string) {
+  public getFormulariosByTareaId(tareaIdSelect: string) {
     this.tareaService.getFomulariosByTareaId$(tareaIdSelect)
       .subscribe(this.loadFormulariosByTareaId.bind(this));
   }
 
   private loadFormulariosByTareaId(formularios) {
+    console.log('formularios');
+    console.log(formularios);
     this.formularios = this.transformJsonForm(formularios);
   }
 
@@ -106,7 +118,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
 
     formularios.forEach(form => {
       const ICampos: FieldConfig[] = [];
-      form.campos.forEach(campo => {
+      form.data_campos.forEach(campo => {
         campo.validation = this.getListValidatorFn(campo.campovalidation_set);
         ICampos.push(campo);
       });
@@ -119,7 +131,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     this.sidenavEtapas.selectionChange.asObservable()
       .subscribe((stepper: StepperSelectionEvent) => {
         const etapaId = stepper.selectedStep.label;
-        this.initGetTareasByEtapaId(etapaId);
+        this.getTareasByEtapaId(etapaId);
       });
   }
 
@@ -127,8 +139,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     this.tareasStepper.selectionChange.asObservable()
       .subscribe((stepper: StepperSelectionEvent) => {
         const tareaId = stepper.selectedStep.label;
-        this.initGetFormulariosByTareaId(tareaId);
-        // this.formularioService.getFormulariosByTareaId(tareaId);
+        this.getFormulariosByTareaId(tareaId);
       });
   }
 

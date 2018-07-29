@@ -84,6 +84,13 @@ const routes: Routes = [
                 }
             },
             {
+                path: 'documentos',
+                loadChildren: '../documentos/documentos.module#DocumentosModule',
+                data: {
+                    title: 'Documentos'
+                }
+            },
+            {
                 path: 'auth',
                 loadChildren: '../auth/auth.module#AuthModule',
                 data: {

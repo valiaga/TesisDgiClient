@@ -12,6 +12,8 @@ import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { FormularioEditComponent } from '../formulario-edit/formulario-edit.component';
 import { CamposNewComponent, CamposEditComponent } from '../../campos';
+import { ValidadorNewComponent } from '../../validadores';
+import { GeneradorDocumentosNewComponent } from '../../generador-documentos';
 
 @Component({
     selector: 'dgi-formularios-list',
@@ -59,6 +61,28 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
 
     public getFormClass(formulario: any) {
         return this.formToolsService.getFormClass(formulario);
+    }
+
+    public agregarValidador(formulario) {
+        const dialogRef = this.dialog.open(ValidadorNewComponent, {
+            width: '900px',
+            data: { formulario: formulario },
+        });
+
+        dialogRef.afterClosed()
+            .pipe(mergeMap(res => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
+            .subscribe(this.loadFormularios.bind(this));
+    }
+
+    public agregarGeneradordoc(formulario) {
+        const dialogRef = this.dialog.open(GeneradorDocumentosNewComponent, {
+            width: '900px',
+            data: { formulario: formulario },
+        });
+
+        dialogRef.afterClosed()
+            .pipe(mergeMap(res => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
+            .subscribe(this.loadFormularios.bind(this));
     }
 
     public update(fieldId: string) {

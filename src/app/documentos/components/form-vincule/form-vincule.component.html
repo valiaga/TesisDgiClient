@@ -1,0 +1,27 @@
+<div class="tesista-vincule-container">
+  <form [formGroup]="tesistaVinculeForm" (ngSubmit)="onSubmit()" novalidate class="tesista-vincule-container">
+    <h5>Vincular un persona para Tesista</h5>
+
+    <!-- Persona -->
+    <mat-form-field [hideRequiredMarker]="[false]" [floatLabel]="['auto']" class="dgi-full-width">
+      <input matInput placeholder="Nombres o Número de documento de la persona" formControlName="persona" required [matAutocomplete]="persona">
+
+      <mat-autocomplete #persona="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let persona of filteredOptions | async" [value]="persona">
+          {{ persona.nombres }} {{ persona.apellido_paterno }} {{ persona.apellido_materno }}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+
+    <!-- Activo field -->
+    <div class="checkbox">
+      <mat-checkbox formControlName="activo">Activo</mat-checkbox>
+    </div>
+
+    <!-- Buttons Actions -->
+    <div mat-dialog-actions>
+      <button mat-button type="submit" [disabled]="!tesistaVinculeForm.valid" tabindex="0">Aceptar</button>
+      <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+    </div>
+  </form>
+</div>

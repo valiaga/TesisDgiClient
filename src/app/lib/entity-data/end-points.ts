@@ -6,7 +6,8 @@ export const endPoints = {
         tesisProcesos: 'tesis-proceso/tesis-procesos/',
     },
     proceso: {
-        procesos: 'proceso/procesos/'
-    }
+        procesos: 'proceso/procesos/',
+        documentos: 'proceso/documentos/',
+    },
 };
 

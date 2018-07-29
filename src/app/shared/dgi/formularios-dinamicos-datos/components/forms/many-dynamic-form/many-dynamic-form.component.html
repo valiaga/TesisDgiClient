@@ -4,7 +4,7 @@
     <mat-card-subtitle> {{ formulario.descripcion }}</mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
-    <dgi-dynamic-form [config]="formulario.campos" #form="dgiDynamicForm" (submit)="submit($event)">
+    <dgi-dynamic-form [config]="formulario.data_campos" #form="dgiDynamicForm" (submit)="submit($event)">
     </dgi-dynamic-form>
     {{ form.valid }} {{ form.value | json }}
   </mat-card-content>

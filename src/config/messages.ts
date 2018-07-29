@@ -86,6 +86,16 @@ export const MESSAGES = {
         confirmDelete: '¿Estas segur@ que quieres eliminar el Tesista?',
         confirmCreate: '¿Estas segur@ que quieres guardar el Tesista?',
     },
+    documento: {
+        delete: 'El Documento se eliminó con Éxito!.',
+        deleteAll: 'Los Documentos se eliminaron con Éxito!.',
+        post: 'El Documento se guardó con Éxito.',
+        getMany: 'Los Documentos se listaron con Éxito.',
+        getOne: 'El Documento se listó con Éxito.',
+        put: 'El Documento se actualizó con Éxito.',
+        confirmDelete: '¿Estas segur@ que quieres eliminar el Documento?',
+        confirmCreate: '¿Estas segur@ que quieres guardar el Documento?',
+    },
     persona: {
         delete: 'La Persona se eliminó con Éxito!.',
         deleteAll: 'Las Personas se eliminaron con Éxito!.',

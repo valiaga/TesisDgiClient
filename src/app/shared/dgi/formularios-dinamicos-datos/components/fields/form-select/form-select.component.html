@@ -1,0 +1,17 @@
+<!-- [hideRequiredMarker]="[config.required]" -->
+<mat-form-field [ngClass]="getWidthControlClass()" [formGroup]="group" [floatLabel]="['auto']">
+    <mat-select [required]="config.required" [disabled]="config.disabled" [multiple]="config.multiselect" [placeholder]="config.label"
+        [id]="config.name" [formControlName]="config.name">
+        <mat-option value="">{{ config.placeholder }}</mat-option>
+        <!-- <mat-option *ngFor="let option of config.options" [value]="option">{{ option }}</mat-option> -->
+        <mat-option *ngFor="let option of JSONparse" [value]="option?.id">{{ option?.label }}</mat-option>
+
+    </mat-select>
+    <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
+
+    <!--
+<mat-error *ngIf="mustShowErrors(config.name)">
+  <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
+</mat-error>
+-->
+</mat-form-field>
