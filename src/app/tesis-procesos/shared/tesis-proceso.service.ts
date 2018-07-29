@@ -1,12 +1,12 @@
-import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ITesisProceso, TesisProceso } from './tesis-proceso';
 import { MatSnackBar } from '@angular/material';
 import { MESSAGES } from 'config/messages';
 import { snackBarDuration } from 'config/general';
-import { EntityDataService } from '../../../lib/entity-data/entity-data.service';
-import { endPoints } from '../../../lib/entity-data/end-points';
+import { endPoints } from '../../lib/entity-data/end-points';
+import { EntityDataService } from '../../lib/entity-data/entity-data.service';
 
 @Injectable()
 export class TesisProcesoService extends EntityDataService<ITesisProceso> {
@@ -23,9 +23,6 @@ export class TesisProcesoService extends EntityDataService<ITesisProceso> {
 
 @Injectable()
 export class TesisProcesoReactiveService {
-  // private readonly url = 'tesis-proceso/tesis-procesos/';
-  // private readonly urlProcesos = 'proceso/procesos/';
-
   public tesisProcesos: Observable<TesisProceso[]>;
   private _tesisProcesos: BehaviorSubject<Array<TesisProceso>>;
   private dataStore: { // Aquí es donde almacenaremos nuestros datos en la memoria
@@ -51,19 +48,6 @@ export class TesisProcesoReactiveService {
       }, error => console.log('Could not load tesisProcesos.')
       );
   }
-
-  // public getTesisProcesosByProcesoId(procesoId: string) {
-
-  //   return this.http
-  //     .get<ITesisProceso[]>(`${this.urlProcesos}${procesoId}/tesis-procesos/`)
-  //     .subscribe(data => {
-
-  //       this.dataStore.tesisProcesos = data;
-  //       this._tesisProcesos.next(Object.assign({}, this.dataStore).tesisProcesos);
-  //     }, error => console.log('Could not load tesisProcesos.')
-  //     );
-  // }
-
   public createTesisProcesoAndProyecto(data: any) {
     this.tesisProcesoService.addTesisProcesoAndProyecto$(data)
       .subscribe(res => {

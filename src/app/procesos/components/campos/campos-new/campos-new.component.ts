@@ -27,6 +27,8 @@ export class CamposNewComponent implements OnInit {
         docx: false,
     };
 
+    public isModelOrJSON: FormControl = new FormControl();
+
     constructor(private dialogRef: MatDialogRef<CamposNewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private formBuilder: FormBuilder,
@@ -39,6 +41,16 @@ export class CamposNewComponent implements OnInit {
         this.loadTipoDeCampos();
 
         this.buildForm();
+        this.subscribeChangesIsModelOrJSON();
+    }
+
+    public subscribeChangesIsModelOrJSON() {
+        this.isModelOrJSON.valueChanges.subscribe(() => {
+            this.pasoTwoForm.controls['json'].setValue('');
+            this.pasoTwoForm.controls['model_name'].setValue('');
+            this.pasoTwoForm.controls['model_pk'].setValue('');
+            this.pasoTwoForm.controls['model_label'].setValue('');
+        });
     }
 
     private buildForm() {
@@ -56,7 +68,11 @@ export class CamposNewComponent implements OnInit {
             required: [false, Validators.required],
             width: [100, Validators.required],
             placeholder: [''],
-            model: [''],
+
+            model_name: [''],
+            model_pk: [''],
+            model_label: [''],
+
             json: [''],
             icon: [''],
             prefix: [''],
@@ -64,7 +80,7 @@ export class CamposNewComponent implements OnInit {
             hint_end_count_text: [false],
             disabled: [false],
             multiselect: [false],
-            orden: ['', Validators.required],
+            order: ['', Validators.required],
             multiple_fileinput: [false],
         });
 

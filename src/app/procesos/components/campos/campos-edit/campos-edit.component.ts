@@ -29,6 +29,8 @@ export class CamposEditComponent implements OnInit {
         docx: false,
     };
 
+    public isModelOrJSON: FormControl = new FormControl();
+
     constructor(private dialogRef: MatDialogRef<CamposEditComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private formBuilder: FormBuilder,
@@ -42,6 +44,19 @@ export class CamposEditComponent implements OnInit {
 
         this.buildForm();
         this.getCampoById(this.data.campoId);
+        this.subscribeChangesIsModelOrJSON();
+    }
+
+    public subscribeChangesIsModelOrJSON() {
+        this.isModelOrJSON.valueChanges.subscribe(res => {
+            if (res === 'JSON') {
+                this.pasoTwoForm.controls['model_name'].setValue('');
+                this.pasoTwoForm.controls['model_pk'].setValue('');
+                this.pasoTwoForm.controls['model_label'].setValue('');
+            } else {
+                this.pasoTwoForm.controls['json'].setValue('');
+            }
+        });
     }
 
     public getCampoById(campoId) {
@@ -68,7 +83,11 @@ export class CamposEditComponent implements OnInit {
                 required: campo.required,
                 width: campo.width,
                 placeholder: campo.placeholder,
-                model: campo.model,
+
+                model_name: campo.model_name,
+                model_pk: campo.model_pk,
+                model_label: campo.model_label,
+
                 json: campo.json,
                 icon: campo.icon,
                 prefix: campo.prefix,
@@ -79,6 +98,11 @@ export class CamposEditComponent implements OnInit {
                 order: campo.order,
                 multiple_fileinput: campo.multiple_fileinput,
             });
+        }
+        if (campo.model_name) {
+            this.isModelOrJSON.setValue('MODEL');
+        } else {
+            this.isModelOrJSON.setValue('JSON');
         }
     }
 
@@ -94,7 +118,11 @@ export class CamposEditComponent implements OnInit {
             required: [false, Validators.required],
             width: [100, Validators.required],
             placeholder: [''],
-            model: [''],
+
+            model_name: [''],
+            model_pk: [''],
+            model_label: [''],
+
             json: [''],
             icon: [''],
             prefix: [''],

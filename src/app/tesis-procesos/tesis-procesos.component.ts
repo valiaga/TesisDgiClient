@@ -9,5 +9,7 @@ export class TesisProcesosComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('hola');
+
   }
 }

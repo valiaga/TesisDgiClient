@@ -46,6 +46,11 @@
                             <!-- <input matInput placeholder="Tipo del campo (DIsabled)" disabled [value]="'tipo'"> -->
                         </mat-form-field>
 
+                        <mat-radio-group *ngIf="pasoOneForm.get('type').value === 'select'" [formControl]="isModelOrJSON">
+                            <mat-radio-button value="MODEL">Modelo</mat-radio-button>
+                            <mat-radio-button value="JSON">JSON</mat-radio-button>
+                        </mat-radio-group>
+
                         <table class="example-full-width" cellspacing="0">
                             <tr>
                                 <td>
@@ -80,7 +85,7 @@
                                 <td>
                                     <!-- Orden field -->
                                     <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                                        <input type="number" matInput placeholder="Orden" formControlName="orden" required>
+                                        <input type="number" matInput placeholder="Orden" formControlName="order" required>
                                     </mat-form-field>
                                 </td>
                                 <td *ngIf="pasoOneForm.get('type').value !== 'fileinput'
@@ -104,17 +109,31 @@
                                         <input matInput placeholder="Prefix (Ejemplo: Códigos telefónicos)" formControlName="prefix">
                                     </mat-form-field>
                                 </td>
-                                <td *ngIf="pasoOneForm.get('type').value === 'select'">
-                                    <!-- Model field -->
-                                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
-                                        <input matInput placeholder="Model (Solo para select)" formControlName="model">
-                                    </mat-form-field>
-                                </td>
+                                <ng-container *ngIf="pasoOneForm.get('type').value === 'select' && isModelOrJSON.value === 'MODEL'">
+                                    <td>
+                                        <!-- Model field -->
+                                        <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                            <input matInput placeholder="Model (Solo para select)" formControlName="model_name" required>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <!-- Model field Pk -->
+                                        <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                            <input matInput placeholder="Model Id" formControlName="model_pk" required>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <!-- Model field Label-->
+                                        <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                                            <input matInput placeholder="Model Label" formControlName="model_label" required>
+                                        </mat-form-field>
+                                    </td>
+                                </ng-container>
                             </tr>
                         </table>
 
                         <!-- JSON field -->
-                        <mat-form-field [floatLabel]="['auto']" *ngIf="pasoOneForm.get('type').value === 'select'">
+                        <mat-form-field [floatLabel]="['auto']" *ngIf="pasoOneForm.get('type').value === 'select' && isModelOrJSON.value === 'JSON'">
                             <textarea matInput placeholder="JSON (Solo para select Ejm: [{id: '1', label: 'Opcion 1'}, {id: '2', label: 'Opcion 2'}])"
                                 matTextareaAutosize matAutosizeMaxRows="5" formControlName="json" matAutosizeMinRows="2"></textarea>
                         </mat-form-field>

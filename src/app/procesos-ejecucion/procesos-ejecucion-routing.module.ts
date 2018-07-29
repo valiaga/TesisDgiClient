@@ -1,7 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { ListProcesoPageComponent } from './containers';
+import { ListProcesoPageComponent, FindTesisProcesoPageComponent } from './containers';
 import { ProcesosEjecucionComponent } from './procesos-ejecucion.component';
+// import { TesisProcesoListComponent } from './components';
 
 /** Rutas que se manejan en este módulo
  * /procesos-ejecucion
@@ -18,8 +19,12 @@ const routes: Routes = [
       },
       {
         path: ':proceso_id',
-        loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
-      }
+        component: FindTesisProcesoPageComponent, // tiene sus cosas y ... un router-oulet para sus hijos
+      },
+      // {
+      //   path: ':proceso_id',
+      //   loadChildren: './tesis-procesos/tesis-procesos.module#TesisProcesosModule',
+      // }
     ],
   },
 ];

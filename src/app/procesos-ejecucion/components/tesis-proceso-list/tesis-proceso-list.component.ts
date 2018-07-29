@@ -1,11 +1,11 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { CreateTesisProcesoDialogComponent } from '../../containers';
-import { TesisProceso } from '../../shared';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { FormAddTesistaComponent } from '../form-add-tesista/form-add-tesista.component';
+import { TesisProceso } from '../../../tesis-procesos/shared';
 
 @Component({
   selector: 'dgi-tesis-proceso-list',

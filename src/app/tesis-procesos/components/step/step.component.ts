@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Etapa } from '../../../../etapas/shared/etapa';
+import { Etapa } from '../../../etapas/shared/etapa';
 
 @Component({
   selector: 'dgi-step',

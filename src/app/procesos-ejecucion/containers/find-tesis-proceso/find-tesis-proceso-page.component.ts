@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { TesisProcesoService, TesisProceso } from '../../shared';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { ProcesosService } from '../../../../procesos/shared/proceso.service';
+// import { ProcesosService } from '../../../../procesos/shared/proceso.service';
 import { MESSAGES } from 'config/messages';
 import { snackBarDuration } from 'config/general';
 import { MatSnackBar } from '@angular/material';
+import { TesisProceso, TesisProcesoService } from '../../../tesis-procesos/shared';
+import { ProcesosService } from '../../../procesos/shared/proceso.service';
 
 @Component({
   selector: 'dgi-find-tesis-proceso-page',
@@ -26,9 +27,11 @@ export class FindTesisProcesoPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.parent.paramMap
+    this.route.paramMap
       .pipe(map(params => params.get('proceso_id')))
       .subscribe(procesoId => {
+        console.log(procesoId);
+
         this.procesoId = procesoId;
         this.getTesisProcesos(this.procesoId.toString());
       });

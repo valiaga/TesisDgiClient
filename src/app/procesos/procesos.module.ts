@@ -7,7 +7,7 @@ import {
   MatCardModule, MatInputModule, MatGridListModule,
   MatSlideToggleModule, MatListModule, MatTabsModule,
   MatButtonModule, MatExpansionModule, MatDialogModule, MatCheckboxModule,
-  MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule,
+  MatMenuModule, MatIconModule, MatSelectModule, MatStepperModule, MatRadioModule,
 } from '@angular/material';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CovalentStepsModule } from '@covalent/core';
@@ -52,6 +52,7 @@ const MATERIAL_MODULES: any = [
   MatSelectModule,
   MatStepperModule,
   MatGridListModule,
+  MatRadioModule,
 ];
 
 const ANGULAR_MODULES: any = [
