@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
-import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
+import { RolProcesoService, RolProcesoReactiveService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { TareaReactiveService } from '../../../../tareas/shared/tarea.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
@@ -26,7 +26,7 @@ export class TareaNewComponent implements OnInit {
 
     constructor(private dialogRef: MatDialogRef<TareaNewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private rolProcesoService: RolProcesoService,
+        private rolProcesoReactiveService: RolProcesoReactiveService,
         private tareaReactiveService: TareaReactiveService,
         private formBuilder: FormBuilder,
         private tdDialogService: TdDialogService,
@@ -34,7 +34,7 @@ export class TareaNewComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.rolesEjecuta$ = this.rolProcesoService.rolProcesos
+        this.rolesEjecuta$ = this.rolProcesoReactiveService.rolProcesos
             .pipe(
                 map(res => res.filter(ress => ress.activo === true))
             );

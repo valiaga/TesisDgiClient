@@ -14,7 +14,7 @@ import { CovalentStepsModule } from '@covalent/core';
 import { CommonModule } from '@angular/common';
 import { DgiButtonFabModule } from '../shared/dgi/button-fab';
 import { EtapaReactiveService, EtapaService } from '../etapas/shared/etapa.service';
-import { RolProcesoService } from '../rol-proceso/shared/rol-proceso.service';
+import { RolProcesoService, RolProcesoReactiveService } from '../rol-proceso/shared/rol-proceso.service';
 import { TareaReactiveService, TareaService } from '../tareas/shared/tarea.service';
 import { ProcesosComponent } from './procesos.component';
 import { RequisitoReactiveService, RequisitosService } from '../requisitos/shared/requisitos.service';
@@ -152,6 +152,7 @@ const GENERADOR_DOCUMENTO_COMPONENTS: any[] = [
   ],
   providers: [
     RolProcesoService,
+    RolProcesoReactiveService,
     EtapaReactiveService,
     EtapaService,
     TareaReactiveService,

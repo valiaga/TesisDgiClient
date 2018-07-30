@@ -4,7 +4,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from '../../../../config/general';
 import { MESSAGES } from '../../../../config/messages';
-import { RolProcesoService } from '../../../rol-proceso/shared/rol-proceso.service';
+import { RolProcesoReactiveService } from '../../../rol-proceso/shared/rol-proceso.service';
 
 @Component({
   selector: 'dgi-rol-proceso',
@@ -18,7 +18,7 @@ export class RolProcesoComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<RolProcesoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private formBuilder: FormBuilder,
-    private rolProcesoService: RolProcesoService,
+    private rolProcesoReactiveService: RolProcesoReactiveService,
     private tdDialogService: TdDialogService,
     private viewContainerRef: ViewContainerRef,
   ) { }
@@ -53,7 +53,7 @@ export class RolProcesoComponent implements OnInit {
       this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.rolProceso.confirmCreate, this.viewContainerRef))
         .afterClosed().subscribe((accept: boolean) => {
           if (accept) {
-            this.rolProcesoService.createRolProceso(value);
+            this.rolProcesoReactiveService.add(value);
             this.dialogRef.close();
             this.rolProcesoForm.reset();
           } else {

@@ -5,7 +5,7 @@ import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from '../../../../../config/general';
 import { MESSAGES } from '../../../../../config/messages';
 import { TareaReactiveService } from '../../../../tareas/shared/tarea.service';
-import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
+import { RolProcesoService, RolProcesoReactiveService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
 import { mergeMap, map, filter } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -43,13 +43,14 @@ export class TareaEditorComponent implements OnInit {
     private tdDialogService: TdDialogService,
     private route: ActivatedRoute,
     private router: Router,
-    private rolProcesoService: RolProcesoService,
+    // private rolProcesoService: RolProcesoService,
+    private rolProcesoReactiveService: RolProcesoReactiveService,
     private requisitoReactiveService: RequisitoReactiveService,
     private dialog: MatDialog,
   ) { }
 
   ngOnInit() {
-    this.rolesEjecuta$ = this.rolProcesoService.rolProcesos
+    this.rolesEjecuta$ = this.rolProcesoReactiveService.rolProcesos
       .pipe(
         map(res => res.filter(ress => ress.activo === true))
       );
@@ -64,7 +65,7 @@ export class TareaEditorComponent implements OnInit {
   public loadMaestros() {
     this.route.params.subscribe(params => {
       const procesoId = params['id'].toString();
-      this.rolProcesoService.getAllRolProcesos({ proceso_id: procesoId });
+      this.rolProcesoReactiveService.getWithQuery({ proceso_id: procesoId });
     });
   }
 

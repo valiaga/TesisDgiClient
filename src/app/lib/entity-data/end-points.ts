@@ -8,6 +8,7 @@ export const endPoints = {
     proceso: {
         procesos: 'proceso/procesos/',
         documentos: 'proceso/documentos/',
+        rolProcesos: 'proceso/rol-procesos/',
     },
 };
 

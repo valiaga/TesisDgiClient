@@ -2,7 +2,7 @@ import { ActivatedRoute } from '@angular/router';
 // import { ProcesoService } from '../shared/proceso.service';
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
-import { StepState, TdDialogService } from '@covalent/core';
+import { TdDialogService } from '@covalent/core';
 import { Proceso } from '../models/proceso.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
@@ -14,7 +14,7 @@ import { EtapaNewComponent } from '../components/etapas/etapa-new/etapa-new.comp
 import { EtapaReactiveService } from '../../etapas/shared/etapa.service';
 import { Etapa } from '../../etapas/shared/etapa';
 import { RolProceso } from '../../rol-proceso/shared/rol-proceso.model';
-import { RolProcesoService } from '../../rol-proceso/shared/rol-proceso.service';
+import { RolProcesoReactiveService } from '../../rol-proceso/shared/rol-proceso.service';
 import { ProcesosReactiveService, ProcesosService } from '../shared/proceso.service';
 
 @Component({
@@ -36,13 +36,13 @@ export class EditorComponent implements OnInit {
     private procesosReactiveService: ProcesosReactiveService,
     private procesosService: ProcesosService,
     private tdDialogService: TdDialogService,
-    private rolProcesoService: RolProcesoService,
+    private rolProcesoReactiveService: RolProcesoReactiveService,
     private etapaReactiveService: EtapaReactiveService,
     private viewContainerRef: ViewContainerRef,
   ) { }
 
   ngOnInit() {
-    this.rolProcesos$ = this.rolProcesoService.rolProcesos;
+    this.rolProcesos$ = this.rolProcesoReactiveService.rolProcesos;
     this.etapas$ = this.etapaReactiveService.etapas;
     // subscripción al observable params
     this.route.params.subscribe(params => {
@@ -57,21 +57,21 @@ export class EditorComponent implements OnInit {
   }
 
   public onChangeActivoRolProceso(event: any, id: string) {
-    this.rolProcesoService.patchRolProceso(id, { activo: event.checked });
+    this.rolProcesoReactiveService.patch(id, { activo: event.checked });
   }
 
   public onDeleteRolProceso(rolProcesosId: string) {
     this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.rolProceso.confirmDelete, this.viewContainerRef))
       .afterClosed().subscribe((accept: boolean) => {
         if (accept) {
-          this.rolProcesoService.deleteRolProceso(rolProcesosId);
+          this.rolProcesoReactiveService.delete(rolProcesosId);
         } else {
         }
       });
   }
 
   public loadMaters(procesoId) {
-    this.rolProcesoService.getAllRolProcesos({ proceso_id: procesoId });
+    this.rolProcesoReactiveService.getWithQuery({ proceso_id: procesoId });
     this.etapaReactiveService.getEtapasByProcesoId(procesoId);
   }
 

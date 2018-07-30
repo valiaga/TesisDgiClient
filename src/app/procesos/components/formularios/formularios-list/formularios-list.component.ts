@@ -24,6 +24,7 @@ import { GeneradorDocumentosNewComponent } from '../../generador-documentos';
 export class FormulariosListComponent implements OnInit, AfterViewChecked {
     public formularios: any[];
     public tareaId: string;
+    public procesoId: string;
 
     constructor(
         private formulariosService: FormularioService,
@@ -47,10 +48,11 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
     private loadMaters() {
         this.route.params
             .pipe(
-                map(params => params['tareaId'].toString()),
-                mergeMap((tareaId: string) => {
-                    this.tareaId = tareaId;
-                    return this.tareaService.getFomulariosByTareaId$(tareaId);
+                // map(params => params['tareaId'].toString()),
+                mergeMap((params: any) => {
+                    this.tareaId = params['tareaId'].toString();
+                    this.procesoId = params['id'].toString();
+                    return this.tareaService.getFomulariosByTareaId$(this.tareaId);
                 }))
             .subscribe(this.loadFormularios.bind(this));
     }
@@ -66,7 +68,7 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
     public agregarValidador(formulario) {
         const dialogRef = this.dialog.open(ValidadorNewComponent, {
             width: '900px',
-            data: { formulario: formulario },
+            data: { formulario: formulario, procesoId: this.procesoId },
         });
 
         dialogRef.afterClosed()

@@ -6,10 +6,26 @@ import { MatSnackBar } from '@angular/material';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
 import { map } from 'rxjs/operators';
+import { endPoints } from '../../lib/entity-data/end-points';
+import { EntityDataService } from '../../lib/entity-data/entity-data.service';
+
+
+@Injectable({
+  providedIn: 'root',
+})
+export class RolProcesoService extends EntityDataService<IRolProceso> {
+
+  constructor(protected httpClient: HttpClient) {
+    super(httpClient, endPoints.proceso.rolProcesos);
+  }
+  public patch$(id: string, data: any): Observable<IRolProceso> {
+    return this.httpClient.patch<IRolProceso>(`${this.endPoint}${id}/`, data);
+  }
+}
 
 @Injectable()
-export class RolProcesoService {
-  private readonly url = 'proceso/rol-procesos/';
+export class RolProcesoReactiveService {
+  // private readonly url = 'proceso/rol-procesos/';
   public searchText: string;
 
   rolProcesos: Observable<RolProceso[]>;
@@ -20,6 +36,7 @@ export class RolProcesoService {
 
   constructor(
     private http: HttpClient,
+    private rolProcesoService: RolProcesoService,
     private snackBar: MatSnackBar) {
 
     // Config Rxjs.
@@ -28,27 +45,8 @@ export class RolProcesoService {
     this.rolProcesos = this._rolProcesos.asObservable();
   }
 
-  /**
-   * Get the top 10 most recent rolProcesos
-   */
-  // public getRecentProcesos$(): Observable<IResponse>{
-  // let apiUrl = this._settingsService.settings['apiUrl'];
-  // let apiUrl = environment.apiUrl;
-  // return this.http.get<IResponse>(`proceso/rolProcesos/`, { headers: this._userService.getHeaders()})
-  // }
-
-  public getAllRolProcesos$(params: any): Observable<IResponse> {
-    return this.http.get<IResponse>(this.url, { params: params });
-  }
-
-  /**
-   * Get the all rolProcesos
-   */
-  public getAllRolProcesos(params: any = { all: true }) {
-    return this.getAllRolProcesos$(params)
-      .pipe(
-        map(response => response.results)
-      )
+  public getAll() {
+    return this.rolProcesoService.getAll$()
       .subscribe(data => {
         this.dataStore.rolProcesos = data;
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
@@ -56,16 +54,17 @@ export class RolProcesoService {
       );
   }
 
-  public getRolProcesoById$(id: string): Observable<IRolProceso> {
-    return this.http.get<IRolProceso>(`${this.url}${id}/`);
+  public getWithQuery(params: any) {
+    return this.rolProcesoService.getWithQuery$(params)
+      .subscribe(data => {
+        this.dataStore.rolProcesos = data.results;
+        this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
+      }, error => console.log('Could not load rolProcesos.')
+      );
   }
 
-  /**
-   * Gets a rolProceso by Id
-   * @param RolProcesoId
-   */
-  public getRolProcesoById(id: string) {
-    this.getRolProcesoById$(id)
+  public getById(id: string) {
+    this.rolProcesoService.getById$(id)
       .subscribe(data => {
         let notFound = true;
 
@@ -84,65 +83,41 @@ export class RolProcesoService {
       }, error => console.log('Could not load rolProceso.'));
   }
 
-  public createRolProceso$(rolProceso: any): Observable<IRolProceso> {
-    return this.http.post<IRolProceso>(this.url, rolProceso);
-  }
-
-  public createRolProceso(rolProceso: any) {
-    this.createRolProceso$(rolProceso)
+  public add(rolProceso: any) {
+    this.rolProcesoService.add$(rolProceso)
       .subscribe(data => {
-
         this.snackBar.open(MESSAGES.rolProceso.post, MESSAGES.actions.post, snackBarDuration);
-
         this.dataStore.rolProcesos.push(data);
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
       }, error => console.log('Could not create rolProceso.'));
   }
 
-  public updateRolProceso$(id: string, rolProceso: any): Observable<IRolProceso> {
-    return this.http.put<IRolProceso>(`${this.url}${id}/`, rolProceso);
-  }
-
-
-  public patchRolProceso$(id: string, data: any): Observable<IRolProceso> {
-    return this.http.patch<IRolProceso>(`${this.url}${id}/`, data);
-  }
-
-  public patchRolProceso(id: string, data: any) {
-    this.patchRolProceso$(id, data)
+  public patch(id: string, data: any) {
+    this.rolProcesoService.patch$(id, data)
       .subscribe(response => {
-
         this.snackBar.open(MESSAGES.rolProceso.put, MESSAGES.actions.put, snackBarDuration);
-
         this.dataStore.rolProcesos.forEach((proc, index) => {
           if (proc.id === response.id) { this.dataStore.rolProcesos[index] = response; }
         });
-
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
       }, error => console.log('Could not update rolProceso.'));
   }
 
-  public updateRolProceso(rolProceso: RolProceso) {
-    this.updateRolProceso$(rolProceso.id, rolProceso)
+  public update(rolProceso: IRolProceso) {
+    this.rolProcesoService.update$(rolProceso.id, rolProceso)
       .subscribe(data => {
-
         this.snackBar.open(MESSAGES.rolProceso.put, MESSAGES.actions.put, snackBarDuration);
-
         this.dataStore.rolProcesos.forEach((proc, index) => {
           if (proc.id === data.id) { this.dataStore.rolProcesos[index] = data; }
         });
-
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
       }, error => console.log('Could not update rolProceso.'));
   }
 
-  public deleteRolProceso(id: string) {
-
-    this.http.delete<IRolProceso>(`${this.url}${id}/`)
+  public delete(id: string) {
+    this.rolProcesoService.delete$(id)
       .subscribe(response => {
-
         this.snackBar.open(MESSAGES.rolProceso.delete, MESSAGES.actions.delete, snackBarDuration);
-
         this.dataStore.rolProcesos.forEach((rolProceso, index) => {
           if (rolProceso.id === id) { this.dataStore.rolProcesos.splice(index, 1); }
         });
@@ -150,26 +125,4 @@ export class RolProcesoService {
       }, error => console.log('Could not delete rolProceso.'));
   }
 
-  private handleError(error: any, operation: string): Promise<any> {
-    console.error('An error occurred', error);
-    return Promise.reject(error.message || error);
-  }
-
-  /**
-    getPaginationProcesos(){ }
-    getAllProcesos() { }
-    getProcesosByTipoId() { }
-    getProcesosByTipoId() { }
-    getRecentProcesos() { }
-    getNewProceso() { }
-
-    getProcesoById(id: string) { }
-    getProcesoByName(id: string) { }
-    getProcesoByState(id: string) { }
-    searchProceso(term: string) { }
-    createProceso(rolProceso: RolProceso) { }
-    createProcesoAndProyecto(rolProceso: RolProceso, proyecto: Proyecto) { }
-    updateProceso(rolProceso: RolProceso) { }
-    deleteProceso(id: string) { }
-   */
 }
