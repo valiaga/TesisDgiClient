@@ -1,8 +1,57 @@
+<!-- <div class="validador-new-container">
+    <mat-checkbox class="example-margin" [value]="rolProceso.id">{{ rolProceso.nombre }}</mat-checkbox>
+</div> -->
 <div class="validador-new-container">
-    <!-- <form [formGroup]="validadorForm" (ngSubmit)="onSubmit()" novalidate class="tarea-container"> -->
+    <h5>Información General</h5>
+    <form [formGroup]="validadorForm" (ngSubmit)="onSubmit()" novalidate class="validador-new-container">
+        <mat-grid-list cols="3" rowHeight="50px">
+            <mat-grid-tile>
+                <mat-list>
+                    <mat-list-item>
+                        <mat-checkbox class="example-margin" formControlName="unaVez">
+                            <span flex>Valida Sólo una vez</span>
+                        </mat-checkbox>
+                    </mat-list-item>
+                </mat-list>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-list>
+                    <mat-list-item>
+                        <mat-checkbox class="example-margin" formControlName="unaVezPorRol">
+                            <span flex>Valida una vez por Rol</span>
+                        </mat-checkbox>
+                    </mat-list-item>
+                </mat-list>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-list>
+                    <mat-list-item>
+                        <mat-checkbox class="example-margin" formControlName="unaVezPorUsuario">
+                            <span flex>Valida una vez por Usuario</span>
+                        </mat-checkbox>
+                    </mat-list-item>
+                </mat-list>
+            </mat-grid-tile>
+        </mat-grid-list>
 
-    <!-- <section *ngFor="let rolProceso of rolProcesos"> -->
-        <mat-checkbox class="example-margin" [value]="rolProceso.id">{{ rolProceso.nombre }}</mat-checkbox>
-    <!-- </section> -->
-    <!-- </form> -->
+        <h5>Roles que validarán</h5>
+        <mat-list>
+            <mat-list-item *ngFor="let item of rolProcesos">
+                <!-- <mat-checkbox class="example-margin"> -->
+                <span flex>{{ item.nombre }} ({{ item.alias }}</span>
+                <mat-slide-toggle [checked]="item.checked" (change)="onChangeCheckedRolProceso($event, item.id)">Seleccione</mat-slide-toggle>
+                <!-- </mat-checkbox> -->
+                <!-- <mat-slide-toggle (change)="onChangeActivoRolProceso($event, item.id)" [checked]="item.activo">Activo</mat-slide-toggle> -->
+                <!-- <button mat-icon-button [matMenuTriggerFor]="menu" [matMenuTriggerData]="{rolProcesoId: item.id }" class="dgi-button-rol-proceso-list">
+                <mat-icon>more_vert</mat-icon>
+            </button> -->
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+        <!-- Buttons Actions -->
+        <div mat-dialog-actions>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!validadorForm.valid" tabindex="0">Aceptar</button>
+            <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
+        </div>
+    </form>
 </div>

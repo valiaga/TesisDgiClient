@@ -15,8 +15,9 @@ export class ValidadorNewComponent implements OnInit {
     public procesoId: string;
     public validadorForm: FormGroup;
     public rolProcesos: any[];
+    public rolProcesosCheckeds: any[] = [];
 
-    public validadores: any[] = [];
+    // public validadores: any[] = [];
     constructor(private dialogRef: MatDialogRef<ValidadorNewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
         private route: ActivatedRoute,
@@ -35,9 +36,7 @@ export class ValidadorNewComponent implements OnInit {
         this.rolProcesoService.getWithQuery$({ proceso_id: this.procesoId })
             .pipe(map(res => res.results))
             .subscribe(response => {
-                console.log(response);
-                this.rolProcesos = response;
-                this.validadores = response;
+                this.rolProcesos = response.map(res => ({ ...res, checked: false }));
             });
     }
 
@@ -47,8 +46,30 @@ export class ValidadorNewComponent implements OnInit {
     }
 
     private initializeControls() {
-        return {
-            validadores: ['', [Validators.required]]
+        const controls = {
+            unaVez: [false, [Validators.required]],
+            unaVezPorRol: [false, [Validators.required]],
+            unaVezPorUsuario: [false, [Validators.required]],
+            roles: [[]],
         };
+        return controls;
+    }
+
+    public onChangeCheckedRolProceso(event, id) {
+        if (event.checked) {
+            this.rolProcesosCheckeds.push(id);
+        } else {
+            const indexx = this.rolProcesosCheckeds.indexOf(id);
+            this.rolProcesosCheckeds.splice(indexx, 1);
+        }
+    }
+
+    public onSubmit() {
+        const value = this.validadorForm.value;
+        const valid = this.validadorForm.valid;
+        if (valid) {
+            console.log(value);
+            console.log(this.rolProcesosCheckeds);
+        }
     }
 }
