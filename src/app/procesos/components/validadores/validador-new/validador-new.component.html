@@ -4,35 +4,20 @@
 <div class="validador-new-container">
     <h5>Información General</h5>
     <form [formGroup]="validadorForm" (ngSubmit)="onSubmit()" novalidate class="validador-new-container">
-        <mat-grid-list cols="3" rowHeight="50px">
-            <mat-grid-tile>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-checkbox class="example-margin" formControlName="unaVez">
-                            <span flex>Valida Sólo una vez</span>
-                        </mat-checkbox>
-                    </mat-list-item>
-                </mat-list>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-checkbox class="example-margin" formControlName="unaVezPorRol">
-                            <span flex>Valida una vez por Rol</span>
-                        </mat-checkbox>
-                    </mat-list-item>
-                </mat-list>
-            </mat-grid-tile>
-            <mat-grid-tile>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-checkbox class="example-margin" formControlName="unaVezPorUsuario">
-                            <span flex>Valida una vez por Usuario</span>
-                        </mat-checkbox>
-                    </mat-list-item>
-                </mat-list>
-            </mat-grid-tile>
-        </mat-grid-list>
+
+        <mat-radio-group formControlName="tipoDeValidacion">
+            <mat-grid-list cols="3" rowHeight="50px">
+                <mat-grid-tile>
+                    <mat-radio-button value="G">Validación Grupal</mat-radio-button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-radio-button value="R">Validación por Rol</mat-radio-button>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-radio-button value="P">Validación Personal</mat-radio-button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-radio-group>
 
         <h5>Roles que validarán</h5>
         <mat-list>

@@ -4,6 +4,7 @@ import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.se
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '../../../../../../node_modules/@angular/forms';
+import { CamposService } from '../../../../campos/shared/campos.service';
 
 @Component({
     selector: 'dgi-validador-new',
@@ -22,6 +23,7 @@ export class ValidadorNewComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any,
         private route: ActivatedRoute,
         private formBuilder: FormBuilder,
+        private campoService: CamposService,
         private rolProcesoService: RolProcesoService) {
     }
 
@@ -47,9 +49,10 @@ export class ValidadorNewComponent implements OnInit {
 
     private initializeControls() {
         const controls = {
-            unaVez: [false, [Validators.required]],
-            unaVezPorRol: [false, [Validators.required]],
-            unaVezPorUsuario: [false, [Validators.required]],
+            formulario: [this.data.formulario.id],
+            tipoDeValidacion: [false, [Validators.required]],
+            // unaVezPorRol: [false, [Validators.required]],
+            // unaVezPorUsuario: [false, [Validators.required]],
             roles: [[]],
         };
         return controls;
@@ -70,6 +73,9 @@ export class ValidadorNewComponent implements OnInit {
         if (valid) {
             console.log(value);
             console.log(this.rolProcesosCheckeds);
+            this.campoService.addValidador$(value).subscribe(response => {
+
+            });
         }
     }
 }

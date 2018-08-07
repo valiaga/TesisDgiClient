@@ -7,6 +7,7 @@ export const endPoints = {
     },
     proceso: {
         procesos: 'proceso/procesos/',
+        campos: 'proceso/campos/',
         documentos: 'proceso/documentos/',
         rolProcesos: 'proceso/rol-procesos/',
     },

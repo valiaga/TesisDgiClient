@@ -133,7 +133,7 @@ export class CamposNewComponent implements OnInit {
             this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmCreate, this.viewContainerRef))
                 .afterClosed().subscribe((accept: boolean) => {
                     if (accept) {
-                        this.camposService.save$(data).subscribe(res => {
+                        this.camposService.add$(data).subscribe(res => {
                             this.dialogRef.close(this.data.formulario.tarea);
                             this.pasoOneForm.reset();
                             this.pasoTwoForm.reset();
