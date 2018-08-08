@@ -49,10 +49,14 @@ export class ValidadorNewComponent implements OnInit {
 
     private initializeControls() {
         const controls = {
-            formulario: [this.data.formulario.id],
+            label: ['', [Validators.required]],
+            name: ['', [Validators.required]],
+            width: ['', [Validators.required]],
+            icon: ['', [Validators.required]],
+            hint_start: ['', [Validators.required]],
+            formulario: [this.data.formulario.id, [Validators.required]],
+            order: ['', , [Validators.required]],
             tipoDeValidacion: [false, [Validators.required]],
-            // unaVezPorRol: [false, [Validators.required]],
-            // unaVezPorUsuario: [false, [Validators.required]],
             roles: [[]],
         };
         return controls;
@@ -70,12 +74,27 @@ export class ValidadorNewComponent implements OnInit {
     public onSubmit() {
         const value = this.validadorForm.value;
         const valid = this.validadorForm.valid;
+      
         if (valid) {
             console.log(value);
             console.log(this.rolProcesosCheckeds);
-            this.campoService.addValidador$(value).subscribe(response => {
+            const dataSend = {
+                label: value.label, // ?
+                name: value.name, // pk
+                type: 'validador',
+                width: '100',
+                // validation: [],
+                icon: value.icon, // ?
+                hint_start: value.hint_start, // ?
+                order: value.order, // ?
+                formulario: value.formulario,
+                tipo_validador: value.tipoDeValidacion,
+                roles_validadores: this.rolProcesosCheckeds
+            }
+            console.log(dataSend);
+            // this.campoService.addValidador$(value).subscribe(response => {
 
-            });
+            // });
         }
     }
 }
