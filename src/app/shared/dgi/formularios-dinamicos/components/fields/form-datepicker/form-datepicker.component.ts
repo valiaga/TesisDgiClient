@@ -18,7 +18,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
-      <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
+      <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config)">edit</mat-icon>
 <!--
       <mat-error *ngIf="mustShowErrors(config.name)">
         <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
@@ -31,15 +31,16 @@ export class DgiFormDatepickerComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
   public date = new FormControl(new Date());
-  public onUpdate = new EventEmitter<string>();
+  public onUpdate = new EventEmitter<any>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
 
-  public update(fieldId: string) {
-    return this.onUpdate.emit(fieldId);
+  public update(field: FieldConfig) {
+    const dataReturn = { id: field.id, type: field.type };
+    return this.onUpdate.emit(dataReturn);
   }
 
   public getWidthControlClass() {

@@ -1,10 +1,13 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { FormGroup, FormBuilder, Validators } from '../../../../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CamposService } from '../../../../campos/shared/campos.service';
+import { TdDialogService } from '@covalent/core';
+import { MESSAGES } from 'config/messages';
+import { getMessageConfirm } from 'config/general';
 
 @Component({
     selector: 'dgi-validador-new',
@@ -18,12 +21,12 @@ export class ValidadorNewComponent implements OnInit {
     public rolProcesos: any[];
     public rolProcesosCheckeds: any[] = [];
 
-    // public validadores: any[] = [];
     constructor(private dialogRef: MatDialogRef<ValidadorNewComponent>,
         @Inject(MAT_DIALOG_DATA) public data: any,
-        private route: ActivatedRoute,
         private formBuilder: FormBuilder,
-        private campoService: CamposService,
+        private tdDialogService: TdDialogService,
+        private viewContainerRef: ViewContainerRef,
+        private camposService: CamposService,
         private rolProcesoService: RolProcesoService) {
     }
 
@@ -32,7 +35,6 @@ export class ValidadorNewComponent implements OnInit {
         this.loadMasters();
         this.buildForm();
     }
-
 
     private loadMasters() {
         this.rolProcesoService.getWithQuery$({ proceso_id: this.procesoId })
@@ -51,13 +53,13 @@ export class ValidadorNewComponent implements OnInit {
         const controls = {
             label: ['', [Validators.required]],
             name: ['', [Validators.required]],
-            width: ['', [Validators.required]],
+            // width: ['', [Validators.required]],
             icon: ['', [Validators.required]],
             hint_start: ['', [Validators.required]],
             formulario: [this.data.formulario.id, [Validators.required]],
-            order: ['', , [Validators.required]],
-            tipoDeValidacion: [false, [Validators.required]],
-            roles: [[]],
+            order: ['', [Validators.required]],
+            tipo_validador: ['G', [Validators.required]],
+            roles: [],
         };
         return controls;
     }
@@ -74,27 +76,33 @@ export class ValidadorNewComponent implements OnInit {
     public onSubmit() {
         const value = this.validadorForm.value;
         const valid = this.validadorForm.valid;
-      
+
         if (valid) {
-            console.log(value);
-            console.log(this.rolProcesosCheckeds);
-            const dataSend = {
-                label: value.label, // ?
+            const dataSend: any = {
+                label: value.label,
                 name: value.name, // pk
                 type: 'validador',
                 width: '100',
                 // validation: [],
-                icon: value.icon, // ?
-                hint_start: value.hint_start, // ?
-                order: value.order, // ?
+                icon: value.icon,
+                hint_start: value.hint_start,
+                order: value.order,
                 formulario: value.formulario,
-                tipo_validador: value.tipoDeValidacion,
-                roles_validadores: this.rolProcesosCheckeds
-            }
-            console.log(dataSend);
-            // this.campoService.addValidador$(value).subscribe(response => {
+                tipo_validador: value.tipo_validador,
+                roles_validadores: this.rolProcesosCheckeds.join(',')
+            };
+            console.log('dataSend ', dataSend);
 
-            // });
+            this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmCreate, this.viewContainerRef))
+                .afterClosed().subscribe((accept: boolean) => {
+                    if (accept) {
+                        this.camposService.add$(dataSend).subscribe(response => {
+                            this.dialogRef.close(this.data.formulario.tarea);
+                            this.validadorForm.reset();
+                        });
+                    } else {
+                    }
+                });
         }
     }
 }

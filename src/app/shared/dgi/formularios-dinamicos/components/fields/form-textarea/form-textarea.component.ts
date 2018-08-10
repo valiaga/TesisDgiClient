@@ -13,7 +13,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       <textarea matInput [placeholder]="config.label" [formControlName]="config.name"
             matTextareaAutosize [matAutosizeMinRows]="autosizeMinRows" [required]="config.required"
             [matAutosizeMaxRows]="autosizeMaxRows"></textarea>
-      <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
+      <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config)">edit</mat-icon>
 
       <!--
             <mat-error *ngIf="mustShowErrors(config.name)">
@@ -30,15 +30,16 @@ export class DgiFormTextareaComponent implements OnInit {
   public group: FormGroup;
   private autosizeMinRows = 2;
   private autosizeMaxRows = 5;
-  public onUpdate = new EventEmitter<string>();
+  public onUpdate = new EventEmitter<any>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
 
-  public update(fieldId: string) {
-    return this.onUpdate.emit(fieldId);
+  public update(field: FieldConfig) {
+    const dataReturn = { id: field.id, type: field.type };
+    return this.onUpdate.emit(dataReturn);
   }
 
   public getWidthControlClass() {

@@ -45,6 +45,9 @@ export interface ICampo {
     multiselect: boolean;
     order: number;
 
+    tipo_validador: string;
+    roles_validadores: string;
+
     fecha_creacion: string;
     fecha_actualizacion: string;
 

@@ -10,7 +10,7 @@ import { AbstractControl } from '@angular/forms';
     <div>
     <!--(ngSubmit)="submitted.emit(form.value)"-->
       <form
-        class="dynamic-form"
+        class="dynamic-form "
         [formGroup]="form"
         (submit)="handleSubmit($event)"
         >
@@ -38,21 +38,7 @@ import { AbstractControl } from '@angular/forms';
       </div> -->
     </div>
   `,
-  styles: [
-    `
-    :host /deep/ .dynamic-field {
-      margin-bottom: 15px;
-      label {
-        display: block;
-        font-size: 16px;
-        font-weight: 400;
-        letter-spacing: 0px;
-        margin-bottom: 10px;
-        color: rgba(0, 0, 0, 0.9);
-      }
-    }
-    `
-  ],
+  styleUrls: ['./dynamic-form.component.scss'],
 })
 export class DgiDynamicFormComponent implements OnChanges, OnInit {
   @Input()

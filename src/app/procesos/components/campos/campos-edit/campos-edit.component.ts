@@ -15,7 +15,6 @@ import { MESSAGES } from 'config/messages';
 export class CamposEditComponent implements OnInit {
     // public tipoCampo = new FormControl();
     public tipoCampo: string;
-    public tareaId: string;
     // public tiposDeCampos: any[];
 
     // public pasoOneForm: FormGroup;
@@ -66,8 +65,6 @@ export class CamposEditComponent implements OnInit {
 
     private loadCampo(campo) {
         this.tipoCampo = campo.type;
-        this.tareaId = campo.tarea;
-        console.log(campo);
         this.patchForms(campo);
     }
 
@@ -186,7 +183,7 @@ export class CamposEditComponent implements OnInit {
                 .afterClosed().subscribe((accept: boolean) => {
                     if (accept) {
                         this.camposService.update$(data.id, data).subscribe(res => {
-                            this.dialogRef.close(this.tareaId);
+                            this.dialogRef.close();
                             // this.pasoOneForm.reset();
                             this.pasoTwoForm.reset();
                             this.pasoThreeForm.reset();
@@ -198,14 +195,12 @@ export class CamposEditComponent implements OnInit {
     }
 
     public onDeleteField() {
-        console.log(this.tareaId);
-
         this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmDelete, this.viewContainerRef))
             .afterClosed().subscribe((accept: boolean) => {
                 if (accept) {
                     this.camposService.delete$(this.data.campoId).subscribe(res => {
-                        console.log(this.tareaId);
-                        this.dialogRef.close(this.tareaId);
+                        // console.log(this.tareaId);
+                        this.dialogRef.close();
                         this.pasoTwoForm.reset();
                         this.pasoThreeForm.reset();
                     });

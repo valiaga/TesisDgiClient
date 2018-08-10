@@ -122,11 +122,11 @@ export class CamposNewComponent implements OnInit {
         const acceptInputFile = this.prepareDataAccept();
 
         const data = Object.assign({ accept_fileinput: acceptInputFile }, pasoOneFormValue, pasoTwoFormValue);
-        console.log(data);
-        console.log(pasoOneFormValid);
-        console.log(pasoTwoFormValid);
-        console.log(pasoThreeFormValid);
-        console.log(acceptInputFile);
+        // console.log(data);
+        // console.log(pasoOneFormValid);
+        // console.log(pasoTwoFormValid);
+        // console.log(pasoThreeFormValid);
+        // console.log(acceptInputFile);
 
 
         if (pasoOneFormValid && pasoTwoFormValid && pasoThreeFormValid) {
