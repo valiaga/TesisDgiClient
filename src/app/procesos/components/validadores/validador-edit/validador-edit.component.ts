@@ -1,11 +1,11 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { TdDialogService } from '@covalent/core';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { map } from 'rxjs/operators';
 import { CamposService } from '../../../../campos/shared/campos.service';
-import { getMessageConfirm } from 'config/general';
+import { getMessageConfirm, snackBarDuration } from 'config/general';
 import { MESSAGES } from 'config/messages';
 
 @Component({
@@ -26,6 +26,7 @@ export class ValidadorEditComponent implements OnInit {
     private rolProcesoService: RolProcesoService,
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService,
+    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -74,6 +75,7 @@ export class ValidadorEditComponent implements OnInit {
       .afterClosed().subscribe((accept: boolean) => {
         if (accept) {
           this.camposService.delete$(this.data.campoId).subscribe(res => {
+            this.snackBar.open(MESSAGES.campo.delete, MESSAGES.actions.delete, snackBarDuration);
             this.dialogRef.close();
             this.validadorForm.reset();
           });
@@ -111,8 +113,8 @@ export class ValidadorEditComponent implements OnInit {
       name: ['', [Validators.required]],
       type: ['', [Validators.required]],
       width: ['', [Validators.required]],
-      icon: ['', [Validators.required]],
-      hint_start: ['', [Validators.required]],
+      icon: [''],
+      hint_start: [''],
       order: ['', [Validators.required]],
       formulario: ['', [Validators.required]],
       tipo_validador: ['', [Validators.required]],
@@ -140,12 +142,13 @@ export class ValidadorEditComponent implements OnInit {
         tipo_validador: value.tipo_validador,
         roles_validadores: this.rolProcesosCheckeds.join(','),
       };
-      console.log('dataSend ', dataSend);
+      // console.log('dataSend ', dataSend);
 
       this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmCreate, this.viewContainerRef))
         .afterClosed().subscribe((accept: boolean) => {
           if (accept) {
             this.camposService.update$(dataSend.id, dataSend).subscribe(response => {
+              this.snackBar.open(MESSAGES.campo.put, MESSAGES.actions.put, snackBarDuration);
               this.dialogRef.close();
               this.validadorForm.reset();
             });

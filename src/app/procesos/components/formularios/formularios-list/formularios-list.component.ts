@@ -14,6 +14,7 @@ import { FormularioEditComponent } from '../formulario-edit/formulario-edit.comp
 import { CamposNewComponent, CamposEditComponent } from '../../campos';
 import { ValidadorNewComponent, ValidadorEditComponent } from '../../validadores';
 import { GeneradorDocumentosNewComponent } from '../../generador-documentos';
+import { GeneradorDocumentosEditComponent } from '../../generador-documentos/generador-documentos-edit/generador-documentos-edit.component';
 
 @Component({
     selector: 'dgi-formularios-list',
@@ -88,11 +89,14 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
     }
 
     public update(field: any) {
-        if (field.type !== 'validador') {
-            this.updateField(field.id);
-        } else if (field.type === 'validador') {
+        if (field.type === 'validador') {
             this.updateValidador(field.id);
+        } else if (field.type === 'generar_documentos') {
+            console.log(field);
 
+            this.updateGeneradorDocumentos(field.id);
+        } else {
+            this.updateField(field.id);
         }
     }
 
@@ -109,6 +113,18 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
 
     private updateValidador(fieldId: string) {
         const dialogRef = this.dialog.open(ValidadorEditComponent, {
+            width: '900px',
+            data: { campoId: fieldId, procesoId: this.procesoId },
+        });
+
+        dialogRef.afterClosed()
+            .pipe(mergeMap(res => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
+            .subscribe(this.loadFormularios.bind(this));
+    }
+
+    private updateGeneradorDocumentos(fieldId: string) {
+
+        const dialogRef = this.dialog.open(GeneradorDocumentosEditComponent, {
             width: '900px',
             data: { campoId: fieldId, procesoId: this.procesoId },
         });

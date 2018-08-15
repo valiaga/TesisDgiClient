@@ -1,6 +1,6 @@
 <div class="generador-documentos-container">
-    <h3>Nuevo generador de documentos</h3>
-    <form [formGroup]="generadorDocForm" (ngSubmit)="onSubmit()" novalidate class="generador-documentos-container">
+    <h3>Editar generador de documentos</h3>
+    <form [formGroup]="generadorDocForm" novalidate class="generador-documentos-container">
         <table class="example-full-width" cellspacing="0">
             <tr>
                 <td>
@@ -71,7 +71,8 @@
             <mat-checkbox class="example-margin" [checked]="campo.checked" (change)="onChangeCheckedCampo($event, campo.id)">{{ campo.label }}</mat-checkbox>
         </section>
         <div mat-dialog-actions>
-            <button mat-raised-button color="primary" type="submit" [disabled]="!generadorDocForm.valid" tabindex="0">Aceptar</button>
+            <button mat-raised-button color="warn" (click)="onDeleteFieldGeneradorDocumentos()" class="dgi-button-delete">Eliminar Campo</button>
+            <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!generadorDocForm.valid" tabindex="0">Aceptar</button>
             <button mat-button type="button" [mat-dialog-close] tabindex="0">Cancelar</button>
         </div>
     </form>

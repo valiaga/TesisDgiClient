@@ -16,6 +16,7 @@ import {
   DgiFormSlideToggleComponent, DgiFormDatepickerComponent,
   DgiFormCheckboxComponent,
   DgiFormFileInputComponent, DgiFormValidadorComponent,
+  DgiFormGenerarDocumentosComponent,
 } from '../../components';
 
 const components: { [type: string]: Type<Field> } = {
@@ -33,6 +34,7 @@ const components: { [type: string]: Type<Field> } = {
   checkbox: DgiFormCheckboxComponent,
   fileinput: DgiFormFileInputComponent,
   validador: DgiFormValidadorComponent,
+  generar_documentos: DgiFormGenerarDocumentosComponent,
 };
 
 

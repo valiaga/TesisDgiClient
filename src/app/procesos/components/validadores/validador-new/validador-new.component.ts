@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
@@ -7,7 +7,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CamposService } from '../../../../campos/shared/campos.service';
 import { TdDialogService } from '@covalent/core';
 import { MESSAGES } from 'config/messages';
-import { getMessageConfirm } from 'config/general';
+import { getMessageConfirm, snackBarDuration } from 'config/general';
 
 @Component({
     selector: 'dgi-validador-new',
@@ -27,6 +27,7 @@ export class ValidadorNewComponent implements OnInit {
         private tdDialogService: TdDialogService,
         private viewContainerRef: ViewContainerRef,
         private camposService: CamposService,
+        private snackBar: MatSnackBar,
         private rolProcesoService: RolProcesoService) {
     }
 
@@ -54,8 +55,8 @@ export class ValidadorNewComponent implements OnInit {
             label: ['', [Validators.required]],
             name: ['', [Validators.required]],
             // width: ['', [Validators.required]],
-            icon: ['', [Validators.required]],
-            hint_start: ['', [Validators.required]],
+            icon: [''],
+            hint_start: [''],
             formulario: [this.data.formulario.id, [Validators.required]],
             order: ['', [Validators.required]],
             tipo_validador: ['G', [Validators.required]],
@@ -91,12 +92,13 @@ export class ValidadorNewComponent implements OnInit {
                 tipo_validador: value.tipo_validador,
                 roles_validadores: this.rolProcesosCheckeds.join(',')
             };
-            console.log('dataSend ', dataSend);
+            // console.log('dataSend ', dataSend);
 
             this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmCreate, this.viewContainerRef))
                 .afterClosed().subscribe((accept: boolean) => {
                     if (accept) {
                         this.camposService.add$(dataSend).subscribe(response => {
+                            this.snackBar.open(MESSAGES.campo.post, MESSAGES.actions.post, snackBarDuration);
                             this.dialogRef.close(this.data.formulario.tarea);
                             this.validadorForm.reset();
                         });

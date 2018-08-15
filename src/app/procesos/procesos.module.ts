@@ -37,7 +37,7 @@ import { FormularioService } from '../formularios/shared/formulario.service';
 import { CamposNewComponent, CamposEditComponent } from './components/campos';
 import { CamposService } from '../campos/shared/campos.service';
 import { ValidadorNewComponent, ValidadorEditComponent } from './components/validadores';
-import { GeneradorDocumentosNewComponent } from './components/generador-documentos';
+import { GeneradorDocumentosNewComponent, GeneradorDocumentosEditComponent } from './components/generador-documentos';
 
 const MATERIAL_MODULES: any = [
   MatCardModule,
@@ -114,6 +114,7 @@ const VALIDADORES_COMPONENTS: any[] = [
 
 const GENERADOR_DOCUMENTO_COMPONENTS: any[] = [
   GeneradorDocumentosNewComponent,
+  GeneradorDocumentosEditComponent,
 ];
 
 @NgModule({
@@ -177,6 +178,7 @@ const GENERADOR_DOCUMENTO_COMPONENTS: any[] = [
     CamposEditComponent,
 
     GeneradorDocumentosNewComponent,
+    GeneradorDocumentosEditComponent,
 
     ValidadorNewComponent,
     ValidadorEditComponent,
