@@ -10,7 +10,7 @@ import { Tarea } from '../../../tareas/models/tarea';
 import { EtapaService } from '../../../etapas/shared/etapa.service';
 import { TareaService } from '../../../tareas/shared/tarea.service';
 import { FieldConfig } from '../../../dynamic-form/models.1/field-config';
-import { TesisProcesoService } from '../../shared';
+import { TesisProcesoService, TesisEtapaService } from '../../shared';
 
 @Component({
   selector: 'dgi-flow-tesis-proceso-page',
@@ -18,7 +18,7 @@ import { TesisProcesoService } from '../../shared';
   styleUrls: ['./flow-tesis-proceso-page.component.scss'],
 })
 export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
-  public etapas: Etapa[];
+  public tesisEtapas: Etapa[];
   public tareas: Tarea[];
   public formularios: Form[];
   public tesisProceso: any;
@@ -33,9 +33,10 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
 
   constructor(
     private etapaService: EtapaService,
+    private tesisEtapaService: TesisEtapaService,
     private route: ActivatedRoute,
     private tareaService: TareaService,
-    private TesisProcesoService: TesisProcesoService,
+    private tesisProcesoService: TesisProcesoService,
   ) { }
 
   ngOnInit() {
@@ -54,19 +55,21 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   }
 
   public getTesisProcesoById(tesisProcesoId) {
-    this.TesisProcesoService.getById$(tesisProcesoId).subscribe(response => {
+    this.tesisProcesoService.getById$(tesisProcesoId).subscribe(response => {
       this.tesisProceso = response;
     });
   }
 
   public getEtapasByTesisProcesoId(TesisProcesoId: string) {
-    this.etapaService.getEtapasByTesisProcesoId(TesisProcesoId)
-      .subscribe(this.loadEtapasByTesisProcesoId.bind(this));
+    const query = { tesis_proceso: TesisProcesoId };
+    this.tesisEtapaService.getWithQuery$(query)
+      .subscribe(this.loadTesisEtapasByTesisProcesoId.bind(this));
   }
 
-  private loadEtapasByTesisProcesoId(etapas) {
-    this.etapas = etapas;
-    this.getTareasByEtapaId(etapas[0].id);
+  private loadTesisEtapasByTesisProcesoId(tesisEtapas) {
+    // console.log(tesisEtapas);
+    this.tesisEtapas = tesisEtapas;
+    this.getTareasByEtapaId(tesisEtapas[0].id);
   }
 
   public getTareasByEtapaId(etapaId: string) {
