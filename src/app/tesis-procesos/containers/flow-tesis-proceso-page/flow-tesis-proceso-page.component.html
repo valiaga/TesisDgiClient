@@ -3,9 +3,10 @@
     <!-- Sidenav Etapas -->
     <mat-sidenav #sidenav mode="side" opened="true" class="mat-sidenav">
         <mat-vertical-stepper #sidenavEtapas>
-            <mat-step *ngFor="let tesisEtapa of tesisEtapas" label="{{ tesisEtapa.id }}">
-                <ng-template matStepLabel>{{ tesisEtapa.nombre }}</ng-template>
-                {{ tesisEtapa.descripcion }}
+            <!-- <mat-step *ngFor="let tesisEtapa of tesisEtapas" label="{{ tesisEtapa.data_etapa.id }}"> -->
+            <mat-step *ngFor="let tesisEtapa of tesisEtapas" label="{{ tesisEtapa }}">
+                <ng-template matStepLabel>{{ tesisEtapa.data_etapa.nombre }}</ng-template>
+                {{ tesisEtapa.data_etapa.descripcion }}
             </mat-step>
         </mat-vertical-stepper>
     </mat-sidenav>
@@ -21,8 +22,8 @@
 
         <mat-card class="mat-card-content">
             <mat-horizontal-stepper #tareasStepper [linear]="[true]">
-                <mat-step label="{{ tarea.id }}" *ngFor="let tarea of tareas">
-                    <ng-template matStepLabel>{{ tarea.nombre }}</ng-template>
+                <mat-step label="{{ tesisTarea.data_tarea.id }}" *ngFor="let tesisTarea of tesisTareas">
+                    <ng-template matStepLabel>{{ tesisTarea.data_tarea.nombre }}</ng-template>
 
                     <dgi-many-dynamic-form [formularios]="formularios"></dgi-many-dynamic-form>
 
