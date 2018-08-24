@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
-import { FormGroup, FormBuilder, Validators } from '../../../../../../node_modules/@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CamposService } from '../../../../campos/shared/campos.service';
 
 @Component({
@@ -74,7 +74,7 @@ export class ValidadorNewComponent implements OnInit {
     public onSubmit() {
         const value = this.validadorForm.value;
         const valid = this.validadorForm.valid;
-      
+
         if (valid) {
             console.log(value);
             console.log(this.rolProcesosCheckeds);
@@ -90,7 +90,7 @@ export class ValidadorNewComponent implements OnInit {
                 formulario: value.formulario,
                 tipo_validador: value.tipoDeValidacion,
                 roles_validadores: this.rolProcesosCheckeds
-            }
+            };
             console.log(dataSend);
             // this.campoService.addValidador$(value).subscribe(response => {
 
