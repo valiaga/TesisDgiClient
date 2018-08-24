@@ -12,8 +12,9 @@ import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { FormularioEditComponent } from '../formulario-edit/formulario-edit.component';
 import { CamposNewComponent, CamposEditComponent } from '../../campos';
-import { ValidadorNewComponent } from '../../validadores';
+import { ValidadorNewComponent, ValidadorEditComponent } from '../../validadores';
 import { GeneradorDocumentosNewComponent } from '../../generador-documentos';
+import { GeneradorDocumentosEditComponent } from '../../generador-documentos/generador-documentos-edit/generador-documentos-edit.component';
 
 @Component({
     selector: 'dgi-formularios-list',
@@ -87,11 +88,45 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
             .subscribe(this.loadFormularios.bind(this));
     }
 
-    public update(fieldId: string) {
-        // console.log(fieldId);
+    public update(field: any) {
+        if (field.type === 'validador') {
+            this.updateValidador(field.id);
+        } else if (field.type === 'generar_documentos') {
+            console.log(field);
+
+            this.updateGeneradorDocumentos(field.id);
+        } else {
+            this.updateField(field.id);
+        }
+    }
+
+    private updateField(fieldId: string) {
         const dialogRef = this.dialog.open(CamposEditComponent, {
             width: '900px',
             data: { campoId: fieldId },
+        });
+
+        dialogRef.afterClosed()
+            .pipe(mergeMap(res => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
+            .subscribe(this.loadFormularios.bind(this));
+    }
+
+    private updateValidador(fieldId: string) {
+        const dialogRef = this.dialog.open(ValidadorEditComponent, {
+            width: '900px',
+            data: { campoId: fieldId, procesoId: this.procesoId },
+        });
+
+        dialogRef.afterClosed()
+            .pipe(mergeMap(res => this.tareaService.getFomulariosByTareaId$(this.tareaId)))
+            .subscribe(this.loadFormularios.bind(this));
+    }
+
+    private updateGeneradorDocumentos(fieldId: string) {
+
+        const dialogRef = this.dialog.open(GeneradorDocumentosEditComponent, {
+            width: '900px',
+            data: { campoId: fieldId, procesoId: this.procesoId },
         });
 
         dialogRef.afterClosed()

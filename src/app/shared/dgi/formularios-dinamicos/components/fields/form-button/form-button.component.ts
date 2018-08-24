@@ -20,14 +20,15 @@ import { FieldConfig } from '../../../models/field-config';
 export class DgiFormButtonComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  public onUpdate = new EventEmitter<string>();
+  public onUpdate = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  public update(fieldId: string) {
-    return this.onUpdate.emit(fieldId);
+  public update(field: FieldConfig) {
+    const dataReturn = { id: field.id, type: field.type };
+    return this.onUpdate.emit(dataReturn);
   }
 }

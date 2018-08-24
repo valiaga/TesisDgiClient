@@ -17,7 +17,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
         [placeholder]="config.label">
         <mat-icon *ngIf="config.icon" matSuffix>{{ config.icon }}</mat-icon>
         <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
-        <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config.id)">edit</mat-icon>
+        <mat-icon matSuffix class="dgi-icon-edit" (click)="update(config)">edit</mat-icon>
         <!-- [type]="(hide ? 'password' : 'text')" -->
     </mat-form-field>
   `,
@@ -27,7 +27,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 export class DgiFormPasswordComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  public onUpdate = new EventEmitter<string>();
+  public onUpdate = new EventEmitter<any>();
 
   private hide = true;
   constructor(private formWidthToolsService: FormWidthToolsService) { }
@@ -35,8 +35,9 @@ export class DgiFormPasswordComponent implements OnInit {
   ngOnInit() {
   }
 
-  public update(fieldId: string) {
-    return this.onUpdate.emit(fieldId);
+  public update(field: FieldConfig) {
+    const dataReturn = { id: field.id, type: field.type };
+    return this.onUpdate.emit(dataReturn);
   }
 
   public getWidthControlClass() {

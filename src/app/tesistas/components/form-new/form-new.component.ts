@@ -70,7 +70,7 @@ export class FormNewComponent implements OnInit {
               this.snackBar.open(MESSAGES.tesista.post, MESSAGES.actions.post, snackBarDuration);
               this.dialogRef.close(true);
               this.tesistaForm.reset();
-            })
+            });
           } else {
           }
         });

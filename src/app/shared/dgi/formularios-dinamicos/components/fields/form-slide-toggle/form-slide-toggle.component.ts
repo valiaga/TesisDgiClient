@@ -31,15 +31,16 @@ export class DgiFormSlideToggleComponent implements OnInit {
 
   private color = 'primary';
   private disabled = false;
-  public onUpdate = new EventEmitter<string>();
+  public onUpdate = new EventEmitter<any>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {
   }
 
-  public update(fieldId: string) {
-    return this.onUpdate.emit(fieldId);
+  public update(field: FieldConfig) {
+    const dataReturn = { id: field.id, type: field.type };
+    return this.onUpdate.emit(dataReturn);
   }
 
   public getWidthControlClass() {

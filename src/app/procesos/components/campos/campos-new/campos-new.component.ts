@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { CamposService } from '../../../../campos/shared/campos.service';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from 'config/general';
+import { getMessageConfirm, snackBarDuration } from 'config/general';
 import { MESSAGES } from 'config/messages';
 
 @Component({
@@ -34,6 +34,7 @@ export class CamposNewComponent implements OnInit {
         private formBuilder: FormBuilder,
         private camposService: CamposService,
         private viewContainerRef: ViewContainerRef,
+        private snackBar: MatSnackBar,
         private tdDialogService: TdDialogService,
     ) { }
 
@@ -122,11 +123,11 @@ export class CamposNewComponent implements OnInit {
         const acceptInputFile = this.prepareDataAccept();
 
         const data = Object.assign({ accept_fileinput: acceptInputFile }, pasoOneFormValue, pasoTwoFormValue);
-        console.log(data);
-        console.log(pasoOneFormValid);
-        console.log(pasoTwoFormValid);
-        console.log(pasoThreeFormValid);
-        console.log(acceptInputFile);
+        // console.log(data);
+        // console.log(pasoOneFormValid);
+        // console.log(pasoTwoFormValid);
+        // console.log(pasoThreeFormValid);
+        // console.log(acceptInputFile);
 
 
         if (pasoOneFormValid && pasoTwoFormValid && pasoThreeFormValid) {
@@ -134,6 +135,7 @@ export class CamposNewComponent implements OnInit {
                 .afterClosed().subscribe((accept: boolean) => {
                     if (accept) {
                         this.camposService.add$(data).subscribe(res => {
+                            this.snackBar.open(MESSAGES.campo.post, MESSAGES.actions.post, snackBarDuration);
                             this.dialogRef.close(this.data.formulario.tarea);
                             this.pasoOneForm.reset();
                             this.pasoTwoForm.reset();

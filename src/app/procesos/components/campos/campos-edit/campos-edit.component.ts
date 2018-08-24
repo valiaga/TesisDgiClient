@@ -1,9 +1,9 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { CamposService } from '../../../../campos/shared/campos.service';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm } from 'config/general';
+import { getMessageConfirm, snackBarDuration } from 'config/general';
 import { MESSAGES } from 'config/messages';
 
 @Component({
@@ -15,7 +15,6 @@ import { MESSAGES } from 'config/messages';
 export class CamposEditComponent implements OnInit {
     // public tipoCampo = new FormControl();
     public tipoCampo: string;
-    public tareaId: string;
     // public tiposDeCampos: any[];
 
     // public pasoOneForm: FormGroup;
@@ -35,6 +34,7 @@ export class CamposEditComponent implements OnInit {
         @Inject(MAT_DIALOG_DATA) public data: any,
         private formBuilder: FormBuilder,
         private camposService: CamposService,
+        private snackBar: MatSnackBar,
         private viewContainerRef: ViewContainerRef,
         private tdDialogService: TdDialogService,
     ) { }
@@ -66,8 +66,6 @@ export class CamposEditComponent implements OnInit {
 
     private loadCampo(campo) {
         this.tipoCampo = campo.type;
-        this.tareaId = campo.tarea;
-        console.log(campo);
         this.patchForms(campo);
     }
 
@@ -186,8 +184,8 @@ export class CamposEditComponent implements OnInit {
                 .afterClosed().subscribe((accept: boolean) => {
                     if (accept) {
                         this.camposService.update$(data.id, data).subscribe(res => {
-                            this.dialogRef.close(this.tareaId);
-                            // this.pasoOneForm.reset();
+                            this.snackBar.open(MESSAGES.campo.put, MESSAGES.actions.put, snackBarDuration);
+                            this.dialogRef.close();
                             this.pasoTwoForm.reset();
                             this.pasoThreeForm.reset();
                         });
@@ -198,14 +196,12 @@ export class CamposEditComponent implements OnInit {
     }
 
     public onDeleteField() {
-        console.log(this.tareaId);
-
         this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmDelete, this.viewContainerRef))
             .afterClosed().subscribe((accept: boolean) => {
                 if (accept) {
                     this.camposService.delete$(this.data.campoId).subscribe(res => {
-                        console.log(this.tareaId);
-                        this.dialogRef.close(this.tareaId);
+                        this.snackBar.open(MESSAGES.campo.delete, MESSAGES.actions.put, snackBarDuration);
+                        this.dialogRef.close();
                         this.pasoTwoForm.reset();
                         this.pasoThreeForm.reset();
                     });

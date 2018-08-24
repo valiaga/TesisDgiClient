@@ -5,7 +5,53 @@
     <h5>Información General</h5>
     <form [formGroup]="validadorForm" (ngSubmit)="onSubmit()" novalidate class="validador-new-container">
 
-        <mat-radio-group formControlName="tipoDeValidacion">
+        <table class="example-full-width" cellspacing="0">
+            <tr>
+                <td>
+                    <!-- Label field -->
+                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                        <input matInput placeholder="Label" formControlName="label" required>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <!-- Name field -->
+                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                        <input matInput placeholder="Name" formControlName="name" required>
+                        <mat-hint align="start">
+                            <strong>Este campo es unico.</strong>
+                        </mat-hint>
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- Icon field -->
+                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                        <input matInput placeholder="Icon" formControlName="icon">
+                        <mat-hint align="start">
+                            <strong>https://material.io/tools/icons</strong>
+                        </mat-hint>
+                    </mat-form-field>
+                </td>
+                <td>
+                    <!-- Hint Start field -->
+                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                        <input matInput placeholder="Hint Start (Texto de ayúda.)" formControlName="hint_start">
+                    </mat-form-field>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- Orden field -->
+                    <mat-form-field [floatLabel]="['auto']" class="example-full-width">
+                        <input type="number" matInput placeholder="Orden" formControlName="order" required>
+                    </mat-form-field>
+                </td>
+            </tr>
+        </table>
+
+
+        <mat-radio-group formControlName="tipo_validador">
             <mat-grid-list cols="3" rowHeight="50px">
                 <mat-grid-tile>
                     <mat-radio-button value="G">Validación Grupal</mat-radio-button>

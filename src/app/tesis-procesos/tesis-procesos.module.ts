@@ -16,6 +16,7 @@ import {
 import { CommonModule } from '../../../node_modules/@angular/common';
 import { TareaService } from '../tareas/shared/tarea.service';
 import { EtapaService } from '../etapas/shared/etapa.service';
+import { TesisTareaService, TesisEtapaService } from './shared';
 
 const COMPONENTS: any[] = [
   TesisProcesosComponent,
@@ -58,6 +59,8 @@ const MATERIAL_MODULES: any[] = [
     TareaService,
     TesisProcesoService,
     EtapaService,
+    TesisEtapaService,
+    TesisTareaService,
   ],
   entryComponents: [
   ],
