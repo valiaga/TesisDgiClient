@@ -33,6 +33,7 @@ const components: { [type: string]: Type<Field> } = {
   radio: DgiFormRadioComponent,
   checkbox: DgiFormCheckboxComponent,
   fileinput: DgiFormFileInputComponent,
+
   validador: DgiFormValidadorComponent,
   generar_documentos: DgiFormGenerarDocumentosComponent,
 };

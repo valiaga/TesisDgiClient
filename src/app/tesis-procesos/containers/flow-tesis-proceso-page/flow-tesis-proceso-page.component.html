@@ -4,7 +4,7 @@
     <mat-sidenav #sidenav mode="side" opened="true" class="mat-sidenav">
         <mat-vertical-stepper #sidenavEtapas>
             <!-- <mat-step *ngFor="let tesisEtapa of tesisEtapas" label="{{ tesisEtapa.data_etapa.id }}"> -->
-            <mat-step *ngFor="let tesisEtapa of tesisEtapas" label="{{ tesisEtapa }}">
+            <mat-step *ngFor="let tesisEtapa of tesisEtapas" label="{{ tesisEtapa.string_data }}">
                 <ng-template matStepLabel>{{ tesisEtapa.data_etapa.nombre }}</ng-template>
                 {{ tesisEtapa.data_etapa.descripcion }}
             </mat-step>

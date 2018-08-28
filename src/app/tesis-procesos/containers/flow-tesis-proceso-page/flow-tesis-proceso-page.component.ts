@@ -68,8 +68,11 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   }
 
   private loadTesisEtapasByTesisProcesoId(tesisEtapas) {
-    // console.log(tesisEtapas);
-    this.tesisEtapas = tesisEtapas;
+
+    this.tesisEtapas = tesisEtapas.map(tee => {
+      return Object.assign({ string_data: JSON.stringify(tee) }, tee);
+    });
+
     const tesisEtapaId = (tesisEtapas[0] && tesisEtapas[0].tesis_etapa_exist && tesisEtapas[0].tesis_etapa_exist.id) || '';
     const etapaId = tesisEtapas[0] && tesisEtapas[0].data_etapa && tesisEtapas[0].data_etapa.id || '';
     this.getTesisTareasByEtapaId(tesisEtapaId, etapaId);
@@ -140,7 +143,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     this.sidenavEtapas.selectionChange.asObservable()
       .subscribe((stepper: StepperSelectionEvent) => {
         // Nos quedamos aqui
-        const label = stepper.selectedStep.label;
+        const label = JSON.parse(stepper.selectedStep.label);
         const tesisEtapaId = label.tesis_etapa_exist.id || '';
         const etapaId = label.data_etapa.id || '';
         this.getTesisTareasByEtapaId(tesisEtapaId, etapaId);

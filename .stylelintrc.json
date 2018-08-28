@@ -18,8 +18,8 @@
         true,
         {
           "ignoreTypes": [
-            "/^nb-/",
-            "/^lamb-/"
+            "/^dgi-/",
+            "/^mat-/"
           ]
         }
       ],

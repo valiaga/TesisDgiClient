@@ -1,4 +1,4 @@
-@import "../../../styles.scss";
+@import '../../../styles.scss';
 
 .div-breadcrumb{
   // border-bottom:1px solid #ccc;
@@ -15,7 +15,7 @@ mat-icon.mat-icon.mat-24 {
   padding: 0.2rem 1rem;
   list-style: none;
   &::after {
-    content: "";
+    content: '';
     display: table;
     clear: both; 
   }
@@ -32,7 +32,7 @@ mat-icon.mat-icon.mat-24 {
       padding-left: 0.5rem;
       // color: rgba(0, 0, 0, 0.26);
       color: mat-color($dgi-primary, default-contrast);
-      content: "/";
+      content: '/';
     }
     &:hover::before {
       text-decoration: underline;
@@ -50,7 +50,7 @@ mat-icon.mat-icon.mat-24 {
     padding-left: 0.5rem;
     color: mat-color($dgi-primary, default-contrast);
     // color: rgba(0, 0, 0, 0.26);
-    content: "/"; 
+    content: '/'; 
 }
 
 .mat-sidenav-content{

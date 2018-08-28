@@ -42,6 +42,8 @@ import {
     DgiDynamicFormComponent,
     DgiManyDynamicFormComponent,
     DgiFormFileInputComponent,
+    DgiFormGenerarDocumentosComponent,
+    DgiFormValidadorComponent,
 } from './components';
 import {
     MatFormFieldModule, MatButtonModule,
@@ -86,6 +88,8 @@ const COMPONENTS_FIELD: any[] = [
     DgiFormDatepickerComponent,
     DgiFormRadioComponent,
     DgiFormCheckboxComponent,
+    DgiFormGenerarDocumentosComponent,
+    DgiFormValidadorComponent,
 ];
 
 const MATERIAL_MODULES: any[] = [

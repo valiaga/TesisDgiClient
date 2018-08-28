@@ -12,6 +12,8 @@ export * from './fields/form-select/form-select.component';
 export * from './fields/form-slide-toggle/form-slide-toggle.component';
 export * from './fields/form-tel/form-tel.component';
 export * from './fields/form-textarea/form-textarea.component';
+export * from './fields/form-generar-documentos/form-generar-documentos.component';
+export * from './fields/form-validador/form-validador.component';
 
 
 export * from './forms/dynamic-form/dynamic-form.component';

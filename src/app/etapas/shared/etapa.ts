@@ -8,6 +8,7 @@ export class Etapa {
         public tarea_activador: string,
         public tarea_desactivador: string,
         public orden: number,
+        public string_data: string,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
         public id?: string,
@@ -18,6 +19,7 @@ export interface IEtapa {
     id: string; // uuid
     nombre: string;
     descripcion: string;
+    string_data: string;
     proceso: string;
     anterior: string;
     plazo_dias: number;
