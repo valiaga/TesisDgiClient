@@ -92,7 +92,6 @@ export class ValidadorNewComponent implements OnInit {
                 tipo_validador: value.tipo_validador,
                 roles_validadores: this.rolProcesosCheckeds.join(','),
             };
-            // console.log('dataSend ', dataSend);
 
             this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmCreate, this.viewContainerRef))
                 .afterClosed().subscribe((accept: boolean) => {
