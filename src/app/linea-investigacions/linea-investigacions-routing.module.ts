@@ -12,12 +12,12 @@ import { FindLineaInvestigacionPageComponent } from './containers/find-linea-inv
 const routes: Routes = [
   {
     path: '',
-    component: FindLineaInvestigacionPageComponent
-  }
+    component: FindLineaInvestigacionPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class LineaInvestigacionsRoutingModule { }

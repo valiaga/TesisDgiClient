@@ -8,7 +8,7 @@ export class Proceso {
         public activo: boolean,
         public fecha_creacion: string,
         public fecha_actualizacion: string,
-        public id?: string // uuid
+        public id?: string, // uuid
     ) { }
 }
 

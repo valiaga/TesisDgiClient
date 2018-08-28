@@ -39,7 +39,7 @@ export class JuradosReactiveService {
   jurados: Observable<Jurado[]>;
   private _jurados: BehaviorSubject<Jurado[]>;
   private dataStore: {
-    jurados: Jurado[]
+    jurados: Jurado[],
   };
   constructor(private juradosService: JuradosService,
     private snackBar: MatSnackBar) {
@@ -57,7 +57,7 @@ export class JuradosReactiveService {
         this.snackBar.open(MESSAGES.jurado.getMany, MESSAGES.actions.get, snackBarDuration);
         this.dataStore.jurados = data;
         this._jurados.next(Object.assign({}, this.dataStore).jurados);
-      }, error => console.log('Could not load jurados.')
+      }, error => console.warn('Could not load jurados.'),
       );
   }
 
@@ -67,7 +67,7 @@ export class JuradosReactiveService {
         this.snackBar.open(MESSAGES.jurado.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.jurados.push(data);
         this._jurados.next(Object.assign({}, this.dataStore).jurados);
-      }, error => console.log('Could not create jurado.'));
+      }, error => console.warn('Could not create jurado.'));
   }
 
 
@@ -80,7 +80,7 @@ export class JuradosReactiveService {
         });
 
         this._jurados.next(Object.assign({}, this.dataStore).jurados);
-      }, error => console.log('Could not update jurado.'));
+      }, error => console.warn('Could not update jurado.'));
   }
 
   public delete(id: string) {
@@ -93,6 +93,6 @@ export class JuradosReactiveService {
           if (a.id === id) { this.dataStore.jurados.splice(index, 1); }
         });
         this._jurados.next(Object.assign({}, this.dataStore).jurados);
-      }, error => console.log('Could not delete jurado.'));
+      }, error => console.warn('Could not delete jurado.'));
   }
 }

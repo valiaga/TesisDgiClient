@@ -3,7 +3,7 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
-  HttpRequest
+  HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
@@ -16,7 +16,7 @@ export class UrlAuthInterceptorService implements HttpInterceptor {
 
   public intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
 
     const urlReq = this.setUrlHeader(req);

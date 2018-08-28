@@ -38,8 +38,8 @@ export class TesisProcesoListComponent implements OnInit {
       if (result && result.submit) {
         this.onSave.emit(result.realData);
       } else {
-        console.log('has cancel');
-        console.log(result && result.realData);
+        // console.log('has cancel');
+        // console.log(result && result.realData);
       }
     });
   }

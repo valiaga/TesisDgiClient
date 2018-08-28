@@ -13,7 +13,7 @@ export class EscuelaService {
   escuelas: Observable<Escuela[]>;
   private _escuelas: BehaviorSubject<Escuela[]>;
   private dataStore: {
-    escuelas: Escuela[]
+    escuelas: Escuela[],
   };
 
   constructor(private http: HttpClient,
@@ -31,7 +31,7 @@ export class EscuelaService {
         this.snackBar.open(MESSAGES.escuela.getMany, MESSAGES.actions.get, snackBarDuration);
         this.dataStore.escuelas = data;
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
-      }, error => console.log('Could not load escuelas.')
+      }, error => console.warn('Could not load escuelas.'),
       );
   }
 
@@ -53,7 +53,7 @@ export class EscuelaService {
         this.snackBar.open(MESSAGES.escuela.getOne, MESSAGES.actions.get, snackBarDuration);
 
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
-      }, error => console.log('Could not load escuela.'));
+      }, error => console.warn('Could not load escuela.'));
   }
 
   create(escuela: any) {
@@ -62,7 +62,7 @@ export class EscuelaService {
         this.snackBar.open(MESSAGES.escuela.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.escuelas.push(data);
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
-      }, error => console.log('Could not create escuela.'));
+      }, error => console.warn('Could not create escuela.'));
   }
 
   update(escuela: Escuela) {
@@ -74,7 +74,7 @@ export class EscuelaService {
         });
 
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
-      }, error => console.log('Could not update escuela.'));
+      }, error => console.warn('Could not update escuela.'));
   }
 
   remove(id: string) {
@@ -87,7 +87,7 @@ export class EscuelaService {
           if (escuela.id === id) { this.dataStore.escuelas.splice(index, 1); }
         });
         this._escuelas.next(Object.assign({}, this.dataStore).escuelas);
-      }, error => console.log('Could not delete escuela.'));
+      }, error => console.warn('Could not delete escuela.'));
   }
 
 

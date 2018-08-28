@@ -6,7 +6,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 @Component({
   selector: 'dgi-many-dynamic-form',
   templateUrl: 'many-dynamic-form.component.html',
-  styleUrls: ['./many-dynamic-form.component.scss']
+  styleUrls: ['./many-dynamic-form.component.scss'],
 })
 export class DgiManyDynamicFormComponent implements OnInit, AfterViewChecked {
 
@@ -38,8 +38,8 @@ export class DgiManyDynamicFormComponent implements OnInit, AfterViewChecked {
   }
 
   public submit(value: { [name: string]: any }) {
-    console.log('value');
-    console.log(value);
+    // console.log('value');
+    // console.log(value);
   }
 
   ngAfterViewChecked() {

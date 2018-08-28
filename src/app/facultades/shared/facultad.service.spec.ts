@@ -5,7 +5,7 @@ import { FacultadService } from './facultad.service';
 describe('FacultadService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [FacultadService]
+      providers: [FacultadService],
     });
   });
 

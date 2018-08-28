@@ -8,7 +8,7 @@ describe('EtapaNewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EtapaNewComponent ]
+      declarations: [ EtapaNewComponent ],
     })
     .compileComponents();
   }));

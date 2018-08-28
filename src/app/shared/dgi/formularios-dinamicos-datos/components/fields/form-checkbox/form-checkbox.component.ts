@@ -26,7 +26,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     </mat-error> -->
   </div>
   `,
-  styleUrls: ['./form-checkbox.component.scss']
+  styleUrls: ['./form-checkbox.component.scss'],
 })
 export class DgiFormCheckboxComponent implements OnInit {
   public config: FieldConfig;

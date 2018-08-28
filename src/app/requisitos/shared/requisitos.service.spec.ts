@@ -5,7 +5,7 @@ import { RequisitosService } from './requisitos.service';
 describe('RequisitosService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [RequisitosService]
+      providers: [RequisitosService],
     });
   });
 

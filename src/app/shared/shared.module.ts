@@ -17,20 +17,20 @@ import { CovalentModule } from './covalent/covalent.module';
     // CommonModule,
     AngularModule,
     MaterialModule,
-    CovalentModule
+    CovalentModule,
     // CHART_MODULES,
     // FLEX_LAYOUT_MODULES,
   ],
   declarations: [
     // AddCommasPipe
- 
+
   ],
-  exports:[
+  exports: [
     AngularModule,
     MaterialModule,
-    CovalentModule
+    CovalentModule,
     // CHART_MODULES,
     // FLEX_LAYOUT_MODULES,
-  ]
+  ],
 })
 export class SharedModule { }

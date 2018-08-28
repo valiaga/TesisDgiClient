@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { AsesoresService, AsesoresReactiveService } from '../../shared/asesores.service';
+import { AsesoresReactiveService } from '../../shared/asesores.service';
 import { Asesor } from '../../shared/asesor';
 import { MatDialog } from '@angular/material';
 import { FormNewComponent, FormEditComponent, FormVinculeComponent } from '../../components';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
@@ -19,7 +19,7 @@ import { Router, ActivatedRoute } from '@angular/router';
             right: 90px;
             bottom: 20px
         }
-    `]
+    `],
 })
 
 export class FindPageComponent implements OnInit {
@@ -53,7 +53,7 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog asesor');
+            console.warn('close dialog asesor');
         });
     }
 
@@ -63,7 +63,7 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog vincule asesor');
+            console.warn('close dialog vincule asesor');
         });
     }
 
@@ -77,7 +77,7 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog asesor');
+            console.warn('close dialog asesor');
         });
 
     }

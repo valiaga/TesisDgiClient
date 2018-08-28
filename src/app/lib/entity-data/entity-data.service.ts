@@ -46,7 +46,7 @@ export class EntityDataReactiveService<T extends IModel> {
     public entities: Observable<T[]>;
     private _entities: BehaviorSubject<Array<T>>;
     private dataStore: { // Aquí es donde almacenaremos nuestros datos en la memoria
-        entities: T[]
+        entities: T[],
     };
 
     constructor(
@@ -65,7 +65,7 @@ export class EntityDataReactiveService<T extends IModel> {
             .subscribe(data => {
                 this.dataStore.entities = data;
                 this._entities.next(Object.assign({}, this.dataStore).entities);
-            }, error => console.log(`Could not load ${this.model}s.`)
+            }, error => console.warn(`Could not load ${this.model}s.`),
             );
     }
 
@@ -75,7 +75,7 @@ export class EntityDataReactiveService<T extends IModel> {
                 this.snackBar.open(MESSAGES[this.model].post, MESSAGES.actions.post, snackBarDuration);
                 this.dataStore.entities.push(res);
                 this._entities.next(Object.assign({}, this.dataStore).entities);
-            }, error => console.log(`Could not create ${this.model}`));
+            }, error => console.warn(`Could not create ${this.model}`));
     }
 
     public update(id: string, entity: T) {
@@ -86,7 +86,7 @@ export class EntityDataReactiveService<T extends IModel> {
                     if (tp.id === data.id) { this.dataStore.entities[index] = data; }
                 });
                 this._entities.next(Object.assign({}, this.dataStore).entities);
-            }, error => console.log(`Could not update ${this.model}.`));
+            }, error => console.warn(`Could not update ${this.model}.`));
     }
 
     public delete(id: string) {
@@ -97,6 +97,6 @@ export class EntityDataReactiveService<T extends IModel> {
                     if (tesisProceso.id === id) { this.dataStore.entities.splice(index, 1); }
                 });
                 this._entities.next(Object.assign({}, this.dataStore).entities);
-            }, error => console.log(`Could not delete ${this.model}.`));
+            }, error => console.warn(`Could not delete ${this.model}.`));
     }
 }

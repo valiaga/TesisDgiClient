@@ -8,7 +8,7 @@ import {
   CovalentStepsModule,
   CovalentDialogsModule,
   CovalentFileModule, CovalentNotificationsModule, CovalentSearchModule,
-  CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule
+  CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule,
 } from '@covalent/core';
 
 
@@ -23,7 +23,7 @@ const COVALENT_MODULES = [
 
   CovalentDialogsModule,
   CovalentNotificationsModule, CovalentFileModule, CovalentSearchModule,
-  CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule
+  CovalentMenuModule, CovalentLayoutModule, CovalentMediaModule,
 ];
 
 @NgModule({

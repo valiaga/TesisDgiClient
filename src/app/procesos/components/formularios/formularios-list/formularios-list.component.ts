@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectorRef, AfterViewChecked, ViewContainerRef } from '@angular/core';
 // import { FormularioService } from '../../../../dynamic-form/shared/formulario.service';
 import { ActivatedRoute } from '@angular/router';
-import { mergeMap, map, tap } from 'rxjs/operators';
+import { mergeMap } from 'rxjs/operators';
 import { FormToolsService } from '../../../../shared/form-tools.service';
 import { MatDialog } from '@angular/material';
 import { FormularioNewComponent } from '../formulario-new/formulario-new.component';
@@ -92,7 +92,7 @@ export class FormulariosListComponent implements OnInit, AfterViewChecked {
         if (field.type === 'validador') {
             this.updateValidador(field.id);
         } else if (field.type === 'generar_documentos') {
-            console.log(field);
+            // console.log(field);
 
             this.updateGeneradorDocumentos(field.id);
         } else {

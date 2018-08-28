@@ -23,13 +23,13 @@ import { MESSAGES } from '../../../../config/messages';
     .linea-investigacion-container .checkbox{
       margin-bottom: 20px;
     }
-  `
-  ]
+  `,
+  ],
 })
 export class CreateLineaInvestigacionDialogComponent implements OnInit {
   private lineaInvestigacion: LineaInvestigacion;
   private createForm: FormGroup;
-  private escuelas$: Observable<Escuela[]>;
+  public escuelas$: Observable<Escuela[]>;
 
   constructor(private dialogRef: MatDialogRef<CreateLineaInvestigacionDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -83,7 +83,7 @@ export class CreateLineaInvestigacionDialogComponent implements OnInit {
       activo: [this.lineaInvestigacion.activo],
       escuela: [this.lineaInvestigacion.escuela, [Validators.required]],
       fecha_creacion: [this.lineaInvestigacion.fecha_creacion],
-      fecha_actualizacion: [this.lineaInvestigacion.fecha_actualizacion]
+      fecha_actualizacion: [this.lineaInvestigacion.fecha_actualizacion],
     };
 
     return controls;

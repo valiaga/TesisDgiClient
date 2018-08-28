@@ -45,8 +45,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
     .mat-spinner.show {
       opacity: 1.0;
     }
-    `
-  ]
+    `,
+  ],
 })
 export class ProyectoSearchComponent implements OnInit {
 

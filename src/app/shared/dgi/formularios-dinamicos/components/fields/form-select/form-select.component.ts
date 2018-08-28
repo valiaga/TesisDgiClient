@@ -7,7 +7,7 @@ import { SelectModelService } from './select-model.service';
 @Component({
   selector: 'dgi-form-select',
   templateUrl: 'form-select.component.html',
-  styleUrls: ['./form-select.component.scss']
+  styleUrls: ['./form-select.component.scss'],
 })
 export class DgiFormSelectComponent implements OnInit {
   public config: FieldConfig;
@@ -29,7 +29,7 @@ export class DgiFormSelectComponent implements OnInit {
       };
       this.selectModelService.getValuesByModel(params).subscribe(response => {
         this.JSONparse = response;
-        console.log(this.JSONparse);
+        // console.log(this.JSONparse);
       });
 
     } else {

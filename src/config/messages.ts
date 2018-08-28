@@ -22,7 +22,7 @@ export const MESSAGES = {
         minRequired: 'El valor mínimo debe ser: ',
         minActual: 'El valor actual es: ',
         maxRequired: 'El valor máximo debe ser: ',
-        maxActual: 'El valor actual es: '
+        maxActual: 'El valor actual es: ',
     },
 
 
@@ -44,7 +44,7 @@ export const MESSAGES = {
         post: 'La lina de investigación se guardó con Éxito.',
         getMany: 'Las lineas de investigación se listaron con Éxito.',
         getOne: 'La lina de investigación se listó con Éxito.',
-        put: 'La lina de investigación se actualizó con Éxito.'
+        put: 'La lina de investigación se actualizó con Éxito.',
     },
     escuela: {
         delete: 'La escuela académica se eliminó con Éxito!.',
@@ -132,7 +132,7 @@ export const MESSAGES = {
         post: 'El proceso se guardó con Éxito.',
         getMany: 'Los procesos se listaron con Éxito.',
         getOne: 'El proceso se listó con Éxito.',
-        put: 'El proceso se actualizó con Éxito.'
+        put: 'El proceso se actualizó con Éxito.',
     },
     formulario: {
         delete: 'El Formulario se eliminó con Éxito!.',
@@ -193,5 +193,5 @@ export const MESSAGES = {
         put: 'El Requisito se actualizó con Éxito.',
         confirmDelete: '¿Estas segur@ que quieres eliminar el Requisito?',
         confirmCreate: '¿Estas segur@ que quieres guardar el Requisito?',
-    }
+    },
 };

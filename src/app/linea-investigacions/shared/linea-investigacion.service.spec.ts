@@ -5,7 +5,7 @@ import { LineaInvestigacionService } from './linea-investigacion.service';
 describe('LineaInvestigacionService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [LineaInvestigacionService]
+      providers: [LineaInvestigacionService],
     });
   });
 

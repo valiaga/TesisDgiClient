@@ -30,15 +30,15 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     </div>
 
   `,
-  styleUrls: ['./form-slide-toggle.component.scss']
+  styleUrls: ['./form-slide-toggle.component.scss'],
 })
 export class FormSlideToggleComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
 
-  private color = 'primary';
+  public color = 'primary';
   // private checked = true;
-  private disabled = false;
+  public disabled = false;
 
   constructor(private formToolsService: FormToolsService) { }
 
@@ -53,8 +53,8 @@ export class FormSlideToggleComponent implements OnInit {
   }
 
   public getControlErrors(controlName: string) {
-    console.log('aquiiiiiiiiiiiiiiii');
-    console.log(this.formToolsService.getControlErrors(this.group, controlName));
+    // console.log('aquiiiiiiiiiiiiiiii');
+    // console.log(this.formToolsService.getControlErrors(this.group, controlName));
     return this.formToolsService.getControlErrors(this.group, controlName);
   }
 }

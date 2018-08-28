@@ -73,8 +73,8 @@ import { Proyecto } from '../models/proyecto';
     /*mat-card-footer {
       padding: 0 25px 25px;
     }*/
-    `
-  ]
+    `,
+  ],
 })
 export class ProyectoPreviewComponent implements OnInit {
 

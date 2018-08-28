@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+// import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 // import { ProcesosService } from '../../../../procesos/shared/proceso.service';
@@ -30,7 +30,7 @@ export class FindTesisProcesoPageComponent implements OnInit {
     this.route.paramMap
       .pipe(map(params => params.get('proceso_id')))
       .subscribe(procesoId => {
-        console.log(procesoId);
+        // console.log(procesoId);
 
         this.procesoId = procesoId;
         this.getTesisProcesos(this.procesoId.toString());

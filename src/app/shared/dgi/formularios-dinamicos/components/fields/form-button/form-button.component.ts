@@ -15,7 +15,7 @@ import { FieldConfig } from '../../../models/field-config';
     </button>
   </div>
   `,
-  styles: []
+  styles: [],
 })
 export class DgiFormButtonComponent implements OnInit {
   public config: FieldConfig;

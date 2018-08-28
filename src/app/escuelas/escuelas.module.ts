@@ -20,7 +20,7 @@ import { CovalentModule } from '../shared/covalent/covalent.module';
     UtilsModule,
     CovalentModule,
 
-    EscuelasRoutingModule
+    EscuelasRoutingModule,
   ],
   declarations: [
     FindEscuelaPageComponent,
@@ -34,7 +34,7 @@ import { CovalentModule } from '../shared/covalent/covalent.module';
     FacultadService,
   ],
   entryComponents: [
-    CreateEscuelaDialogComponent
-  ]
+    CreateEscuelaDialogComponent,
+  ],
 })
 export class EscuelasModule { }

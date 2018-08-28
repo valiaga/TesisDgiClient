@@ -8,7 +8,7 @@ describe('DgiFormGenerarDocumentosComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [DgiFormGenerarDocumentosComponent]
+      declarations: [DgiFormGenerarDocumentosComponent],
     })
       .compileComponents();
   }));

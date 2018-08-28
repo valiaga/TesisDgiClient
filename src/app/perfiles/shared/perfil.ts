@@ -6,7 +6,7 @@ export class Perfil {
         public data_usuario: any,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
-        public id?: string
+        public id?: string,
     ) { }
 }
 

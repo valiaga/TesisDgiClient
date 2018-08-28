@@ -10,7 +10,7 @@ import { ProcesosReactiveService } from '../../../procesos/shared/proceso.servic
       [procesos]="procesos$ | async"
       ></dgi-proceso-list>
   `,
-  styles: []
+  styles: [],
 })
 export class ListProcesoPageComponent implements OnInit {
   public procesos$: Observable<Proceso[]>;

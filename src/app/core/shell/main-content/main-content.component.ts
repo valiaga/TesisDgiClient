@@ -12,8 +12,8 @@ import { Component, OnInit } from '@angular/core';
     .demo-container{
       padding-bottom: 5rem;
     }
-    `
-  ]
+    `,
+  ],
 })
 export class MainContentComponent implements OnInit {
 

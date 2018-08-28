@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Escuela } from '../../shared/escuela';
@@ -23,15 +23,15 @@ import { getMessageConfirm } from '../../../../config/general';
     .escuela-container .checkbox{
       margin-bottom: 20px;
     }
-    `
-  ]
+    `,
+  ],
 })
 export class CreateEscuelaDialogComponent implements OnInit {
-  private escuela: Escuela;
-  private escuelaForm: FormGroup;
-  private facultades$: Observable<Facultad[]>;
+  public escuela: Escuela;
+  public escuelaForm: FormGroup;
+  public facultades$: Observable<Facultad[]>;
 
-  private files: File | FileList;
+  public files: File | FileList;
 
 
   constructor(private dialogRef: MatDialogRef<CreateEscuelaDialogComponent>,
@@ -41,7 +41,7 @@ export class CreateEscuelaDialogComponent implements OnInit {
     private facultadService: FacultadService,
     // private snackBar: MatSnackBar,
     private viewContainerRef: ViewContainerRef,
-    private tdDialogService: TdDialogService
+    private tdDialogService: TdDialogService,
   ) { }
 
   ngOnInit() {
@@ -74,7 +74,7 @@ export class CreateEscuelaDialogComponent implements OnInit {
       vision: [this.escuela.vision],
       facultad: [this.escuela.facultad, [Validators.required]],
       fecha_creacion: [this.escuela.fecha_creacion],
-      fecha_actualizacion: [this.escuela.fecha_actualizacion]
+      fecha_actualizacion: [this.escuela.fecha_actualizacion],
     };
     return controls;
   }
@@ -98,7 +98,7 @@ export class CreateEscuelaDialogComponent implements OnInit {
   onSubmit() {
     const escuelaModel = this.prepareSave();
 
-    const escuela = this.escuelaForm.value;
+    // const escuela = this.escuelaForm.value;
     const valid = this.escuelaForm.valid;
     if (valid) {
 

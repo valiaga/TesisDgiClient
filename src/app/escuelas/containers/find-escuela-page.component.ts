@@ -18,11 +18,11 @@ import { MESSAGES } from '../../../config/messages';
       ></dgi-escuela-list>
     <dgi-button-fab (click)="openDialog()" [color]="['accent']" [icon]="['add']"></dgi-button-fab>
   `,
-  styles: []
+  styles: [],
 })
 export class FindEscuelaPageComponent implements OnInit {
 
-  private escuelas$: Observable<Escuela[]>;
+  public escuelas$: Observable<Escuela[]>;
 
   constructor(private escuelaService: EscuelaService,
               private dialog: MatDialog,
@@ -52,11 +52,11 @@ export class FindEscuelaPageComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateEscuelaDialogComponent, {
-      width: '500px'
+      width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('close dialog escuela');
+      // console.log('close dialog escuela');
     });
   }
 }

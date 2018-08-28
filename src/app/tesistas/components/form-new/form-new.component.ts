@@ -45,7 +45,7 @@ export class FormNewComponent implements OnInit {
         num_doc: ['', Validators.required],
         genero: ['M', Validators.required],
         fecha_nacimiento: ['', Validators.required],
-      })
+      }),
     };
 
     return controls;

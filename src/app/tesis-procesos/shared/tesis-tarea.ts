@@ -12,7 +12,7 @@ export class TesisTarea {
 
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
-        public id?: string // uuid
+        public id?: string, // uuid
     ) {
     }
 }

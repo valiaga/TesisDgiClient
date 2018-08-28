@@ -8,7 +8,7 @@ describe('FormRadioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormRadioComponent ]
+      declarations: [ FormRadioComponent ],
     })
     .compileComponents();
   }));

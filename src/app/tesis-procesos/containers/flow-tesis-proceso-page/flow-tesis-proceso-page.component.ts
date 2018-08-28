@@ -7,7 +7,7 @@ import { ValidatorFn } from '@angular/forms/src/directives/validators';
 import { Validation } from '@dgi/formularios-dinamicos-datos/models';
 import { Etapa } from '../../../etapas/shared/etapa';
 import { Tarea } from '../../../tareas/models/tarea';
-import { EtapaService } from '../../../etapas/shared/etapa.service';
+// import { EtapaService } from '../../../etapas/shared/etapa.service';
 import { TareaService } from '../../../tareas/shared/tarea.service';
 import { FieldConfig } from '../../../dynamic-form/models.1/field-config';
 import { TesisProcesoService, TesisEtapaService, TesisTareaService } from '../../shared';
@@ -23,7 +23,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   public formularios: Form[];
   public tesisProceso: any;
 
-  private campos: any[];
+  // private campos: any[];
 
   @ViewChild('sidenavEtapas') private sidenavEtapas: MatStepper;
   @ViewChild('tareasStepper') private tareasStepper: MatStepper;
@@ -32,7 +32,7 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   // https://stackblitz.com/edit/angular-material2-beta-ybbnhe?file=theme.scss
 
   constructor(
-    private etapaService: EtapaService,
+    // private etapaService: EtapaService,
     private tesisEtapaService: TesisEtapaService,
     private route: ActivatedRoute,
     private tareaService: TareaService,
@@ -94,8 +94,8 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
   }
 
   private loadFormulariosByTareaId(formularios) {
-    console.log('formularios');
-    console.log(formularios);
+    // console.log('formularios');
+    // console.log(formularios);
     this.formularios = this.transformJsonForm(formularios);
   }
 

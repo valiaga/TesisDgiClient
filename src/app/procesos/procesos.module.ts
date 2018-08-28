@@ -95,7 +95,7 @@ const TAREAS_COMPONENTS: any = [
   EtapaListaComponent,
   TareaEditorComponent,
   TareaNewComponent,
-  TareasListComponent
+  TareasListComponent,
 ];
 
 const PROCESOS_COMPONENTS: any = [
@@ -151,6 +151,8 @@ const GENERADOR_DOCUMENTO_COMPONENTS: any[] = [
     ...CAMPOS_COMPONENTS,
     ...GENERADOR_DOCUMENTO_COMPONENTS,
     ...VALIDADORES_COMPONENTS,
+
+    ...PROCESOS_COMPONENTS,
   ],
   providers: [
     RolProcesoService,

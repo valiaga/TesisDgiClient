@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { IResponse, IPersona, Persona } from './persona';
+import { IPersona, Persona } from './persona';
 import { MatSnackBar } from '@angular/material';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 import { MESSAGES } from 'config/messages';
 import { snackBarDuration } from 'config/general';
 
@@ -44,7 +44,7 @@ export class PersonasReactiveService {
   personas: Observable<Persona[]>;
   private _personas: BehaviorSubject<Persona[]>;
   private dataStore: {
-    personas: Persona[]
+    personas: Persona[],
   };
   constructor(private personasService: PersonasService,
     private snackBar: MatSnackBar) {
@@ -62,7 +62,7 @@ export class PersonasReactiveService {
         this.snackBar.open(MESSAGES.persona.getMany, MESSAGES.actions.get, snackBarDuration);
         this.dataStore.personas = data;
         this._personas.next(Object.assign({}, this.dataStore).personas);
-      }, error => console.log('Could not load personas.')
+      }, error => console.warn('Could not load personas.'),
       );
   }
 
@@ -72,7 +72,7 @@ export class PersonasReactiveService {
         this.snackBar.open(MESSAGES.persona.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.personas.push(data);
         this._personas.next(Object.assign({}, this.dataStore).personas);
-      }, error => console.log('Could not create persona.'));
+      }, error => console.warn('Could not create persona.'));
   }
 
 
@@ -84,7 +84,7 @@ export class PersonasReactiveService {
           if (a.id === data.id) { this.dataStore.personas[index] = data; }
         });
         this._personas.next(Object.assign({}, this.dataStore).personas);
-      }, error => console.log('Could not update persona.'));
+      }, error => console.warn('Could not update persona.'));
   }
 
   public delete(id: string) {
@@ -95,6 +95,6 @@ export class PersonasReactiveService {
           if (a.id === id) { this.dataStore.personas.splice(index, 1); }
         });
         this._personas.next(Object.assign({}, this.dataStore).personas);
-      }, error => console.log('Could not delete persona.'));
+      }, error => console.warn('Could not delete persona.'));
   }
 }

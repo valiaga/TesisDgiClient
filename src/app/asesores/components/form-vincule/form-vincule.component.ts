@@ -52,7 +52,7 @@ export class FormVinculeComponent implements OnInit {
         .pipe(
           startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value.nombres),
-          switchMap(nombres => nombres ? this.getPersonas(nombres) : [])
+          switchMap(nombres => nombres ? this.getPersonas(nombres) : []),
         );
     }
   }
@@ -75,7 +75,7 @@ export class FormVinculeComponent implements OnInit {
     const controls = {
       id: [''],
       activo: [true, Validators.required],
-      persona: ['', Validators.required]
+      persona: ['', Validators.required],
       // persona: this.formBuilder.group({
       //   id: [''],
       //   nombres: ['', Validators.required],
@@ -100,7 +100,7 @@ export class FormVinculeComponent implements OnInit {
     // console.log(this.prepareFechaNacimiento(value.fecha_nacimiento));
 
     // value.persona.fecha_nacimiento = this.prepareFechaNacimiento(value.persona.fecha_nacimiento);
-    console.log(value);
+    // console.log(value);
 
 
     if (valid) {

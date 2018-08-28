@@ -56,10 +56,10 @@ export class CamposNewComponent implements OnInit {
 
     private buildForm() {
         this.pasoOneForm = this.formBuilder.group({
-            type: ['', Validators.required]
+            type: ['', Validators.required],
         });
         // const dsa = this.pasoOneForm.get('tipoCampo').value;
-        console.log(this.data.formulario.tarea);
+        // console.log(this.data.formulario.tarea);
 
         this.pasoTwoForm = this.formBuilder.group({
             id: [''],
@@ -113,7 +113,7 @@ export class CamposNewComponent implements OnInit {
 
         const pasoOneFormValue = this.pasoOneForm.value;
         const pasoTwoFormValue = this.pasoTwoForm.value;
-        const pasoThreeFormValue = this.pasoThreeForm.value;
+        // const pasoThreeFormValue = this.pasoThreeForm.value;
 
 
         const pasoOneFormValid = this.pasoOneForm.valid;
@@ -162,20 +162,20 @@ export class CamposNewComponent implements OnInit {
                     { value: 'password', viewValue: 'Password' },
                     { value: 'radio', viewValue: 'Radio' },
                     { value: 'checkbox', viewValue: 'Checkbox' },
-                ]
+                ],
             },
             {
                 name: 'Complejo',
                 campos: [
                     { value: 'date', viewValue: 'Datepicker' }, /** Nos regimos al backend */
                     { value: 'fileinput', viewValue: 'File Input' }, /** Nos regimos al backend */
-                ]
+                ],
             },
             {
                 name: 'Botones',
                 campos: [
                     { value: 'buttonSubmit', viewValue: 'Botón submit' },
-                ]
+                ],
             },
         ];
     }

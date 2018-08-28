@@ -8,7 +8,7 @@ describe('RolProcesoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RolProcesoComponent ]
+      declarations: [ RolProcesoComponent ],
     })
     .compileComponents();
   }));

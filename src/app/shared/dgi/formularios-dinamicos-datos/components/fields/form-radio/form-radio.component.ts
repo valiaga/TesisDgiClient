@@ -21,7 +21,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     -->
   </div>
     `,
-  styleUrls: ['./form-radio.component.scss']
+  styleUrls: ['./form-radio.component.scss'],
 })
 export class DgiFormRadioComponent implements OnInit {
   public config: FieldConfig;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './shared/users.service';
-import { User, IUser } from './shared/user';
+import { IUser } from './shared/user';
 import { MatTableDataSource } from '@angular/material';
 
 @Component({
@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
   accordions: Array<any> = [
     { title: 'Dynamic Title 1', content: 'Dynamic content 1' },
     { title: 'Dynamic Title 2', content: 'Dynamic content 2', disabled: true },
-    { title: 'Dynamic Title 3', content: 'Dynamic content 3', active: true }
+    { title: 'Dynamic Title 3', content: 'Dynamic content 3', active: true },
   ];
 
   public displayedColumns = [

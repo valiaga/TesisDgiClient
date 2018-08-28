@@ -8,7 +8,7 @@ describe('DgiFormInputComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormInputComponent ]
+      declarations: [ DgiFormInputComponent ],
     })
     .compileComponents();
   }));

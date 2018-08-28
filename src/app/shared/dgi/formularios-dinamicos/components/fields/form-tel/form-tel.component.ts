@@ -26,12 +26,12 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     -->
   </mat-form-field>
   `,
-  styleUrls: ['./form-tel.component.scss']
+  styleUrls: ['./form-tel.component.scss'],
 })
 export class DgiFormTelComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private codePostal = '+51';
+  public codePostal = '+51';
   public onUpdate = new EventEmitter<any>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }

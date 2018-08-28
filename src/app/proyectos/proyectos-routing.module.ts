@@ -12,12 +12,12 @@ import { FindProyectoPageComponent } from './containers/find-proyecto-page.compo
 const routes: Routes = [
   {
     path: '',
-    component: FindProyectoPageComponent
-  }
+    component: FindProyectoPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class ProyectosRoutingModule { }

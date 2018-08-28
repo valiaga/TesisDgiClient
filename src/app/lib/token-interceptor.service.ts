@@ -3,11 +3,11 @@ import {
   HttpEvent,
   HttpInterceptor,
   HttpHandler,
-  HttpRequest
+  HttpRequest,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-import { AuthService } from '../auth/shared/auth.service';
+// import { environment } from '../../environments/environment';
+// import { AuthService } from '../auth/shared/auth.service';
 import { UserStoreService } from './user-store.service';
 
 @Injectable()
@@ -21,15 +21,15 @@ export class TokenInterceptorService implements HttpInterceptor {
     this.token = this.userStoreService.token;
     // this.busService.getUserToken$().subscribe(this.setTokenIfAny.bind(this));
   }
-  private setTokenIfAny(data) {
-    if (data && data.token) {
-      this.token = data.token;
-    }
-  }
+  // private setTokenIfAny(data) {
+  //   if (data && data.token) {
+  //     this.token = data.token;
+  //   }
+  // }
 
   public intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     this.subscribeToTokenChanges();
 

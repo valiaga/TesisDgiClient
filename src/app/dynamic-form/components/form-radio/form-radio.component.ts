@@ -20,7 +20,7 @@ import { FieldConfig } from '../../models/field-config';
     <!-- <div>Mi sexo es {{group.controls[config.name].value}}</div> -->
   </div>
     `,
-  styleUrls: ['./form-radio.component.scss']
+  styleUrls: ['./form-radio.component.scss'],
 })
 export class FormRadioComponent implements OnInit {
   public config: FieldConfig;

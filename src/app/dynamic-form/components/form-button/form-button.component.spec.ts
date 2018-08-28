@@ -8,7 +8,7 @@ describe('FormButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormButtonComponent ]
+      declarations: [ FormButtonComponent ],
     })
     .compileComponents();
   }));

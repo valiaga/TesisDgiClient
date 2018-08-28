@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
@@ -24,7 +24,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
         <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
       </mat-error> -->
   `,
-  styleUrls: ['./form-number.component.scss']
+  styleUrls: ['./form-number.component.scss'],
 })
 export class DgiFormNumberComponent implements OnInit {
   public config: FieldConfig;

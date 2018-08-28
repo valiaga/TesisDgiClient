@@ -53,7 +53,7 @@ export class FindPageComponent implements OnInit {
             width: '500px',
         });
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog vincule jurado');
+            // console.log('close dialog vincule jurado');
         });
     }
 

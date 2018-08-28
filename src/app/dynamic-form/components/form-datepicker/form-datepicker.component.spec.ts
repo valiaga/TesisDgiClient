@@ -8,7 +8,7 @@ describe('FormDatepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormDatepickerComponent ]
+      declarations: [ FormDatepickerComponent ],
     })
     .compileComponents();
   }));

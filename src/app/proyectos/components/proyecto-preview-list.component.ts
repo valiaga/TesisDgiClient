@@ -26,8 +26,8 @@ import { Proyecto } from '../models/proyecto';
       display: flex;
     } */
 
-    `
-  ]
+    `,
+  ],
 })
 export class ProyectoPreviewListComponent implements OnInit {
 

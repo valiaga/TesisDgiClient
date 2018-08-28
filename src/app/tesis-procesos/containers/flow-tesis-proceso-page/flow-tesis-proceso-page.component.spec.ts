@@ -8,7 +8,7 @@ describe('FlowTesisProcesoPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlowTesisProcesoPageComponent ]
+      declarations: [ FlowTesisProcesoPageComponent ],
     })
     .compileComponents();
   }));

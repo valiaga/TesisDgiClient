@@ -3,7 +3,7 @@ export class Jurado {
         public activo: boolean,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
-        public id?: string
+        public id?: string,
     ) { }
 }
 

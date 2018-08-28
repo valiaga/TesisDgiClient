@@ -10,7 +10,7 @@ import { Tarea } from '../../../../tareas/models/tarea';
 @Component({
   selector: 'dgi-tareas-list',
   templateUrl: './tareas-list.component.html',
-  styleUrls: ['./tareas-list.component.scss']
+  styleUrls: ['./tareas-list.component.scss'],
 })
 export class TareasListComponent implements OnInit {
   public tareas$: Observable<Tarea[]>;

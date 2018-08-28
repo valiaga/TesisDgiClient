@@ -8,7 +8,7 @@ describe('FormButtonSubmitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormButtonSubmitComponent ]
+      declarations: [ FormButtonSubmitComponent ],
     })
     .compileComponents();
   }));

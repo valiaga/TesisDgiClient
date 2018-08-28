@@ -8,7 +8,7 @@ describe('DgiFormTextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormTextareaComponent ]
+      declarations: [ DgiFormTextareaComponent ],
     })
     .compileComponents();
   }));

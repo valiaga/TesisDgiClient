@@ -20,14 +20,14 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
         <!-- [type]="(hide ? 'password' : 'text')" -->
     </mat-form-field>
   `,
-  styleUrls: ['./form-password.component.scss']
+  styleUrls: ['./form-password.component.scss'],
 
 })
 export class DgiFormPasswordComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
 
-  private hide = true;
+  public hide = true;
   constructor(private formWidthToolsService: FormWidthToolsService) { }
 
   ngOnInit() {

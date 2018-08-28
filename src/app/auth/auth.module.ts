@@ -1,16 +1,16 @@
-import { RouterModule, Routes } from '@angular/router';
+// import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 // import { UserComponent } from './user/user.component';
 import { GroupComponent } from './group/group.component';
 import { AuthRoutingModule } from './auth-routing.module';
-import { ModuleWithProviders } from '@angular/core';
+// import { ModuleWithProviders } from '@angular/core';
 import { AuthService } from './shared/auth.service';
-import { AuthGuardService } from './shared/auth-guard.service';
+// import { AuthGuardService } from './shared/auth-guard.service';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MaterialModule } from '../shared/material/material.module';
+// import { MaterialModule } from '../shared/material/material.module';
 import { LoginFormComponent } from './components/login-form.component';
-import { AngularModule } from '../shared/angular/angular.module';
+// import { AngularModule } from '../shared/angular/angular.module';
 import { AuthComponent } from './auth.component';
 import {
   RegisterPageComponent,

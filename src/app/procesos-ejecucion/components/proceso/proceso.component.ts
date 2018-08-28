@@ -12,8 +12,8 @@ import { Proceso } from '../../../procesos/models/proceso.model';
       box-sizing: border-box;
       /* margin: 16px */
     }
-    `
-  ]
+    `,
+  ],
 })
 export class ProcesoComponent implements OnInit {
 

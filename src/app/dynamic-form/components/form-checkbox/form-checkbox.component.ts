@@ -25,7 +25,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     </mat-error>
   </div>
   `,
-  styleUrls: ['./form-checkbox.component.scss']
+  styleUrls: ['./form-checkbox.component.scss'],
 })
 export class FormCheckboxComponent implements OnInit {
   public config: FieldConfig;

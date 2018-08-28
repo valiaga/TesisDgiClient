@@ -8,7 +8,7 @@ describe('FormTextareaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormTextareaComponent ]
+      declarations: [ FormTextareaComponent ],
     })
     .compileComponents();
   }));

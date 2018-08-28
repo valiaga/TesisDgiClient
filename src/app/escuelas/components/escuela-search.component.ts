@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       escuela-search works!
     </mat-card>
   `,
-  styles: []
+  styles: [],
 })
 export class EscuelaSearchComponent implements OnInit {
 

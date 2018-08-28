@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PerfilesService } from '../../shared/perfiles.service';
 import { Perfil } from '../../shared/perfil';
 import { MatDialog, MatSnackBar } from '@angular/material';

@@ -1,5 +1,5 @@
 export const snackBarDuration = {
-    duration: 3000
+    duration: 3000,
 };
 
 export function getMessageConfirm(message, viewContainerRef) {

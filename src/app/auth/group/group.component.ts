@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       group Works!
     </p>
   `,
-  styles: []
+  styles: [],
 })
 export class GroupComponent implements OnInit {
 

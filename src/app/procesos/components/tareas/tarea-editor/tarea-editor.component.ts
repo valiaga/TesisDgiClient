@@ -5,10 +5,10 @@ import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from '../../../../../config/general';
 import { MESSAGES } from '../../../../../config/messages';
 import { TareaReactiveService } from '../../../../tareas/shared/tarea.service';
-import { RolProcesoService, RolProcesoReactiveService } from '../../../../rol-proceso/shared/rol-proceso.service';
+import { RolProcesoReactiveService } from '../../../../rol-proceso/shared/rol-proceso.service';
 import { RolProceso } from '../../../../rol-proceso/shared/rol-proceso.model';
-import { mergeMap, map, filter } from 'rxjs/operators';
-import { ActivatedRoute, Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 import { Requisito } from '../../../../requisitos/shared/requisito';
 import { RequisitoReactiveService } from '../../../../requisitos/shared/requisitos.service';
 import { MatDialog } from '@angular/material';
@@ -18,7 +18,7 @@ import { Tarea } from '../../../../tareas/models/tarea';
 @Component({
   selector: 'dgi-tarea-editor',
   templateUrl: './tarea-editor.component.html',
-  styleUrls: ['./tarea-editor.component.scss']
+  styleUrls: ['./tarea-editor.component.scss'],
 })
 export class TareaEditorComponent implements OnInit {
 
@@ -42,7 +42,7 @@ export class TareaEditorComponent implements OnInit {
     private viewContainerRef: ViewContainerRef,
     private tdDialogService: TdDialogService,
     private route: ActivatedRoute,
-    private router: Router,
+    // private router: Router,
     // private rolProcesoService: RolProcesoService,
     private rolProcesoReactiveService: RolProcesoReactiveService,
     private requisitoReactiveService: RequisitoReactiveService,
@@ -52,7 +52,7 @@ export class TareaEditorComponent implements OnInit {
   ngOnInit() {
     this.rolesEjecuta$ = this.rolProcesoReactiveService.rolProcesos
       .pipe(
-        map(res => res.filter(ress => ress.activo === true))
+        map(res => res.filter(ress => ress.activo === true)),
       );
 
 

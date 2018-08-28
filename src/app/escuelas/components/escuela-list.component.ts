@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
-import { IEscuela, Escuela } from '../shared/escuela';
-import { EscuelaService } from '../shared/escuela.service';
+import { Escuela } from '../shared/escuela';
+// import { EscuelaService } from '../shared/escuela.service';
 
 
 @Component({
@@ -26,15 +26,15 @@ import { EscuelaService } from '../shared/escuela.service';
       flex-direction: column;
       min-width: 300px;
     }*/
-    `
-  ]
+    `,
+  ],
 })
 export class EscuelaListComponent implements OnInit {
 
   @Input() escuelas: Escuela[];
   @Output() onDeleteEscuelaList = new EventEmitter<string>();
 
-  constructor( ) { }
+  constructor() { }
 
   ngOnInit() {
 

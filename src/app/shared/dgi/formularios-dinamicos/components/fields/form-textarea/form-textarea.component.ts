@@ -23,13 +23,13 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
   </mat-form-field>
 
   `,
-  styleUrls: ['./form-textarea.component.scss']
+  styleUrls: ['./form-textarea.component.scss'],
 })
 export class DgiFormTextareaComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private autosizeMinRows = 2;
-  private autosizeMaxRows = 5;
+  public autosizeMinRows = 2;
+  public autosizeMaxRows = 5;
   public onUpdate = new EventEmitter<any>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }

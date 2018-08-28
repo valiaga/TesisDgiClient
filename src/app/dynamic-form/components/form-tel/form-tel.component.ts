@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormToolsService } from '../../../shared/form-tools.service';
 import { FieldConfig } from '../../models/field-config';
 import { FormGroup } from '@angular/forms';
@@ -26,12 +26,12 @@ import { FormGroup } from '@angular/forms';
     </mat-error>
   </mat-form-field>
   `,
-  styleUrls: ['./form-tel.component.scss']
+  styleUrls: ['./form-tel.component.scss'],
 })
 export class FormTelComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private codePostal = '+51';
+  public codePostal = '+51';
   // formTools: FormTools;
 
   constructor(private formToolsService: FormToolsService) { }

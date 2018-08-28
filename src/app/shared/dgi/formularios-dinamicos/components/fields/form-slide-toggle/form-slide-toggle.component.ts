@@ -29,8 +29,8 @@ export class DgiFormSlideToggleComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
 
-  private color = 'primary';
-  private disabled = false;
+  public color = 'primary';
+  public disabled = false;
   public onUpdate = new EventEmitter<any>();
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }

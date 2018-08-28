@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormToolsService } from '../../../shared/form-tools.service';
@@ -23,7 +23,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
         <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
       </mat-error>
   `,
-  styleUrls: ['./form-number.component.scss']
+  styleUrls: ['./form-number.component.scss'],
 })
 export class FormNumberComponent implements OnInit {
   public config: FieldConfig;

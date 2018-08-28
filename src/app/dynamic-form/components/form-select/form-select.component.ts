@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config';
 import { FormToolsService } from '../../../shared/form-tools.service';
@@ -20,7 +20,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
       <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
     </mat-error>
   `,
-  styleUrls: ['./form-select.component.scss']
+  styleUrls: ['./form-select.component.scss'],
 })
 export class FormSelectComponent implements OnInit {
   public config: FieldConfig;

@@ -8,7 +8,7 @@ describe('FormValidatorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormValidatorComponent ]
+      declarations: [ FormValidatorComponent ],
     })
     .compileComponents();
   }));

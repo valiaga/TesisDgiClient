@@ -8,7 +8,7 @@ describe('FindLineaInvestigacionPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FindLineaInvestigacionPageComponent ]
+      declarations: [ FindLineaInvestigacionPageComponent ],
     })
     .compileComponents();
   }));

@@ -9,7 +9,7 @@ import { MESSAGES } from 'config/messages';
 @Component({
   selector: 'dgi-form-edit',
   templateUrl: './form-edit.component.html',
-  styleUrls: ['./form-edit.component.scss']
+  styleUrls: ['./form-edit.component.scss'],
 })
 export class FormEditComponent implements OnInit {
   public personaForm: FormGroup;

@@ -1,11 +1,11 @@
-import { Component, OnInit, Output, Input, EventEmitter, } from '@angular/core';
-import { Location } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+// import { Location } from '@angular/common';
 import { TdMediaService } from '@covalent/core';
 
 @Component({
   selector: 'dgi-sidenav',
   templateUrl: './sidenav.component.html',
-  styles: []
+  styles: [],
 })
 export class SidenavComponent implements OnInit {
   // @Input() isSidenavOpened: boolean;
@@ -24,7 +24,7 @@ export class SidenavComponent implements OnInit {
         { name: 'Dictaminadores', icon: 'recent_actors', route: 'dictaminadores' },
         { name: 'Jurados', icon: 'recent_actors', route: 'jurados' },
         { name: 'Tesistas', icon: 'recent_actors', route: 'tesistas' },
-      ]
+      ],
     },
     {
       Id: 2,
@@ -39,12 +39,13 @@ export class SidenavComponent implements OnInit {
         { name: 'Usuarios', icon: 'beenhere', route: 'users' },
         { name: 'Perfiles', icon: 'beenhere', route: 'perfiles' },
         { name: 'Grupos', icon: 'beenhere', route: 'groups' },
-        { name: 'Cerrar Sesión', icon: 'exit_to_app', route: 'logout' }
-      ]
-    }
+        { name: 'Cerrar Sesión', icon: 'exit_to_app', route: 'logout' },
+      ],
+    },
   ];
 
-  constructor(private location: Location,
+  constructor(
+    // private location: Location,
     public media: TdMediaService) { }
 
   ngOnInit() {
@@ -52,6 +53,6 @@ export class SidenavComponent implements OnInit {
   }
 
   public layoutClose() {
-    console.log('Me da Click');
+    // console.log('Me da Click');
   }
 }

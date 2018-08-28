@@ -13,7 +13,7 @@ export class Proyecto {
         public tesista?: string,
         public linea_investigacion?: string,
         public tesis_proceso?: string,
-        public id?: string // uuid
+        public id?: string, // uuid
     ) { }
 }
 

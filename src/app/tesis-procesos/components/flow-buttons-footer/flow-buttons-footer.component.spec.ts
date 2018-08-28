@@ -8,7 +8,7 @@ describe('FlowButtonsFooterComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FlowButtonsFooterComponent ]
+      declarations: [ FlowButtonsFooterComponent ],
     })
     .compileComponents();
   }));

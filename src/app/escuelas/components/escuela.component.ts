@@ -67,8 +67,8 @@ import { Escuela } from '../shared/escuela';
       justify-content: space-between;
     }*/
 
-    `
-  ]
+    `,
+  ],
 })
 export class EscuelaComponent implements OnInit {
 

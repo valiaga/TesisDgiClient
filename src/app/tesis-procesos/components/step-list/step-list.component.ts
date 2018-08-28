@@ -7,7 +7,7 @@ import { Etapa } from '../../../etapas/shared/etapa';
   template: `
     <dgi-step *ngFor="let etapa of etapas" [etapa]="etapa"></dgi-step>
   `,
-  styles: []
+  styles: [],
 })
 export class StepListComponent implements OnInit {
 

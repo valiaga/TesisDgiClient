@@ -8,7 +8,7 @@ describe('DgiDynamicFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiDynamicFormComponent ]
+      declarations: [ DgiDynamicFormComponent ],
     })
     .compileComponents();
   }));

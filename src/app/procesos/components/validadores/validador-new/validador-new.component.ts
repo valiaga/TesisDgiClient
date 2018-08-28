@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject, ViewContainerRef } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { RolProcesoService } from '../../../../rol-proceso/shared/rol-proceso.service';
-import { ActivatedRoute } from '@angular/router';
+// import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CamposService } from '../../../../campos/shared/campos.service';
@@ -90,7 +90,7 @@ export class ValidadorNewComponent implements OnInit {
                 order: value.order,
                 formulario: value.formulario,
                 tipo_validador: value.tipo_validador,
-                roles_validadores: this.rolProcesosCheckeds.join(',')
+                roles_validadores: this.rolProcesosCheckeds.join(','),
             };
             // console.log('dataSend ', dataSend);
 

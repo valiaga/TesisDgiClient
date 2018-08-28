@@ -25,7 +25,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       </mat-error> -->
     </mat-form-field>
   `,
-  styleUrls: ['./form-datepicker.component.scss']
+  styleUrls: ['./form-datepicker.component.scss'],
 })
 export class DgiFormDatepickerComponent implements OnInit {
   public config: FieldConfig;

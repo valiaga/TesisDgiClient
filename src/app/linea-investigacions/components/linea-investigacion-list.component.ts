@@ -3,11 +3,81 @@ import { HttpClient } from '@angular/common/http';
 import { DataSource } from '@angular/cdk/collections';
 import { MatPaginator, MatSort } from '@angular/material';
 import { Observable, of, merge } from 'rxjs';
-import { ILineaInvestigacion, LineaInvestigacion } from '../shared/linea-investigacion';
+import { ILineaInvestigacion } from '../shared/linea-investigacion';
 // import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { LineaInvestigacionService } from '../shared/linea-investigacion.service';
 import { startWith, switchMap, map, catchError } from 'rxjs/operators';
-const scheduleMicrotask = Promise.resolve(null);
+// const scheduleMicrotask = Promise.resolve(null);
+
+
+
+export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion> {
+  // La cantidad de problemas devueltos por github que coinciden con la consulta.
+  public resultsLength = 0;
+  public isLoadingResults = false;
+  public isRateLimitReached = false;
+  public pageSize = 5;
+
+  constructor(
+    private lineaInvestigacionService: LineaInvestigacionService,
+    private paginator: MatPaginator,
+    private sort: MatSort,
+  ) {
+    super();
+  }
+
+  /** Función de conexión llamada por la tabla para recuperar una secuencia que contiene los datos para renderizar. */
+  connect(): Observable<ILineaInvestigacion[]> {
+    const displayDataChanges = [
+      this.sort.sortChange,
+      this.paginator.page,
+    ];
+
+    // Si el usuario cambia el orden de clasificación, restablecer a la primera página.
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    return merge(...displayDataChanges)
+      .pipe(
+        startWith(null),
+        switchMap(() => {
+
+          setTimeout(() => {
+            this.isLoadingResults = true;
+          }, 0);
+          // scheduleMicrotask.then(() => {
+          // this.isLoadingResults = true;
+          // });
+          return this.lineaInvestigacionService.getLineaInvestigacions$(
+            this.sort.active, this.sort.direction, this.paginator.pageIndex,
+            this.paginator.pageSize,
+          );
+        }),
+        map(data => {
+          // Da vuelta la bandera para mostrar que la carga ha terminado.
+          setTimeout(() => {
+            this.isLoadingResults = false;
+            this.isRateLimitReached = false;
+            this.resultsLength = data.options.count;
+            this.pageSize = data.options.page_size;
+          }, 0);
+          return data.results;
+        }),
+        catchError(() => {
+          setTimeout(() => {
+            this.isLoadingResults = false;
+            // Capture si la API de Linea de investigación ha alcanzado su límite de velocidad. Devuelve datos vacíos.
+            this.isRateLimitReached = true;
+          }, 0);
+          return of([]);
+        }),
+      );
+  }
+
+  disconnect() {
+
+  }
+}
+
 
 @Component({
   selector: 'dgi-linea-investigacion-list',
@@ -146,11 +216,11 @@ const scheduleMicrotask = Promise.resolve(null);
       max-width: 360px;
       text-align: center;
     }
-    `
-  ]
+    `,
+  ],
 })
 export class LineaInvestigacionListComponent implements OnInit {
-  displayedColumns = [
+  public displayedColumns = [
     'isId',
     'nombre',
     'descripcion',
@@ -160,8 +230,8 @@ export class LineaInvestigacionListComponent implements OnInit {
     'fecha_actualizacion',
   ];
 
-  lineaInvestigacionService: LineaInvestigacionService | null;
-  dataSource: LineaInvestigacionDataSource | null;
+  public lineaInvestigacionService: LineaInvestigacionService | null;
+  public dataSource: LineaInvestigacionDataSource | null;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -170,74 +240,6 @@ export class LineaInvestigacionListComponent implements OnInit {
 
   ngOnInit() {
     this.lineaInvestigacionService = new LineaInvestigacionService(this.http);
-    this.dataSource = new LineaInvestigacionDataSource(
-      this.lineaInvestigacionService, this.paginator, this.sort);
-  }
-}
-
-export class LineaInvestigacionDataSource extends DataSource<ILineaInvestigacion> {
-  // La cantidad de problemas devueltos por github que coinciden con la consulta.
-  public resultsLength = 0;
-  public isLoadingResults = false;
-  public isRateLimitReached = false;
-  public pageSize = 5;
-
-  constructor(
-    private lineaInvestigacionService: LineaInvestigacionService,
-    private paginator: MatPaginator,
-    private sort: MatSort,
-  ) {
-    super();
-  }
-
-  /** Función de conexión llamada por la tabla para recuperar una secuencia que contiene los datos para renderizar. */
-  connect(): Observable<ILineaInvestigacion[]> {
-    const displayDataChanges = [
-      this.sort.sortChange,
-      this.paginator.page
-    ];
-
-    // Si el usuario cambia el orden de clasificación, restablecer a la primera página.
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
-
-    return merge(...displayDataChanges)
-      .pipe(
-        startWith(null),
-        switchMap(() => {
-
-          setTimeout(() => {
-            this.isLoadingResults = true;
-          }, 0);
-          // scheduleMicrotask.then(() => {
-          // this.isLoadingResults = true;
-          // });
-          return this.lineaInvestigacionService.getLineaInvestigacions$(
-            this.sort.active, this.sort.direction, this.paginator.pageIndex,
-            this.paginator.pageSize
-          );
-        }),
-        map(data => {
-          // Da vuelta la bandera para mostrar que la carga ha terminado.
-          setTimeout(() => {
-            this.isLoadingResults = false;
-            this.isRateLimitReached = false;
-            this.resultsLength = data.options.count;
-            this.pageSize = data.options.page_size;
-          }, 0);
-          return data.results;
-        }),
-        catchError(() => {
-          setTimeout(() => {
-            this.isLoadingResults = false;
-            // Capture si la API de Linea de investigación ha alcanzado su límite de velocidad. Devuelve datos vacíos.
-            this.isRateLimitReached = true;
-          }, 0);
-          return of([]);
-        })
-      );
-  }
-
-  disconnect() {
-
+    this.dataSource = new LineaInvestigacionDataSource(this.lineaInvestigacionService, this.paginator, this.sort);
   }
 }

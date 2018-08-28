@@ -20,7 +20,7 @@ import { ProcesosReactiveService, ProcesosService } from '../shared/proceso.serv
 @Component({
   selector: 'dgi-editor',
   templateUrl: './editor.component.html',
-  styleUrls: ['./editor.component.scss']
+  styleUrls: ['./editor.component.scss'],
 })
 export class EditorComponent implements OnInit {
   public procesoForm: FormGroup;

@@ -28,8 +28,8 @@ import { ProcesosReactiveService } from '../shared/proceso.service';
         display: flex;
         flex-flow: row wrap;
     }*/
-    `
-  ]
+    `,
+  ],
 })
 export class FindProcesoPageComponent implements OnInit {
   public procesos$: Observable<Proceso[]>;

@@ -48,8 +48,8 @@ import {
 import {
     MatFormFieldModule, MatButtonModule,
     MatCheckboxModule, MatDatepickerModule,
-    MatRadioModule, MatSelectionListChange,
-    MatSelectModule, MatSliderModule,
+    MatRadioModule,
+    MatSelectModule,
     MatNativeDateModule,
     MatCardModule,
     MatIconModule,

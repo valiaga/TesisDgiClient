@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       proceso-search works!
     </mat-card>
   `,
-  styles: []
+  styles: [],
 })
 export class ProcesoSearchComponent implements OnInit {
 

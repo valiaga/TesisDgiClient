@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RolProceso, IRolProceso, IResponse } from './rol-proceso.model';
+import { RolProceso, IRolProceso } from './rol-proceso.model';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 import { endPoints } from '../../lib/entity-data/end-points';
 import { EntityDataService } from '../../lib/entity-data/entity-data.service';
 
@@ -31,11 +31,11 @@ export class RolProcesoReactiveService {
   rolProcesos: Observable<RolProceso[]>;
   private _rolProcesos: BehaviorSubject<RolProceso[]>;
   private dataStore: {
-    rolProcesos: RolProceso[]
+    rolProcesos: RolProceso[],
   };
 
   constructor(
-    private http: HttpClient,
+    // private http: HttpClient,
     private rolProcesoService: RolProcesoService,
     private snackBar: MatSnackBar) {
 
@@ -50,7 +50,7 @@ export class RolProcesoReactiveService {
       .subscribe(data => {
         this.dataStore.rolProcesos = data;
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
-      }, error => console.log('Could not load rolProcesos.')
+      }, error => console.warn('Could not load rolProcesos.'),
       );
   }
 
@@ -59,7 +59,7 @@ export class RolProcesoReactiveService {
       .subscribe(data => {
         this.dataStore.rolProcesos = data.results;
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
-      }, error => console.log('Could not load rolProcesos.')
+      }, error => console.warn('Could not load rolProcesos.'),
       );
   }
 
@@ -80,7 +80,7 @@ export class RolProcesoReactiveService {
         }
 
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
-      }, error => console.log('Could not load rolProceso.'));
+      }, error => console.warn('Could not load rolProceso.'));
   }
 
   public add(rolProceso: any) {
@@ -89,7 +89,7 @@ export class RolProcesoReactiveService {
         this.snackBar.open(MESSAGES.rolProceso.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.rolProcesos.push(data);
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
-      }, error => console.log('Could not create rolProceso.'));
+      }, error => console.warn('Could not create rolProceso.'));
   }
 
   public patch(id: string, data: any) {
@@ -100,7 +100,7 @@ export class RolProcesoReactiveService {
           if (proc.id === response.id) { this.dataStore.rolProcesos[index] = response; }
         });
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
-      }, error => console.log('Could not update rolProceso.'));
+      }, error => console.warn('Could not update rolProceso.'));
   }
 
   public update(rolProceso: IRolProceso) {
@@ -111,7 +111,7 @@ export class RolProcesoReactiveService {
           if (proc.id === data.id) { this.dataStore.rolProcesos[index] = data; }
         });
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
-      }, error => console.log('Could not update rolProceso.'));
+      }, error => console.warn('Could not update rolProceso.'));
   }
 
   public delete(id: string) {
@@ -122,7 +122,7 @@ export class RolProcesoReactiveService {
           if (rolProceso.id === id) { this.dataStore.rolProcesos.splice(index, 1); }
         });
         this._rolProcesos.next(Object.assign({}, this.dataStore).rolProcesos);
-      }, error => console.log('Could not delete rolProceso.'));
+      }, error => console.warn('Could not delete rolProceso.'));
   }
 
 }

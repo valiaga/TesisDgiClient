@@ -20,7 +20,7 @@ export class ShellComponent implements OnInit {
   constructor(public media: TdMediaService,
     // private breadcrumbService: BreadcrumbService,
     private router: Router,
-    private route: ActivatedRoute,
+    // private route: ActivatedRoute,
     private activatedRoute: ActivatedRoute,
     private authService: AuthService,
     private userStoreService: UserStoreService,
@@ -58,7 +58,7 @@ export class ShellComponent implements OnInit {
           return route;
         }),
         filter((route) => route.outlet === 'primary'),
-        mergeMap((route) => route.data)
+        mergeMap((route) => route.data),
       )
       .subscribe((event) => this.titleService.setTitle(event['title']));
   }

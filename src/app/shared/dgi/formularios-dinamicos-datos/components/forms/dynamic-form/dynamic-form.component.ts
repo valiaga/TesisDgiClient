@@ -50,7 +50,7 @@ import { AbstractControl } from '@angular/forms';
         color: rgba(0, 0, 0, 0.9);
       }
     }
-    `
+    `,
   ],
 })
 export class DgiDynamicFormComponent implements OnChanges, OnInit {

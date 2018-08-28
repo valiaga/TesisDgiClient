@@ -5,7 +5,7 @@ import { TareaService } from './tarea.service';
 describe('TareaService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TareaService]
+      providers: [TareaService],
     });
   });
 

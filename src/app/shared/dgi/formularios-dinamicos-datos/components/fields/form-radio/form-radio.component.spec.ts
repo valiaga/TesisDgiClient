@@ -8,7 +8,7 @@ describe('DgiFormRadioComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormRadioComponent ]
+      declarations: [ DgiFormRadioComponent ],
     })
     .compileComponents();
   }));

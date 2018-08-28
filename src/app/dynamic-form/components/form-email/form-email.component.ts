@@ -1,4 +1,4 @@
-import { OnChanges, Component, OnInit, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormToolsService } from '../../../shared/form-tools.service';
@@ -23,7 +23,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
         <dgi-form-validator [hasError]="getControlErrors(config.name)"></dgi-form-validator>
       </mat-error>
   `,
-  styleUrls: ['./form-email.component.scss']
+  styleUrls: ['./form-email.component.scss'],
 })
 export class FormEmailComponent implements OnInit {
   public config: FieldConfig;
@@ -38,9 +38,9 @@ export class FormEmailComponent implements OnInit {
   }
 
   // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-    // if (changes['form']) {
-      // this.formTools = new FormTools(this.group);
-    // }
+  // if (changes['form']) {
+  // this.formTools = new FormTools(this.group);
+  // }
   // }
   public getControlClass() {
     return this.formToolsService.getControlClass(this.config);

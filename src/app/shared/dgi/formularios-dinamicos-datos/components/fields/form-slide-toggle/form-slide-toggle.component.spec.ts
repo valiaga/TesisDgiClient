@@ -8,7 +8,7 @@ describe('DgiFormSlideToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormSlideToggleComponent ]
+      declarations: [ DgiFormSlideToggleComponent ],
     })
     .compileComponents();
   }));

@@ -9,7 +9,7 @@ export class Escuela {
         public facultad: string,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
-        public id?: string
+        public id?: string,
     ) { }
 }
 

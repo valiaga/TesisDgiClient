@@ -5,7 +5,7 @@ import { PersonasService } from './personas.service';
 describe('PersonasService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PersonasService]
+      providers: [PersonasService],
     });
   });
 

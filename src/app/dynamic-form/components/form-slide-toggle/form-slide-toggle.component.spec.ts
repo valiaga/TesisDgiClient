@@ -8,7 +8,7 @@ describe('FormSlideToggleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormSlideToggleComponent ]
+      declarations: [ FormSlideToggleComponent ],
     })
     .compileComponents();
   }));

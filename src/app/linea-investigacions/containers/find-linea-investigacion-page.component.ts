@@ -13,8 +13,8 @@ import {
   `,
   styles: [
     `
-    `
-  ]
+    `,
+  ],
 })
 export class FindLineaInvestigacionPageComponent implements OnInit {
 
@@ -25,7 +25,7 @@ export class FindLineaInvestigacionPageComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateLineaInvestigacionDialogComponent, {
-      width: '500px'
+      width: '500px',
     });
 
     dialogRef.afterClosed().subscribe(result => {

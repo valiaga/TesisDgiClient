@@ -1,4 +1,4 @@
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Proceso } from '../models/proceso.model';
@@ -6,14 +6,14 @@ import { Proceso } from '../models/proceso.model';
 @Component({
   selector: 'dgi-nuevo',
   templateUrl: './nuevo.component.html',
-  styleUrls: ['./nuevo.component.scss']
+  styleUrls: ['./nuevo.component.scss'],
 })
 export class NuevoComponent implements OnInit {
 
   public procesoForm: FormGroup;
   public proceso: Proceso;
 
-  constructor(private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder) { }
 
   ngOnInit() {
     this.createNewProceso();
@@ -41,7 +41,7 @@ export class NuevoComponent implements OnInit {
   }
 
   cancelar() {
-    console.log('Cancelar');
+    // console.log('Cancelar');
     // this.router.
   }
 }

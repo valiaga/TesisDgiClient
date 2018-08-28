@@ -15,14 +15,14 @@ export class CampoService {
   campos: Observable<Campo[]>;
   private _campos: BehaviorSubject<Campo[]>;
   private dataStore: {
-    campos: Campo[]
+    campos: Campo[],
   };
   constructor(private http: HttpClient,
     private snackBar: MatSnackBar) {
 
     this.dataStore = { campos: [] };
 
-    this._campos = <BehaviorSubject<Campo[]>> new BehaviorSubject([]);
+    this._campos = <BehaviorSubject<Campo[]>>new BehaviorSubject([]);
     this.campos = this._campos.asObservable();
   }
 
@@ -38,7 +38,9 @@ export class CampoService {
 
         this.dataStore.campos = data;
         this._campos.next(Object.assign({}, this.dataStore).campos);
-      }, error => console.log('Could not load campos.')
+      }, error => {
+        // console.log('Could not load campos.')
+      },
       );
   }
 
@@ -52,7 +54,7 @@ export class CampoService {
         this.snackBar.open(MESSAGES.campo.getMany, MESSAGES.actions.get, snackBarDuration);
         this.dataStore.campos = data;
         this._campos.next(Object.assign({}, this.dataStore).campos);
-      }, error => console.log('Could not load campos.')
+      }, error => console.warn('Could not load campos.'),
       );
   }
 
@@ -61,13 +63,13 @@ export class CampoService {
 
     return this.http
       .get<ICampo[]>(`${apiUrl}proceso/formularios/${formularioId}/campos/`);
-      // .subscribe(data => {
+    // .subscribe(data => {
 
-        // this.snackBar.open(MESSAGES.campo.getMany, MESSAGES.actions.get, snackBarDuration);
-        // this.dataStore.campos = data;
-        // this._campos.next(Object.assign({}, this.dataStore).campos);
-      // }, error => console.log('Could not load campos.')
-      // )
+    // this.snackBar.open(MESSAGES.campo.getMany, MESSAGES.actions.get, snackBarDuration);
+    // this.dataStore.campos = data;
+    // this._campos.next(Object.assign({}, this.dataStore).campos);
+    // }, error => console.log('Could not load campos.')
+    // )
   }
 
 
@@ -77,12 +79,12 @@ export class CampoService {
         key: 'brave',
         label: 'Bravery Rating',
         options: [
-          {key: 'solid',  value: 'Solid'},
-          {key: 'great',  value: 'Great'},
-          {key: 'good',   value: 'Good'},
-          {key: 'unproven', value: 'Unproven'}
+          { key: 'solid', value: 'Solid' },
+          { key: 'great', value: 'Great' },
+          { key: 'good', value: 'Good' },
+          { key: 'unproven', value: 'Unproven' },
         ],
-        order: 3
+        order: 3,
       }),
       new CampoInput({
         key: 'nombres',
@@ -111,7 +113,7 @@ export class CampoService {
         required: true,
         order: 2,
 
-      })
+      }),
     ];
 
     return campos.sort((a, b) => a.order - b.order);

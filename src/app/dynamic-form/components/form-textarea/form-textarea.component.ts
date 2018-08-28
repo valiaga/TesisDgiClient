@@ -19,13 +19,13 @@ import { FormGroup } from '@angular/forms';
   </mat-form-field>
 
   `,
-  styleUrls: ['./form-textarea.component.scss']
+  styleUrls: ['./form-textarea.component.scss'],
 })
 export class FormTextareaComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private autosizeMinRows = 2;
-  private autosizeMaxRows = 5;
+  public autosizeMinRows = 2;
+  public autosizeMaxRows = 5;
 
   constructor(private formToolsService: FormToolsService) { }
 

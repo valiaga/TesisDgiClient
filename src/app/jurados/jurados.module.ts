@@ -13,7 +13,7 @@ import {
   MatCardModule, MatDialogModule,
   MatFormFieldModule, MatInputModule,
   MatRadioModule, MatDatepickerModule,
-  MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, MatAutocompleteModule
+  MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, MatAutocompleteModule,
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -73,6 +73,6 @@ const DGI_MODULES: any[] = [
     FormNewComponent,
     FormEditComponent,
     FormVinculeComponent,
-  ]
+  ],
 })
 export class JuradosModule { }

@@ -29,7 +29,7 @@ export class RequisitoNewComponent implements OnInit {
         private tdDialogService: TdDialogService,
         private viewContainerRef: ViewContainerRef,
         private requisitoReactiveService: RequisitoReactiveService,
-        private formBuilder: FormBuilder, ) { }
+        private formBuilder: FormBuilder ) { }
 
     ngOnInit() {
         this.buildForm();

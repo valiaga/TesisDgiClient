@@ -9,7 +9,7 @@ import { RolProcesoReactiveService } from '../../../rol-proceso/shared/rol-proce
 @Component({
   selector: 'dgi-rol-proceso',
   templateUrl: './rol-proceso.component.html',
-  styleUrls: ['./rol-proceso.component.scss']
+  styleUrls: ['./rol-proceso.component.scss'],
 })
 export class RolProcesoComponent implements OnInit {
 

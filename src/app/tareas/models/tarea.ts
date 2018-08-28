@@ -11,7 +11,7 @@ export class Tarea {
         public req_res_desactivador: string,
 
         public fecha_creacion: string,
-        public fecha_actualizacion: string
+        public fecha_actualizacion: string,
     ) { }
 
 }

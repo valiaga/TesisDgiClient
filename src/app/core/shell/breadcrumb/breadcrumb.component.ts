@@ -18,7 +18,7 @@ import { BreadcrumbService } from './breadcrumb.service';
                 <span *ngIf="last && url == prefix">{{friendlyName('/')}}</span>
             </li>
         </ul>
-    `
+    `,
 })
 export class BreadcrumbComponent implements OnInit, OnChanges, OnDestroy {
   @Input() useBootstrap =  true;
@@ -29,7 +29,7 @@ export class BreadcrumbComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(
     private router: Router,
-    private breadcrumbService: BreadcrumbService
+    private breadcrumbService: BreadcrumbService,
   ) { }
 
   ngOnInit(): void {

@@ -70,15 +70,15 @@ import { MESSAGES } from '../../../config/messages';
   `,
   styles: [],
   providers: [
-    ControlService
-  ]
+    ControlService,
+  ],
 })
 export class DynamicFormCampoComponent implements OnInit {
 
   @Input() campo: CampoBase<any>;
   @Input() form: FormGroup;
 
-  private M: any;
+  public M: any;
 
   constructor() { }
 

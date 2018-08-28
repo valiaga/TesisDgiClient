@@ -41,7 +41,7 @@ export class FormVinculeComponent implements OnInit {
         .pipe(
           startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value && value.nombres || null),
-          switchMap(nombres => nombres ? this.getPersonas(nombres) : [])
+          switchMap(nombres => nombres ? this.getPersonas(nombres) : []),
         );
     }
   }
@@ -64,7 +64,7 @@ export class FormVinculeComponent implements OnInit {
     const controls = {
       id: [''],
       activo: [true, Validators.required],
-      persona: ['', Validators.required]
+      persona: ['', Validators.required],
     };
 
     return controls;

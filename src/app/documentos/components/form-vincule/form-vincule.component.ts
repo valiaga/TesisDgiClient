@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
+// import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TdDialogService } from '@covalent/core';
-import { getMessageConfirm, snackBarDuration } from 'config/general';
+import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
 import { startWith, map, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -20,13 +20,13 @@ export class FormVinculeComponent implements OnInit {
   public filteredOptions: Observable<any[]>;
 
   constructor(
-    private dialogRef: MatDialogRef<FormVinculeComponent>,
+    // private dialogRef: MatDialogRef<FormVinculeComponent>,
     private viewContainerRef: ViewContainerRef,
     private formBuilder: FormBuilder,
     private tdDialogService: TdDialogService,
     // private tesistaService: TesistasService,
     private personasService: PersonasService,
-    private snackBar: MatSnackBar,
+    // private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit() {
@@ -41,7 +41,7 @@ export class FormVinculeComponent implements OnInit {
         .pipe(
           startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value && value.nombres || null),
-          switchMap(nombres => nombres ? this.getPersonas(nombres) : [])
+          switchMap(nombres => nombres ? this.getPersonas(nombres) : []),
         );
     }
   }
@@ -64,14 +64,14 @@ export class FormVinculeComponent implements OnInit {
     const controls = {
       id: [''],
       activo: [true, Validators.required],
-      persona: ['', Validators.required]
+      persona: ['', Validators.required],
     };
 
     return controls;
   }
 
   public onSubmit() {
-    const value = this.tesistaVinculeForm.value;
+    // const value = this.tesistaVinculeForm.value;
     const valid = this.tesistaVinculeForm.valid;
 
     if (valid) {
@@ -80,9 +80,9 @@ export class FormVinculeComponent implements OnInit {
         .afterClosed().subscribe((accept: boolean) => {
           if (accept) {
             // this.tesistaService.add$(value).subscribe(tesista => {
-              // this.snackBar.open(MESSAGES.tesista.post, MESSAGES.actions.post, snackBarDuration);
-              // this.dialogRef.close(true);
-              // this.tesistaVinculeForm.reset();
+            // this.snackBar.open(MESSAGES.tesista.post, MESSAGES.actions.post, snackBarDuration);
+            // this.dialogRef.close(true);
+            // this.tesistaVinculeForm.reset();
             // });
           } else {
           }

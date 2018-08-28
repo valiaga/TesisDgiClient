@@ -6,7 +6,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
 @Component({
     selector: 'dgi-form-file-input',
     templateUrl: 'form-file-input.component.html',
-    styleUrls: ['form-file-input.component.scss']
+    styleUrls: ['form-file-input.component.scss'],
 })
 
 export class DgiFormFileInputComponent implements OnInit {

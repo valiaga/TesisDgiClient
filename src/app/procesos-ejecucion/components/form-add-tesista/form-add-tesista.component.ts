@@ -12,7 +12,7 @@ import { TesistasService } from '../../../tesistas/shared/tesistas.service';
 @Component({
   selector: 'dgi-form-add-tesista',
   templateUrl: './form-add-tesista.component.html',
-  styleUrls: ['./form-add-tesista.component.scss']
+  styleUrls: ['./form-add-tesista.component.scss'],
 })
 export class FormAddTesistaComponent implements OnInit {
   public addTesistaForm: FormGroup;
@@ -41,7 +41,7 @@ export class FormAddTesistaComponent implements OnInit {
         .pipe(
           startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value && value.nombres || null),
-          switchMap(nombres => nombres ? this.getTesistas(nombres) : [])
+          switchMap(nombres => nombres ? this.getTesistas(nombres) : []),
         );
     }
   }
@@ -79,7 +79,7 @@ export class FormAddTesistaComponent implements OnInit {
       this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tesisProceso.confirmAddTesista, this.viewContainerRef))
         .afterClosed().subscribe((accept: boolean) => {
           if (accept) {
-            console.log(data);
+            // console.log(data);
             this.proyectosService.update$(data.id, data).subscribe(response => {
               this.snackBar.open(MESSAGES.tesista.post, MESSAGES.actions.post, snackBarDuration);
               this.dialogRef.close(true);

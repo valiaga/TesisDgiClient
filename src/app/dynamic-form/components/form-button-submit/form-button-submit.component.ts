@@ -50,8 +50,8 @@ import { FieldConfig } from '../../models/field-config';
       }
     }
     */
-    `
-  ]
+    `,
+  ],
 })
 export class FormButtonSubmitComponent implements OnInit {
 

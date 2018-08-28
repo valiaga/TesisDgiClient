@@ -5,7 +5,7 @@ import { EtapaService } from './etapa.service';
 describe('EtapaService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [EtapaService]
+      providers: [EtapaService],
     });
   });
 

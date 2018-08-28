@@ -8,7 +8,7 @@ describe('DgiFormValidadorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormValidadorComponent ]
+      declarations: [ DgiFormValidadorComponent ],
     })
     .compileComponents();
   }));

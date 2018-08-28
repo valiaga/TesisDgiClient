@@ -4,7 +4,7 @@ import { IResponse, IPerfil } from './perfil';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PerfilesService {
 

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       Search works!
     </mat-card>
   `,
-  styles: []
+  styles: [],
 })
 export class LineaInvestigacionSearchComponent implements OnInit {
 

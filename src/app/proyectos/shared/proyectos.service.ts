@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpResponse, HttpClient, HttpParams } from '@angular/common/http';
-import { environment } from '../../../environments/environment';
+import { HttpClient } from '@angular/common/http';
+// import { environment } from '../../../environments/environment';
 import { Proyecto } from '../models/proyecto';
 
 class Options {
@@ -68,7 +68,7 @@ export class ProyectosService {
   // .map((res: Response) => res.json() || []);
   // }
 
-  private handleError(error: Response) {
-    return Observable.throw(error.statusText);
-  }
+  // private handleError(error: Response) {
+  //   return Observable.throw(error.statusText);
+  // }
 }

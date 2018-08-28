@@ -8,7 +8,7 @@ describe('EditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditorComponent ]
+      declarations: [ EditorComponent ],
     })
     .compileComponents();
   }));

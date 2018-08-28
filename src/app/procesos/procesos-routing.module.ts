@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { NuevoComponent } from './nuevo/nuevo.component';
 import { EditorComponent } from './editor/editor.component';
 import { FindProcesoPageComponent } from './containers/find-proceso-page.component';
-import { EtapaListaComponent, TareasListComponent } from './components/tareas';
+import { TareasListComponent } from './components/tareas';
 import { ProcesosComponent } from './procesos.component';
 import { FormulariosListComponent } from './components/formularios';
 
@@ -52,6 +52,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)], // configuración para un módulo hijo
   exports: [RouterModule], // se importará en su módulo funcional asociado
-  providers: []
+  providers: [],
 })
 export class ProcesosRoutingModule { }

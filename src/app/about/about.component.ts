@@ -11,13 +11,13 @@ import { Component, OnInit } from '@angular/core';
       Contacto by email
     </ng-template>
     <ng-template #elseTemplate>
-      Contacto by social      
+      Contacto by social
     </ng-template>
   `,
-  styles: []
+  styles: [],
 })
 export class AboutComponent implements OnInit {
-  public byEmail:Boolean=true;
+  public byEmail: Boolean = true;
 
   constructor() { }
 

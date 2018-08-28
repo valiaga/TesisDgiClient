@@ -23,7 +23,7 @@ import { Form } from '../models/form';
       </mat-card-content>
     </mat-card>
   `,
-  styleUrls: ['./many-dynamic-form.component.scss']
+  styleUrls: ['./many-dynamic-form.component.scss'],
 })
 export class ManyDynamicFormComponent implements OnInit {
 
@@ -54,8 +54,8 @@ export class ManyDynamicFormComponent implements OnInit {
   }
 
   submit(value: { [name: string]: any }) {
-    console.log('value');
-    console.log(value);
+    // console.log('value');
+    // console.log(value);
   }
 
   public getFormClass(formulario: Form) {

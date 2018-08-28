@@ -8,7 +8,7 @@ describe('EscuelaSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EscuelaSearchComponent ]
+      declarations: [ EscuelaSearchComponent ],
     })
     .compileComponents();
   }));

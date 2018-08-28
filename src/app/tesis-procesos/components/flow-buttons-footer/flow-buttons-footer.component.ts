@@ -19,7 +19,7 @@ import { MatStepper } from '@angular/material';
     </button>
   </div>
   `,
-  styleUrls: ['./flow-buttons-footer.component.scss']
+  styleUrls: ['./flow-buttons-footer.component.scss'],
 })
 export class FlowButtonsFooterComponent implements OnInit {
 

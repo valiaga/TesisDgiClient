@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'dgi-etapa',
   templateUrl: './etapa-new.component.html',
-  styleUrls: ['./etapa-new.component.scss']
+  styleUrls: ['./etapa-new.component.scss'],
 })
 export class EtapaNewComponent implements OnInit {
   public etapaForm: FormGroup;

@@ -42,7 +42,7 @@ export class FormularioReactiveService {
   formularios: Observable<IFormulario[]>;
   private _formularios: BehaviorSubject<IFormulario[]>;
   private dataStore: {
-    formularios: IFormulario[]
+    formularios: IFormulario[],
   };
 
   constructor(private formularioService: FormularioService,
@@ -66,7 +66,7 @@ export class FormularioReactiveService {
 
         this.dataStore.formularios = data;
         this._formularios.next(Object.assign({}, this.dataStore).formularios);
-      }, error => console.log('Could not load formularios.')
+      }, error => console.warn('Could not load formularios.'),
       );
   }
 

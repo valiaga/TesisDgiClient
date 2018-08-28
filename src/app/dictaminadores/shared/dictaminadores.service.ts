@@ -40,7 +40,7 @@ export class DictaminadoresReactiveService {
     dictaminadores: Observable<Dictaminador[]>;
     private _dictaminadores: BehaviorSubject<Dictaminador[]>;
     private dataStore: {
-        dictaminadores: Dictaminador[]
+        dictaminadores: Dictaminador[],
     };
     constructor(private dictaminadoresService: DictaminadoresService,
         private snackBar: MatSnackBar) {
@@ -55,12 +55,12 @@ export class DictaminadoresReactiveService {
             .getList$(params)
             .pipe(map(res => res.results))
             .subscribe(data => {
-                console.log(data);
+                // console.log(data);
 
                 this.snackBar.open(MESSAGES.dictaminador.getMany, MESSAGES.actions.get, snackBarDuration);
                 this.dataStore.dictaminadores = data;
                 this._dictaminadores.next(Object.assign({}, this.dataStore).dictaminadores);
-            }, error => console.log('Could not load dictaminadores.')
+            }, error => console.warn('Could not load dictaminadores.'),
             );
     }
 
@@ -70,7 +70,7 @@ export class DictaminadoresReactiveService {
                 this.snackBar.open(MESSAGES.dictaminador.post, MESSAGES.actions.post, snackBarDuration);
                 this.dataStore.dictaminadores.push(data);
                 this._dictaminadores.next(Object.assign({}, this.dataStore).dictaminadores);
-            }, error => console.log('Could not create dictaminador.'));
+            }, error => console.warn('Could not create dictaminador.'));
     }
 
 
@@ -83,7 +83,7 @@ export class DictaminadoresReactiveService {
                 });
 
                 this._dictaminadores.next(Object.assign({}, this.dataStore).dictaminadores);
-            }, error => console.log('Could not update dictaminador.'));
+            }, error => console.warn('Could not update dictaminador.'));
     }
 
     public delete(id: string) {
@@ -96,7 +96,7 @@ export class DictaminadoresReactiveService {
                     if (a.id === id) { this.dataStore.dictaminadores.splice(index, 1); }
                 });
                 this._dictaminadores.next(Object.assign({}, this.dataStore).dictaminadores);
-            }, error => console.log('Could not delete dictaminador.'));
+            }, error => console.warn('Could not delete dictaminador.'));
     }
 
 }

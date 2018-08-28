@@ -5,12 +5,12 @@ import { FindEscuelaPageComponent } from './containers/find-escuela-page.compone
 const routes: Routes = [
   {
     path: '',
-    component: FindEscuelaPageComponent
-  }
+    component: FindEscuelaPageComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class EscuelasRoutingModule { }

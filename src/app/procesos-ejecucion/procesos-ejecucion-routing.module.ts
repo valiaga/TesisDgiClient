@@ -33,6 +33,6 @@ const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forChild(routes)], // configuración para un módulo hijo
   exports: [RouterModule], // se importará en su módulo funcional asociado
-  providers: []
+  providers: [],
 })
 export class ProcesosEjecucionRoutingModule { }

@@ -14,8 +14,8 @@ import { Proyecto } from '../models/proyecto';
     h5 {
       margin-bottom: 5px;
     }
-    `
-  ]
+    `,
+  ],
 })
 export class ProyectoAuthorsComponent implements OnInit {
 

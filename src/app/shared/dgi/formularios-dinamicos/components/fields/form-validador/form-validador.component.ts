@@ -28,7 +28,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     </mat-error> -->
   </div>
   `,
-  styleUrls: ['./form-validador.component.scss']
+  styleUrls: ['./form-validador.component.scss'],
 })
 export class DgiFormValidadorComponent implements OnInit {
   public config: FieldConfig;

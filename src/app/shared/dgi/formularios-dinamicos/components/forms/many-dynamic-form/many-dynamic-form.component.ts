@@ -24,7 +24,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       </mat-card-content>
     </mat-card>
   `,
-  styleUrls: ['./many-dynamic-form.component.scss']
+  styleUrls: ['./many-dynamic-form.component.scss'],
 })
 export class DgiManyDynamicFormComponent implements OnInit, AfterViewChecked {
 
@@ -60,8 +60,8 @@ export class DgiManyDynamicFormComponent implements OnInit, AfterViewChecked {
   }
 
   public submit(value: { [name: string]: any }) {
-    console.log('value');
-    console.log(value);
+    // console.log('value');
+    // console.log(value);
   }
 
   public update(fieldId: string) {

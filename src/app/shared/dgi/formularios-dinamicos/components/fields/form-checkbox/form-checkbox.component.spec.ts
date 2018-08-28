@@ -8,7 +8,7 @@ describe('DgiFormCheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormCheckboxComponent ]
+      declarations: [ DgiFormCheckboxComponent ],
     })
     .compileComponents();
   }));

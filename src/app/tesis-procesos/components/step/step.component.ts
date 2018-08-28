@@ -9,7 +9,7 @@ import { Etapa } from '../../../etapas/shared/etapa';
     {{ descripcion }}
   </mat-step>
   `,
-  styles: []
+  styles: [],
 })
 export class StepComponent implements OnInit {
 

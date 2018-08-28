@@ -8,7 +8,7 @@ describe('FormCheckboxComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormCheckboxComponent ]
+      declarations: [ FormCheckboxComponent ],
     })
     .compileComponents();
   }));

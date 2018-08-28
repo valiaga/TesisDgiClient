@@ -32,7 +32,7 @@ const components: { [type: string]: Type<Field> } = {
 
 
 @Directive({
-  selector: '[dgiDynamicField]'
+  selector: '[dgiDynamicField]',
 })
 export class DgiDynamicFieldDirective implements Field, OnChanges, OnInit {
 
@@ -60,7 +60,7 @@ export class DgiDynamicFieldDirective implements Field, OnChanges, OnInit {
       const supportedTypes = Object.keys(components).join(', ');
       throw new Error(
         `Esta intentando usar un tipo no compatible (${this.config.type}).
-        Tipos soportados: ${supportedTypes}`
+        Tipos soportados: ${supportedTypes}`,
       );
     }
     const component = this.resolver.resolveComponentFactory<Field>(components[this.config.type]);

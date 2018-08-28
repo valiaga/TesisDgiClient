@@ -4,7 +4,7 @@ export class Asesor {
         public data_persona: any,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
-        public id?: string
+        public id?: string,
     ) { }
 }
 

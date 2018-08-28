@@ -1,4 +1,4 @@
-import { Component, SimpleChange, OnInit, OnChanges, EventEmitter } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../../models/field-config';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
@@ -25,7 +25,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
       </mat-error> -->
   </mat-form-field>
   `,
-  styleUrls: ['./form-input.component.scss']
+  styleUrls: ['./form-input.component.scss'],
 })
 export class DgiFormInputComponent implements OnInit {
   public config: FieldConfig;

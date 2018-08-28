@@ -19,7 +19,7 @@ import { Component, OnInit } from '@angular/core';
       text-align: center;
     }
     `,
-  ]
+  ],
 })
 export class NotFoundPageComponent implements OnInit {
 

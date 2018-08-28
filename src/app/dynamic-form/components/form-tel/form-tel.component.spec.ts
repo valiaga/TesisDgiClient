@@ -8,7 +8,7 @@ describe('FormTelComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormTelComponent ]
+      declarations: [ FormTelComponent ],
     })
     .compileComponents();
   }));

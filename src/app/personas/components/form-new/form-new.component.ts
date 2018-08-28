@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
-import { PersonasService, PersonasReactiveService } from '../../shared/personas.service';
+import { PersonasReactiveService } from '../../shared/personas.service';
 
 @Component({
   selector: 'dgi-form-new',

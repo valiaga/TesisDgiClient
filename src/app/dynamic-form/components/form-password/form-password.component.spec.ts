@@ -8,7 +8,7 @@ describe('FormPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormPasswordComponent ]
+      declarations: [ FormPasswordComponent ],
     })
     .compileComponents();
   }));

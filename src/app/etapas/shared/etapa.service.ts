@@ -3,7 +3,7 @@ import { Etapa, IEtapa } from './etapa';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
-import { environment } from '../../../environments/environment';
+// import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
 
@@ -52,7 +52,7 @@ export class EtapaReactiveService {
   public etapas: Observable<Etapa[]>;
   private _etapas: BehaviorSubject<Array<Etapa>>;
   private dataStore: { // Aquí es donde almacenaremos nuestros datos en la memoria
-    etapas: Etapa[]
+    etapas: Etapa[],
   };
   constructor(
     private etapaService: EtapaService,
@@ -72,7 +72,7 @@ export class EtapaReactiveService {
 
         this.dataStore.etapas = data;
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
-      }, error => console.log('Could not load etapas.')
+      }, error => console.warn('Could not load etapas.'),
       );
   }
 
@@ -82,7 +82,7 @@ export class EtapaReactiveService {
 
         this.dataStore.etapas = data;
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
-      }, error => console.log('Could not load etapas.')
+      }, error => console.warn('Could not load etapas.'),
       );
   }
 
@@ -92,7 +92,7 @@ export class EtapaReactiveService {
 
         this.dataStore.etapas = data;
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
-      }, error => console.log('Could not load etapas.')
+      }, error => console.warn('Could not load etapas.'),
       );
   }
 
@@ -105,7 +105,7 @@ export class EtapaReactiveService {
 
         this.dataStore.etapas.push(data);
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
-      }, error => console.log('Could not create etapa.'));
+      }, error => console.warn('Could not create etapa.'));
   }
 
 
@@ -117,7 +117,7 @@ export class EtapaReactiveService {
           if (e.id === data.id) { this.dataStore.etapas[index] = data; }
         });
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
-      }, error => console.log('Could not update etapa.'));
+      }, error => console.warn('Could not update etapa.'));
   }
 
   remove(id: string) {
@@ -130,6 +130,6 @@ export class EtapaReactiveService {
           if (etapa.id === id) { this.dataStore.etapas.splice(index, 1); }
         });
         this._etapas.next(Object.assign({}, this.dataStore).etapas);
-      }, error => console.log('Could not delete etapa.'));
+      }, error => console.warn('Could not delete etapa.'));
   }
 }

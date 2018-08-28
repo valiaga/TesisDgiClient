@@ -17,29 +17,29 @@ const routes: Routes = [
                 path: '',
                 loadChildren: '../home/home.module#HomeModule',
                 data: {
-                    title: 'Home'
-                }
+                    title: 'Home',
+                },
             },
             {
                 path: 'about',
                 loadChildren: '../about/about.module#AboutModule',
                 data: {
-                    title: 'About'
-                }
+                    title: 'About',
+                },
             },
             {
                 path: 'procesos',
                 loadChildren: '../procesos/procesos.module#ProcesosModule',
                 data: {
-                    title: 'Procesos'
-                }
+                    title: 'Procesos',
+                },
             },
             {
                 path: 'proyectos',
                 loadChildren: '../proyectos/proyectos.module#ProyectosModule',
                 data: {
-                    title: 'Proyectos'
-                }
+                    title: 'Proyectos',
+                },
             },
             // {
             //     path: 'seguimientos',
@@ -52,92 +52,92 @@ const routes: Routes = [
                 path: 'procesos-ejecucion',
                 loadChildren: '../procesos-ejecucion/procesos-ejecucion.module#ProcesosEjecucionModule',
                 data: {
-                    title: 'Procesos en ejecución'
-                }
+                    title: 'Procesos en ejecución',
+                },
             },
             {
                 path: 'asesores',
                 loadChildren: '../asesores/asesores.module#AsesoresModule',
                 data: {
-                    title: 'Asesores'
-                }
+                    title: 'Asesores',
+                },
             },
             {
                 path: 'dictaminadores',
                 loadChildren: '../dictaminadores/dictaminadores.module#DictaminadoresModule',
                 data: {
-                    title: 'Dictaminadores'
-                }
+                    title: 'Dictaminadores',
+                },
             },
             {
                 path: 'jurados',
                 loadChildren: '../jurados/jurados.module#JuradosModule',
                 data: {
-                    title: 'Jurados'
-                }
+                    title: 'Jurados',
+                },
             },
             {
                 path: 'tesistas',
                 loadChildren: '../tesistas/tesistas.module#TesistasModule',
                 data: {
-                    title: 'Tesistas'
-                }
+                    title: 'Tesistas',
+                },
             },
             {
                 path: 'documentos',
                 loadChildren: '../documentos/documentos.module#DocumentosModule',
                 data: {
-                    title: 'Documentos'
-                }
+                    title: 'Documentos',
+                },
             },
             {
                 path: 'auth',
                 loadChildren: '../auth/auth.module#AuthModule',
                 data: {
-                    title: 'Auth'
-                }
+                    title: 'Auth',
+                },
             },
             {
                 path: 'users',
                 loadChildren: '../users/users.module#UsersModule',
                 data: {
-                    title: 'Users'
-                }
+                    title: 'Users',
+                },
             },
             {
                 path: 'groups',
                 loadChildren: '../groups/groups.module#GroupsModule',
                 data: {
-                    title: 'Groups'
-                }
+                    title: 'Groups',
+                },
             },
             {
                 path: 'linea-investigacions',
                 loadChildren: '../linea-investigacions/linea-investigacions.module#LineaInvestigacionsModule',
                 data: {
-                    title: 'Linea-investigacions'
-                }
+                    title: 'Linea-investigacions',
+                },
             },
             {
                 path: 'escuelas',
                 loadChildren: '../escuelas/escuelas.module#EscuelasModule',
                 data: {
-                    title: 'Escuelas'
-                }
+                    title: 'Escuelas',
+                },
             },
             {
                 path: 'personas',
                 loadChildren: '../personas/personas.module#PersonasModule',
                 data: {
-                    title: 'Personas'
-                }
+                    title: 'Personas',
+                },
             },
             {
                 path: 'perfiles',
                 loadChildren: '../perfiles/perfiles.module#PerfilesModule',
                 data: {
-                    title: 'Perfiles'
-                }
+                    title: 'Perfiles',
+                },
             },
             // ,
             // {
@@ -146,7 +146,7 @@ const routes: Routes = [
             //     pathMatch: 'full'
             // }
         ],
-    }
+    },
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],

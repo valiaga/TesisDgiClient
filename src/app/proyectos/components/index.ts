@@ -25,12 +25,12 @@ export const COMPONENTS = [
     PipesModule,
     RouterModule,
     MaterialModule,
-    HttpModule
+    HttpModule,
   ],
   declarations: COMPONENTS,
   exports: COMPONENTS,
   providers: [
-    ProyectosService
-  ]
+    ProyectosService,
+  ],
 })
 export class ComponentsModule { }

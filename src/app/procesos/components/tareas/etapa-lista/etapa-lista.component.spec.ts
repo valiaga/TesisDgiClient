@@ -8,7 +8,7 @@ describe('EtapaListaComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EtapaListaComponent ]
+      declarations: [ EtapaListaComponent ],
     })
     .compileComponents();
   }));

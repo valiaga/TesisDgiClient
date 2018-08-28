@@ -1,4 +1,4 @@
-import { Component, SimpleChange, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FieldConfig } from '../../models/field-config';
 import { FormToolsService } from '../../../shared/form-tools.service';
@@ -23,7 +23,7 @@ import { FormToolsService } from '../../../shared/form-tools.service';
     </mat-error>
   </mat-form-field>
   `,
-  styleUrls: ['./form-input.component.scss']
+  styleUrls: ['./form-input.component.scss'],
 })
 export class FormInputComponent implements OnInit {
   public config: FieldConfig;
@@ -36,8 +36,8 @@ export class FormInputComponent implements OnInit {
     // this.formTools = new FormTools(this.group);
   }
 
-  // ngOnChanges(changes: { [propKey: string]: SimpleChange }) {
-  //   if (changes['form']) {
+  // ngOnChanges(changes: { [propKey: string]: ) {
+  //  if (changes['form']) {
   //     this.formTools = new FormTools(this.group);
   //   }
   // }

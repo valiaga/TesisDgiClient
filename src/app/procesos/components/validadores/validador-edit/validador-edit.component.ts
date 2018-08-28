@@ -11,7 +11,7 @@ import { MESSAGES } from 'config/messages';
 @Component({
   selector: 'dgi-validador-edit',
   templateUrl: './validador-edit.component.html',
-  styleUrls: ['./validador-edit.component.scss']
+  styleUrls: ['./validador-edit.component.scss'],
 })
 export class ValidadorEditComponent implements OnInit {
   public validadorForm: FormGroup;

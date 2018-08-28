@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
 // import { SettingsService } from '../../shared/settings.service';
@@ -7,7 +7,8 @@ import 'rxjs/add/operator/toPromise';
 
 @Injectable()
 export class UsersService {
-    constructor(private http: HttpClient
+    constructor(
+        // private http: HttpClient
         // ,private _settingsService: SettingsService
     ) {
     }
@@ -115,21 +116,21 @@ export class UsersService {
 /**
  * Class that encapsulate logic to generate a request to obtain an api token
  */
-class TokenRequest {
-    grantType: string;
-    username: string;
-    password: string;
+// class TokenRequest {
+//     grantType: string;
+//     username: string;
+//     password: string;
 
-    constructor(username: string, password: string) {
-        this.grantType = 'password';
-        this.username = username;
-        this.password = password;
-    }
+//     constructor(username: string, password: string) {
+//         this.grantType = 'password';
+//         this.username = username;
+//         this.password = password;
+//     }
 
-    public toUrlEncoded(): string {
-        return `grant_type=${this.grantType}&username=${this.username}&password=${this.password}`;
-    }
-}
+//     public toUrlEncoded(): string {
+//         return `grant_type=${this.grantType}&username=${this.username}&password=${this.password}`;
+//     }
+// }
 
 /**
  * Encapsulates all the necessary data related to a user session

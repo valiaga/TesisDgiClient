@@ -66,7 +66,7 @@ export class FormNewComponent implements OnInit {
         .pipe(
           startWith<string | any>(''),
           map(value => typeof value === 'string' ? value : value && value.username || null),
-          switchMap(username => username ? this.getUsuarios(username) : [])
+          switchMap(username => username ? this.getUsuarios(username) : []),
         );
     }
   }
@@ -89,7 +89,7 @@ export class FormNewComponent implements OnInit {
     const controls = {
       id: [''],
       usuario: ['', [Validators.required]],
-      persona: ['', [Validators.required]]
+      persona: ['', [Validators.required]],
     };
 
     return controls;

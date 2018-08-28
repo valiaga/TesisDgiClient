@@ -8,7 +8,7 @@ describe('DynamicFormCampoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DynamicFormCampoComponent ]
+      declarations: [ DynamicFormCampoComponent ],
     })
     .compileComponents();
   }));

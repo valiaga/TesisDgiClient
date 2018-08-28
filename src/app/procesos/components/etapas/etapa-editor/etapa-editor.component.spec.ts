@@ -8,7 +8,7 @@ describe('EtapaEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EtapaEditorComponent ]
+      declarations: [ EtapaEditorComponent ],
     })
     .compileComponents();
   }));

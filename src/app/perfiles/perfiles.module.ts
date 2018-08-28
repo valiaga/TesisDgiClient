@@ -72,6 +72,6 @@ const DGI_MODULES: any[] = [
   ],
   entryComponents: [
     FormNewComponent,
-  ]
+  ],
 })
 export class PerfilesModule { }

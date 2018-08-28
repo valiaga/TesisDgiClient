@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Proceso } from '../../../models/proceso.model';
 
 
@@ -15,8 +15,8 @@ import { Proceso } from '../../../models/proceso.model';
       /*justify-content: center; */
       /* margin-top: 25px; */
     }
-    `
-  ]
+    `,
+  ],
 })
 export class ProcesoListComponent implements OnInit {
 

@@ -160,7 +160,7 @@ export class CamposEditComponent implements OnInit {
 
         // const pasoOneFormValue = this.pasoOneForm.value;
         const pasoTwoFormValue = this.pasoTwoForm.value;
-        const pasoThreeFormValue = this.pasoThreeForm.value;
+        // const pasoThreeFormValue = this.pasoThreeForm.value;
 
 
         // const pasoOneFormValid = this.pasoOneForm.valid;
@@ -171,12 +171,11 @@ export class CamposEditComponent implements OnInit {
 
         // const data = Object.assign({ accept_fileinput: acceptInputFile }, pasoOneFormValue, pasoTwoFormValue);
         const data = Object.assign({ accept_fileinput: acceptInputFile }, pasoTwoFormValue);
-        console.log(data);
+        // console.log(data);
         // console.log(pasoOneFormValid);
-        console.log(pasoTwoFormValid);
-        console.log(pasoThreeFormValid);
-        console.log(acceptInputFile);
-
+        // console.log(pasoTwoFormValid);
+        // console.log(pasoThreeFormValid);
+        // console.log(acceptInputFile);
 
         // if (pasoOneFormValid && pasoTwoFormValid && pasoThreeFormValid) {
         if (pasoTwoFormValid && pasoThreeFormValid) {

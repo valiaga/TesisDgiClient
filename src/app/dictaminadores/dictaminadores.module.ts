@@ -8,7 +8,7 @@ import { FormEditComponent, FormNewComponent, ListComponent, SearchComponent, Fo
 import {
     MatCardModule, MatDialogModule, MatFormFieldModule,
     MatInputModule, MatRadioModule,
-    MatDatepickerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, MatAutocompleteModule
+    MatDatepickerModule, MatCheckboxModule, MatButtonModule, MatIconModule, MatMenuModule, MatTooltipModule, MatAutocompleteModule,
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -24,7 +24,7 @@ const COMPONENTS: any[] = [
     FormVinculeComponent,
     FormNewComponent,
     ListComponent,
-    SearchComponent
+    SearchComponent,
 ];
 
 const MATERIAL_MODULES: any[] = [

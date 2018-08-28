@@ -8,7 +8,7 @@ describe('DgiFormDatepickerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormDatepickerComponent ]
+      declarations: [ DgiFormDatepickerComponent ],
     })
     .compileComponents();
   }));

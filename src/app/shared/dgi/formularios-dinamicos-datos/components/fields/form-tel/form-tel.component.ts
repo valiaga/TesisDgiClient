@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FieldConfig } from '../../../models/field-config';
 import { FormGroup } from '@angular/forms';
 import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
@@ -26,12 +26,12 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     -->
   </mat-form-field>
   `,
-  styleUrls: ['./form-tel.component.scss']
+  styleUrls: ['./form-tel.component.scss'],
 })
 export class DgiFormTelComponent implements OnInit {
   public config: FieldConfig;
   public group: FormGroup;
-  private codePostal = '+51';
+  public codePostal = '+51';
   // formTools: FormTools;
 
   constructor(private formWidthToolsService: FormWidthToolsService) { }

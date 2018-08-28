@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { FormNewComponent, FormEditComponent, FormVinculeComponent } from '../../components';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
@@ -19,7 +19,7 @@ import { Dictaminador } from '../../shared/dictaminador';
         right: 90px;
         bottom: 20px
     }
-    `]
+    `],
 })
 
 export class FindPageComponent implements OnInit {
@@ -50,7 +50,7 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog dictaminador');
+            // console.log('close dialog dictaminador');
         });
     }
 
@@ -59,12 +59,12 @@ export class FindPageComponent implements OnInit {
             width: '500px',
         });
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog vincule dictaminador');
+            // console.log('close dialog vincule dictaminador');
         });
     }
 
     public onUpdateDictaminador(event) {
-        console.log('Update: ', event);
+        // console.log('Update: ', event);
         const dialogRef = this.dialog.open(FormEditComponent, {
             width: '500px',
             data: {
@@ -73,7 +73,7 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog dictaminador');
+            // console.log('close dialog dictaminador');
         });
 
     }

@@ -22,16 +22,16 @@ import {
       [proyectos]="proyectos$ | async">
       </dgi-proyecto-preview-list>
   `,
-  styles: []
+  styles: [],
 })
 export class FindProyectoPageComponent implements OnInit {
 
-  private buscarQuery$: Observable<string>;
-  private proyectos$: Observable<Proyecto[]>;
-  private cargando$: Observable<Boolean>;
-  private error$: Observable<string>;
+  public buscarQuery$: Observable<string>;
+  public proyectos$: Observable<Proyecto[]>;
+  public cargando$: Observable<Boolean>;
+  public error$: Observable<string>;
 
-  private debouncer = new Subject<string>();
+  public debouncer = new Subject<string>();
 
   constructor(private proyectosService: ProyectosService) { }
 
@@ -52,7 +52,7 @@ export class FindProyectoPageComponent implements OnInit {
           this.cargando$ = new Observable<boolean>((observer) => {
             observer.next(false);
           });
-        })
+        }),
       );
   }
 

@@ -8,7 +8,7 @@ describe('DgiFormButtonSubmitComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormButtonSubmitComponent ]
+      declarations: [ DgiFormButtonSubmitComponent ],
     })
     .compileComponents();
   }));

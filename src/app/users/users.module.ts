@@ -24,7 +24,7 @@ const MATERIAL_MODULES: any[] = [
         ...routedComponents,
     ],
     providers: [
-        UsersService
+        UsersService,
     ],
 })
 export class UsersModule { }

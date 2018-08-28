@@ -8,7 +8,7 @@ describe('TareaEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TareaEditorComponent]
+      declarations: [TareaEditorComponent],
     })
       .compileComponents();
   }));

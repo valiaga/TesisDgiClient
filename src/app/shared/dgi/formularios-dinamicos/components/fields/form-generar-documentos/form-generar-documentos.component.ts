@@ -37,7 +37,7 @@ import { FormWidthToolsService } from '../../../tools/form-width-tools.service';
     <mat-hint *ngIf="config.hint_start">{{ config.hint_start }}</mat-hint>
   </div>
   `,
-  styleUrls: ['./form-generar-documentos.component.scss']
+  styleUrls: ['./form-generar-documentos.component.scss'],
 })
 export class DgiFormGenerarDocumentosComponent implements OnInit {
   public config: FieldConfig;

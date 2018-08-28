@@ -8,7 +8,7 @@ describe('DgiFormPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormPasswordComponent ]
+      declarations: [ DgiFormPasswordComponent ],
     })
     .compileComponents();
   }));

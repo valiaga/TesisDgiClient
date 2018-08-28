@@ -5,7 +5,7 @@ import { ControlService } from './control.service';
 describe('ControlService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ControlService]
+      providers: [ControlService],
     });
   });
 

@@ -15,13 +15,13 @@ const routes: Routes = [
       {
         path: ':juradoId/proyectos',
         component: ProyectosPageComponent,
-      }
-    ]
-  }
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class JuradosRoutingModule { }

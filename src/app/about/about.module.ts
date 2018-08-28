@@ -6,15 +6,15 @@ import { AboutComponent } from './about.component';
 const routes: Routes = [
   {
     path: '',
-    component: AboutComponent
-  }
+    component: AboutComponent,
+  },
 ];
 
 @NgModule({
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
   ],
-  declarations: [AboutComponent]
+  declarations: [AboutComponent],
 })
 export class AboutModule { }

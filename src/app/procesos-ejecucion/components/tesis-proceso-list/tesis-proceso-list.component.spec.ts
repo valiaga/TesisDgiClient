@@ -8,7 +8,7 @@ describe('TesisProcesoListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [TesisProcesoListComponent]
+      declarations: [TesisProcesoListComponent],
     })
       .compileComponents();
   }));

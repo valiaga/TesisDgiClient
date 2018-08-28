@@ -18,7 +18,7 @@ import { DgiButtonFabModule } from '@dgi/button-fab';
 import { TesisProcesoService } from '../tesis-procesos/shared';
 import {
   MatCardModule, MatDialogModule,
-  MatAutocompleteModule, MatIconModule, MatMenuModule, MatFormFieldModule, MatButtonModule, MatInputModule
+  MatAutocompleteModule, MatIconModule, MatMenuModule, MatFormFieldModule, MatButtonModule, MatInputModule,
 } from '@angular/material';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -81,6 +81,6 @@ const DGI_MODULES: any[] = [
   entryComponents: [
     FormAddTesistaComponent,
     CreateTesisProcesoDialogComponent,
-  ]
+  ],
 })
 export class ProcesosEjecucionModule { }

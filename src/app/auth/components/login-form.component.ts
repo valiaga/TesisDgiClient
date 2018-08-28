@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
       login-form works!
     </p>
   `,
-  styles: []
+  styles: [],
 })
 export class LoginFormComponent implements OnInit {
 

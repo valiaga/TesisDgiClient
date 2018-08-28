@@ -19,7 +19,7 @@ import { TesisProceso } from '../../../tesis-procesos/shared';
     .full-width {
       width: 100%;
     }
-    `]
+    `],
 })
 export class CreateTesisProcesoDialogComponent implements OnInit {
 
@@ -43,7 +43,7 @@ export class CreateTesisProcesoDialogComponent implements OnInit {
   onNoClick(): void {
     const data = {
       submit: false,
-      realData: {}
+      realData: {},
     };
     this.dialogRef.close(data);
   }
@@ -54,7 +54,7 @@ export class CreateTesisProcesoDialogComponent implements OnInit {
     if (valid) {
       const data = {
         submit: true,
-        realData: tesisProceso
+        realData: tesisProceso,
       };
 
       this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.tesisProceso.confirmCreate, this.viewContainerRef))
@@ -78,13 +78,13 @@ export class CreateTesisProcesoDialogComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(this.lengtMinProyectoTitulo),
-          Validators.maxLength(this.lengtMaxProyectoTitulo)
-        ]
+          Validators.maxLength(this.lengtMaxProyectoTitulo),
+        ],
       ],
       id: [],
       fecha_inicio: [],
       fecha_fin: [],
-      estado: []
+      estado: [],
     };
     return controls;
   }

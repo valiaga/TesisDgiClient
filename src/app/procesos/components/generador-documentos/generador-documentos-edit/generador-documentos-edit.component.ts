@@ -43,7 +43,7 @@ export class GeneradorDocumentosEditComponent implements OnInit {
     }
 
     private loadCampo(campo) {
-        console.log(campo);
+        // console.log(campo);
 
         // this.tipoCampo = campo.type;
         // this.tareaId = campo.tarea;
@@ -145,8 +145,8 @@ export class GeneradorDocumentosEditComponent implements OnInit {
         value.campos_validados = this.camposCheckeds.join(',');
 
         if (valid) {
-            console.log(value);
-            console.log(this.camposCheckeds);
+            // console.log(value);
+            // console.log(this.camposCheckeds);
 
             this.tdDialogService.openConfirm(getMessageConfirm(MESSAGES.campo.confirmCreate, this.viewContainerRef))
                 .afterClosed().subscribe((accept: boolean) => {

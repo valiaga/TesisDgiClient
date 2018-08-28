@@ -17,8 +17,8 @@ import { Proceso } from '../../../procesos/models/proceso.model';
       /*justify-content: center; */
       /* margin-top: 25px; */
     }
-    `
-  ]
+    `,
+  ],
 })
 export class ProcesoListComponent implements OnInit {
 

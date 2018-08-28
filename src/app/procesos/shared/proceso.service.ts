@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Proceso, IProceso, IResponse } from '../models/proceso.model';
-import { PROCESOS } from './mock-procesos';
+import { Proceso, IProceso } from '../models/proceso.model';
+// import { PROCESOS } from './mock-procesos';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { MESSAGES } from '../../../config/messages';
@@ -25,7 +25,7 @@ export class ProcesosService extends EntityDataService<IProceso> {
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProcesosReactiveService {
   // private readonly url = 'proceso/procesos/';
@@ -34,7 +34,7 @@ export class ProcesosReactiveService {
   procesos: Observable<Proceso[]>;
   private _procesos: BehaviorSubject<Proceso[]>;
   private dataStore: {
-    procesos: Proceso[]
+    procesos: Proceso[],
   };
 
   constructor(
@@ -56,7 +56,7 @@ export class ProcesosReactiveService {
       .subscribe(data => {
         this.dataStore.procesos = data;
         this._procesos.next(Object.assign({}, this.dataStore).procesos);
-      }, error => console.log('Could not load procesos.')
+      }, error => console.warn('Could not load procesos.'),
       );
   }
 
@@ -91,7 +91,7 @@ export class ProcesosReactiveService {
         this.snackBar.open(MESSAGES.proceso.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.procesos.push(data);
         this._procesos.next(Object.assign({}, this.dataStore).procesos);
-      }, error => console.log('Could not create proceso.'));
+      }, error => console.warn('Could not create proceso.'));
   }
 
   public update(proceso: IProceso) {
@@ -105,7 +105,7 @@ export class ProcesosReactiveService {
         });
 
         this._procesos.next(Object.assign({}, this.dataStore).procesos);
-      }, error => console.log('Could not update proceso.'));
+      }, error => console.warn('Could not update proceso.'));
   }
 
   public delete(id: string) {
@@ -117,7 +117,7 @@ export class ProcesosReactiveService {
           if (proceso.id === id) { this.dataStore.procesos.splice(index, 1); }
         });
         this._procesos.next(Object.assign({}, this.dataStore).procesos);
-      }, error => console.log('Could not delete proceso.'));
+      }, error => console.warn('Could not delete proceso.'));
   }
 
 }

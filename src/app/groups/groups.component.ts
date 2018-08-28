@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GroupsService } from './shared/groups.service';
-import { Group, IGroup } from './shared/group';
+import { IGroup } from './shared/group';
 import { MatTableDataSource } from '@angular/material';
 
 @Component({
@@ -50,8 +50,8 @@ export class GroupsComponent implements OnInit {
   }
 
   private loadGroups(res) {
-    console.log('Groups');
-    console.log(res);
+    // console.log('Groups');
+    // console.log(res);
     this.dataSource = new MatTableDataSource<IGroup>(res);
   }
 

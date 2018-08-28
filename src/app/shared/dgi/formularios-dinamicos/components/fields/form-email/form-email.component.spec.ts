@@ -8,7 +8,7 @@ describe('DgiFormEmailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DgiFormEmailComponent ]
+      declarations: [ DgiFormEmailComponent ],
     })
     .compileComponents();
   }));

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 // import { UsersComponent } from '../users/users.component';
-import { GroupComponent } from './group/group.component';
+// import { GroupComponent } from './group/group.component';
 import {
   RegisterPageComponent,
   LoginPageComponent,
@@ -25,9 +25,9 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'login',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
-    ]
+    ],
     // component: LoginPageComponent
   },
   // { path: 'groups', component: GroupComponent },

@@ -33,6 +33,6 @@ import { LibModule } from './lib/lib.module';
   ],
   bootstrap: [
     AppComponent,
-  ]
+  ],
 })
 export class AppModule { }

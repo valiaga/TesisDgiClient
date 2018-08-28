@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialogRef } from '@angular/material';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
 import { MESSAGES } from 'config/messages';
-import { AsesoresService, AsesoresReactiveService } from '../../shared/asesores.service';
+import { AsesoresReactiveService } from '../../shared/asesores.service';
 
 @Component({
   selector: 'dgi-form-new',
@@ -44,7 +44,7 @@ export class FormNewComponent implements OnInit {
         genero: ['M', Validators.required],
         // fecha_nacimiento: [(new Date()).toISOString(), Validators.required],
         fecha_nacimiento: ['', Validators.required],
-      })
+      }),
     };
 
     return controls;

@@ -42,7 +42,7 @@ export class AsesoresReactiveService {
   asesores: Observable<Asesor[]>;
   private _asesores: BehaviorSubject<Asesor[]>;
   private dataStore: {
-    asesores: Asesor[]
+    asesores: Asesor[],
   };
   constructor(private asesoresService: AsesoresService,
     private snackBar: MatSnackBar) {
@@ -60,7 +60,7 @@ export class AsesoresReactiveService {
         this.snackBar.open(MESSAGES.asesor.getMany, MESSAGES.actions.get, snackBarDuration);
         this.dataStore.asesores = data;
         this._asesores.next(Object.assign({}, this.dataStore).asesores);
-      }, error => console.log('Could not load asesores.')
+      }, error => console.warn('Could not load asesores.'),
       );
   }
 
@@ -70,7 +70,7 @@ export class AsesoresReactiveService {
         this.snackBar.open(MESSAGES.asesor.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.asesores.push(data);
         this._asesores.next(Object.assign({}, this.dataStore).asesores);
-      }, error => console.log('Could not create asesor.'));
+      }, error => console.warn('Could not create asesor.'));
   }
 
 
@@ -83,7 +83,7 @@ export class AsesoresReactiveService {
         });
 
         this._asesores.next(Object.assign({}, this.dataStore).asesores);
-      }, error => console.log('Could not update asesor.'));
+      }, error => console.warn('Could not update asesor.'));
   }
 
   public delete(id: string) {
@@ -96,7 +96,7 @@ export class AsesoresReactiveService {
           if (a.id === id) { this.dataStore.asesores.splice(index, 1); }
         });
         this._asesores.next(Object.assign({}, this.dataStore).asesores);
-      }, error => console.log('Could not delete asesor.'));
+      }, error => console.warn('Could not delete asesor.'));
   }
 
 }

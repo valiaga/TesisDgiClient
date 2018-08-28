@@ -21,7 +21,7 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    loadChildren: 'app/auth/auth.module#AuthModule'
+    loadChildren: 'app/auth/auth.module#AuthModule',
   },
   {
     path: '',
@@ -44,10 +44,10 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true }) // configuración para un módulo raiz
+    RouterModule.forRoot(routes, { useHash: true }), // configuración para un módulo raiz
   ],
   exports: [
-    RouterModule // se importará desde el módulo padre, el raiz
-  ]
+    RouterModule, // se importará desde el módulo padre, el raiz
+  ],
 })
 export class AppRoutingModule { }

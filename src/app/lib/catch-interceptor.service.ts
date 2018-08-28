@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {
   HttpRequest, HttpErrorResponse,
-  HttpResponse, HttpHandler, HttpEvent, HttpInterceptor
+  HttpResponse, HttpHandler, HttpEvent, HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { Router } from '@angular/router';
+// import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material';
 import { snackBarDuration } from 'config/general';
 import { UserStoreService } from './user-store.service';
@@ -14,7 +14,8 @@ import { UserStoreService } from './user-store.service';
 export class CatchInterceptorService implements HttpInterceptor {
   private started;
 
-  constructor(private router: Router,
+  constructor(
+    // private router: Router,
     private userStoreService: UserStoreService,
     private snackBar: MatSnackBar) { }
 
@@ -25,7 +26,7 @@ export class CatchInterceptorService implements HttpInterceptor {
     const errorCallback = this.catchError.bind(this);
     const interceptionOperator = tap<HttpEvent<any>>(
       successCallback,
-      errorCallback
+      errorCallback,
     );
     return handledRequest.pipe(interceptionOperator);
   }

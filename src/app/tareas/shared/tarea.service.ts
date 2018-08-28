@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
-import { environment } from '../../../environments/environment';
+// import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
 import { Tarea, ITarea } from '../models/tarea';
@@ -50,7 +50,7 @@ export class TareaReactiveService {
   public tareas: Observable<Tarea[]>;
   private _tareas: BehaviorSubject<Array<Tarea>>;
   private dataStore: { // Aquí es donde almacenaremos nuestros datos en la memoria
-    tareas: Tarea[]
+    tareas: Tarea[],
   };
   constructor(private tareaService: TareaService,
     private snackBar: MatSnackBar) {
@@ -66,10 +66,10 @@ export class TareaReactiveService {
     return this.tareaService.getTareas()
       .subscribe(data => {
         this.dataStore.tareas = data;
-        console.log(this.dataStore.tareas);
+        // console.log(this.dataStore.tareas);
 
         this._tareas.next(Object.assign({}, this.dataStore).tareas);
-      }, error => console.log('Could not load tareas.')
+      }, error => console.warn('Could not load tareas.'),
       );
   }
 
@@ -78,7 +78,7 @@ export class TareaReactiveService {
       .subscribe(data => {
         this.dataStore.tareas = data;
         this._tareas.next(Object.assign({}, this.dataStore).tareas);
-      }, error => console.log('Could not load tareas.')
+      }, error => console.warn('Could not load tareas.'),
       );
   }
 
@@ -90,7 +90,7 @@ export class TareaReactiveService {
           if (e.id === data.id) { this.dataStore.tareas[index] = data; }
         });
         this._tareas.next(Object.assign({}, this.dataStore).tareas);
-      }, error => console.log('Could not update tarea.'));
+      }, error => console.warn('Could not update tarea.'));
   }
 
   public create(etapa: any) {
@@ -99,7 +99,7 @@ export class TareaReactiveService {
         this.snackBar.open(MESSAGES.rolProceso.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.tareas.push(data);
         this._tareas.next(Object.assign({}, this.dataStore).tareas);
-      }, error => console.log('Could not create tarea.'));
+      }, error => console.warn('Could not create tarea.'));
   }
 
   public remove(id: string) {
@@ -112,6 +112,6 @@ export class TareaReactiveService {
           if (tarea.id === id) { this.dataStore.tareas.splice(index, 1); }
         });
         this._tareas.next(Object.assign({}, this.dataStore).tareas);
-      }, error => console.log('Could not delete tarea.'));
+      }, error => console.warn('Could not delete tarea.'));
   }
 }

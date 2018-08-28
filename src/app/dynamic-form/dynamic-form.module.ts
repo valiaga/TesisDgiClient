@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 // import { CommonModule } from '@angular/common';
 
-import { DynamicFormRoutingModule } from './dynamic-form-routing.module';
-import { DynamicFormCampoComponent } from './components/dynamic-form-campo.component';
+// import { DynamicFormRoutingModule } from './dynamic-form-routing.module';
+// import { DynamicFormCampoComponent } from './components/dynamic-form-campo.component';
 import { DynamicFormComponent } from './containers/dynamic-form.component';
 import { AngularModule } from '../shared/angular/angular.module';
 import { MaterialModule } from '../shared/material/material.module';
@@ -81,6 +81,6 @@ const DYNAMIC_COMPONENTS: any[] = [
   ],
   providers: [
     FormToolsService,
-  ]
+  ],
 })
 export class DynamicFormModule { }

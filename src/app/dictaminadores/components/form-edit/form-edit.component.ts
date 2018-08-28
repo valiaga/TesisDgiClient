@@ -9,7 +9,7 @@ import { DictaminadoresService, DictaminadoresReactiveService } from '../../shar
 @Component({
   selector: 'dgi-form-edit',
   templateUrl: './form-edit.component.html',
-  styleUrls: ['./form-edit.component.scss']
+  styleUrls: ['./form-edit.component.scss'],
 })
 export class FormEditComponent implements OnInit {
   public dictaminadorForm: FormGroup;
@@ -47,7 +47,7 @@ export class FormEditComponent implements OnInit {
         num_doc: response.data_persona.num_doc,
         genero: response.data_persona.genero,
         fecha_nacimiento: response.data_persona.fecha_nacimiento,
-      }
+      },
     });
   }
 
@@ -68,7 +68,7 @@ export class FormEditComponent implements OnInit {
         num_doc: ['', Validators.required],
         genero: ['M', Validators.required],
         fecha_nacimiento: ['', Validators.required],
-      })
+      }),
     };
 
     return controls;

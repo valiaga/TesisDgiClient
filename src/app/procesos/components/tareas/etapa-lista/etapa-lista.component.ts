@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 @Component({
   selector: 'dgi-etapa-lista',
   templateUrl: './etapa-lista.component.html',
-  styleUrls: ['./etapa-lista.component.scss']
+  styleUrls: ['./etapa-lista.component.scss'],
 })
 export class EtapaListaComponent implements OnInit {
   public etapas$: Observable<Etapa[]>;

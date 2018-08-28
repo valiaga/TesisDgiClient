@@ -6,7 +6,7 @@ import { PersonasService, PersonasReactiveService } from './shared/personas.serv
 import { PersonasComponent } from './personas.component';
 import {
   ListComponent, SearchComponent,
-  FormNewComponent, FormEditComponent
+  FormNewComponent, FormEditComponent,
 } from './components';
 import { FindPageComponent } from './containers';
 import {
@@ -15,7 +15,7 @@ import {
   MatRadioModule, MatDatepickerModule,
   MatCheckboxModule, MatButtonModule,
   MatIconModule, MatMenuModule,
-  MatTooltipModule, MatAutocompleteModule
+  MatTooltipModule, MatAutocompleteModule,
 } from '@angular/material';
 import { DgiButtonFabModule } from '@dgi/button-fab';
 import { ReactiveFormsModule } from '@angular/forms';

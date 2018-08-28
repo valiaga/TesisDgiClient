@@ -26,7 +26,7 @@ export class MessagesService {
     public getMessages1() {
         return this.http.get(`config/messages.1.json`)
             .subscribe(res => {
-                console.log('RES: ', res['tesisProceso']['delete']);
+                // console.log('RES: ', res['tesisProceso']['delete']);
             });
     }
 }

@@ -9,7 +9,7 @@ import { IDocumento } from '../../shared/documento';
 @Component({
   selector: 'dgi-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
 })
 export class ListComponent implements OnInit {
 

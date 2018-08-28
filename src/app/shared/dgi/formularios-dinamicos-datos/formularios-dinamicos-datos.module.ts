@@ -46,8 +46,8 @@ import {
 import {
     MatFormFieldModule, MatButtonModule,
     MatCheckboxModule, MatDatepickerModule,
-    MatRadioModule, MatSelectionListChange,
-    MatSelectModule, MatSliderModule,
+    MatRadioModule,
+    MatSelectModule,
     MatNativeDateModule,
     MatCardModule,
     MatIconModule,
@@ -114,7 +114,7 @@ const COVALENT_MODULES: any[] = [
         FormsModule,
         CommonModule,
         ...MATERIAL_MODULES,
-        ...COVALENT_MODULES
+        ...COVALENT_MODULES,
     ],
     exports: [
         ...COMPONENTS_FORM,

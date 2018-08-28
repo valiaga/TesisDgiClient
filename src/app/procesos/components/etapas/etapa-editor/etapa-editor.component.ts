@@ -10,7 +10,7 @@ import { MESSAGES } from '../../../../../config/messages';
 @Component({
   selector: 'dgi-etapa-editor',
   templateUrl: './etapa-editor.component.html',
-  styleUrls: ['./etapa-editor.component.scss']
+  styleUrls: ['./etapa-editor.component.scss'],
 })
 export class EtapaEditorComponent implements OnInit {
 

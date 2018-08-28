@@ -14,11 +14,11 @@ import { AngularModule } from '../shared/angular/angular.module';
     AngularModule,
     ProyectosRoutingModule,
 
-    ComponentsModule
+    ComponentsModule,
 
   ],
   declarations: [
     FindProyectoPageComponent,
-  ]
+  ],
 })
 export class ProyectosModule { }

@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'dgi-footer',
   templateUrl: './footer.component.html',
-  styles: []
+  styles: [],
 })
 export class FooterComponent implements OnInit {
 

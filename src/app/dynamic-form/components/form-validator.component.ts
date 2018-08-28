@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup } from '@angular/forms';
-import { FieldConfig } from '../models/field-config';
-import { ViewEncapsulation } from '@angular/core';
+// import { FormGroup } from '@angular/forms';
+// import { FieldConfig } from '../models/field-config';
+// import { ViewEncapsulation } from '@angular/core';
 import { MESSAGES } from '../../../config/messages';
 
 @Component({
@@ -11,7 +11,7 @@ import { MESSAGES } from '../../../config/messages';
     {{ getMsmError }}
   </span>
   `,
-  styles: []
+  styles: [],
 })
 export class FormValidatorComponent implements OnInit {
 

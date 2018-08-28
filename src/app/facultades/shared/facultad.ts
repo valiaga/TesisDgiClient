@@ -9,12 +9,12 @@ export class Facultad {
         public vision: string,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
-        public id?: string
+        public id?: string,
     ) {}
 }
 
 export interface IFacultad {
-    id: string; //uuid
+    id: string; // uuid
     nombre: string;
     alias: string;
     activo: boolean;

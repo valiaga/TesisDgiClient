@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
-import { PersonasService, PersonasReactiveService } from '../../shared/personas.service';
+import { PersonasReactiveService } from '../../shared/personas.service';
 import { Persona } from '../../shared/persona';
 import { MatDialog } from '@angular/material';
 import { FormNewComponent, FormEditComponent } from '../../components';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TdDialogService } from '@covalent/core';
 import { getMessageConfirm } from 'config/general';
@@ -19,7 +19,7 @@ import { Router, ActivatedRoute } from '@angular/router';
             right: 90px;
             bottom: 20px
         }
-    `]
+    `],
 })
 
 export class FindPageComponent implements OnInit {
@@ -50,12 +50,12 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog persona');
+            // console.log('close dialog persona');
         });
     }
 
     public onUpdatePersona(event) {
-        console.log('Update: ', event);
+        // console.log('Update: ', event);
         const dialogRef = this.dialog.open(FormEditComponent, {
             width: '500px',
             data: {
@@ -64,7 +64,7 @@ export class FindPageComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log('close dialog persona');
+            // console.log('close dialog persona');
         });
 
     }

@@ -26,7 +26,7 @@ export class TesisProcesoReactiveService {
   public tesisProcesos: Observable<TesisProceso[]>;
   private _tesisProcesos: BehaviorSubject<Array<TesisProceso>>;
   private dataStore: { // Aquí es donde almacenaremos nuestros datos en la memoria
-    tesisProcesos: TesisProceso[]
+    tesisProcesos: TesisProceso[],
   };
 
   constructor(
@@ -45,7 +45,7 @@ export class TesisProcesoReactiveService {
       .subscribe(data => {
         this.dataStore.tesisProcesos = data;
         this._tesisProcesos.next(Object.assign({}, this.dataStore).tesisProcesos);
-      }, error => console.log('Could not load tesisProcesos.')
+      }, error => console.warn('Could not load tesisProcesos.'),
       );
   }
   public createTesisProcesoAndProyecto(data: any) {
@@ -54,7 +54,7 @@ export class TesisProcesoReactiveService {
         this.snackBar.open(MESSAGES.tesisProceso.post, MESSAGES.actions.post, snackBarDuration);
         this.dataStore.tesisProcesos.push(res);
         this._tesisProcesos.next(Object.assign({}, this.dataStore).tesisProcesos);
-      }, error => console.log('Could not create tesisProcesos.'));
+      }, error => console.warn('Could not create tesisProcesos.'));
   }
 
   public update(tesisProceso: ITesisProceso) {
@@ -66,7 +66,7 @@ export class TesisProcesoReactiveService {
         });
 
         this._tesisProcesos.next(Object.assign({}, this.dataStore).tesisProcesos);
-      }, error => console.log('Could not update tesisProceso.'));
+      }, error => console.warn('Could not update tesisProceso.'));
   }
 
   public delete(id: string) {
@@ -77,6 +77,6 @@ export class TesisProcesoReactiveService {
           if (tesisProceso.id === id) { this.dataStore.tesisProcesos.splice(index, 1); }
         });
         this._tesisProcesos.next(Object.assign({}, this.dataStore).tesisProcesos);
-      }, error => console.log('Could not delete tesisProcesos.'));
+      }, error => console.warn('Could not delete tesisProcesos.'));
   }
 }

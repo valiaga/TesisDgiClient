@@ -3,10 +3,10 @@ import { Requisito, IRequisito } from './requisito';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material';
-import { environment } from '../../../environments/environment';
+// import { environment } from '../../../environments/environment';
 import { MESSAGES } from '../../../config/messages';
 import { snackBarDuration } from '../../../config/general';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 
 
 @Injectable()
@@ -39,7 +39,7 @@ export class RequisitoReactiveService {
   public requisitos: Observable<Requisito[]>;
   private _requisitos: BehaviorSubject<Array<Requisito>>;
   private dataStore: { // Aquí es donde almacenaremos nuestros datos en la memoria
-    requisitos: Requisito[]
+    requisitos: Requisito[],
   };
   constructor(
     private requisitosService: RequisitosService,
@@ -59,7 +59,7 @@ export class RequisitoReactiveService {
 
         this.dataStore.requisitos = data;
         this._requisitos.next(Object.assign({}, this.dataStore).requisitos);
-      }, error => console.log('Could not load requisitos.')
+      }, error => console.warn('Could not load requisitos.'),
       );
   }
 
@@ -67,11 +67,11 @@ export class RequisitoReactiveService {
 
     return this.requisitosService.getRequisitos$({ tarea_id: tareaId })
       .subscribe(data => {
-        console.log(data);
+        // console.log(data);
 
         this.dataStore.requisitos = data;
         this._requisitos.next(Object.assign({}, this.dataStore).requisitos);
-      }, error => console.log('Could not load requisitos.')
+      }, error => console.warn('Could not load requisitos.'),
       );
   }
 
@@ -83,7 +83,7 @@ export class RequisitoReactiveService {
 
         this.dataStore.requisitos.push(data);
         this._requisitos.next(Object.assign({}, this.dataStore).requisitos);
-      }, error => console.log('Could not create requisito.'));
+      }, error => console.warn('Could not create requisito.'));
   }
 
 
@@ -95,7 +95,7 @@ export class RequisitoReactiveService {
           if (e.id === data.id) { this.dataStore.requisitos[index] = data; }
         });
         this._requisitos.next(Object.assign({}, this.dataStore).requisitos);
-      }, error => console.log('Could not update requisito.'));
+      }, error => console.warn('Could not update requisito.'));
   }
 
   remove(id: string) {
@@ -108,6 +108,6 @@ export class RequisitoReactiveService {
           if (requisito.id === id) { this.dataStore.requisitos.splice(index, 1); }
         });
         this._requisitos.next(Object.assign({}, this.dataStore).requisitos);
-      }, error => console.log('Could not delete requisito.'));
+      }, error => console.warn('Could not delete requisito.'));
   }
 }

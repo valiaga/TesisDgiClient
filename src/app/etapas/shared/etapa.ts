@@ -10,7 +10,7 @@ export class Etapa {
         public orden: number,
         public fecha_creacion?: string,
         public fecha_actualizacion?: string,
-        public id?: string
+        public id?: string,
     ) { }
 }
 

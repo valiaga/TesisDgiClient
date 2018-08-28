@@ -5,7 +5,7 @@ import { ProcesoService } from './proceso.service';
 describe('ProcesoService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ProcesoService]
+      providers: [ProcesoService],
     });
   });
 
