@@ -82,12 +82,15 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     // const query = { tesis_etapa: tesisEtapaId, etapa: etapaId };
     const queryt = tesisEtapaId ? Object.assign({}, { tesis_etapa: tesisEtapaId }) : {};
     const query = etapaId ? Object.assign(queryt, { etapa: etapaId }) : {};
+    // console.log('query', query);
+
     this.tesisTareaService.getWithQuery$(query)
       .subscribe(this.loadTesisTareasByEtapaId.bind(this));
   }
 
   private loadTesisTareasByEtapaId(tesisTareas) {
     this.tesisTareas = tesisTareas;
+    this.tareasStepper.reset();
     this.getFormulariosByTareaId(tesisTareas[0].data_tarea.id);
   }
 
@@ -143,8 +146,10 @@ export class FlowTesisProcesoPageComponent implements OnInit, AfterViewInit {
     this.sidenavEtapas.selectionChange.asObservable()
       .subscribe((stepper: StepperSelectionEvent) => {
         // Nos quedamos aqui
+
         const label = JSON.parse(stepper.selectedStep.label);
-        const tesisEtapaId = label.tesis_etapa_exist.id || '';
+        // console.log(label);
+        const tesisEtapaId = label.tesis_etapa_exist && label.tesis_etapa_exist.id || '';
         const etapaId = label.data_etapa.id || '';
         this.getTesisTareasByEtapaId(tesisEtapaId, etapaId);
       });
